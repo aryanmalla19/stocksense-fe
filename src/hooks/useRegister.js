@@ -2,7 +2,7 @@ import { useState } from "react";
 import { register } from "../apiService/ApiService";
 
 const useRegister = () => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 

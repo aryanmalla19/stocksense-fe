@@ -5,7 +5,7 @@ import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import RegisterHeader from "../auth/RegisterHeader";
 import useRegister from "../hooks/useRegister";
 
-const RegisterPages = () => {
+const LoginPages = () => {
   const { input, setInput, error, loading, handleSubmit } = useRegister();
 
   // General onChange handler for all input fields
@@ -21,7 +21,7 @@ const RegisterPages = () => {
     <div className="auth-bg">
       <div className="auth-container">
         <RegisterHeader />
-        {/* Login form */}
+        {/* Registration form */}
         <form className="space-y-5 mx-10 my-4" onSubmit={handleSubmit}>
           {/* Username input field */}
           <div className="relative">
@@ -40,7 +40,7 @@ const RegisterPages = () => {
           <div className="relative">
             <FaEnvelope className="auth-icon" />
             <input
-              type="text"
+              type="email"
               name="email"
               placeholder="Email"
               className="auth-input"
@@ -53,7 +53,7 @@ const RegisterPages = () => {
           <div className="relative">
             <FaLock className="auth-icon" />
             <input
-              type="text"
+              type="password"
               name="password"
               placeholder="Password"
               className="auth-input"
@@ -62,19 +62,27 @@ const RegisterPages = () => {
             />
           </div>
 
+          {/* Error Message */}
+          {error && (
+            <div className="text-red-500 text-center">
+              <p>{error}</p>
+            </div>
+          )}
+
           {/* Submit button */}
           <button
             type="submit"
             className="auth-button bg-gradient-to-l from-blue-500 to-blue-800 hover:from-blue-600 hover:to-blue-700 transition duration-200 w-full"
+            disabled={loading}
           >
-            Signup
+            {loading ? "Signing up..." : "Signup"}
           </button>
 
-          {/* Signup link */}
+          {/* Login link */}
           <div className="text-center">
             <p>
               Already have an account?
-              <Link to="/register" className="text-blue-500 hover:underline">
+              <Link to="/login" className="text-blue-500 hover:underline">
                 Login
               </Link>
             </p>
@@ -87,4 +95,4 @@ const RegisterPages = () => {
   );
 };
 
-export default RegisterPages;
+export default LoginPages;
