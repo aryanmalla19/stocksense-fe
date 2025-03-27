@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { ThemeContext } from "../context/ThemeContext";
 
 const Navbar = () => {
-  return <div>fererf</div>;
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  return (
+    <div
+      className={`border-b border gray-300 p-8 flex items-center justify-between ${
+        theme === "dark" ? "bg-gray-900 text-white " : "bg-gray-100 text-black "
+      }`}
+    >
+      <h2>Dashboard</h2>
+      {theme === "dark" ? (
+        <FaMoon className="w-6 h-6 text-[#FFFFFF]" onClick={toggleTheme} />
+      ) : (
+        <FaSun className="w-6 h-6 text-[#4D4D4D]" onClick={toggleTheme} />
+      )}
+    </div>
+  );
 };
 
 export default Navbar;

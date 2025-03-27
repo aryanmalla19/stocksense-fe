@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 
 .auth-bg {
     @apply bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff] min-h-screen flex items-center justify-center;
