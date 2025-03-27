@@ -1,7 +1,7 @@
 import React from "react";
 
 const LoginPages = () => {
-  return <div>dfvevs</div>;
+  return <div>sds</div>;
 };
 
 export default LoginPages;
