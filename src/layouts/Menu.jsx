@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../context/ThemeContext";
+
 import {
   FaChartLine,
   FaRegDotCircle,
@@ -7,66 +9,64 @@ import {
   FaUser,
   FaCog,
   FaSignOutAlt,
-} from "react-icons/fa"; // Import the icons from react-icons
+} from "react-icons/fa";
 
 const menuItems = [
   {
     title: "MARKET",
     items: [
       {
-        icon: <FaChartLine />, // React Icon for Market Overview
+        icon: <FaChartLine />,
         label: "Market Overview",
         href: "/market-overview",
       },
-      {
-        icon: <FaRegDotCircle />, // React Icon for Stocks
-        label: "Stocks",
-        href: "/stocks",
-      },
-      {
-        icon: <FaRegListAlt />, // React Icon for Watchlist
-        label: "Watchlist",
-        href: "/watchlist",
-      },
+      { icon: <FaRegDotCircle />, label: "Stocks", href: "/stocks" },
+      { icon: <FaRegListAlt />, label: "Watchlist", href: "/watchlist" },
     ],
   },
   {
     title: "ACCOUNT",
     items: [
-      {
-        icon: <FaUser />, // React Icon for Profile
-        label: "Profile",
-        href: "/profile",
-      },
-      {
-        icon: <FaCog />, // React Icon for Settings
-        label: "Settings",
-        href: "/settings",
-      },
-      {
-        icon: <FaSignOutAlt />, // React Icon for Logout
-        label: "Logout",
-        href: "/logout",
-      },
+      { icon: <FaUser />, label: "Profile", href: "/profile" },
+      { icon: <FaCog />, label: "Settings", href: "/settings" },
+      { icon: <FaSignOutAlt />, label: "Logout", href: "/logout" },
     ],
   },
 ];
 
 const Menu = () => {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div className="text-sm">
+    <div
+      className={`text-sm flex flex-col min-h-147 justify-between p-4 ${
+        theme === "dark" ? "text-white" : "text-gray-900 "
+      }`}
+    >
       {menuItems.map((category) => (
-        <div className="flex flex-col gap-2" key={category.title}>
-          <span className="hidden lg:block text-gray-700 font-semibold my-4">
+        <div className="flex flex-col gap-2 " key={category.title}>
+          {/* Fix category title color */}
+          <span
+            className={`hidden lg:block font-semibold my-4 ${
+              theme === "dark"
+                ? "text-gray-300 bg-purple-700 w-20 p-2 rounded-lg "
+                : "text-white bg-green-500 w-20 p-2 rounded-lg "
+            }`}
+          >
             {category.title}
           </span>
+
           {category.items.map((item) => (
             <Link
               to={item.href}
               key={item.label}
-              className="flex items-center justify-center lg:justify-start gap-4 text-gray-700 py-2 hover:bg-stone-100 px-1 rounded"
+              className={`flex items-center justify-center lg:justify-start gap-4 py-2 px-4 rounded transition-colors duration-300
+                ${
+                  theme === "dark"
+                    ? "text-white hover:bg-gray-700"
+                    : "text-gray-700 hover:bg-gray-200"
+                }`}
             >
-              {/* Render the icon directly from React Icons */}
               <span className="w-5 h-5">{item.icon}</span>
               <span className="hidden lg:block">{item.label}</span>
             </Link>

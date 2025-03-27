@@ -6,8 +6,10 @@ const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <div
-      className={`border-b border gray-300 p-8 flex items-center justify-between ${
-        theme === "dark" ? "bg-gray-900 text-white " : "bg-gray-100 text-black "
+      className={` p-8 flex items-center justify-between ${
+        theme === "dark"
+          ? "bg-gray-900 text-white border-b border gray-300"
+          : "bg-gray-100 text-black "
       }`}
     >
       <h2>Dashboard</h2>
