@@ -1,17 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SocialLogin from "../auth/SocialLogin";
-import { FaEnvelope, FaLock } from "react-icons/fa";
-import Rememberme from "../auth/Rememberme";
-import LoginHeader from "../auth/LoginHeader";
+import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import RegisterHeader from "../auth/RegisterHeader";
 
-const LoginPages = () => {
+const RegisterPages = () => {
   return (
     <div className="auth-bg">
       <div className="auth-container">
-        <LoginHeader />
+        <RegisterHeader />
         {/* Login form */}
-        <form className="space-y-6 mx-10 my-4">
+        <form className="space-y-5 mx-10 my-4">
+          {/* Username input field */}
+          <div className="relative">
+            <FaUser className="auth-icon" />
+            <input type="text" placeholder="Username" className="auth-input" />
+          </div>
+
           {/* Email input field */}
           <div className="relative">
             <FaEnvelope className="auth-icon" />
@@ -24,23 +29,20 @@ const LoginPages = () => {
             <input type="text" placeholder="Password" className="auth-input" />
           </div>
 
-          {/* Remember Me and Forgot Password */}
-          <Rememberme />
-
           {/* Submit button */}
           <button
             type="submit"
             className="auth-button bg-gradient-to-l from-blue-500 to-blue-800 hover:from-blue-600 hover:to-blue-700 transition duration-200 w-full"
           >
-            Login
+            Signup
           </button>
 
           {/* Signup link */}
           <div className="text-center">
             <p>
-              Don't have an account?
+              Already have an account?
               <Link to="/register" className="text-blue-500 hover:underline">
-                Signup
+                Login
               </Link>
             </p>
           </div>
@@ -52,4 +54,4 @@ const LoginPages = () => {
   );
 };
 
-export default LoginPages;
+export default RegisterPages;

@@ -10,12 +10,12 @@
 }
 
 .auth-h2 {
-    @apply text-4xl font-bold text-center text-gray-600 mt-10;
+    @apply text-4xl font-bold  text-blue-600;
     font-family: "Poppins", sans-serif;
 }
 
 .auth-p {
-    @apply text-gray-900 text-center my-4 font-semibold ;
+    @apply text-gray-400  my-4 font-semibold ;
     font-family: "Roboto", sans-serif;
 }
 
@@ -28,4 +28,7 @@
 }
 .auth-icon{
     @apply absolute left-3 top-3 text-gray-400
+}
+.auth-social{
+    @apply flex items-center justify-center border border-gray-300 p-2 rounded-md hover:bg-gray-100
 }

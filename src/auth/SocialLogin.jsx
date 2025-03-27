@@ -12,7 +12,7 @@ const SocialLogin = () => {
       {/* Social login options */}
 
       <div className="flex flex-col space-y-4 mt-4">
-        <button className="flex items-center justify-center border border-gray-300 p-2 rounded-md hover:bg-gray-100">
+        <button className="auth-social">
           <img
             src="https://img.icons8.com/color/48/000000/google-logo.png"
             alt="Google Logo"
@@ -21,7 +21,7 @@ const SocialLogin = () => {
           Login with Google
         </button>
 
-        <button className="flex items-center justify-center border border-gray-300 p-2 rounded-md hover:bg-gray-100">
+        <button className="auth-social">
           <img
             src="https://img.icons8.com/color/48/000000/facebook-new.png"
             alt="Facebook Logo"
