@@ -39,7 +39,7 @@ const Menu = () => {
 
   return (
     <div
-      className={`text-sm flex flex-col min-h-147 justify-between p-4 ${
+      className={`text-sm flex flex-col min-h-screen gap-30 p-4 ${
         theme === "dark" ? "text-white" : "text-gray-900 "
       }`}
     >
