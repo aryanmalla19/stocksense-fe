@@ -49,8 +49,8 @@ const Menu = () => {
           <span
             className={`hidden lg:block font-semibold my-4 ${
               theme === "dark"
-                ? "text-gray-300 bg-purple-700 w-20 p-2 rounded-lg "
-                : "text-white bg-green-500 w-20 p-2 rounded-lg "
+                ? "text-gray-300 bg-teal-700 w-20 p-2 rounded-lg "
+                : "text-white bg-teal-700 w-20 p-2 rounded-lg "
             }`}
           >
             {category.title}

@@ -15,8 +15,8 @@ const Navbar = () => {
     >
       {/* Welcome Text */}
       <h2 className="font-semibold text-xl md:text-2xl">
-        Welcome to <span className="text-blue-500">Stockify</span>,
-        <span className="text-lg md:text-xl px-2 font-bold text-blue-500">
+        Welcome to <span className="text-purple-500">Stockify</span>,
+        <span className="text-lg md:text-xl px-2 font-bold text-purple-500">
           Neetu Rai
         </span>
       </h2>
