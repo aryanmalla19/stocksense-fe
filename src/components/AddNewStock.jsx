@@ -1,16 +1,19 @@
 import React from "react";
 import Button from "./Button";
 import { IoIosAddCircle } from "react-icons/io";
+import Input from "./Input";
 
 const AddNewStock = () => {
   return (
-    <div className="w-full pr-8">
-      Add New Stock
-      <Button classes="bg-teal-500 hover:bg-teal-700 flex gap-2 min-w-full items-center justify-center">
+    <section className="w-full pr-8 m-4">
+      <Input />
+      <Input />
+      <Input />
+      <Button classes="bg-teal-500 hover:bg-teal-700 flex gap-2 min-w-full items-center justify-center mt-4">
         <IoIosAddCircle />
         Add
       </Button>
-    </div>
+    </section>
   );
 };
 
