@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import StockListTableHeader from "./StockListTableHeader";
 import { FaStar, FaEdit, FaTrash } from "react-icons/fa";
 import { ThemeContext } from "../context/ThemeContext";
@@ -160,9 +161,11 @@ const StockListTable = () => {
 
               {/* Watchlist Button */}
               <div className="stockList ml-15">
-                <button className="flex items-center text-white bg-green-500 p-2 rounded-md ">
-                  View
-                </button>
+                <Link to={`/chart/${stock.symbol}`}>
+                  <button className="flex items-center text-white bg-green-500 p-2 rounded-md ">
+                    View
+                  </button>
+                </Link>
               </div>
 
               {/* Action Buttons */}

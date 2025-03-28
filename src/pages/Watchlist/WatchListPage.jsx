@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import AddNewStock from "../../components/AddNewStock";
-import StockListHeader from "../../components/StockListHeader";
 import StockListTable from "../../components/StockListTable";
 import StockDetails from "../../components/StockDetails";
 import Calendar from "../../components/Calender";
@@ -15,7 +14,7 @@ const WatchListPage = () => {
         theme === "dark" ? "bg-gray-900 text-white" : "bg-white text[#4D4D4D]"
       }`}
     >
-      {/* Optimized Header Section */}
+      {/* Header Section */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold py-2">
@@ -25,7 +24,11 @@ const WatchListPage = () => {
             Track your favorite stocks
           </p>
         </div>
+
+        {/* Search Stock using Symbol */}
         <SearchStock />
+
+        {/* current date */}
         <Calendar />
       </div>
       <div className="outlet-container border border-gray-400 rounded-md">
@@ -39,7 +42,6 @@ const WatchListPage = () => {
         </div>
 
         <main>
-          <StockListHeader />
           <StockListTable />
         </main>
       </div>
