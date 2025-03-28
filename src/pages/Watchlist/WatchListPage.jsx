@@ -5,6 +5,7 @@ import StockListHeader from "../../components/StockListHeader";
 import StockListTable from "../../components/StockListTable";
 import StockDetails from "../../components/StockDetails";
 import Calendar from "../../components/Calender";
+import SearchStock from "../../components/SearchStock";
 
 const WatchListPage = () => {
   const { theme } = useContext(ThemeContext);
@@ -24,6 +25,7 @@ const WatchListPage = () => {
             Track your favorite stocks
           </p>
         </div>
+        <SearchStock />
         <Calendar />
       </div>
       <div className="outlet-container border border-gray-400 rounded-md">

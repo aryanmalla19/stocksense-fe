@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Button from "./Button";
 import { IoIosAddCircle } from "react-icons/io";
 import Input from "./Input";
+import Button from "./Button";
 
 const AddNewStock = () => {
   const [stockSymbol, setStockSymbol] = useState("");

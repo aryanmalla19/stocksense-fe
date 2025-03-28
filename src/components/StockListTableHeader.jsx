@@ -61,25 +61,3 @@ const StockListTableHeader = ({ onSort }) => {
 };
 
 export default StockListTableHeader;
-
-{
-  /* <div className="relative w-1/3">
-        <input
-          type="text"
-          placeholder="Search Symbol..."
-          className="p-2 w-full pl-10 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
-        <FaSearch className="absolute left-3 top-3 text-gray-500 dark:text-gray-300" />
-      </div> */
-}
-
-{
-  /* <div className="flex justify-center gap-4">
-        <button className="text-blue-500 hover:text-blue-700">
-          <FaEdit />
-        </button>
-        <button className="text-red-500 hover:text-red-700">
-          <FaTrash />
-        </button>
-      </div> */
-}
