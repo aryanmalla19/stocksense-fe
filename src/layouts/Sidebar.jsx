@@ -9,7 +9,7 @@ const Sidebar = () => {
     <div
       className={`p-6 ${
         theme === "dark"
-          ? "bg-gray-900 text-white"
+          ? "bg-gray-900 text-white border-r border-gray-600"
           : "bg-gray-100 text-[#4D4D4D]"
       }`}
     >

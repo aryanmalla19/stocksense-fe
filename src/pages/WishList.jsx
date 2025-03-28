@@ -9,25 +9,27 @@ const WishList = () => {
   const { theme } = useContext(ThemeContext);
   return (
     <div
-      className={` ${
-        theme === "dark" ? "bg-gray-800 text-white" : "bg-white text[#4D4D4D]"
+      className={`  ${
+        theme === "dark" ? "bg-gray-900 text-white" : "bg-white text[#4D4D4D]"
       }`}
     >
       <div className="flex justify-center">
-        <h2 className="text-3xl font-semibold ">Stock Wishlist</h2>
+        <h2 className="text-3xl font-semibold mt-5">Stock Wishlist</h2>
         {/* <Calender /> */}
       </div>
 
-      <div className="bg-gray-100 rounded-md p-3 text-black m-4">
-        Stock Details
-      </div>
-      <StockChart />
-      <AddNewStock />
+      <div className="outlet-container border border-gray-400 rounded-md">
+        <div className="bg-gray-100 rounded-md p-3 text-black">
+          Stock Details
+        </div>
+        <StockChart />
+        <AddNewStock />
 
-      <main>
-        <StockListHeader />
-        <StockListTable />
-      </main>
+        <main>
+          <StockListHeader />
+          <StockListTable />
+        </main>
+      </div>
     </div>
   );
 };

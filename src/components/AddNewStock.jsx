@@ -4,9 +4,9 @@ import { IoIosAddCircle } from "react-icons/io";
 
 const AddNewStock = () => {
   return (
-    <div>
+    <div className="w-full pr-8">
       Add New Stock
-      <Button classes="bg-teal-500 hover:bg-teal-700 flex gap-2 w-[500px] xl:w-auto items-center">
+      <Button classes="bg-teal-500 hover:bg-teal-700 flex gap-2 min-w-full items-center justify-center">
         <IoIosAddCircle />
         Add
       </Button>

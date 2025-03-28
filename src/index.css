@@ -34,3 +34,7 @@
 .auth-social{
     @apply flex items-center justify-center border border-gray-300 p-2 rounded-md hover:bg-gray-100
 }
+
+.outlet-container{
+    @apply m-4
+}

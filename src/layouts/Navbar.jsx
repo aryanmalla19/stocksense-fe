@@ -9,7 +9,7 @@ const Navbar = () => {
     <div
       className={`p-6 flex items-center justify-between ${
         theme === "dark"
-          ? "bg-gray-800 text-white"
+          ? "bg-gray-800 text-white "
           : "bg-gray-200 text-gray-600"
       }`}
     >
