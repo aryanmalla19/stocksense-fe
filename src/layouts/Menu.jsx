@@ -21,7 +21,7 @@ const menuItems = [
         href: "/market-overview",
       },
       { icon: <FaRegDotCircle />, label: "Stocks", href: "/stocks" },
-      { icon: <FaRegListAlt />, label: "Watchlist", href: "/watchlist" },
+      { icon: <FaRegListAlt />, label: "Watchlist", href: "/wishlist" },
     ],
   },
   {
