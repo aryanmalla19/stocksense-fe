@@ -1,7 +1,7 @@
 import React from "react";
 
 const StockChart = () => {
-    return <div>dvdsvdf</div>;
+  return <div className="details-container"></div>;
 };
 
 export default StockChart;

@@ -5,7 +5,7 @@ import Input from "./Input";
 
 const AddNewStock = () => {
   return (
-    <section className="w-full pr-8 m-4">
+    <section className="w-full details-container ">
       <Input />
       <Input />
       <Input />

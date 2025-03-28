@@ -38,3 +38,6 @@
 .outlet-container{
     @apply m-4
 }
+.details-container{
+    @apply pr-8 m-4
+}
