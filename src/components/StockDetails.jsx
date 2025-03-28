@@ -17,7 +17,7 @@ const StockDetails = () => {
   return (
     <div>
       {/* Ensure correct structure for TradingView widget */}
-      <div className="tradingview-widget-container bg-[#faf7f7] rounded-lg p-4 shadow-md items-center details-container">
+      <div className="tradingview-widget-container bg-[#faf7f7] rounded-lg shadow-md items-center details-container">
         <div
           id="tradingview-widget"
           className="tradingview-widget-container__widget"

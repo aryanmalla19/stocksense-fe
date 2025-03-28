@@ -1,9 +1,9 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import LoginPages from "../pages/LoginPages";
-import RegisterPages from "../pages/RegisterPages";
+import LoginPages from "../pages/Auth/LoginPages";
+import RegisterPages from "../pages/Auth/RegisterPages";
 import Mainlayout from "../layouts/Mainlayout";
-import WatchList from "../pages/WatchList";
+import WatchList from "../pages/Watchlist/WatchListPage";
 
 const Router = createBrowserRouter([
   {

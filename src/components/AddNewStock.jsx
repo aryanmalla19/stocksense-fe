@@ -9,7 +9,7 @@ const AddNewStock = () => {
   const [stockSector, setStockSector] = useState("");
 
   return (
-    <section className="w-full details-container ">
+    <section className="w-[500px] details-container ">
       <Input
         value={stockSymbol}
         onChange={(e) => setStockSymbol(e.target.value)}
