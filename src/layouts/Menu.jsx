@@ -20,8 +20,8 @@ const menuItems = [
         label: "Market Overview",
         href: "/market-overview",
       },
-      { icon: <FaRegDotCircle />, label: "Stocks", href: "/stocks" },
-      { icon: <FaRegListAlt />, label: "Watchlist", href: "/wishlist" },
+      { icon: <FaRegDotCircle />, label: "Stocks List", href: "/stocks" },
+      { icon: <FaRegListAlt />, label: "Watchlist", href: "/watchlist" },
     ],
   },
   {

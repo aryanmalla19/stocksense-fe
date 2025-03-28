@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import LoginPages from "../pages/LoginPages";
 import RegisterPages from "../pages/RegisterPages";
 import Mainlayout from "../layouts/Mainlayout";
-import WishList from "../pages/WishList";
+import WatchList from "../pages/WatchList";
 
 const Router = createBrowserRouter([
   {
@@ -11,8 +11,8 @@ const Router = createBrowserRouter([
     element: <Mainlayout />,
     children: [
       {
-        path: "/wishlist",
-        element: <WishList />,
+        path: "/watchlist",
+        element: <WatchList />,
       },
     ],
   },
