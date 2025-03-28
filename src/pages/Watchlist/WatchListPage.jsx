@@ -17,7 +17,9 @@ const WatchListPage = () => {
       {/* Optimized Header Section */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold">Stock Watchlist</h1>
+          <h1 className="text-2xl md:text-3xl font-bold py-2">
+            Stock Watchlist
+          </h1>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
             Track your favorite stocks
           </p>
@@ -25,7 +27,7 @@ const WatchListPage = () => {
         <Calendar />
       </div>
       <div className="outlet-container border border-gray-400 rounded-md">
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col md:flex-row gap-4 h-65">
           <div>
             <AddNewStock />
           </div>

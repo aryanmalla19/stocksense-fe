@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import StockListTableHeader from "./StockListTableHeader";
 import { FaStar, FaEdit, FaTrash } from "react-icons/fa";
+import { ThemeContext } from "../context/ThemeContext";
 
 const StockListTable = () => {
+  const { theme } = useContext(ThemeContext);
   // Dummy data array
   const dummyStocks = [
     {
@@ -110,16 +112,18 @@ const StockListTable = () => {
   };
 
   return (
-    <section className="details-container">
+    <section className="details-container ">
       <StockListTableHeader onSort={handleSort} />
 
       {/* Table body */}
-      <div className="overflow-y-auto h-60 flex-1 scrollbar-hidden ">
+      <div className="overflow-y-auto h-58 flex-1 scrollbar-hidden ">
         <div className="space-y-2 mt-2">
           {dummyStocks.map((stock, index) => (
             <div
               key={index}
-              className="grid grid-cols-8 gap-8 dark:bg-gray-800 dark:text-white rounded-md px-4 py-3 items-center text-sm"
+              className={`grid grid-cols-8 gap-8 rounded-md px-4 py-3 items-center text-sm ${
+                theme === "dark" ? "bg-gray-800 text-white" : "bg-gray-100"
+              }`}
             >
               {/* Symbol */}
               <div className="font-medium stockList">{stock.symbol}</div>

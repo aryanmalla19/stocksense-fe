@@ -7,7 +7,7 @@ const Sidebar = () => {
   const { theme } = useContext(ThemeContext);
   return (
     <div
-      className={`p-6 h-190 ${
+      className={`p-6 h-184 ${
         theme === "dark"
           ? "bg-gray-900 text-white border-r border-gray-500"
           : "bg-gray-100 text-[#4D4D4D]"

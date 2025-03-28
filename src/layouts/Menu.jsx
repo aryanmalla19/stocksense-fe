@@ -6,8 +6,6 @@ import {
   FaChartLine,
   FaRegDotCircle,
   FaRegListAlt,
-  FaUser,
-  FaCog,
   FaSignOutAlt,
 } from "react-icons/fa";
 
@@ -22,13 +20,6 @@ const menuItems = [
       },
       { icon: <FaRegDotCircle />, label: "Stocks List", href: "/stocks" },
       { icon: <FaRegListAlt />, label: "Watchlist", href: "/watchlist" },
-    ],
-  },
-  {
-    title: "ACCOUNT",
-    items: [
-      { icon: <FaUser />, label: "Profile", href: "/profile" },
-      { icon: <FaCog />, label: "Settings", href: "/settings" },
       { icon: <FaSignOutAlt />, label: "Logout", href: "/logout" },
     ],
   },
@@ -78,3 +69,4 @@ const Menu = () => {
 };
 
 export default Menu;
+    

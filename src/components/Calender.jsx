@@ -9,7 +9,7 @@ const Calendar = () => {
   return (
     <div className="flex items-center space-x-2">
       {/* Calendar Icon */}
-      <FaCalendarAlt size={20} className="text-purple-500" />
+      <FaCalendarAlt size={20} className="text-teal-600" />
 
       {/* Display current date */}
       <span>{dateString}</span>

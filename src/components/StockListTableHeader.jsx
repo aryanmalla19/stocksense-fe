@@ -4,7 +4,7 @@ import { RiArrowUpDownFill } from "react-icons/ri";
 
 const StockListTableHeader = ({ onSort }) => {
   return (
-    <div className="grid grid-cols-8 bg-gray-100 dark:bg-gray-800 text-stone-900 dark:text-white rounded-md px-4 py-2 font-semibold text-center items-center ">
+    <div className="grid grid-cols-8 bg-gray-200 dark:bg-gray-800 text-stone-900 dark:text-white rounded-md px-4 py-2 font-semibold text-center items-center ">
       <div className="stockList ">Symbol</div>
 
       {/* Name Column with Sort Button */}
