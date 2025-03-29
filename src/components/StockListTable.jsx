@@ -1,16 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import StockListTableHeader from "./StockListTableHeader";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { ThemeContext } from "../context/ThemeContext";
 import useStocks from "../hooks/useStocks";
 
 const StockListTable = ({ searchSymbol }) => {
+  const [sortBy, setSortBy] = useState("name");
+  const [sortOrder, setSortOrder] = useState("asc");
+
   const { theme } = useContext(ThemeContext);
-  const filteredStocks = useStocks(searchSymbol);
+
+  const filteredStocks = useStocks(searchSymbol, sortBy, sortOrder);
+
+  // Toggle sorting order
+  const handleSort = (key) => {
+    setSortBy(key);
+    setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
+  };
 
   return (
     <section className="details-container">
-      <StockListTableHeader />
+      <StockListTableHeader
+        sortBy={sortBy}
+        sortOrder={sortOrder}
+        onSort={handleSort}
+      />
 
       {/* Table body */}
       <div className="overflow-y-auto h-58 flex-1 scrollbar-hidden">
@@ -23,7 +37,9 @@ const StockListTable = ({ searchSymbol }) => {
               <div
                 key={index}
                 className={`grid grid-cols-7 gap-8 rounded-md px-4 py-3 items-center text-sm ${
-                  theme === "dark" ? "bg-gray-800 text-white" : "bg-gray-100"
+                  theme === "dark"
+                    ? "bg-gray-800 text-white hover:bg-gray-700"
+                    : "bg-gray-100 hover:bg-gray-50"
                 }`}
               >
                 {/* Symbol */}

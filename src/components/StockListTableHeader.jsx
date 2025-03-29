@@ -1,40 +1,90 @@
 import React from "react";
-import { RiArrowUpDownFill } from "react-icons/ri";
+import {
+  FaSortAlphaDown,
+  FaSortAlphaUp,
+  FaSortNumericDown,
+  FaSortNumericUp,
+  FaSort,
+} from "react-icons/fa";
 
-const StockListTableHeader = ({ onSort }) => {
+const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
   return (
-    <div className="grid grid-cols-7 bg-gray-200 dark:bg-gray-800 text-stone-900 dark:text-white rounded-md px-4 py-2 font-semibold text-center items-center ">
-      <div className="stockList ">Symbol</div>
+    <div className="grid grid-cols-7 bg-gray-200 dark:bg-gray-800 text-stone-900 dark:text-white rounded-md px-4 py-2 font-semibold text-center items-center">
+      <div className="stockList">Symbol</div>
 
-      {/* Name Column with Sort Button */}
-      <div className="stockList ">
-        <h3>Name</h3>
-        <button onClick={() => onSort("name")} className="focus:outline-none">
-          <RiArrowUpDownFill className="cursor-pointer hover:text-blue-500" />
+      {/* Name Sorting */}
+      <div className="stockList">
+        <button
+          onClick={() => onSort("name")}
+          className="flex items-center gap-1 focus:outline-none"
+        >
+          <h3>Name</h3>
+          {sortBy === "name" ? (
+            sortOrder === "asc" ? (
+              <FaSortAlphaUp className="text-green-500" />
+            ) : (
+              <FaSortAlphaDown className="text-red-500" />
+            )
+          ) : (
+            <FaSort />
+          )}
         </button>
       </div>
 
-      {/* Price Column with Sort */}
+      {/* Price Sorting */}
       <div className="stockList">
-        <h3>Price</h3>
-        <button onClick={() => onSort("price")} className="focus:outline-none">
-          <RiArrowUpDownFill className="cursor-pointer hover:text-blue-500" />
+        <button
+          onClick={() => onSort("price")}
+          className="flex items-center gap-1 focus:outline-none"
+        >
+          <h3>Price</h3>
+          {sortBy === "price" ? (
+            sortOrder === "asc" ? (
+              <FaSortNumericDown className="text-red-500" />
+            ) : (
+              <FaSortNumericUp className="text-green-500" />
+            )
+          ) : (
+            <FaSort />
+          )}
         </button>
       </div>
 
-      {/* Volume Column with Sort */}
+      {/* Volume Sorting */}
       <div className="stockList">
-        <h3>Volume</h3>
-        <button onClick={() => onSort("volume")} className="focus:outline-none">
-          <RiArrowUpDownFill className="cursor-pointer hover:text-blue-500" />
+        <button
+          onClick={() => onSort("volume")}
+          className="flex items-center gap-1 focus:outline-none"
+        >
+          <h3>Volume</h3>
+          {sortBy === "volume" ? (
+            sortOrder === "asc" ? (
+              <FaSortNumericDown className="text-red-500" />
+            ) : (
+              <FaSortNumericUp className="text-green-500" />
+            )
+          ) : (
+            <FaSort />
+          )}
         </button>
       </div>
 
-      {/* Change % Column with Sort */}
+      {/* Change % Sorting */}
       <div className="stockList">
-        <h3>Change (%)</h3>
-        <button onClick={() => onSort("change")} className="focus:outline-none">
-          <RiArrowUpDownFill className="cursor-pointer hover:text-blue-500" />
+        <button
+          onClick={() => onSort("change")}
+          className="flex items-center gap-1 focus:outline-none"
+        >
+          <h3>Change (%)</h3>
+          {sortBy === "change" ? (
+            sortOrder === "asc" ? (
+              <FaSortNumericDown className="text-red-500" />
+            ) : (
+              <FaSortNumericUp className="text-green-500" />
+            )
+          ) : (
+            <FaSort />
+          )}
         </button>
       </div>
 
@@ -45,7 +95,7 @@ const StockListTableHeader = ({ onSort }) => {
         <h3>Low</h3>
       </div>
 
-      {/* Action Buttons (Edit & Delete) */}
+      {/* Action Column */}
       <div className="stockList ml-15">
         <h3>Action</h3>
       </div>
