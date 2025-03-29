@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import AddNewStock from "../../components/AddNewStock";
 import StockListTable from "../../components/StockListTable";
-import StockDetails from "../../components/StockDetails";
 import Calendar from "../../components/Calender";
 import SearchStock from "../../components/SearchStock";
 
 const WatchListPage = () => {
+  const [searchSymbol, setsearchSymbol] = useState("");
+
   const { theme } = useContext(ThemeContext);
   return (
     <div
@@ -26,7 +27,10 @@ const WatchListPage = () => {
         </div>
 
         {/* Search Stock using Symbol */}
-        <SearchStock />
+        <SearchStock
+          searchSymbol={searchSymbol}
+          setsearchSymbol={setsearchSymbol}
+        />
 
         {/* current date */}
         <Calendar />
@@ -36,13 +40,11 @@ const WatchListPage = () => {
           <div>
             <AddNewStock />
           </div>
-          <div>
-            <StockDetails />
-          </div>
+          <div>sdfd</div>
         </div>
 
         <main>
-          <StockListTable />
+          <StockListTable searchSymbol={searchSymbol} />
         </main>
       </div>
     </div>

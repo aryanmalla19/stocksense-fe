@@ -4,7 +4,7 @@ import StockListTableHeader from "./StockListTableHeader";
 import { FaStar, FaEdit, FaTrash } from "react-icons/fa";
 import { ThemeContext } from "../context/ThemeContext";
 
-const StockListTable = () => {
+const StockListTable = ({ searchSymbol }) => {
   const { theme } = useContext(ThemeContext);
   // Dummy data array
   const dummyStocks = [
@@ -33,6 +33,17 @@ const StockListTable = () => {
     },
     {
       symbol: "GOOGL",
+      name: "Alphabet Inc.",
+      price: 152.45,
+      volume: 28765400,
+      change: 5.62,
+      changePercent: 3.83,
+      open: 148.2,
+      high: 153.75,
+      low: 147.8,
+    },
+    {
+      symbol: "GOGL",
       name: "Alphabet Inc.",
       price: 152.45,
       volume: 28765400,
@@ -101,6 +112,13 @@ const StockListTable = () => {
     },
   ];
 
+  // Filter stocks based on search input
+  const filteredStocks = dummyStocks.filter(
+    (stock) =>
+      stock.symbol.toLowerCase().includes(searchSymbol.toLowerCase()) ||
+      stock.name.toLowerCase().includes(searchSymbol.toLowerCase())
+  );
+
   // Sort handler (you can implement actual sorting logic here)
   const handleSort = (sortBy) => {
     console.log(`Sorting by ${sortBy}`);
@@ -108,63 +126,68 @@ const StockListTable = () => {
   };
 
   return (
-    <section className="details-container ">
+    <section className="details-container">
       <StockListTableHeader onSort={handleSort} />
 
       {/* Table body */}
-      <div className="overflow-y-auto h-58 flex-1 scrollbar-hidden ">
+      <div className="overflow-y-auto h-58 flex-1 scrollbar-hidden">
         <div className="space-y-2 mt-2">
-          {dummyStocks.map((stock, index) => (
-            <div
-              key={index}
-              className={`grid grid-cols-7 gap-8 rounded-md px-4 py-3 items-center text-sm ${
-                theme === "dark" ? "bg-gray-800 text-white" : "bg-gray-100"
-              }`}
-            >
-              {/* Symbol */}
-              <div className="font-medium stockList">{stock.symbol}</div>
-
-              {/* Name */}
-              <div className="stockList">{stock.name}</div>
-
-              {/* Price */}
-              <div className="stockList">${stock.price.toFixed(2)}</div>
-
-              {/* Volume */}
-              <div className="stockList">
-                {(stock.volume / 1000000).toFixed(1)}M
-              </div>
-
-              {/* Change % */}
+          {/* Check if no stocks are found */}
+          {filteredStocks.length === 0 ? (
+            <div className="text-center text-gray-500">No Stock Found</div>
+          ) : (
+            filteredStocks.map((stock, index) => (
               <div
-                className={`stockList ${
-                  stock.change >= 0
-                    ? "text-green-600 dark:text-green-400"
-                    : "text-red-600 dark:text-red-400"
+                key={index}
+                className={`grid grid-cols-7 gap-8 rounded-md px-4 py-3 items-center text-sm ${
+                  theme === "dark" ? "bg-gray-800 text-white" : "bg-gray-100"
                 }`}
               >
-                {stock.change >= 0 ? "+" : ""}
-                {stock.change.toFixed(2)} ({stock.changePercent.toFixed(2)}%)
-              </div>
+                {/* Symbol */}
+                <div className="font-medium stockList">{stock.symbol}</div>
 
-              {/* Open, High, Low */}
-              <div className="flex justify-center gap-4">
-                <span>${stock.open.toFixed(2)}</span>
-                <span>${stock.high.toFixed(2)}</span>
-                <span>${stock.low.toFixed(2)}</span>
-              </div>
+                {/* Name */}
+                <div className="stockList">{stock.name}</div>
 
-              {/* Action Buttons */}
-              <div className="stockList ml-10">
-                <button className="text-blue-500 hover:text-blue-700">
-                  <FaEdit />
-                </button>
-                <button className="text-red-500 hover:text-red-700">
-                  <FaTrash />
-                </button>
+                {/* Price */}
+                <div className="stockList">${stock.price.toFixed(2)}</div>
+
+                {/* Volume */}
+                <div className="stockList">
+                  {(stock.volume / 1000000).toFixed(1)}M
+                </div>
+
+                {/* Change % */}
+                <div
+                  className={`stockList ${
+                    stock.change >= 0
+                      ? "text-green-600 dark:text-green-400"
+                      : "text-red-600 dark:text-red-400"
+                  }`}
+                >
+                  {stock.change >= 0 ? "+" : ""}
+                  {stock.change.toFixed(2)} ({stock.changePercent.toFixed(2)}%)
+                </div>
+
+                {/* Open, High, Low */}
+                <div className="flex justify-center gap-4">
+                  <span>${stock.open.toFixed(2)}</span>
+                  <span>${stock.high.toFixed(2)}</span>
+                  <span>${stock.low.toFixed(2)}</span>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="stockList ml-10">
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <FaEdit />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <FaTrash />
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </section>
