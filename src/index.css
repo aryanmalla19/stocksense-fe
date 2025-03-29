@@ -34,3 +34,19 @@
 .auth-social{
     @apply flex items-center justify-center border border-gray-300 p-2 rounded-md hover:bg-gray-100
 }
+
+.outlet-container{
+    @apply m-4
+}
+.details-container{
+    @apply pr-8 m-4
+}
+.stockList{
+    @apply flex text-left gap-1
+}
+.scrollbar-hidden {
+    scrollbar-width: none; 
+}
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none; 
+}

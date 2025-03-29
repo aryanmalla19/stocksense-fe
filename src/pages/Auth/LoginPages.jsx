@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SocialLogin from "../auth/SocialLogin";
-import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
-import RegisterHeader from "../auth/RegisterHeader";
-import useRegister from "../hooks/useRegister";
+import SocialLogin from "../../auth/SocialLogin";
+import { FaEnvelope, FaLock } from "react-icons/fa";
+import Rememberme from "../../auth/Rememberme";
+import LoginHeader from "../../auth/LoginHeader";
+import useRegister from "../../hooks/useRegister";
 
 const LoginPages = () => {
   const { input, setInput, error, loading, handleSubmit } = useRegister();
@@ -20,33 +21,25 @@ const LoginPages = () => {
   return (
     <div className="auth-bg">
       <div className="auth-container">
-        <RegisterHeader />
-        {/* Registration form */}
-        <form className="space-y-5 mx-10 my-4" onSubmit={handleSubmit}>
-          {/* Username input field */}
-          <div className="relative">
-            <FaUser className="auth-icon" />
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              className="auth-input"
-              value={input.username}
-              onChange={handleInputChange}
-            />
-          </div>
-
+        <LoginHeader />
+        {/* Login form */}
+        <form className="space-y-6 mx-10 my-4" onSubmit={handleSubmit}>
           {/* Email input field */}
           <div className="relative">
             <FaEnvelope className="auth-icon" />
             <input
               type="email"
               name="email"
-              placeholder="Email"
-              className="auth-input"
               value={input.email}
               onChange={handleInputChange}
+              placeholder="Email"
+              className="auth-input"
+              required
             />
+            {/* Error message for email */}
+            {error.email && (
+              <p className="text-red-500 text-xs">{error.email}</p>
+            )}
           </div>
 
           {/* Password input field */}
@@ -55,35 +48,36 @@ const LoginPages = () => {
             <input
               type="password"
               name="password"
-              placeholder="Password"
-              className="auth-input"
               value={input.password}
               onChange={handleInputChange}
+              placeholder="Password"
+              className="auth-input"
+              required
             />
+            {/* Error message for password */}
+            {error.password && (
+              <p className="text-red-500 text-xs">{error.password}</p>
+            )}
           </div>
 
-          {/* Error Message */}
-          {error && (
-            <div className="text-red-500 text-center">
-              <p>{error}</p>
-            </div>
-          )}
+          {/* Remember Me and Forgot Password */}
+          <Rememberme />
 
           {/* Submit button */}
           <button
             type="submit"
             className="auth-button bg-gradient-to-l from-blue-500 to-blue-800 hover:from-blue-600 hover:to-blue-700 transition duration-200 w-full"
-            disabled={loading}
+            disabled={loading || error.email || error.password}
           >
-            {loading ? "Signing up..." : "Signup"}
+            {loading ? "Loading..." : "Login"}
           </button>
 
-          {/* Login link */}
+          {/* Signup link */}
           <div className="text-center">
             <p>
-              Already have an account?
-              <Link to="/login" className="text-blue-500 hover:underline">
-                Login
+              Don't have an account?
+              <Link to="/register" className="text-blue-500 hover:underline">
+                Signup
               </Link>
             </p>
           </div>

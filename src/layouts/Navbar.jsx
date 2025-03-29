@@ -9,14 +9,14 @@ const Navbar = () => {
     <div
       className={`p-6 flex items-center justify-between ${
         theme === "dark"
-          ? "bg-gray-800 text-white"
+          ? "bg-gray-800 text-white "
           : "bg-gray-200 text-gray-600"
       }`}
     >
       {/* Welcome Text */}
       <h2 className="font-semibold text-xl md:text-2xl">
-        Welcome to <span className="text-blue-500">Stockify</span>,
-        <span className="text-lg md:text-xl px-2 font-bold text-blue-500">
+        Welcome to <span className="text-teal-500">Stockify</span>,
+        <span className="text-lg md:text-xl px-2 font-bold text-teal-500">
           Neetu Rai
         </span>
       </h2>

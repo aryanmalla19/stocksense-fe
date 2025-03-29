@@ -1,9 +1,10 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import LoginPages from "../pages/LoginPages";
-import RegisterPages from "../pages/RegisterPages";
+import LoginPages from "../pages/Auth/LoginPages";
+import RegisterPages from "../pages/Auth/RegisterPages";
 import Mainlayout from "../layouts/Mainlayout";
-import WishList from "../pages/WishList";
+import WatchList from "../pages/Watchlist/WatchListPage";
+import StockChart from "../components/StockChart";
 
 const Router = createBrowserRouter([
   {
@@ -11,8 +12,12 @@ const Router = createBrowserRouter([
     element: <Mainlayout />,
     children: [
       {
-        path: "/wishlist",
-        element: <WishList />,
+        path: "/watchlist",
+        element: <WatchList />,
+      },
+      {
+        path: "/chart/:symbol?",
+        element: <StockChart />,
       },
     ],
   },
