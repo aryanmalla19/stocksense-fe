@@ -1,13 +1,15 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 
-const SearchStock = () => {
+const SearchStock = ({ searchSymbol, setSearchSymbol }) => {
   return (
     <div>
       <div className="relative w-100">
         <input
           type="text"
           placeholder="Search Symbol..."
+          value={searchSymbol}
+          onChange={(e) => setSearchSymbol(e.target.value)}
           className="p-2 w-full pl-10 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
         />
         <FaSearch className="absolute left-3 top-3 text-gray-500 dark:text-gray-300" />

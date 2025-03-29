@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SocialLogin from "../../auth/SocialLogin";
-import { FaEnvelope, FaLock } from "react-icons/fa";
-import Rememberme from "../../auth/Rememberme";
-import LoginHeader from "../../auth/LoginHeader";
+import SocialLogin from "../../authcomponent/SocialLogin";
+import Rememberme from "../../authcomponent/Rememberme";
+import LoginHeader from "../../authcomponent/LoginHeader";
 import useRegister from "../../hooks/useRegister";
+import Input from "../../components/stocks/Input";
+import { FaEnvelope, FaLock } from "react-icons/fa";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
 
 const LoginPages = () => {
   const { input, setInput, error, loading, handleSubmit } = useRegister();
@@ -25,40 +27,26 @@ const LoginPages = () => {
         {/* Login form */}
         <form className="space-y-6 mx-10 my-4" onSubmit={handleSubmit}>
           {/* Email input field */}
-          <div className="relative">
-            <FaEnvelope className="auth-icon" />
-            <input
-              type="email"
-              name="email"
-              value={input.email}
-              onChange={handleInputChange}
-              placeholder="Email"
-              className="auth-input"
-              required
-            />
-            {/* Error message for email */}
-            {error.email && (
-              <p className="text-red-500 text-xs">{error.email}</p>
-            )}
-          </div>
+          <Input
+            name="email"
+            type="email"
+            value={input.email}
+            onChange={handleInputChange}
+            placeholder="Email"
+            error={error.email}
+            icon={FaEnvelope}
+          />
 
           {/* Password input field */}
-          <div className="relative">
-            <FaLock className="auth-icon" />
-            <input
-              type="password"
-              name="password"
-              value={input.password}
-              onChange={handleInputChange}
-              placeholder="Password"
-              className="auth-input"
-              required
-            />
-            {/* Error message for password */}
-            {error.password && (
-              <p className="text-red-500 text-xs">{error.password}</p>
-            )}
-          </div>
+          <Input
+            name="password"
+            type="password"
+            value={input.password}
+            onChange={handleInputChange}
+            placeholder="Password"
+            error={error.password}
+            icon={FaLock}
+          />
 
           {/* Remember Me and Forgot Password */}
           <Rememberme />
@@ -69,7 +57,7 @@ const LoginPages = () => {
             className="auth-button bg-gradient-to-l from-blue-500 to-blue-800 hover:from-blue-600 hover:to-blue-700 transition duration-200 w-full"
             disabled={loading || error.email || error.password}
           >
-            {loading ? "Loading..." : "Login"}
+            {loading ? <LoadingSpinner /> : "Login"}
           </button>
 
           {/* Signup link */}

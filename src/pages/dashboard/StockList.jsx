@@ -1,17 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
-import AddNewStock from "../../components/AddNewStock";
-import StockListTable from "../../components/StockListTable";
-import StockDetails from "../../components/StockDetails";
-import Calendar from "../../components/Calender";
-import SearchStock from "../../components/SearchStock";
+import StockListTable from "../../components/stocks/StockListTable";
+import Calendar from "../../components/stocks/Calender";
+import SearchStock from "../../components/stocks/SearchStock";
+import AddNewStock from "../../components/stocks/AddNewStock";
 
-const WatchListPage = () => {
+const StockList = () => {
+  const [searchSymbol, setSearchSymbol] = useState("");
   const { theme } = useContext(ThemeContext);
+
   return (
     <div
       className={`${
-        theme === "dark" ? "bg-gray-900 text-white" : "bg-white text[#4D4D4D]"
+        theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-[#4D4D4D]"
       }`}
     >
       {/* Header Section */}
@@ -26,27 +27,31 @@ const WatchListPage = () => {
         </div>
 
         {/* Search Stock using Symbol */}
-        <SearchStock />
+        <SearchStock
+          searchSymbol={searchSymbol}
+          setSearchSymbol={setSearchSymbol}
+        />
 
-        {/* current date */}
+        {/* Current date */}
         <Calendar />
       </div>
+
+      {/* Main Content */}
       <div className="outlet-container border border-gray-400 rounded-md">
         <div className="flex flex-col md:flex-row gap-4 h-65">
-          <div>
-            <AddNewStock />
-          </div>
-          <div>
-            <StockDetails />
-          </div>
+          <AddNewStock />
+          <div>sdfd</div>
         </div>
 
         <main>
-          <StockListTable />
+          <StockListTable
+            searchSymbol={searchSymbol}
+            setSearchSymbol={setSearchSymbol}
+          />
         </main>
       </div>
     </div>
   );
 };
 
-export default WatchListPage;
+export default StockList;
