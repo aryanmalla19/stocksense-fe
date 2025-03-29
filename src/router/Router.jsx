@@ -4,7 +4,7 @@ import LoginPages from "../pages/Auth/LoginPages";
 import RegisterPages from "../pages/Auth/RegisterPages";
 import Mainlayout from "../layouts/Mainlayout";
 import WatchList from "../pages/Watchlist/WatchListPage";
-import StockChart from "../components/StockChart";
+import StockChart from "../components/stocks/StockChart";
 
 const Router = createBrowserRouter([
   {

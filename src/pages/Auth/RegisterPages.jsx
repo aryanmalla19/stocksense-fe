@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SocialLogin from "../../auth/SocialLogin";
+import SocialLogin from "../../authcomponent/SocialLogin";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
-import RegisterHeader from "../../auth/RegisterHeader";
+import RegisterHeader from "../../authcomponent/RegisterHeader";
 import useRegister from "../../hooks/useRegister";
+import Input from "../../components/stocks/Input";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
 
-const LoginPages = () => {
+const RegisterPages = () => {
   const { input, setInput, error, loading, handleSubmit } = useRegister();
 
   // General onChange handler for all input fields
@@ -22,45 +24,39 @@ const LoginPages = () => {
       <div className="auth-container">
         <RegisterHeader />
         {/* Registration form */}
-        <form className="space-y-5 mx-10 my-4" onSubmit={handleSubmit}>
+        <form className="space-y-5 mx-10" onSubmit={handleSubmit}>
           {/* Username input field */}
-          <div className="relative">
-            <FaUser className="auth-icon" />
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              className="auth-input"
-              value={input.username}
-              onChange={handleInputChange}
-            />
-          </div>
+          <Input
+            name="username"
+            type="text"
+            value={input.username}
+            onChange={handleInputChange}
+            placeholder="Username"
+            error={error.username}
+            icon={FaUser}
+          />
 
           {/* Email input field */}
-          <div className="relative">
-            <FaEnvelope className="auth-icon" />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              className="auth-input"
-              value={input.email}
-              onChange={handleInputChange}
-            />
-          </div>
+          <Input
+            name="email"
+            type="email"
+            value={input.email}
+            onChange={handleInputChange}
+            placeholder="Email"
+            error={error.email}
+            icon={FaEnvelope}
+          />
 
           {/* Password input field */}
-          <div className="relative">
-            <FaLock className="auth-icon" />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              className="auth-input"
-              value={input.password}
-              onChange={handleInputChange}
-            />
-          </div>
+          <Input
+            name="password"
+            type="password"
+            value={input.password}
+            onChange={handleInputChange}
+            placeholder="Password"
+            error={error.password}
+            icon={FaLock}
+          />
 
           {/* Error Message */}
           {error && (
@@ -75,7 +71,7 @@ const LoginPages = () => {
             className="auth-button bg-gradient-to-l from-blue-500 to-blue-800 hover:from-blue-600 hover:to-blue-700 transition duration-200 w-full"
             disabled={loading}
           >
-            {loading ? "Signing up..." : "Signup"}
+            {loading ? <LoadingSpinner /> : "Signup"}
           </button>
 
           {/* Login link */}
@@ -95,4 +91,4 @@ const LoginPages = () => {
   );
 };
 
-export default LoginPages;
+export default RegisterPages;
