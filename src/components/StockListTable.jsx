@@ -18,7 +18,6 @@ const StockListTable = () => {
       open: 187.5,
       high: 190.25,
       low: 186.75,
-      inWatchlist: true,
     },
     {
       symbol: "MSFT",
@@ -42,7 +41,6 @@ const StockListTable = () => {
       open: 148.2,
       high: 153.75,
       low: 147.8,
-      inWatchlist: true,
     },
     {
       symbol: "AMZN",
@@ -66,7 +64,6 @@ const StockListTable = () => {
       open: 180.2,
       high: 181.5,
       low: 171.8,
-      inWatchlist: true,
     },
     {
       symbol: "GOOGL",
@@ -78,7 +75,6 @@ const StockListTable = () => {
       open: 148.2,
       high: 153.75,
       low: 147.8,
-      inWatchlist: true,
     },
     {
       symbol: "AMZN",
@@ -102,7 +98,6 @@ const StockListTable = () => {
       open: 180.2,
       high: 181.5,
       low: 171.8,
-      inWatchlist: true,
     },
   ];
 
@@ -122,7 +117,7 @@ const StockListTable = () => {
           {dummyStocks.map((stock, index) => (
             <div
               key={index}
-              className={`grid grid-cols-8 gap-8 rounded-md px-4 py-3 items-center text-sm ${
+              className={`grid grid-cols-7 gap-8 rounded-md px-4 py-3 items-center text-sm ${
                 theme === "dark" ? "bg-gray-800 text-white" : "bg-gray-100"
               }`}
             >
@@ -157,15 +152,6 @@ const StockListTable = () => {
                 <span>${stock.open.toFixed(2)}</span>
                 <span>${stock.high.toFixed(2)}</span>
                 <span>${stock.low.toFixed(2)}</span>
-              </div>
-
-              {/* Watchlist Button */}
-              <div className="stockList ml-15">
-                <Link to={`/chart/${stock.symbol}`}>
-                  <button className="flex items-center text-white bg-green-500 p-2 rounded-md ">
-                    View
-                  </button>
-                </Link>
               </div>
 
               {/* Action Buttons */}
