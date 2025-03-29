@@ -5,7 +5,7 @@ import Calendar from "../../components/stocks/Calender";
 import SearchStock from "../../components/stocks/SearchStock";
 import AddNewStock from "../../components/stocks/AddNewStock";
 
-const WatchListPage = () => {
+const StockList = () => {
   const [searchSymbol, setSearchSymbol] = useState("");
   const { theme } = useContext(ThemeContext);
 
@@ -54,4 +54,4 @@ const WatchListPage = () => {
   );
 };
 
-export default WatchListPage;
+export default StockList;

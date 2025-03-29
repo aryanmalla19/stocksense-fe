@@ -3,8 +3,8 @@ import { createBrowserRouter } from "react-router-dom";
 import LoginPages from "../pages/Auth/LoginPages";
 import RegisterPages from "../pages/Auth/RegisterPages";
 import Mainlayout from "../layouts/Mainlayout";
-import WatchList from "../pages/Watchlist/WatchListPage";
-import StockChart from "../components/stocks/StockChart";
+import WatchList from "../pages/dashboard/WatchListPage";
+import StockList from "../pages/dashboard/StockList";
 
 const Router = createBrowserRouter([
   {
@@ -16,8 +16,8 @@ const Router = createBrowserRouter([
         element: <WatchList />,
       },
       {
-        path: "/chart/:symbol?",
-        element: <StockChart />,
+        path: "/stocks",
+        element: <StockList />,
       },
     ],
   },
