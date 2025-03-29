@@ -105,19 +105,42 @@ const dummyStocks = [
     low: 171.8,
   },
 ];
-const useStocks = (searchSymbol) => {
+const useStocks = (searchSymbol, sortBy = "name", sortOrder = "asc") => {
   const [filteredStocks, setFilteredStocks] = useState(dummyStocks);
 
   // Filter stocks whenever searchSymbol changes
   useEffect(() => {
-    const result = dummyStocks.filter(
+    let result = dummyStocks.filter(
       (stock) =>
         stock.symbol.toLowerCase().includes(searchSymbol.toLowerCase()) ||
         stock.name.toLowerCase().includes(searchSymbol.toLowerCase())
     );
 
+    // Sort the filtered results based on sortBy and sortOrder
+    result = result.sort((a, b) => {
+      let compareA = a[sortBy];
+      let compareB = b[sortBy];
+
+      // If sorting by string (e.g., 'name'), we compare alphabetically
+      if (typeof compareA === "string" && typeof compareB === "string") {
+        compareA = compareA.toLowerCase();
+        compareB = compareB.toLowerCase();
+      }
+
+      // If sorting by number (e.g., 'price', 'volume', 'change')
+      if (sortOrder === "asc") {
+        if (compareA < compareB) return -1;
+        if (compareA > compareB) return 1;
+        return 0;
+      } else {
+        if (compareA > compareB) return -1;
+        if (compareA < compareB) return 1;
+        return 0;
+      }
+    });
+
     setFilteredStocks(result);
-  }, [searchSymbol]); // Runs every time searchSymbol changes
+  }, [searchSymbol, sortBy, sortOrder]);
 
   return filteredStocks;
 };
