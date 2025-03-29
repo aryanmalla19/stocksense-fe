@@ -1,5 +1,4 @@
 import React from "react";
-import { FaEdit, FaTrash } from "react-icons/fa";
 import { RiArrowUpDownFill } from "react-icons/ri";
 
 const StockListTableHeader = ({ onSort }) => {
