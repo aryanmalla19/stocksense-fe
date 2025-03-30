@@ -1,4 +1,5 @@
 import React from "react";
+import CurrentPortfolio from "./CurrentPortfolio";
 
 const ActivePage = ({ activeTab }) => {
   return (
@@ -8,6 +9,7 @@ const ActivePage = ({ activeTab }) => {
           <h3 className="text-xl font-semibold mb-4 text-center">
             Portfolio Performance Chart
           </h3>
+          <CurrentPortfolio />
         </div>
       )}
 
