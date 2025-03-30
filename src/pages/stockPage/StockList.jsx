@@ -15,7 +15,7 @@ const StockList = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold py-2">
-            Stock Watchlist
+            Stock List
           </h1>
           <p
             className={`text-sm mt-1 ${
@@ -46,10 +46,10 @@ const StockList = () => {
             : "border-[var(--border-primary)]"
         }`}
       >
-        <div className="flex flex-col md:flex-row gap-4 h-65">
+        {/* <div className="flex flex-col md:flex-row gap-4 h-65">
           <AddNewStock />
           <div>sdfd</div>
-        </div>
+        </div> */}
 
         <main>
           <StockListTable
