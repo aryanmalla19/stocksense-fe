@@ -5,13 +5,18 @@ import RegisterPages from "../pages/Auth/RegisterPages";
 import Mainlayout from "../layouts/Mainlayout";
 import WatchList from "../pages/stockPage/WatchListPage";
 import StockList from "../pages/stockPage/StockList";
-// import PortfolioPage from "../pages/portfolioPage/PortfolioPage";
+import PortfolioPage from "../pages/portfolioPage/PortfolioPage";
+import Overview from "../pages/MarketOverview/Overview";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <Mainlayout />,
     children: [
+      {
+        path: "/",
+        element: <Overview />,
+      },
       {
         path: "/watchlist",
         element: <WatchList />,
@@ -20,10 +25,10 @@ const Router = createBrowserRouter([
         path: "/stocks",
         element: <StockList />,
       },
-      // {
-      //   path: "/portfolio",
-      //   element: <PortfolioPage />,
-      // },
+      {
+        path: "/portfolio",
+        element: <PortfolioPage />,
+      },
     ],
   },
   {

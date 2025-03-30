@@ -1,0 +1,169 @@
+.stock-portfolio {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .portfolio-header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .portfolio-summary {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .summary-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    flex: 1;
+    margin: 0 10px;
+    text-align: center;
+  }
+  
+  .summary-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    font-weight: normal;
+  }
+  
+  .summary-card p {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .positive {
+    color: #4CAF50;
+  }
+  
+  .negative {
+    color: #F44336;
+  }
+  
+  .portfolio-tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+  
+  .portfolio-tabs button {
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .portfolio-tabs button.active {
+    color: #1e3c72;
+    border-bottom: 2px solid #1e3c72;
+    font-weight: bold;
+  }
+  
+  .tab-content {
+    min-height: 400px;
+  }
+  
+  .holdings-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .holdings-table th, .holdings-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .holdings-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+  }
+  
+  .watchlist-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .watchlist-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .watchlist-item .symbol {
+    font-weight: bold;
+  }
+  
+  .remove-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #F44336;
+    font-size: 18px;
+  }
+  
+  .add-stock {
+    display: flex;
+    margin-top: 20px;
+  }
+  
+  .add-stock input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+  }
+  
+  .add-stock button {
+    padding: 10px 15px;
+    background: #1e3c72;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+  }
+  
+  .analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .analysis-card {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .portfolio-footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  /* Add responsive design */
+  @media (max-width: 768px) {
+    .portfolio-summary {
+      flex-direction: column;
+    }
+    
+    .summary-card {
+      margin: 5px 0;
+    }
+  }
