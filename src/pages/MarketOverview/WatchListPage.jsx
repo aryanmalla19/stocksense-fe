@@ -17,7 +17,7 @@ const WatchListPage = () => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className="w-full h-[400px] bg-white dark:bg-gray-900 rounded-lg p-4 relative">
+    <div className="w-full h-[400px]  rounded-lg p-4 relative">
       {/* Filter buttons container with margin-bottom */}
       <ul className="flex absolute top-4 right-4 z-40 mb-4">
         {Object.keys(chartconfig).map((item) => (
@@ -71,14 +71,17 @@ const WatchListPage = () => {
               <Area
                 type="monotone"
                 dataKey="value"
-                stroke="#312e81"
+                stroke="#fffff"
                 fill="url(#chartColor)"
                 fillOpacity={1}
                 strokeWidth={0.5}
               />
               <XAxis
                 dataKey="date"
-                tick={{ fontSize: 12 }}
+                tick={{
+                  fontSize: 12,
+                  fill: theme === "dark" ? "#ffffff" : "#4d4d4d",
+                }}
                 tickFormatter={(date) => {
                   const dateObj = new Date(date);
                   return filter === "1D"
@@ -90,7 +93,10 @@ const WatchListPage = () => {
                 domain={["auto", "auto"]}
                 tickCount={6}
                 tickFormatter={(value) => `$${value.toFixed(2)}`}
-                tick={{ fontSize: 12 }}
+                tick={{
+                  fontSize: 12,
+                  fill: theme === "dark" ? "#ffffff" : "#4d4d4d",
+                }}
               />
             </AreaChart>
           </ResponsiveContainer>

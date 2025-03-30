@@ -1,7 +1,14 @@
 import React from "react";
+import PortfolioTracker from "./PortfolioTracker";
+import WatchListPage from "./WatchListPage";
 
 const Overview = () => {
-  return <div></div>;
+  return (
+    <div>
+      <PortfolioTracker />
+      <WatchListPage />
+    </div>
+  );
 };
 
 export default Overview;

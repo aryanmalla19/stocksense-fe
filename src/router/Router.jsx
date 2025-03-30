@@ -3,7 +3,6 @@ import { createBrowserRouter } from "react-router-dom";
 import LoginPages from "../pages/Auth/LoginPages";
 import RegisterPages from "../pages/Auth/RegisterPages";
 import Mainlayout from "../layouts/Mainlayout";
-import WatchList from "../pages/stockPage/WatchListPage";
 import StockList from "../pages/stockPage/StockList";
 import PortfolioPage from "../pages/portfolioPage/PortfolioPage";
 import Overview from "../pages/MarketOverview/Overview";
@@ -16,10 +15,6 @@ const Router = createBrowserRouter([
       {
         path: "/",
         element: <Overview />,
-      },
-      {
-        path: "/watchlist",
-        element: <WatchList />,
       },
       {
         path: "/stocks",

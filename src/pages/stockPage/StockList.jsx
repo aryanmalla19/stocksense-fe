@@ -10,13 +10,7 @@ const StockList = () => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div
-      className={`${
-        theme === "dark"
-          ? "bg-[var(--dark-bg-primary)] text-[var(--dark-text-primary)]"
-          : "bg-[var(--bg-primary)] text-[var(--text-primary)]"
-      }`}
-    >
+    <div>
       {/* Header Section */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8">
         <div>

@@ -5,7 +5,6 @@ import { ThemeContext } from "../context/ThemeContext";
 import {
   FaChartLine,
   FaRegDotCircle,
-  FaRegListAlt,
   FaSignOutAlt,
   FaUserAlt,
 } from "react-icons/fa";
@@ -20,7 +19,6 @@ const menuItems = [
         href: "/",
       },
       { icon: <FaRegDotCircle />, label: "Stocks List", href: "/stocks" },
-      { icon: <FaRegListAlt />, label: "Watchlist", href: "/watchlist" },
       { icon: <FaUserAlt />, label: "Portfolio", href: "/portfolio" },
       { icon: <FaSignOutAlt />, label: "Logout", href: "/logout" },
     ],
