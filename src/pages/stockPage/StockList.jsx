@@ -10,18 +10,20 @@ const StockList = () => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div
-      className={`${
-        theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-[#4D4D4D]"
-      }`}
-    >
+    <div>
       {/* Header Section */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold py-2">
-            Stock Watchlist
+            Stock List
           </h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+          <p
+            className={`text-sm mt-1 ${
+              theme === "dark"
+                ? "text-[var(--dark-text-accent)]"
+                : "text-[var(--text-accent)]"
+            }`}
+          >
             Track your favorite stocks
           </p>
         </div>
@@ -37,11 +39,17 @@ const StockList = () => {
       </div>
 
       {/* Main Content */}
-      <div className="outlet-container border border-gray-400 rounded-md">
-        <div className="flex flex-col md:flex-row gap-4 h-65">
+      <div
+        className={`outlet-container border rounded-md ${
+          theme === "dark"
+            ? "border-[var(--dark-border-primary)]"
+            : "border-[var(--border-primary)]"
+        }`}
+      >
+        {/* <div className="flex flex-col md:flex-row gap-4 h-65">
           <AddNewStock />
           <div>sdfd</div>
-        </div>
+        </div> */}
 
         <main>
           <StockListTable

@@ -9,14 +9,15 @@ const Navbar = () => {
     <div
       className={`p-6 flex items-center justify-between ${
         theme === "dark"
-          ? "bg-gray-800 text-white "
-          : "bg-gray-200 text-gray-600"
+          ? "bg-[var(--dark-bg-secondary)] text-[var(--dark-text-primary)]"
+          : "bg-[var(--bg-secondary)] text-[var(--text-primary)]"
       }`}
     >
       {/* Welcome Text */}
       <h2 className="font-semibold text-xl md:text-2xl">
-        Welcome to <span className="text-teal-500">Stockify</span>,
-        <span className="text-lg md:text-xl px-2 font-bold text-teal-500">
+        Welcome to{" "}
+        <span className="text-[var(--dark-text-accent)]">Stockify</span>,
+        <span className="text-lg md:text-xl px-2 font-bold text-[var(--dark-text-accent)]">
           Neetu Rai
         </span>
       </h2>
@@ -42,7 +43,7 @@ const Navbar = () => {
           {theme === "dark" ? (
             <FaSun className="w-6 h-6 text-yellow-400" />
           ) : (
-            <FaMoon className="w-5 h-5 text-gray-700" />
+            <FaMoon className="w-5 h-5 text-[var(--text-primary)]" />
           )}
         </div>
 

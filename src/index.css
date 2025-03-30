@@ -2,7 +2,23 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-
+:root {
+    /* Light Theme (default) */
+    --bg-primary: #f8fcf7;
+    --bg-secondary: #edf2f7;
+    --text-primary: #4d4d4d;
+    --text-accent: #2b6cb0;
+    --border-primary: #e2e8f0;
+  
+    /* Dark Theme */
+    --dark-bg-primary: #1a202c;
+    --dark-bg-secondary: #2d3748;
+    --dark-text-primary: #ffffff;
+    --dark-text-accent: #14c2ab;
+    --dark-border-primary: #4a5568;
+  }
+  
+  
 .auth-bg {
     @apply bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff] min-h-screen flex items-center justify-center;
 }

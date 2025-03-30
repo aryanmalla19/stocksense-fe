@@ -80,7 +80,7 @@ const StockListTable = ({ searchSymbol }) => {
       />
 
       {/* Table body */}
-      <div className="overflow-y-auto h-58 flex-1 scrollbar-hidden">
+      <div className="overflow-y-auto h-110 flex-1 scrollbar-hidden">
         <div className="space-y-2 mt-2">
           {/* Check if no stocks are found */}
           {filteredStocks.length === 0 ? (
