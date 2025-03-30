@@ -12,7 +12,9 @@ const StockList = () => {
   return (
     <div
       className={`${
-        theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-[#4D4D4D]"
+        theme === "dark"
+          ? "bg-[var(--dark-bg-primary)] text-[var(--dark-text-primary)]"
+          : "bg-[var(--bg-primary)] text-[var(--text-primary)]"
       }`}
     >
       {/* Header Section */}
@@ -21,7 +23,13 @@ const StockList = () => {
           <h1 className="text-2xl md:text-3xl font-bold py-2">
             Stock Watchlist
           </h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+          <p
+            className={`text-sm mt-1 ${
+              theme === "dark"
+                ? "text-[var(--dark-text-accent)]"
+                : "text-[var(--text-accent)]"
+            }`}
+          >
             Track your favorite stocks
           </p>
         </div>
@@ -37,7 +45,13 @@ const StockList = () => {
       </div>
 
       {/* Main Content */}
-      <div className="outlet-container border border-gray-400 rounded-md">
+      <div
+        className={`outlet-container border rounded-md ${
+          theme === "dark"
+            ? "border-[var(--dark-border-primary)]"
+            : "border-[var(--border-primary)]"
+        }`}
+      >
         <div className="flex flex-col md:flex-row gap-4 h-65">
           <AddNewStock />
           <div>sdfd</div>

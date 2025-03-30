@@ -3,8 +3,9 @@ import { createBrowserRouter } from "react-router-dom";
 import LoginPages from "../pages/Auth/LoginPages";
 import RegisterPages from "../pages/Auth/RegisterPages";
 import Mainlayout from "../layouts/Mainlayout";
-import WatchList from "../pages/dashboard/WatchListPage";
-import StockList from "../pages/dashboard/StockList";
+import WatchList from "../pages/stockPage/WatchListPage";
+import StockList from "../pages/stockPage/StockList";
+// import PortfolioPage from "../pages/portfolioPage/PortfolioPage";
 
 const Router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const Router = createBrowserRouter([
         path: "/stocks",
         element: <StockList />,
       },
+      // {
+      //   path: "/portfolio",
+      //   element: <PortfolioPage />,
+      // },
     ],
   },
   {

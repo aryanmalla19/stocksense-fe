@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   FaSortAlphaDown,
   FaSortAlphaUp,
@@ -6,6 +6,7 @@ import {
   FaSortNumericUp,
   FaSort,
 } from "react-icons/fa";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const SortableHeader = ({ label, sortBy, sortOrder, onSort, columnKey }) => {
   const handleSort = () => onSort(columnKey);
@@ -14,19 +15,21 @@ const SortableHeader = ({ label, sortBy, sortOrder, onSort, columnKey }) => {
     if (sortBy === columnKey) {
       if (sortOrder === "asc") {
         return columnKey === "name" ? (
-          <FaSortAlphaDown className="text-red-500" />
+          <FaSortAlphaDown className="text-[var(--dark-text-accent)]" />
         ) : (
-          <FaSortNumericDown className="text-red-500" />
+          <FaSortNumericDown className="text-[var(--dark-text-accent)]" />
         );
       } else {
         return columnKey === "name" ? (
-          <FaSortAlphaUp className="text-green-500" />
+          <FaSortAlphaUp className="text-[var(--text-accent)]" />
         ) : (
-          <FaSortNumericUp className="text-green-500" />
+          <FaSortNumericUp className="text-[var(--text-accent)]" />
         );
       }
     }
-    return <FaSort />;
+    return (
+      <FaSort className="text-[var(--text-primary)] dark:text-[var(--dark-text-primary)]" />
+    );
   };
 
   return (
@@ -43,8 +46,16 @@ const SortableHeader = ({ label, sortBy, sortOrder, onSort, columnKey }) => {
 };
 
 const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div className="grid grid-cols-7 bg-gray-200 dark:bg-gray-800 text-stone-900 dark:text-white rounded-md px-4 py-2 font-semibold text-center items-center">
+    <div
+      className={`grid grid-cols-7 rounded-md px-4 py-2 font-semibold text-center items-center ${
+        theme === "dark"
+          ? "bg-[var(--dark-bg-secondary)] text-[var(--dark-text-primary)]"
+          : "bg-[var(--bg-secondary)] text-[var(--text-primary)]"
+      }`}
+    >
       <div className="stockList">Symbol</div>
 
       {/* Name Sorting */}

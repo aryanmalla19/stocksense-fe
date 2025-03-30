@@ -9,8 +9,8 @@ const Sidebar = () => {
     <div
       className={`p-6 h-184 ${
         theme === "dark"
-          ? "bg-gray-900 text-white border-r border-gray-500"
-          : "bg-gray-100 text-[#4D4D4D]"
+          ? "bg-[var(--dark-bg-primary)] text-[var(--dark-text-primary)] border-r border-[var(--dark-border-primary)]"
+          : "bg-[var(--bg-primary)] text-[var(--text-primary)]"
       }`}
     >
       <header className="flex flex-col items-center justify-center lg:justify-start gap-2">

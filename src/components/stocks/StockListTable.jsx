@@ -9,8 +9,8 @@ const StockListRow = React.memo(({ stock, theme }) => {
     <div
       className={`grid grid-cols-7 gap-8 rounded-md px-4 py-3 items-center text-sm ${
         theme === "dark"
-          ? "bg-gray-800 text-white hover:bg-gray-700"
-          : "bg-gray-100 hover:bg-gray-50"
+          ? "bg-[var(--dark-bg-secondary)] text-[var(--dark-text-primary)] hover:bg-[var(--dark-bg-primary)]"
+          : "bg-[var(--bg-secondary)] hover:bg-[var(--bg-primary)]"
       }`}
     >
       {/* Symbol */}
@@ -46,7 +46,7 @@ const StockListRow = React.memo(({ stock, theme }) => {
 
       {/* Action Buttons */}
       <div className="stockList ml-10">
-        <button className="text-blue-500 hover:text-blue-700">
+        <button className="text-[var(--text-accent)] hover:text-[var(--dark-text-accent)]">
           <FaEdit />
         </button>
         <button className="text-red-500 hover:text-red-700">
@@ -84,7 +84,15 @@ const StockListTable = ({ searchSymbol }) => {
         <div className="space-y-2 mt-2">
           {/* Check if no stocks are found */}
           {filteredStocks.length === 0 ? (
-            <div className="text-center text-gray-500">No Stock Found</div>
+            <div
+              className={`text-center ${
+                theme === "dark"
+                  ? "text-[var(--dark-text-accent)]"
+                  : "text-[var(--text-accent)]"
+              }`}
+            >
+              No Stock Found
+            </div>
           ) : (
             filteredStocks.map((stock, index) => (
               <StockListRow key={index} stock={stock} theme={theme} />
