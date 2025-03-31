@@ -8,6 +8,8 @@ import StockList from "../pages/stockPage/StockList";
 import PortfolioPage from "../pages/portfolioPage/PortfolioPage";
 import MyASBAPage from "../pages/sharePage/MyASBAPage";
 import ApplyPage from "../pages/sharePage/ApplyPage";
+import ProfilePage from "../pages/Profile/ProfilePage";
+import SettingPage from "../pages/Profile/SettingPage";
 
 const Router = createBrowserRouter([
   {
@@ -17,6 +19,14 @@ const Router = createBrowserRouter([
       {
         path: "/",
         element: <Overview />,
+      },
+      {
+        path: "/profile",
+        element: <ProfilePage />,
+      },
+      {
+        path: "/settings",
+        element: <SettingPage />,
       },
       {
         path: "/stocks",
