@@ -21,6 +21,14 @@ const Router = createBrowserRouter([
         element: <Overview />,
       },
       {
+        path: "/profile",
+        element: <ProfilePage />,
+      },
+      {
+        path: "/settings",
+        element: <SettingPage />,
+      },
+      {
         path: "/stocks",
         element: <StockList />,
       },
