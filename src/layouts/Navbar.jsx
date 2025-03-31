@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { FaMoon, FaSun } from "react-icons/fa";
+import { MdLightMode, MdDarkMode } from "react-icons/md";
 import { IoIosNotifications, IoIosSettings } from "react-icons/io";
 import { ThemeContext } from "../context/ThemeContext";
 import { FaRegUser } from "react-icons/fa";
@@ -43,9 +43,9 @@ const Navbar = () => {
           onClick={toggleTheme}
         >
           {theme === "dark" ? (
-            <FaSun className="w-6 h-6 text-yellow-400" />
+            <MdLightMode className="w-6 h-6" />
           ) : (
-            <FaMoon className="w-5 h-5 text-[var(--text-primary)]" />
+            <MdDarkMode className="w-5 h-5 text-[var(--text-primary)]" />
           )}
         </div>
 

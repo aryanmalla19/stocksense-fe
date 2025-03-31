@@ -8,6 +8,7 @@ const Input = ({
   placeholder,
   error,
   icon: Icon,
+  className,
 }) => {
   return (
     <div className="relative">
@@ -20,7 +21,7 @@ const Input = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="auth-input pl-10"
+        className={className}
         required
       />
       {/* Error message */}

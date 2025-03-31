@@ -19,9 +19,9 @@ const WatchListPage = () => {
   return (
     <div className="w-full h-[400px]  rounded-lg p-4 relative">
       {/* Filter buttons container with margin-bottom */}
-      <ul className="flex absolute top-4 right-4 z-40 mb-4">
+      <ul className="flex absolute top-4 right-4 z-40 mb-4 ">
         {Object.keys(chartconfig).map((item) => (
-          <li key={item} className="ml-2 first:ml-0">
+          <li key={item} className="ml-2 first:ml-0 ">
             <ChartFilter
               text={item}
               active={filter === item}

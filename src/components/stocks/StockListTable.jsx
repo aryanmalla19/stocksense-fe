@@ -7,10 +7,8 @@ import useStocks from "../../hooks/useStocks";
 const StockListRow = React.memo(({ stock, theme }) => {
   return (
     <div
-      className={`grid grid-cols-7 gap-8 rounded-md px-4 py-3 items-center text-sm ${
-        theme === "dark"
-          ? "bg-gray-800 text-white hover:bg-gray-700"
-          : "bg-gray-100 hover:bg-gray-50"
+      className={`grid grid-cols-6 rounded-md px-4 py-3 items-center text-sm ${
+        theme === "dark" ? "details-bg-dark " : "details-bg-light"
       }`}
     >
       {/* Symbol */}
@@ -45,14 +43,14 @@ const StockListRow = React.memo(({ stock, theme }) => {
       </div>
 
       {/* Action Buttons */}
-      <div className="stockList ml-10">
+      {/* <div className="stockList ml-10">
         <button className="text-blue-500 hover:text-blue-700">
           <FaEdit />
         </button>
         <button className="text-red-500 hover:text-red-700">
           <FaTrash />
         </button>
-      </div>
+      </div> */}
     </div>
   );
 });
