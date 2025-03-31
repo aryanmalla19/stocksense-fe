@@ -2,6 +2,11 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+body {
+  font-family: 'Quicksand', sans-serif;
+}
+
+
 :root {
     /* Light Theme (default) */
     --bg-primary: #f8fcf7;
@@ -29,12 +34,10 @@
 
 .auth-h2 {
     @apply text-4xl font-bold  text-blue-600;
-    font-family: "Poppins", sans-serif;
 }
 
 .auth-p {
     @apply text-gray-400  my-4 font-semibold ;
-    font-family: "Roboto", sans-serif;
 }
 
 .auth-input{
