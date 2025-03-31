@@ -11,23 +11,23 @@ const SocialLogin = () => {
 
       {/* Social login options */}
 
-      <div className="flex flex-col space-y-4 mt-4">
-        <button className="auth-social">
+      <div className="flex justify-evenly">
+        <button className="auth-social w-5/12">
           <img
             src="https://img.icons8.com/color/48/000000/google-logo.png"
             alt="Google Logo"
             className="w-4 h-4 mr-2"
           />
-          Login with Google
+          Google
         </button>
 
-        <button className="auth-social">
+        <button className="auth-social w-5/12">
           <img
             src="https://img.icons8.com/color/48/000000/facebook-new.png"
             alt="Facebook Logo"
             className="w-4 h-4 mr-2"
           />
-          Login with Facebook
+          Facebook
         </button>
       </div>
     </div>

@@ -25,11 +25,11 @@ body {
   
   
 .auth-bg {
-    @apply bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff] min-h-screen flex items-center justify-center;
+    @apply bg-gradient-to-r min-h-screen flex justify-center;
 }
 
 .auth-container {
-    @apply w-full max-w-[500px] md:h-[670px] bg-white rounded-xl shadow-xl flex flex-col;
+    @apply w-full flex flex-col;
 }
 
 .auth-h2 {
@@ -37,7 +37,7 @@ body {
 }
 
 .auth-p {
-    @apply text-gray-400  my-4 font-semibold ;
+    @apply text-gray-700  my-2 font-normal ;
 }
 
 .auth-input{
