@@ -26,11 +26,11 @@ body {
   
   
 .auth-bg {
-    @apply bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff] min-h-screen flex items-center justify-center;
+    @apply bg-gradient-to-r min-h-screen flex justify-center;
 }
 
 .auth-container {
-    @apply w-full max-w-[500px] md:h-[670px] bg-white rounded-xl shadow-xl flex flex-col;
+    @apply w-full flex flex-col;
 }
 
 .auth-h2 {
@@ -38,7 +38,7 @@ body {
 }
 
 .auth-p {
-    @apply text-gray-400  my-4 font-semibold ;
+    @apply text-gray-700  my-2 font-normal ;
 }
 
 .auth-input{
@@ -52,7 +52,7 @@ body {
     @apply absolute left-3 top-3 text-gray-400
 }
 .auth-social{
-    @apply flex items-center justify-center border border-gray-300 p-2 rounded-md hover:bg-gray-100
+    @apply flex cursor-pointer items-center justify-center border border-gray-300 p-2 rounded-md hover:bg-gray-100
 }
 
 .outlet-container{

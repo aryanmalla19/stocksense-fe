@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { register } from "../helper/ApiService";
+import { register } from "../helper/apiService";
 
 const useRegister = () => {
   const [input, setInput] = useState([]);
