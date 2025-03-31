@@ -5,7 +5,9 @@ import RegisterPages from "../pages/Auth/RegisterPages";
 import Mainlayout from "../layouts/Mainlayout";
 import StockList from "../pages/stockPage/StockList";
 import PortfolioPage from "../pages/portfolioPage/PortfolioPage";
-import Overview from "../pages/MarketOverview/Overview";
+import Overview from "../pages/marketOverview/Overview";
+import MyASBAPage from "../pages/sharePage/MyASBAPage";
+import ApplyPage from "../pages/sharePage/ApplyPage";
 
 const Router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const Router = createBrowserRouter([
       {
         path: "/portfolio",
         element: <PortfolioPage />,
+      },
+      {
+        path: "/shares",
+        element: <MyASBAPage />,
+      },
+      {
+        path: "/apply/:id",
+        element: <ApplyPage />,
       },
     ],
   },

@@ -8,9 +8,7 @@ const StockListRow = React.memo(({ stock, theme }) => {
   return (
     <div
       className={`grid grid-cols-7 gap-8 rounded-md px-4 py-3 items-center text-sm ${
-        theme === "dark"
-          ? "bg-gray-800 text-white hover:bg-gray-700"
-          : "bg-gray-100 hover:bg-gray-50"
+        theme === "dark" ? "details-bg-dark " : "details-bg-light"
       }`}
     >
       {/* Symbol */}

@@ -20,6 +20,7 @@ body {
     --dark-bg-secondary: #2d3748;
     --dark-text-primary: #ffffff;
     --dark-text-accent: #14c2ab;
+    --bg-green: #076f28;
     --dark-border-primary: #4a5568;
   }
   
@@ -68,4 +69,11 @@ body {
 }
 .scrollbar-hidden::-webkit-scrollbar {
     display: none; 
+}
+.details-bg-dark {
+  @apply bg-gray-800 text-white hover:bg-gray-700 px-4 py-2 rounded;
+}
+
+.details-bg-light {
+  @apply bg-gray-200 hover:bg-gray-100;
 }
