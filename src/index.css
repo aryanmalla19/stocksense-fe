@@ -51,7 +51,7 @@ body {
     @apply absolute left-3 top-3 text-gray-400
 }
 .auth-social{
-    @apply flex items-center justify-center border border-gray-300 p-2 rounded-md hover:bg-gray-100
+    @apply flex cursor-pointer items-center justify-center border border-gray-300 p-2 rounded-md hover:bg-gray-100
 }
 
 .outlet-container{

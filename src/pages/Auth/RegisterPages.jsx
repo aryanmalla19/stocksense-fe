@@ -20,11 +20,14 @@ const RegisterPages = () => {
   };
 
   return (
-    <div className="auth-bg">
+    <div className="flex">
+      <div className="w-1/2 bg-teal-800 pt-5">
+      </div>
+    <div className="auth-bg w-1/2 items-center">
       <div className="auth-container">
         <RegisterHeader />
         {/* Registration form */}
-        <form className="space-y-5 mx-10" onSubmit={handleSubmit}>
+        <form className="space-y-4 mx-40 my-4" onSubmit={handleSubmit}>
           {/* Username input field */}
           <Input
             name="username"
@@ -68,26 +71,27 @@ const RegisterPages = () => {
           {/* Submit button */}
           <button
             type="submit"
-            className="auth-button bg-gradient-to-l from-blue-500 to-blue-800 hover:from-blue-600 hover:to-blue-700 transition duration-200 w-full"
+            className="auth-button cursor-pointer bg-gradient-to-l from-teal-500 to-teal-800 hover:from-teal-600 hover:to-teal-700 transition duration-200 w-full"
             disabled={loading}
           >
             {loading ? <LoadingSpinner /> : "Signup"}
           </button>
 
+          <SocialLogin />
           {/* Login link */}
           <div className="text-center">
             <p>
               Already have an account?
-              <Link to="/login" className="text-blue-500 hover:underline">
+              <Link to="/login" className="text-teal-500 ml-1 hover:underline">
                 Login
               </Link>
             </p>
           </div>
-
-          <SocialLogin />
         </form>
       </div>
     </div>
+    </div>
+
   );
 };
 
