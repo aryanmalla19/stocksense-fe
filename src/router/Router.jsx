@@ -33,6 +33,14 @@ const Router = createBrowserRouter([
         element: <StockList />,
       },
       {
+        path: "/profile",
+        element: <ProfilePage />,
+      },
+      {
+        path: "/settings",
+        element: <SettingPage />,
+      },
+      {
         path: "/shares",
         element: <MyASBAPage />,
       },
