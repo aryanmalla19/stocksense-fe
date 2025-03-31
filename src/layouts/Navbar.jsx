@@ -13,9 +13,9 @@ const Navbar = () => {
   }
   return (
     <div
-      className={`px-6 py-4 flex items-center justify-between ${theme === "dark"
-        ? "bg-[var(--dark-bg-secondary)] text-[var(--dark-text-primary)]"
-        : "bg-[var(--bg-secondary)] text-[var(--text-primary)]"
+      className={`px-6 py-4 border-b flex items-center justify-between ${theme === "dark"
+        ? "bg-[var(--dark-bg-primary)] border-[var(--dark-border-primary)] text-[var(--dark-text-primary)]"
+        : "bg-[var(--bg-primary)] border-[var(--border-primary)] text-[var(--text-primary)]"
         }`}
     >
       {/* Welcome Text */}
@@ -32,7 +32,7 @@ const Navbar = () => {
         {/* Notification Icon */}
         <div className="relative cursor-pointer hover:scale-110 transition-transform">
           <IoIosNotifications className="w-6 h-6" />
-          <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex justify-center items-center rounded-full">
+          <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-4 h-4 flex justify-center items-center rounded-full">
             1
           </div>
         </div>
@@ -54,7 +54,7 @@ const Navbar = () => {
           <div className="w-8 cursor-pointer h-8 shadow-md rounded-full">
             <img
               src="https://w0.peakpx.com/wallpaper/109/769/HD-wallpaper-anime-profile-monkey-d-luffy-luffy-portrait.jpg"
-              className="w-full h-full object-cover rounded-full"
+              className="w-full h-full object-cover outline-2 rounded-full"
               onClick={handleToggle}
               alt="Profile"
             />
