@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
 import { IoIosNotifications, IoIosSettings } from "react-icons/io";
 import { ThemeContext } from "../context/ThemeContext";
@@ -8,10 +8,7 @@ import ProfileImage from "../components/common/ProfileImage";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const [isOpen, setIsOpen] = useState(false);
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
+
   return (
     <div
       className={`px-6 py-4 border-b flex items-center justify-between ${
