@@ -1,7 +1,46 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
+import SettingActivePage from "./SettingActivePage";
 
 const SettingPage = () => {
-  return <div>sdcsd</div>;
+  const { theme } = useContext(ThemeContext);
+  const [activeTab, setActiveTab] = useState("Security");
+
+  const getTabClass = (tabName) => {
+    const isActive = activeTab === tabName;
+    if (theme === "dark") {
+      return isActive ? "bg-gray-700 text-white" : "bg-gray-900 text-white";
+    }
+    return isActive ? "bg-gray-100" : "bg-white";
+  };
+
+  return (
+    <div>
+      <h2 className="text-2xl font-bold mb-2">Settings</h2>
+      <p className="text-xl">Manage your account settings and preferences.</p>
+
+      <div
+        className={`flex text-center text-gray-600 gap-2 mt-4 font-semibold p-2 rounded-md ${
+          theme === "dark" ? "bg-gray-800" : "bg-gray-200"
+        }`}
+      >
+        {["Security", "Notification"].map((tab) => (
+          <p
+            key={tab}
+            className={`w-1/2 rounded-md p-1 cursor-pointer ${getTabClass(
+              tab
+            )}`}
+            onClick={() => setActiveTab(tab)}
+          >
+            {tab}
+          </p>
+        ))}
+      </div>
+
+      {/* Active Page */}
+      <SettingActivePage activeTab={activeTab} />
+    </div>
+  );
 };
 
 export default SettingPage;
