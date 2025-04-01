@@ -3,8 +3,8 @@ import {
   convertDateToUnixTimeStamp,
   convertUnixTimeStampToDate,
   createDate,
-} from "../services/dateService";
-import chartconfig from "../services/chartconfig";
+} from "../api/dateService";
+import chartconfig from "../api/chartconfig";
 
 const fetchHistoricalData = async (symbol, resolution, start, end, filter) => {
   const dataPoints = 30;
