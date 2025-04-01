@@ -1,26 +1,29 @@
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-import { register } from "../api/apiService";
+import { registerUser } from "../api/apiService";
 
 const useRegister = () => {
-  const [input, setInput] = useState([]);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [input, setInput] = useState({ name: "", email: "", password: "" });
+  const [error, setError] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      const response = await register({ input });
-      console.log(response);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
+  const handleChange = (e) => {
+    setInput((prevInput) => ({
+      ...prevInput,
+      [e.target.name]: e.target.value,
+    }));
   };
 
-  return { input, setInput, error, loading, handleSubmit };
+  const { mutate, isLoading } = useMutation({
+    mutationFn: registerUser,
+    onSuccess: () => {
+      alert("Registration successful!");
+    },
+    onError: (err) => {
+      setError(err.response?.data?.message || "Registration failed");
+    },
+  });
+
+  return { input, handleChange, error, loading: isLoading, mutate };
 };
 
 export default useRegister;

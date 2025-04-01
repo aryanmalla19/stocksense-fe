@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
-export const register = async (data) => {
+export const registerUser = async (data) => {
   try {
     const response = await axiosInstance.post("/register", data);
     return response.data;
