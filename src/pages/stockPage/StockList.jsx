@@ -14,9 +14,7 @@ const StockList = () => {
       {/* Header Section */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold py-2">
-            Stock List
-          </h1>
+          <h1 className="text-2xl md:text-3xl font-bold py-2">Stock List</h1>
           <p
             className={`text-sm mt-1 ${
               theme === "dark"

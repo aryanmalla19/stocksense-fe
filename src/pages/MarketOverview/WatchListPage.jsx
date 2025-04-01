@@ -10,7 +10,7 @@ import {
 import ChartFilter from "../../components/stocks/ChartFilter";
 import { ThemeContext } from "../../context/ThemeContext";
 import useStockChart from "../../hooks/useStockChart";
-import chartconfig from "../../helper/chartconfig";
+import chartconfig from "../../api/chartconfig";
 
 const WatchListPage = () => {
   const { filter, setFilter, data, loading } = useStockChart("AAPL");

@@ -7,7 +7,6 @@ import useRegister from "../../hooks/useRegister";
 import Input from "../../components/stocks/Input";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
-import image from '../../assets/login_image.png';
 const LoginPages = () => {
   const { input, setInput, error, loading, handleSubmit } = useRegister();
 
@@ -21,14 +20,16 @@ const LoginPages = () => {
   };
 
   return (
-    <div className="flex min-h-full">      
+    <div className="flex min-h-full">
       <div className="auth-bg w-1/2 pt-5">
         <div className="auth-container">
           <LoginHeader />
           {/* Login form */}
           <form className="space-y-4 mx-40 my-4" onSubmit={handleSubmit}>
             {/* Email input field */}
-            <label className="font-medium ml-2 text-lg" htmlFor="email">Email</label>
+            <label className="font-medium ml-2 text-lg" htmlFor="email">
+              Email
+            </label>
             <Input
               name="email"
               type="email"
@@ -38,7 +39,9 @@ const LoginPages = () => {
               error={error.email}
               icon={FaEnvelope}
             />
-            <label className="font-medium ml-2 text-lg" htmlFor="password">Password</label>
+            <label className="font-medium ml-2 text-lg" htmlFor="password">
+              Password
+            </label>
             {/* Password input field */}
             <Input
               name="password"
@@ -62,14 +65,15 @@ const LoginPages = () => {
               {loading ? <LoadingSpinner /> : "Login"}
             </button>
 
-            
-
             <SocialLogin />
             {/* Signup link */}
             <div className="text-center">
               <p>
                 Don't have an account?
-                <Link to="/register" className="text-teal-500 ml-1 font-semibold hover:underline">
+                <Link
+                  to="/register"
+                  className="text-teal-500 ml-1 font-semibold hover:underline"
+                >
                   Signup
                 </Link>
               </p>
@@ -77,10 +81,8 @@ const LoginPages = () => {
           </form>
         </div>
       </div>
-      <div className="w-1/2 bg-teal-800 min-h-[]">
-      </div>
+      <div className="w-1/2 bg-teal-800 min-h-[]"></div>
     </div>
-
   );
 };
 

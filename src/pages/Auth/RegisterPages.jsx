@@ -21,77 +21,78 @@ const RegisterPages = () => {
 
   return (
     <div className="flex">
-      <div className="w-1/2 bg-teal-800 pt-5">
-      </div>
-    <div className="auth-bg w-1/2 items-center">
-      <div className="auth-container">
-        <RegisterHeader />
-        {/* Registration form */}
-        <form className="space-y-4 mx-40 my-4" onSubmit={handleSubmit}>
-          {/* Username input field */}
-          <Input
-            name="username"
-            type="text"
-            value={input.username}
-            onChange={handleInputChange}
-            placeholder="Username"
-            error={error.username}
-            icon={FaUser}
-          />
+      <div className="w-1/2 bg-teal-800 pt-5"></div>
+      <div className="auth-bg w-1/2 items-center">
+        <div className="auth-container">
+          <RegisterHeader />
+          {/* Registration form */}
+          <form className="space-y-4 mx-40 my-4" onSubmit={handleSubmit}>
+            {/* name input field */}
+            <Input
+              name="name"
+              type="text"
+              value={input.name}
+              onChange={handleInputChange}
+              placeholder="name"
+              error={error.name}
+              icon={FaUser}
+            />
 
-          {/* Email input field */}
-          <Input
-            name="email"
-            type="email"
-            value={input.email}
-            onChange={handleInputChange}
-            placeholder="Email"
-            error={error.email}
-            icon={FaEnvelope}
-          />
+            {/* Email input field */}
+            <Input
+              name="email"
+              type="email"
+              value={input.email}
+              onChange={handleInputChange}
+              placeholder="Email"
+              error={error.email}
+              icon={FaEnvelope}
+            />
 
-          {/* Password input field */}
-          <Input
-            name="password"
-            type="password"
-            value={input.password}
-            onChange={handleInputChange}
-            placeholder="Password"
-            error={error.password}
-            icon={FaLock}
-          />
+            {/* Password input field */}
+            <Input
+              name="password"
+              type="password"
+              value={input.password}
+              onChange={handleInputChange}
+              placeholder="Password"
+              error={error.password}
+              icon={FaLock}
+            />
 
-          {/* Error Message */}
-          {error && (
-            <div className="text-red-500 text-center">
-              <p>{error}</p>
+            {/* Error Message */}
+            {error && (
+              <div className="text-red-500 text-center">
+                <p>{error}</p>
+              </div>
+            )}
+
+            {/* Submit button */}
+            <button
+              type="submit"
+              className="auth-button cursor-pointer bg-gradient-to-l from-teal-500 to-teal-800 hover:from-teal-600 hover:to-teal-700 transition duration-200 w-full"
+              disabled={loading}
+            >
+              {loading ? <LoadingSpinner /> : "Signup"}
+            </button>
+
+            <SocialLogin />
+            {/* Login link */}
+            <div className="text-center">
+              <p>
+                Already have an account?
+                <Link
+                  to="/login"
+                  className="text-teal-500 ml-1 hover:underline"
+                >
+                  Login
+                </Link>
+              </p>
             </div>
-          )}
-
-          {/* Submit button */}
-          <button
-            type="submit"
-            className="auth-button cursor-pointer bg-gradient-to-l from-teal-500 to-teal-800 hover:from-teal-600 hover:to-teal-700 transition duration-200 w-full"
-            disabled={loading}
-          >
-            {loading ? <LoadingSpinner /> : "Signup"}
-          </button>
-
-          <SocialLogin />
-          {/* Login link */}
-          <div className="text-center">
-            <p>
-              Already have an account?
-              <Link to="/login" className="text-teal-500 ml-1 hover:underline">
-                Login
-              </Link>
-            </p>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
-    </div>
-
   );
 };
 
