@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoIosSettings } from "react-icons/io";
 import { FaRegUser, FaSignOutAlt } from "react-icons/fa";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../../context/ThemeContext";
 
 const UserProfile = () => {
   const [isOpen, setIsOpen] = useState(false);

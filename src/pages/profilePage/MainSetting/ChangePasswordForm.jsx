@@ -1,6 +1,6 @@
 // components/ChangePasswordForm.js
 import React, { useContext, useState } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../../context/ThemeContext";
 
 const ChangePasswordForm = ({ onClose }) => {
   const { theme } = useContext(ThemeContext);

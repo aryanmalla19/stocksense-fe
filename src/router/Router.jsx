@@ -8,8 +8,8 @@ import StockList from "../pages/stockPage/StockList";
 import PortfolioPage from "../pages/portfolioPage/PortfolioPage";
 import MyASBAPage from "../pages/sharePage/MyASBAPage";
 import ApplyPage from "../pages/sharePage/ApplyPage";
-import ProfilePage from "../pages/Profile/ProfilePage";
-import SettingPage from "../pages/Profile/SettingPage";
+import ProfilePage from "../pages/Profile/MainProfile/ProfilePage";
+import SettingPage from "../pages/Profile/MainSetting/SettingPage";
 
 const Router = createBrowserRouter([
   {

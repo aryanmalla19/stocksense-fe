@@ -1,5 +1,5 @@
 import React from "react";
-import ToggleButton from "../../components/common/ToggleButton";
+import ToggleButton from "../../../components/common/ToggleButton";
 
 const notificationOptions = [
   {
@@ -15,10 +15,8 @@ const notificationOptions = [
 const NotificationPage = () => {
   return (
     <div className="border border-gray-600 rounded-md p-4 my-4">
-      <h2 className="text-2xl font-bold mb-3">Notification Settings</h2>
-      <p className="text-lg font-semibold mb-4">
-        Choose how you want to receive notifications
-      </p>
+      <h2 className="header">Notification Settings</h2>
+      <p className="paragraph">Choose how you want to receive notifications</p>
 
       {notificationOptions.map((option, index) => (
         <div key={index} className="flex justify-between items-center my-4">
