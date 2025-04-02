@@ -18,47 +18,46 @@ const Router = createBrowserRouter([
     element: <Mainlayout />,
     children: [
       {
-        path: "/",
+        path: "", // ✅ Default child route (instead of "/")
         element: <Overview />,
       },
       {
-        path: "/profile",
+        path: "profile",
         element: <ProfilePage />,
       },
       {
-        path: "/settings",
-        element: <SettingPage />,
+        path: "settings",
+        element: <SettingPage />, // ✅ Removed duplicate route
       },
       {
-        path: "/stocks",
+        path: "stocks",
         element: <StockList />,
       },
       {
-        path: "/settings",
-        element: <SettingPage />,
-      },
-      {
-        path: "/shares",
+        path: "shares",
         element: <MyASBAPage />,
       },
       {
-        path: "/apply/:id",
+        path: "apply/:id",
         element: <ApplyPage />,
       },
       {
-        path: "/portfolio",
+        path: "portfolio",
         element: <PortfolioPage />,
       },
     ],
   },
   {
     path: "/login",
-    // element: <LoginPages />,
-    element: <ConfirmationPage />,
+    element: <LoginPages />,
   },
   {
     path: "/register",
     element: <RegisterPages />,
+  },
+  {
+    path: "/confirmation",
+    element: <ConfirmationPage />,
   },
 ]);
 
