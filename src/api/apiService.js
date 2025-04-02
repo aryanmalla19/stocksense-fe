@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
-export const register = async (data) => {
+export const registerUser = async (data) => {
   try {
     const response = await axiosInstance.post("/register", data);
     return response.data;
@@ -15,7 +15,7 @@ export const register = async (data) => {
   }
 };
 
-export const login = async (data) => {
+export const loginUser = async (data) => {
   try {
     const response = await axiosInstance.post("/login", data);
     return response.data;

@@ -8,15 +8,12 @@ import Input from "../../components/stocks/Input";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 
 const RegisterPages = () => {
-  const { input, setInput, error, loading, handleSubmit } = useRegister();
+  const { input, handleChange, error, loading, mutate } = useRegister();
 
-  // General onChange handler for all input fields
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setInput((prevInput) => ({
-      ...prevInput,
-      [name]: value,
-    }));
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Submitting:", input);
+    mutate(input);
   };
 
   return (
@@ -25,49 +22,39 @@ const RegisterPages = () => {
       <div className="auth-bg w-1/2 items-center">
         <div className="auth-container">
           <RegisterHeader />
-          {/* Registration form */}
           <form className="space-y-4 mx-40 my-4" onSubmit={handleSubmit}>
-            {/* name input field */}
             <Input
               name="name"
               type="text"
               value={input.name}
-              onChange={handleInputChange}
-              placeholder="name"
-              error={error.name}
+              onChange={handleChange}
+              placeholder="Name"
+              error={error?.name}
               icon={FaUser}
             />
 
-            {/* Email input field */}
             <Input
               name="email"
               type="email"
               value={input.email}
-              onChange={handleInputChange}
+              onChange={handleChange}
               placeholder="Email"
-              error={error.email}
+              error={error?.email}
               icon={FaEnvelope}
             />
 
-            {/* Password input field */}
             <Input
               name="password"
               type="password"
               value={input.password}
-              onChange={handleInputChange}
+              onChange={handleChange}
               placeholder="Password"
-              error={error.password}
+              error={error?.password}
               icon={FaLock}
             />
 
-            {/* Error Message */}
-            {error && (
-              <div className="text-red-500 text-center">
-                <p>{error}</p>
-              </div>
-            )}
+            {error && <div className="text-red-500 text-center">{error}</div>}
 
-            {/* Submit button */}
             <button
               type="submit"
               className="auth-button cursor-pointer bg-gradient-to-l from-teal-500 to-teal-800 hover:from-teal-600 hover:to-teal-700 transition duration-200 w-full"
@@ -77,7 +64,7 @@ const RegisterPages = () => {
             </button>
 
             <SocialLogin />
-            {/* Login link */}
+
             <div className="text-center">
               <p>
                 Already have an account?
