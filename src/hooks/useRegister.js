@@ -1,8 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-import { registerUser } from "../api/apiService";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { registerUser } from "../api/ApiService";
 
 const useRegister = () => {
   const [input, setInput] = useState({
