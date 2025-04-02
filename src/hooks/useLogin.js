@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
-import { registerUser } from "../api/apiService";
+import React, { useState } from "react";
+import { loginUser } from "../api/apiService";
 
-const useRegister = () => {
-  const [input, setInput] = useState({ name: "", email: "", password: "" });
+const useLogin = () => {
+  const [input, setInput] = useState({ email: "", password: "" });
   const [error, setError] = useState(null);
 
   const handleChange = (e) => {
@@ -14,16 +14,17 @@ const useRegister = () => {
   };
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: registerUser,
+    mutationFn: loginUser,
     onSuccess: () => {
-      alert("Registration successful!");
+      alert("Login successful!");
     },
     onError: (err) => {
-      setError(err.response?.data?.message || "Registration failed");
+      console.error("Login error:", err);
+      setError(err?.response?.data?.message || "Login failed");
     },
   });
 
   return { input, handleChange, error, loading: isLoading, mutate };
 };
 
-export default useRegister;
+export default useLogin;
