@@ -62,7 +62,10 @@ const RegisterPages = () => {
               icon={FaLock}
             />
 
-            <label className="font-medium ml-2 text-lg" htmlFor="password_confirmation">
+            <label
+              className="font-medium ml-2 text-lg"
+              htmlFor="password_confirmation"
+            >
               Confirm Password
             </label>
             <Input
@@ -90,7 +93,10 @@ const RegisterPages = () => {
             <div className="text-center">
               <p>
                 Already have an account?
-                <Link to="/login" className="text-teal-500 ml-1 hover:underline">
+                <Link
+                  to="/login"
+                  className="text-teal-500 ml-1 hover:underline"
+                >
                   Login
                 </Link>
               </p>
