@@ -3,7 +3,7 @@ import { useState } from "react";
 import { registerUser } from "../api/apiService";
 
 const useRegister = () => {
-  const [input, setInput] = useState({ name: "", email: "", password: "" });
+  const [input, setInput] = useState({ name: "", email: "", password: "", password_confirmation: "" });
   const [error, setError] = useState(null);
 
   const handleChange = (e) => {
