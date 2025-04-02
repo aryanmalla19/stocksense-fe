@@ -18,7 +18,7 @@ const Router = createBrowserRouter([
     element: <Mainlayout />,
     children: [
       {
-        path: "", // ✅ Default child route (instead of "/")
+        path: "", 
         element: <Overview />,
       },
       {
@@ -27,7 +27,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "settings",
-        element: <SettingPage />, // ✅ Removed duplicate route
+        element: <SettingPage />, 
       },
       {
         path: "stocks",
