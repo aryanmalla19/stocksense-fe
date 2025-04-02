@@ -1,48 +1,41 @@
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { registerUser } from "../api/ApiService";
+import { useState } from "react";
 
 const useRegister = () => {
-  const [input, setInput] = useState({
-    name: "",
-    email: "",
-    password: "",
-    password_confirmation: "",
-  });
-
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setInput((prevInput) => ({
-      ...prevInput,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  const [serverErrors, setServerErrors] = useState({});
 
   const mutation = useMutation({
     mutationFn: registerUser,
     onSuccess: () => {
       toast.success("Registration successful!");
-      navigate("/confirmation");
+      setTimeout(() => {
+        navigate("/confirmation");
+      }, 1000);
     },
-    onError: (err) => {
-      const errorMessage =
-        err.response?.data?.message || err.message || "Registration failed";
-      setError(errorMessage);
-      toast.error(errorMessage);
+    onError: (error) => {
+      if (error.response?.status === 422) {
+        // If backend sends errors in "errors" object, extract them
+        setServerErrors(error.response.data.errors || {});
+      } else {
+        const errorMessage =
+          error.response?.data?.message ||
+          error.message ||
+          "Registration failed";
+        setServerErrors({ general: errorMessage });
+        toast.error(errorMessage);
+      }
     },
   });
 
-  console.log("Mutation object:", mutation);
-
-  // Extract necessary values
-  const { mutate } = mutation;
-  const isLoading = mutation.isPending;
-
-  return { input, handleChange, error, isLoading, mutate };
+  return {
+    mutate: mutation.mutate,
+    isLoading: mutation.isPending,
+    serverErrors,
+  };
 };
 
 export default useRegister;

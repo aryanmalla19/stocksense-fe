@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import SocialLogin from "../../authcomponent/SocialLogin";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import RegisterHeader from "../../authcomponent/RegisterHeader";
@@ -8,12 +9,17 @@ import Input from "../../components/stocks/Input";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 
 const RegisterPages = () => {
-  const { input, handleChange, error, isLoading, mutate } = useRegister();
+  const { mutate, isLoading, serverErrors } = useRegister(); // Get serverErrors
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Submitting:", input);
-    mutate(input);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    mutate(data);
   };
 
   return (
@@ -22,46 +28,74 @@ const RegisterPages = () => {
       <div className="auth-bg w-1/2 flex items-center justify-center">
         <div className="auth-container">
           <RegisterHeader />
-          <form className="space-y-4 mx-30 my-4" onSubmit={handleSubmit}>
+          <form
+            className="space-y-4 mx-30 my-4"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            {/* Name Field */}
             <label className="font-medium ml-2 text-lg" htmlFor="name">
               Name
             </label>
             <Input
-              name="name"
+              {...register("name", { required: "Name is required" })}
               type="text"
-              value={input?.name}
-              onChange={handleChange}
               placeholder="Name"
-              error={error?.name}
               icon={FaUser}
             />
+            {errors.name && (
+              <p className="text-red-500">{errors.name.message}</p>
+            )}
+            {serverErrors?.name && (
+              <p className="text-red-500">{serverErrors.name[0]}</p>
+            )}
 
+            {/* Email Field */}
             <label className="font-medium ml-2 text-lg" htmlFor="email">
               Email
             </label>
             <Input
-              name="email"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "Invalid email address",
+                },
+              })}
               type="email"
-              value={input?.email}
-              onChange={handleChange}
               placeholder="Email"
-              error={error?.email}
               icon={FaEnvelope}
             />
+            {errors.email && (
+              <p className="text-red-500">{errors.email.message}</p>
+            )}
+            {serverErrors?.email && (
+              <p className="text-red-500">{serverErrors.email[0]}</p>
+            )}
 
+            {/* Password Field */}
             <label className="font-medium ml-2 text-lg" htmlFor="password">
               Password
             </label>
             <Input
-              name="password"
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters",
+                },
+              })}
               type="password"
-              value={input?.password}
-              onChange={handleChange}
               placeholder="Password"
-              error={error?.password}
               icon={FaLock}
             />
+            {errors.password && (
+              <p className="text-red-500">{errors.password.message}</p>
+            )}
+            {serverErrors?.password && (
+              <p className="text-red-500">{serverErrors.password[0]}</p>
+            )}
 
+            {/* Confirm Password Field */}
             <label
               className="font-medium ml-2 text-lg"
               htmlFor="password_confirmation"
@@ -69,16 +103,25 @@ const RegisterPages = () => {
               Confirm Password
             </label>
             <Input
-              name="password_confirmation"
+              {...register("password_confirmation", {
+                required: "Please confirm your password",
+                validate: (value) =>
+                  value === watch("password") || "Passwords do not match",
+              })}
               type="password"
-              value={input?.password_confirmation}
-              onChange={handleChange}
               placeholder="Confirm Password"
-              error={error?.password_confirmation}
               icon={FaLock}
             />
+            {errors.password_confirmation && (
+              <p className="text-red-500">
+                {errors.password_confirmation.message}
+              </p>
+            )}
 
-            {error && <div className="text-red-500 text-center">{error}</div>}
+            {/* General Backend Error Message */}
+            {serverErrors?.general && (
+              <p className="text-red-500 text-center">{serverErrors.general}</p>
+            )}
 
             <button
               type="submit"
