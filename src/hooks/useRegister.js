@@ -1,10 +1,19 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-import { registerUser } from "../api/apiService";
+import { registerUser } from "../api/ApiService";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const useRegister = () => {
-  const [input, setInput] = useState({ name: "", email: "", password: "", password_confirmation: "" });
+  const [input, setInput] = useState({
+    name: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+  });
+
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setInput((prevInput) => ({
@@ -16,10 +25,14 @@ const useRegister = () => {
   const { mutate, isLoading } = useMutation({
     mutationFn: registerUser,
     onSuccess: () => {
-      alert("Registration successful!");
+      toast.success("Registration successful!");
+      navigate("/confirmation"); // ✅ Navigate to confirmation page
     },
     onError: (err) => {
-      setError(err.response?.data?.message || "Registration failed");
+      const errorMessage =
+        err.response?.data?.message || err.message || "Registration failed";
+      setError(errorMessage);
+      toast.error(errorMessage); // ✅ Show error as toast
     },
   });
 

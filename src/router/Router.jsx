@@ -10,6 +10,7 @@ import MyASBAPage from "../pages/sharePage/MyASBAPage";
 import ApplyPage from "../pages/sharePage/ApplyPage";
 import ProfilePage from "../pages/profilePage/MainProfile/ProfilePage";
 import SettingPage from "../pages/profilePage/MainSetting/SettingPage";
+import ConfirmationPage from "../pages/Auth/ConfirmationPage";
 
 const Router = createBrowserRouter([
   {
@@ -17,35 +18,31 @@ const Router = createBrowserRouter([
     element: <Mainlayout />,
     children: [
       {
-        path: "/",
+        path: "", 
         element: <Overview />,
       },
       {
-        path: "/profile",
+        path: "profile",
         element: <ProfilePage />,
       },
       {
-        path: "/settings",
-        element: <SettingPage />,
+        path: "settings",
+        element: <SettingPage />, 
       },
       {
-        path: "/stocks",
+        path: "stocks",
         element: <StockList />,
       },
       {
-        path: "/settings",
-        element: <SettingPage />,
-      },
-      {
-        path: "/shares",
+        path: "shares",
         element: <MyASBAPage />,
       },
       {
-        path: "/apply/:id",
+        path: "apply/:id",
         element: <ApplyPage />,
       },
       {
-        path: "/portfolio",
+        path: "portfolio",
         element: <PortfolioPage />,
       },
     ],
@@ -57,6 +54,10 @@ const Router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPages />,
+  },
+  {
+    path: "/confirmation",
+    element: <ConfirmationPage />,
   },
 ]);
 
