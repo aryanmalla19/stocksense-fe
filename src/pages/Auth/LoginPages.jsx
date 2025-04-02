@@ -9,8 +9,8 @@ import LoadingSpinner from "../../components/common/LoadingSpinner";
 import useLogin from "../../hooks/useLogin";
 
 const LoginPages = () => {
-  const { input, handleChange, error, loading, mutate } = useLogin();
-  console.log("Login Loading State in Component:", loading);
+  const { input, handleChange, error, isLoading, mutate } = useLogin();
+  console.log("Login Loading State in Component:", isLoading);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,9 +55,9 @@ const LoginPages = () => {
             <button
               type="submit"
               className="auth-button cursor-pointer bg-gradient-to-l from-teal-500 to-teal-800 hover:from-teal-600 hover:to-teal-700 transition duration-200 w-full"
-              disabled={loading || (error && (error.email || error.password))}
+              disabled={isLoading || (error && (error.email || error.password))}
             >
-              {loading ? <LoadingSpinner /> : "Login"}
+              {isLoading ? <LoadingSpinner /> : "Login"}
             </button>
 
             <SocialLogin />

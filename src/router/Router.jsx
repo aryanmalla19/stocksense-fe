@@ -11,6 +11,7 @@ import ApplyPage from "../pages/sharePage/ApplyPage";
 import ProfilePage from "../pages/profilePage/MainProfile/ProfilePage";
 import SettingPage from "../pages/profilePage/MainSetting/SettingPage";
 import ConfirmationPage from "../pages/Auth/ConfirmationPage";
+import BuySellPage from "../pages/OrderManagement/BuySellPage";
 
 const Router = createBrowserRouter([
   {
@@ -18,8 +19,20 @@ const Router = createBrowserRouter([
     element: <Mainlayout />,
     children: [
       {
-        path: "", 
+        path: "",
         element: <Overview />,
+      },
+      {
+        path: "stocks",
+        element: <StockList />,
+      },
+      {
+        path: "buysell",
+        element: <BuySellPage />,
+      },
+      {
+        path: "portfolio",
+        element: <PortfolioPage />,
       },
       {
         path: "profile",
@@ -27,11 +40,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "settings",
-        element: <SettingPage />, 
-      },
-      {
-        path: "stocks",
-        element: <StockList />,
+        element: <SettingPage />,
       },
       {
         path: "shares",
@@ -40,10 +49,6 @@ const Router = createBrowserRouter([
       {
         path: "apply/:id",
         element: <ApplyPage />,
-      },
-      {
-        path: "portfolio",
-        element: <PortfolioPage />,
       },
     ],
   },

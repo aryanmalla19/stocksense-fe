@@ -17,7 +17,7 @@ const useLogin = () => {
     }));
   };
 
-  const { mutate, isLoading } = useMutation({
+  const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: () => {
       toast.success("Login successful!");
@@ -31,7 +31,10 @@ const useLogin = () => {
     },
   });
 
-  return { input, handleChange, error, loading: isLoading, mutate };
+  const { mutate } = mutation;
+  const isLoading = mutation.isPending;
+
+  return { input, handleChange, error, isLoading, mutate };
 };
 
 export default useLogin;
