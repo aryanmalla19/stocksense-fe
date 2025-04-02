@@ -23,73 +23,89 @@ const RegisterPages = () => {
     <div className="flex">
       <div className="w-1/2 bg-teal-800 pt-5">
       </div>
-    <div className="auth-bg w-1/2 items-center">
-      <div className="auth-container">
-        <RegisterHeader />
-        {/* Registration form */}
-        <form className="space-y-4 mx-40 my-4" onSubmit={handleSubmit}>
-          {/* Username input field */}
-          <Input
-            name="username"
-            type="text"
-            value={input.username}
-            onChange={handleInputChange}
-            placeholder="Username"
-            error={error.username}
-            icon={FaUser}
-          />
+      <div className="auth-bg w-1/2 items-center">
+        <div className="auth-container">
+          <RegisterHeader />
+          {/* Registration form */}
+          <form className="space-y-4 mx-40 my-4" onSubmit={handleSubmit}>
 
-          {/* Email input field */}
-          <Input
-            name="email"
-            type="email"
-            value={input.email}
-            onChange={handleInputChange}
-            placeholder="Email"
-            error={error.email}
-            icon={FaEnvelope}
-          />
+            <label className="font-medium ml-2 text-lg" htmlFor="name">Name</label>
+            {/* Username input field */}
+            <Input
+              name="name"
+              type="text"
+              value={input.name}
+              onChange={handleInputChange}
+              placeholder="Name"
+              error={error.name}
+              icon={FaUser}
+            />
 
-          {/* Password input field */}
-          <Input
-            name="password"
-            type="password"
-            value={input.password}
-            onChange={handleInputChange}
-            placeholder="Password"
-            error={error.password}
-            icon={FaLock}
-          />
+            <label className="font-medium ml-2 text-lg" htmlFor="email">Email</label>
+            {/* Email input field */}
+            <Input
+              name="email"
+              type="email"
+              value={input.email}
+              onChange={handleInputChange}
+              placeholder="Email"
+              error={error.email}
+              icon={FaEnvelope}
+            />
 
-          {/* Error Message */}
-          {error && (
-            <div className="text-red-500 text-center">
-              <p>{error}</p>
+            <label className="font-medium ml-2 text-lg" htmlFor="password">Password</label>
+            {/* Password input field */}
+            <Input
+              name="password"
+              type="password"
+              value={input.password}
+              onChange={handleInputChange}
+              placeholder="Password"
+              error={error.password}
+              icon={FaLock}
+            />
+
+            <label className="font-medium ml-2 text-lg" htmlFor="password_confirmation">Confrim Password</label>
+            {/* Password Confirmation input field */}
+            <Input
+              name="password_confirmation"
+              type="password"
+              value={input.password}
+              onChange={handleInputChange}
+              placeholder="Confirm Password"
+              error={error.password}
+              icon={FaLock}
+            />
+
+            {/* Error Message */}
+            {error && (
+              <div className="text-red-500 text-center">
+                <p>{error}</p>
+              </div>
+            )}
+
+            {/* Submit button */}
+            <button
+              type="submit"
+              className="auth-button cursor-pointer bg-gradient-to-l from-teal-500 to-teal-800 hover:from-teal-600 hover:to-teal-700 transition duration-200 w-full"
+              disabled={loading}
+            >
+              {loading ? <LoadingSpinner /> : "Signup"}
+            </button>
+
+            <SocialLogin />
+            {/* Login link */}
+            <div className="text-center">
+              <p>
+                Already have an account?
+                <Link to="/login" className="text-teal-500 ml-1 hover:underline">
+                  Login
+                </Link>
+              </p>
             </div>
-          )}
-
-          {/* Submit button */}
-          <button
-            type="submit"
-            className="auth-button cursor-pointer bg-gradient-to-l from-teal-500 to-teal-800 hover:from-teal-600 hover:to-teal-700 transition duration-200 w-full"
-            disabled={loading}
-          >
-            {loading ? <LoadingSpinner /> : "Signup"}
-          </button>
-
-          <SocialLogin />
-          {/* Login link */}
-          <div className="text-center">
-            <p>
-              Already have an account?
-              <Link to="/login" className="text-teal-500 ml-1 hover:underline">
-                Login
-              </Link>
-            </p>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
     </div>
 
   );
