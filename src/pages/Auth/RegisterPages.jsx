@@ -8,7 +8,7 @@ import Input from "../../components/stocks/Input";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 
 const RegisterPages = () => {
-  const { input, handleChange, error, loading, mutate } = useRegister();
+  const { input, handleChange, error, isLoading, mutate } = useRegister();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -83,9 +83,9 @@ const RegisterPages = () => {
             <button
               type="submit"
               className="auth-button cursor-pointer bg-gradient-to-l from-teal-500 to-teal-800 hover:from-teal-600 hover:to-teal-700 transition duration-200 w-full"
-              disabled={loading}
+              disabled={isLoading}
             >
-              {loading ? <LoadingSpinner /> : "Signup"}
+              {isLoading ? <LoadingSpinner /> : "Signup"}
             </button>
 
             <SocialLogin />

@@ -22,21 +22,27 @@ const useRegister = () => {
     }));
   };
 
-  const { mutate, isLoading } = useMutation({
+  const mutation = useMutation({
     mutationFn: registerUser,
     onSuccess: () => {
       toast.success("Registration successful!");
-      navigate("/confirmation"); // ✅ Navigate to confirmation page
+      navigate("/confirmation");
     },
     onError: (err) => {
       const errorMessage =
         err.response?.data?.message || err.message || "Registration failed";
       setError(errorMessage);
-      toast.error(errorMessage); // ✅ Show error as toast
+      toast.error(errorMessage);
     },
   });
 
-  return { input, handleChange, error, loading: isLoading, mutate };
+  console.log("Mutation object:", mutation);
+
+  // Extract necessary values
+  const { mutate } = mutation;
+  const isLoading = mutation.isPending;
+
+  return { input, handleChange, error, isLoading, mutate };
 };
 
 export default useRegister;
