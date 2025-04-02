@@ -8,14 +8,16 @@ import {
   FaSignOutAlt,
   FaUserAlt,
   FaMoneyCheckAlt,
+  FaShoppingCart,
 } from "react-icons/fa";
 
 const menuItems = [
   {
     title: "MARKET",
     items: [
-      {icon: <FaChartLine />,label: "Dashboard",href: "/"},
+      { icon: <FaChartLine />, label: "Dashboard", href: "/" },
       { icon: <FaRegDotCircle />, label: "Stocks List", href: "/stocks" },
+      { icon: <FaShoppingCart />, label: "Order Management", href: "/buysell" },
       { icon: <FaUserAlt />, label: "Portfolio", href: "/portfolio" },
       { icon: <FaMoneyCheckAlt />, label: "My ASBA", href: "/shares" },
       { icon: <FaSignOutAlt />, label: "Logout", href: "/logout" },
