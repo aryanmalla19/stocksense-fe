@@ -1,40 +1,39 @@
 import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 import { loginUser } from "../api/ApiService";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const useLogin = () => {
-  const [input, setInput] = useState({ email: "", password: "" });
-  const [error, setError] = useState(null);
-
+  const [serverErrors, setServerErrors] = useState({});
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setInput((prevInput) => ({
-      ...prevInput,
-      [e.target.name]: e.target.value,
-    }));
-  };
 
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: () => {
-      toast.success("Login successful!");
-
-      //redirect to dashboard
+      toast.success("Login successful");
       navigate("/");
     },
-    onError: (err) => {
-      console.error("Login error:", err);
-      setError(err?.response?.data?.message || "Login failed");
+    onError: (error) => {
+      console.error("Error response:", error.response);
+
+      if (error.response?.status === 401) {
+        setServerErrors({ general: error.response.data.error });
+      } else {
+        const errorMessage =
+          error.response?.data?.message || error.message || "Login failed";
+        setServerErrors({ general: errorMessage });
+      }
+
+      toast.error(serverErrors.general || "Login failed");
     },
   });
 
-  const { mutate } = mutation;
-  const isLoading = mutation.isPending;
-
-  return { input, handleChange, error, isLoading, mutate };
+  return {
+    mutate: mutation.mutate,
+    serverErrors,
+    isLoading: mutation.isPending,
+  };
 };
 
 export default useLogin;
