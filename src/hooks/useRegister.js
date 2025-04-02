@@ -1,9 +1,14 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-import { registerUser } from "../api/apiService";
+import { registerUser } from "../api/ApiService";
 
 const useRegister = () => {
-  const [input, setInput] = useState({ name: "", email: "", password: "", password_confirmation: "" });
+  const [input, setInput] = useState({
+    name: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+  });
   const [error, setError] = useState(null);
 
   const handleChange = (e) => {

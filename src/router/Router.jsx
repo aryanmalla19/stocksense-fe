@@ -10,6 +10,7 @@ import MyASBAPage from "../pages/sharePage/MyASBAPage";
 import ApplyPage from "../pages/sharePage/ApplyPage";
 import ProfilePage from "../pages/profilePage/MainProfile/ProfilePage";
 import SettingPage from "../pages/profilePage/MainSetting/SettingPage";
+import ConfirmationPage from "../pages/Auth/ConfirmationPage";
 
 const Router = createBrowserRouter([
   {
@@ -52,7 +53,8 @@ const Router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <LoginPages />,
+    // element: <LoginPages />,
+    element: <ConfirmationPage />,
   },
   {
     path: "/register",
