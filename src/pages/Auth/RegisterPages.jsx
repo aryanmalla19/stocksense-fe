@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SocialLogin from "../../authcomponent/SocialLogin";
@@ -7,10 +7,13 @@ import RegisterHeader from "../../authcomponent/RegisterHeader";
 import useRegister from "../../hooks/useRegister";
 import Input from "../../components/stocks/Input";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
+import Passwordhidded from "../../components/common/Passwordhidded";
 
 const RegisterPages = () => {
-  const { mutate, isLoading, serverErrors } = useRegister(); // Get serverErrors
-
+  // State to toggle password visibility
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { mutate, isLoading, serverErrors } = useRegister();
   const {
     register,
     handleSubmit,
@@ -37,7 +40,13 @@ const RegisterPages = () => {
               Name
             </label>
             <Input
-              {...register("name", { required: "Name is required" })}
+              {...register("name", {
+                required: "Name is required",
+                pattern: {
+                  value: /^[A-Za-z\s]+$/,
+                  message: "Only letters are allowed",
+                },
+              })}
               type="text"
               placeholder="Name"
               icon={FaUser}
@@ -76,18 +85,24 @@ const RegisterPages = () => {
             <label className="font-medium ml-2 text-lg" htmlFor="password">
               Password
             </label>
-            <Input
-              {...register("password", {
-                required: "Password is required",
-                minLength: {
-                  value: 6,
-                  message: "Password must be at least 6 characters",
-                },
-              })}
-              type="password"
-              placeholder="Password"
-              icon={FaLock}
-            />
+            <div className="relative">
+              <Input
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password must be at least 8 characters",
+                  },
+                })}
+                placeholder="Password"
+                type={showPassword ? "text" : "password"}
+                icon={FaLock}
+              />
+              <Passwordhidded
+                isVisible={showPassword}
+                toggleVisibility={() => setShowPassword(!showPassword)}
+              />
+            </div>
             {errors.password && (
               <p className="text-red-500">{errors.password.message}</p>
             )}
@@ -102,16 +117,23 @@ const RegisterPages = () => {
             >
               Confirm Password
             </label>
-            <Input
-              {...register("password_confirmation", {
-                required: "Please confirm your password",
-                validate: (value) =>
-                  value === watch("password") || "Passwords do not match",
-              })}
-              type="password"
-              placeholder="Confirm Password"
-              icon={FaLock}
-            />
+            <div className="relative">
+              <Input
+                {...register("password_confirmation", {
+                  required: "Please confirm your password",
+                  validate: (value) =>
+                    value === watch("password") || "Passwords do not match",
+                })}
+                placeholder="Confirm Password"
+                type={showPassword ? "text" : "password"}
+                icon={FaLock}
+              />
+              <Passwordhidded
+                isVisible={showPassword}
+                toggleVisibility={() => setShowPassword(!showPassword)}
+              />
+            </div>
+
             {errors.password_confirmation && (
               <p className="text-red-500">
                 {errors.password_confirmation.message}
