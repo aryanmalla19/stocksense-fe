@@ -12,7 +12,6 @@ import Passwordhidded from "../../components/common/Passwordhidded";
 const RegisterPages = () => {
   // State to toggle password visibility
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { mutate, isLoading, serverErrors } = useRegister();
   const {
     register,

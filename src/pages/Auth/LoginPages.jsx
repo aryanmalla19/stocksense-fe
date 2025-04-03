@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import SocialLogin from "../../authcomponent/SocialLogin";
 import Rememberme from "../../authcomponent/Rememberme";
@@ -8,8 +8,10 @@ import { FaEnvelope, FaLock } from "react-icons/fa";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import useLogin from "../../hooks/useLogin";
 import { useForm } from "react-hook-form";
+import Passwordhidded from "../../components/common/Passwordhidded";
 
 const LoginPages = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const { mutate, serverErrors, isLoading } = useLogin();
 
   const {
@@ -44,26 +46,38 @@ const LoginPages = () => {
             {errors.email && (
               <p className="text-red-600">{errors.email.message}</p>
             )}
+            {serverErrors?.email && (
+              <p className="text-red-500">{serverErrors.email}</p>
+            )}
 
             {/* Password Field */}
             <label className="font-medium ml-2 text-lg" htmlFor="password">
               Password
             </label>
-            <Input
-              {...register("password", { required: "Password is required" })}
-              type="password"
-              placeholder="Enter your password"
-              icon={FaLock}
-            />
+            <div className="relative">
+              <Input
+                {...register("password", { required: "Password is required" })}
+                placeholder="Enter your password"
+                type={showPassword ? "text" : "password"}
+                icon={FaLock}
+              />
+              <Passwordhidded
+                isVisible={showPassword}
+                toggleVisibility={() => setShowPassword(!showPassword)}
+              />
+            </div>
             {errors.password && (
               <p className="text-red-600">{errors.password.message}</p>
             )}
+            {serverErrors?.password && (
+              <p className="text-red-500">{serverErrors.password}</p>
+            )}
 
             <Rememberme />
-
-            {serverErrors?.general && (
-              <p className="text-red-600">{serverErrors.general}</p>
+            {serverErrors.general && (
+              <p className="text-red-600 text-center">{serverErrors.general}</p>
             )}
+
             {/* Submit Button */}
             <button
               type="submit"
@@ -76,9 +90,7 @@ const LoginPages = () => {
             >
               {isLoading ? <LoadingSpinner /> : "Login"}
             </button>
-
             <SocialLogin />
-
             <div className="text-center">
               <p>
                 Don't have an account?

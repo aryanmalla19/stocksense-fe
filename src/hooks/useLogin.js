@@ -15,17 +15,18 @@ const useLogin = () => {
       navigate("/");
     },
     onError: (error) => {
-      console.error("Error response:", error.response);
+      // Clear previous errors
+      setServerErrors({});
 
-      if (error.response?.status === 401) {
-        setServerErrors({ general: error.response.data.error });
-      } else {
-        const errorMessage =
-          error.response?.data?.message || error.message || "Login failed";
-        setServerErrors({ general: errorMessage });
-      }
+      // Get error message from API or use default
+      const errorMessage =
+        error.response?.data?.error || "Login failed. Please try again later.";
 
-      toast.error(serverErrors.general || "Login failed");
+      // Set as a general error
+      setServerErrors({ general: errorMessage });
+
+      // Show toast
+      toast.error(errorMessage);
     },
   });
 
