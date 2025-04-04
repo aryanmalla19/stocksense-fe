@@ -20,7 +20,7 @@ export const loginUser = async (data) => {
     const response = await axiosInstance.post("/auth/login", data);
     return response.data;
   } catch (error) {
-    console.error("Validation Errors:", error.response.data.errors);
+    console.error("Validation Errors:", error.response.data);
     throw new Error(error.response?.data?.message || "Login failed");
   }
 };
