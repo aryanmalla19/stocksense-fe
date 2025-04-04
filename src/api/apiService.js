@@ -10,8 +10,8 @@ export const registerUser = async (data) => {
     const response = await axiosInstance.post("/auth/register", data);
     return response.data;
   } catch (error) {
-    console.error("Validation Errors:", error.response.data.errors);
-    throw new Error(error.response?.data?.message || "Registration failed");
+    console.error("Validation Errors:", error.response.data);
+    throw error ?? new Error("Login failed");
   }
 };
 
@@ -21,6 +21,6 @@ export const loginUser = async (data) => {
     return response.data;
   } catch (error) {
     console.error("Validation Errors:", error.response.data);
-    throw new Error(error.response?.data?.message || "Login failed");
+    throw error.response.data ?? new Error("Login failed");
   }
 };
