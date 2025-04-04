@@ -20,7 +20,7 @@ const useLogin = () => {
 
       // Get error message from API or use default
       const errorMessage =
-        error.response?.data?.error || "Login failed. Please try again later.";
+        error.error || "Login failed. Please try again later.";
 
       // Set as a general error
       setServerErrors({ general: errorMessage });
