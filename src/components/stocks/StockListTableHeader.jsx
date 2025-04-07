@@ -44,7 +44,7 @@ const SortableHeader = ({ label, sortBy, sortOrder, onSort, columnKey }) => {
 
 const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
   return (
-    <div className="grid grid-cols-6 bg-gray-200 dark:bg-gray-800 text-stone-900 dark:text-white rounded-md px-4 py-2 font-semibold text-center items-center">
+    <div className="grid grid-cols-7 bg-gray-200 dark:bg-gray-800 text-stone-900 dark:text-white rounded-md px-4 py-2 font-semibold text-center items-center">
       <div className="stockList">Symbol</div>
 
       {/* Name Sorting */}
@@ -91,9 +91,9 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
       </div>
 
       {/* Action Column */}
-      {/* <div className="stockList ml-15">
-        <h3>Action</h3>
-      </div> */}
+      <div className="stockList ml-15">
+        <h3>Favrouite</h3>
+      </div>
     </div>
   );
 };
