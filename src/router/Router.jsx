@@ -12,6 +12,7 @@ import ProfilePage from "../pages/profilePage/MainProfile/ProfilePage";
 import SettingPage from "../pages/profilePage/MainSetting/SettingPage";
 import ConfirmationPage from "../pages/Auth/ConfirmationPage";
 import BuySellPage from "../pages/OrderManagement/BuySellPage";
+import Watchlists from "../pages/MarketOverview/Watchlists";
 
 const Router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const Router = createBrowserRouter([
       {
         path: "apply/:id",
         element: <ApplyPage />,
+      },
+      {
+        path: "/watchlists",
+        element: <Watchlists />,
       },
     ],
   },
