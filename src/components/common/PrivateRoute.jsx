@@ -11,7 +11,7 @@ const PrivateRoute = ({ children }) => {
     return <LoadingSpinner />;
   }
   if (!token) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/loginReg" replace />;
   }
 
   // If token exists, render the protected component

@@ -1,7 +1,5 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import LoginPages from "../pages/Auth/LoginPages";
-import RegisterPages from "../pages/Auth/RegisterPages";
 import Mainlayout from "../layouts/Mainlayout";
 import Overview from "../pages/MarketOverview/Overview";
 import StockList from "../pages/stockPage/StockList";
@@ -13,6 +11,7 @@ import SettingPage from "../pages/profilePage/MainSetting/SettingPage";
 import ConfirmationPage from "../pages/Auth/ConfirmationPage";
 import BuySellPage from "../pages/OrderManagement/BuySellPage";
 import Watchlists from "../pages/MarketOverview/Watchlists";
+import LoginReg from "../pages/Auth/LoginReg";
 
 const Router = createBrowserRouter([
   {
@@ -58,12 +57,8 @@ const Router = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
-    element: <LoginPages />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPages />,
+    path: "/loginReg",
+    element: <LoginReg />,
   },
   {
     path: "/confirmation",

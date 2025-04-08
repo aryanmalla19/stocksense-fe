@@ -35,6 +35,7 @@ const useRegister = () => {
     mutate: mutation.mutate,
     isLoading: mutation.isPending,
     serverErrors,
+    setServerErrors,
   };
 };
 
