@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SocialLogin from "../../authcomponent/SocialLogin";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
@@ -8,10 +8,12 @@ import useRegister from "../../hooks/useRegister";
 import Input from "../../components/stocks/Input";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import Passwordhidded from "../../components/common/Passwordhidded";
+import useAuthStore from "../../store/authStore";
 
 const RegisterPages = () => {
   // State to toggle password visibility
   const [showPassword, setShowPassword] = useState(false);
+  const token = useAuthStore((store) => store.token);
   const { mutate, isLoading, serverErrors } = useRegister();
   const {
     register,
@@ -24,6 +26,9 @@ const RegisterPages = () => {
     mutate(data);
   };
 
+  if (token) {
+    return <Navigate to="/" replace />;
+  }
   return (
     <div className="flex">
       <div className="w-1/2 bg-teal-800 pt-5"></div>

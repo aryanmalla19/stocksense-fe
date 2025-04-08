@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import SocialLogin from "../../authcomponent/SocialLogin";
 import Rememberme from "../../authcomponent/Rememberme";
 import LoginHeader from "../../authcomponent/LoginHeader";
@@ -9,9 +9,11 @@ import LoadingSpinner from "../../components/common/LoadingSpinner";
 import useLogin from "../../hooks/useLogin";
 import { useForm } from "react-hook-form";
 import Passwordhidded from "../../components/common/Passwordhidded";
+import useAuthStore from "../../store/authStore";
 
 const LoginPages = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const token = useAuthStore((store) => store.token);
   const { mutate, serverErrors, isLoading } = useLogin();
 
   const {
@@ -23,6 +25,10 @@ const LoginPages = () => {
   const onSubmit = (data) => {
     mutate(data);
   };
+
+  if (token) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <div className="flex min-h-full">
