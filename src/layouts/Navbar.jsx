@@ -4,7 +4,7 @@ import { IoIosNotifications, IoIosSettings } from "react-icons/io";
 import { ThemeContext } from "../context/ThemeContext";
 import { FaRegUser } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
-import ProfileImage from "../components/common/ProfileImage";
+import ProfileImage from "../store/ProfileImage";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);

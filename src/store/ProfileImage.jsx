@@ -1,12 +1,14 @@
 import React, { useState, useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../context/ThemeContext";
 import { FaRegUser, FaSignOutAlt } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const ProfileImage = () => {
   const { theme } = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
+  const { logout } = useAuth();
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -14,6 +16,10 @@ const ProfileImage = () => {
 
   const handleClose = () => {
     setIsOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout();
   };
 
   return (
@@ -65,6 +71,7 @@ const ProfileImage = () => {
               className={`flex border-t p-2 cursor-pointer ${
                 theme === "light" ? "border-gray-300" : "border-gray-700"
               } items-center`}
+              onClick={handleLogout}
             >
               <FaSignOutAlt />
               <p className="ml-3">Logout</p>
