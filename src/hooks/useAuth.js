@@ -11,7 +11,7 @@ const useAuth = () => {
   };
 
   const logout = () => {
-    clearToken;
+    clearToken();
   };
 
   return { login, logout, token };
