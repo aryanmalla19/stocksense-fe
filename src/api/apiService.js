@@ -35,9 +35,9 @@ export const verifyEmail = async (data) => {
   }
 };
 
-export const resetPassword = async (data) => {
+export const forgotPassword = async (data) => {
   try {
-    const response = await axiosInstance.post("/auth/reset-password", data);
+    const response = await axiosInstance.post("/auth/forgot-password", data);
     return response.data;
   } catch (error) {
     console.error("Validation Errors:", error.response.data);

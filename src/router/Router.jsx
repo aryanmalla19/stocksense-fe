@@ -12,7 +12,7 @@ import ConfirmationPage from "../pages/Auth/ConfirmationPage";
 import BuySellPage from "../pages/OrderManagement/BuySellPage";
 import Watchlists from "../pages/MarketOverview/Watchlists";
 import LoginReg from "../pages/Auth/LoginReg";
-import ResetPassword from "../pages/Auth/ResetPassword";
+import ResetPassword from "../pages/Auth/ForgotPassword";
 
 const Router = createBrowserRouter([
   {

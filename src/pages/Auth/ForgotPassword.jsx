@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import useResetPassword from "../../hooks/useResetPassword";
-import LoadingSpinner from "../../components/common/LoadingSpinner";
+import useResetPassword from "../../hooks/useForgotPassword";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
   const { resetPasswordMutation, isLoading } = useResetPassword();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,13 +16,12 @@ const ResetPassword = () => {
       { email },
       {
         onSuccess: () => {
-          setMessage(" Reset instructions have been sent to your email!");
+          toast.success("Reset instructions have been sent to your email!");
           setEmail("");
+          navigate("/login");
         },
         onError: (err) => {
-          setErrorMessage(
-            err?.message || "An error occurred. Please try again."
-          );
+          toast.error(err?.message || "User Email does not exist!");
         },
       }
     );
@@ -64,24 +63,12 @@ const ResetPassword = () => {
 
           <button
             type="submit"
-            className="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition"
+            className="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition cursor-pointer"
             disabled={isLoading}
           >
-            {isLoading ? <LoadingSpinner /> : "Send Reset Link"}
+            {isLoading ? "loading..." : "Send Reset Link"}
           </button>
         </form>
-
-        {message && (
-          <p className="text-center mt-4 text-sm font-medium text-green-600">
-            {message}
-          </p>
-        )}
-
-        {errorMessage && (
-          <p className="text-center mt-4 text-sm font-medium text-red-600">
-            {errorMessage}
-          </p>
-        )}
       </div>
     </div>
   );

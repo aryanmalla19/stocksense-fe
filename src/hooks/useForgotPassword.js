@@ -1,14 +1,14 @@
 import { useMutation } from "@tanstack/react-query";
-import { resetPassword } from "../api/apiService";
+import { forgotPassword } from "../api/apiService";
 
 const useResetPassword = () => {
   const mutation = useMutation({
-    mutationFn: resetPassword,
+    mutationFn: forgotPassword,
     onSuccess: (data) => {
-      console.log("Password reset success:", data);
+      console.log("Password reset link sent:", data);
     },
     onError: (error) => {
-      console.error("Password reset failed:", error);
+      console.error("Password reset link failed:", error);
     },
   });
   return {
