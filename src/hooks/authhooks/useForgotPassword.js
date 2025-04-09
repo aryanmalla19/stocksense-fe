@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
-import { forgotPassword } from "../api/apiService";
+import { forgotPassword } from "../../api/apiService";
 
-const useResetPassword = () => {
+const useForgotPassword = () => {
   const mutation = useMutation({
     mutationFn: forgotPassword,
     onSuccess: (data) => {
@@ -12,7 +12,7 @@ const useResetPassword = () => {
     },
   });
   return {
-    resetPasswordMutation: mutation,
+    forgotPasswordMutation: mutation,
     isLoading: mutation.isLoading,
     isSuccess: mutation.isSuccess,
     isError: mutation.isError,
@@ -20,4 +20,4 @@ const useResetPassword = () => {
   };
 };
 
-export default useResetPassword;
+export default useForgotPassword;

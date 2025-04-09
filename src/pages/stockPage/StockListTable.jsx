@@ -1,13 +1,12 @@
 import React, { useContext, useState } from "react";
 import StockListTableHeader from "./StockListTableHeader";
-import { FaEdit, FaTrash } from "react-icons/fa";
 import { ThemeContext } from "../../context/ThemeContext";
-import useStocks from "../../hooks/useStocks";
+import useStocks from "../../hooks/stockshooks/useStocks";
 
 const StockListRow = React.memo(({ stock, theme }) => {
   return (
     <div
-      className={`grid grid-cols-7 rounded-md px-4 py-3 items-center text-sm ${
+      className={`grid grid-cols-8 rounded-md px-4 py-3 items-center text-sm ${
         theme === "dark" ? "details-bg-dark " : "details-bg-light"
       }`}
     >
@@ -17,35 +16,16 @@ const StockListRow = React.memo(({ stock, theme }) => {
       {/* Name */}
       <div className="stockList">{stock.name}</div>
 
+      <div className="stockList">{stock.sector}</div>
+
       {/* Price */}
+      <div className="stockList">${stock.open.toFixed(2)}</div>
       <div className="stockList">${stock.price.toFixed(2)}</div>
-
-      {/* Volume */}
-      <div className="stockList">{(stock.volume / 1000000).toFixed(1)}M</div>
-
-      {/* Change % */}
-      <div
-        className={`stockList ${
-          stock.change >= 0
-            ? "text-green-600 dark:text-green-400"
-            : "text-red-600 dark:text-red-400"
-        }`}
-      >
-        {stock.change >= 0 ? "+" : ""}
-        {stock.change.toFixed(2)} ({stock.changePercent.toFixed(2)}%)
-      </div>
-
-      {/* Open, High, Low */}
-      <div className="flex justify-center gap-4">
-        <span>${stock.open.toFixed(2)}</span>
-        <span>${stock.high.toFixed(2)}</span>
-        <span>${stock.low.toFixed(2)}</span>
-      </div>
+      <div className="stockList">${stock.high.toFixed(2)}</div>
+      <div className="stockList">${stock.low.toFixed(2)}</div>
 
       {/* Action Buttons */}
-      <div className="stockList justify-center ml-10">
-        +
-      </div>
+      <div className="stockList justify-center ml-10">+</div>
     </div>
   );
 });
@@ -58,7 +38,6 @@ const StockListTable = ({ searchSymbol }) => {
 
   const filteredStocks = useStocks(searchSymbol, sortBy, sortOrder);
 
-  // Toggle sorting order
   const handleSort = (key) => {
     setSortBy(key);
     setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
@@ -72,10 +51,8 @@ const StockListTable = ({ searchSymbol }) => {
         onSort={handleSort}
       />
 
-      {/* Table body */}
       <div className="overflow-y-auto h-110 flex-1 scrollbar-hidden">
         <div className="space-y-2 mt-2">
-          {/* Check if no stocks are found */}
           {filteredStocks.length === 0 ? (
             <div className="text-center text-gray-500">No Stock Found</div>
           ) : (
@@ -90,10 +67,3 @@ const StockListTable = ({ searchSymbol }) => {
 };
 
 export default StockListTable;
-
-{/* <button className="text-blue-500 hover:text-blue-700">
-          <FaEdit />
-        </button>
-        <button className="text-red-500 hover:text-red-700">
-          <FaTrash />
-        </button> */}

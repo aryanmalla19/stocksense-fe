@@ -1,24 +1,23 @@
 import React, { useState } from "react";
-import useResetPassword from "../../hooks/useForgotPassword";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import useForgotPassword from "../../hooks/authhooks/useForgotPassword";
 
-const ResetPassword = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const { resetPasswordMutation, isLoading } = useResetPassword();
-  const navigate = useNavigate();
+  const { forgotPasswordMutation, isLoading } = useForgotPassword();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Trigger password reset mutation
-    resetPasswordMutation.mutate(
+    forgotPasswordMutation.mutate(
       { email },
       {
         onSuccess: () => {
-          toast.success("Reset instructions have been sent to your email!");
+          toast.success(
+            "Reset instructions have been sent to your email! Please check your inbox."
+          );
           setEmail("");
-          navigate("/login");
         },
         onError: (err) => {
           toast.error(err?.message || "User Email does not exist!");
@@ -34,7 +33,7 @@ const ResetPassword = () => {
           <img
             src="https://cdni.iconscout.com/illustration/premium/thumb/forgot-password-illustration-download-in-svg-png-gif-file-formats--lock-pin-security-crime-illustrations-2368063.png"
             alt="Forgot Password"
-            className="w-90 h-80 "
+            className="w-90 h-80"
           />
           <h1 className="text-2xl font-bold text-gray-800 mb-2">
             Forgot password?
@@ -66,7 +65,7 @@ const ResetPassword = () => {
             className="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition cursor-pointer"
             disabled={isLoading}
           >
-            {isLoading ? "loading..." : "Send Reset Link"}
+            {isLoading ? "Loading..." : "Send Reset Link"}
           </button>
         </form>
       </div>
@@ -74,4 +73,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default ForgotPassword;

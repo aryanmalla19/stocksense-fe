@@ -13,13 +13,13 @@ const SortableHeader = ({ label, sortBy, sortOrder, onSort, columnKey }) => {
   const getIcon = () => {
     if (sortBy === columnKey) {
       if (sortOrder === "asc") {
-        return columnKey === "name" ? (
+        return columnKey === "company_name" ? (
           <FaSortAlphaDown className="text-red-500" />
         ) : (
           <FaSortNumericDown className="text-red-500" />
         );
       } else {
-        return columnKey === "name" ? (
+        return columnKey === "company_name" ? (
           <FaSortAlphaUp className="text-green-500" />
         ) : (
           <FaSortNumericUp className="text-green-500" />
@@ -44,55 +44,64 @@ const SortableHeader = ({ label, sortBy, sortOrder, onSort, columnKey }) => {
 
 const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
   return (
-    <div className="grid grid-cols-7 bg-gray-200 dark:bg-gray-800 text-stone-900 dark:text-white rounded-md px-4 py-2 font-semibold text-center items-center">
+    <div className="grid grid-cols-8 bg-gray-200 dark:bg-gray-800 text-stone-900 dark:text-white rounded-md px-4 py-2 font-semibold text-center items-center">
+      {/* Symbol (No sorting) */}
       <div className="stockList">Symbol</div>
 
-      {/* Name Sorting */}
+      {/* Company Name */}
       <SortableHeader
-        label="Name"
+        label="Company Name"
         sortBy={sortBy}
         sortOrder={sortOrder}
         onSort={onSort}
-        columnKey="name"
+        columnKey="company_name"
       />
 
-      {/* Price Sorting */}
+      {/* Sector Name */}
       <SortableHeader
-        label="Price"
+        label="Sector"
         sortBy={sortBy}
         sortOrder={sortOrder}
         onSort={onSort}
-        columnKey="price"
+        columnKey="sector"
       />
 
-      {/* Volume Sorting */}
+      {/* Close Price */}
       <SortableHeader
-        label="Volume"
+        label="Open Price"
         sortBy={sortBy}
         sortOrder={sortOrder}
         onSort={onSort}
-        columnKey="volume"
+        columnKey="open_price"
       />
 
-      {/* Change % Sorting */}
       <SortableHeader
-        label="Change (%)"
+        label="Close Price"
         sortBy={sortBy}
         sortOrder={sortOrder}
         onSort={onSort}
-        columnKey="change"
+        columnKey="close"
       />
 
-      {/* Open, High, Low */}
-      <div className="flex gap-7">
-        <h3>Open</h3>
-        <h3>High</h3>
-        <h3>Low</h3>
-      </div>
+      <SortableHeader
+        label="High Price"
+        sortBy={sortBy}
+        sortOrder={sortOrder}
+        onSort={onSort}
+        columnKey="high_price"
+      />
+
+      <SortableHeader
+        label="low Price"
+        sortBy={sortBy}
+        sortOrder={sortOrder}
+        onSort={onSort}
+        columnKey="low_price"
+      />
 
       {/* Action Column */}
       <div className="stockList ml-15">
-        <h3>Favrouite</h3>
+        <h3>Favourite</h3>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { verifyEmail } from "../api/apiService";
+import { verifyEmail } from "../../api/apiService";
 import { toast } from "react-hot-toast";
 
 const useVerifyEmail = () => {

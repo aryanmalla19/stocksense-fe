@@ -1,0 +1,54 @@
+// hooks/stockshooks/useStocks.js
+import { useQuery } from "@tanstack/react-query";
+import { stockList } from "../../api/stocksApiService";
+
+const useStocks = (searchSymbol = "", sortBy = "name", sortOrder = "asc") => {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["stocks"],
+    queryFn: stockList,
+  });
+
+  if (isLoading) return [];
+  if (isError) return [];
+
+  // Normalize data
+  let stocks = data?.data.map((stock) => ({
+    symbol: stock.symbol.toUpperCase(),
+    name: stock.company_name,
+    sector: stock.sector,
+    open: parseFloat(stock.open_price),
+    high: parseFloat(stock.high_price),
+    low: parseFloat(stock.low_price),
+    price: parseFloat(stock.close_price),
+    change: parseFloat(stock.close_price) - parseFloat(stock.open_price),
+    changePercent:
+      ((parseFloat(stock.close_price) - parseFloat(stock.open_price)) /
+        parseFloat(stock.open_price)) *
+      100,
+    volume: Math.floor(Math.random() * 10000000),
+  }));
+
+  if (searchSymbol) {
+    stocks = stocks.filter((stock) =>
+      stock.symbol.toLowerCase().includes(searchSymbol.toLowerCase())
+    );
+  }
+
+  // Sort
+  stocks.sort((a, b) => {
+    const valueA = a[sortBy];
+    const valueB = b[sortBy];
+
+    if (typeof valueA === "string") {
+      return sortOrder === "asc"
+        ? valueA.localeCompare(valueB)
+        : valueB.localeCompare(valueA);
+    }
+
+    return sortOrder === "asc" ? valueA - valueB : valueB - valueA;
+  });
+
+  return stocks;
+};
+
+export default useStocks;

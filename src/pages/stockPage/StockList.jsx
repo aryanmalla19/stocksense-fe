@@ -1,9 +1,9 @@
+// StockList.js
 import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
-import StockListTable from "../../components/stocks/StockListTable";
+import StockListTable from "./StockListTable";
+import SearchStock from "./SearchStock";
 import Calendar from "../../components/stocks/Calender";
-import SearchStock from "../../components/stocks/SearchStock";
-import AddNewStock from "../../components/stocks/AddNewStock";
 
 const StockList = () => {
   const [searchSymbol, setSearchSymbol] = useState("");
@@ -44,16 +44,8 @@ const StockList = () => {
             : "border-[var(--border-primary)]"
         }`}
       >
-        {/* <div className="flex flex-col md:flex-row gap-4 h-65">
-          <AddNewStock />
-          <div>sdfd</div>
-        </div> */}
-
         <main>
-          <StockListTable
-            searchSymbol={searchSymbol}
-            setSearchSymbol={setSearchSymbol}
-          />
+          <StockListTable searchSymbol={searchSymbol} />
         </main>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SocialLogin from "../../authcomponent/SocialLogin";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
-import useRegister from "../../hooks/useRegister";
+import useRegister from "../../hooks/authhooks/useRegister";
 import Input from "../../components/stocks/Input";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import useAuthStore from "../../store/authStore";

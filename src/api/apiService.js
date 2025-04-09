@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8000/api/v1",
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   withCredentials: true,
 });
 
@@ -38,6 +38,16 @@ export const verifyEmail = async (data) => {
 export const forgotPassword = async (data) => {
   try {
     const response = await axiosInstance.post("/auth/forgot-password", data);
+    return response.data;
+  } catch (error) {
+    console.error("Validation Errors:", error.response.data);
+    throw error.response.data ?? new Error("Forgot Password failed");
+  }
+};
+
+export const resetPassword = async (data) => {
+  try {
+    const response = await axiosInstance.put("auth/reset-password", data);
     return response.data;
   } catch (error) {
     console.error("Validation Errors:", error.response.data);
