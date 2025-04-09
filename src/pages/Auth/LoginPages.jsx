@@ -5,7 +5,7 @@ import Rememberme from "../../authcomponent/Rememberme";
 import Input from "../../components/stocks/Input";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
-import useLogin from "../../hooks/useLogin";
+import useLogin from "../../hooks/authhooks/useLogin";
 import { useForm } from "react-hook-form";
 import useAuthStore from "../../store/authStore";
 

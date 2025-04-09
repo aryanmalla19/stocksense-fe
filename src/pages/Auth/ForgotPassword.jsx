@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useResetPassword from "../../hooks/useForgotPassword";
+import useResetPassword from "../../hooks/authhooks/useForgotPassword";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 

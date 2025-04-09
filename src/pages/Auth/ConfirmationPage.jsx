@@ -1,6 +1,6 @@
 import React from "react";
 import confirmation from "../../assets/confirmation.png";
-import useVerifyEmail from "../../hooks/useVerifyEmail";
+import useVerifyEmail from "../../hooks/authhooks/useVerifyEmail";
 
 const ConfirmationPage = () => {
   const { resentLink, isLoading } = useVerifyEmail();

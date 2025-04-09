@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import StockListTableHeader from "./StockListTableHeader";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { ThemeContext } from "../../context/ThemeContext";
-import useStocks from "../../hooks/useStocks";
+import useStocks from "../../hooks/stockshooks/useStocks";
 
 const StockListRow = React.memo(({ stock, theme }) => {
   return (

@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { forgotPassword } from "../api/apiService";
+import { forgotPassword } from "../../api/apiService";
 
 const useResetPassword = () => {
   const mutation = useMutation({

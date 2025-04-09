@@ -3,7 +3,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import { FaRegUser, FaSignOutAlt } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
 import { Link } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../hooks/authhooks/useAuth";
 import { toast } from "react-hot-toast";
 
 const ProfileImage = () => {
