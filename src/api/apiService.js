@@ -41,6 +41,16 @@ export const forgotPassword = async (data) => {
     return response.data;
   } catch (error) {
     console.error("Validation Errors:", error.response.data);
+    throw error.response.data ?? new Error("Forgot Password failed");
+  }
+};
+
+export const resetPassword = async (data) => {
+  try {
+    const response = await axiosInstance.put("auth/reset-password", data);
+    return response.data;
+  } catch (error) {
+    console.error("Validation Errors:", error.response.data);
     throw error.response.data ?? new Error("Password reset failed");
   }
 };

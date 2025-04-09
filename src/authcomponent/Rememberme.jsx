@@ -9,7 +9,7 @@ const Rememberme = () => {
           <input type="checkbox" className="mr-2" />
           Remember me
         </label>
-        <Link to="/reset-password" className="text-red-500 hover:text-red-600">
+        <Link to="/forgot-password" className="text-red-500 hover:text-red-600">
           Forgot Password?
         </Link>
       </div>
