@@ -12,6 +12,7 @@ import ConfirmationPage from "../pages/Auth/ConfirmationPage";
 import BuySellPage from "../pages/OrderManagement/BuySellPage";
 import Watchlists from "../pages/MarketOverview/Watchlists";
 import LoginReg from "../pages/Auth/LoginReg";
+import ResetPassword from "../pages/Auth/ResetPassword";
 
 const Router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const Router = createBrowserRouter([
   {
     path: "/confirmation",
     element: <ConfirmationPage />,
+  },
+  {
+    path: "/reset-password",
+    element: <ResetPassword />,
   },
 ]);
 

@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Rememberme = () => {
   return (
     <div>
@@ -9,9 +9,9 @@ const Rememberme = () => {
           <input type="checkbox" className="mr-2" />
           Remember me
         </label>
-        <a href="#" className="text-red-500 hover:text-red-600">
+        <Link to="/reset-password" className="text-red-500 hover:text-red-600">
           Forgot Password?
-        </a>
+        </Link>
       </div>
     </div>
   );
