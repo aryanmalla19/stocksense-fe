@@ -1,8 +1,9 @@
+// StockList.js
 import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import StockListTable from "./StockListTable";
-import Calendar from "../../components/stocks/Calender";
 import SearchStock from "./SearchStock";
+import Calendar from "../../components/stocks/Calender";
 
 const StockList = () => {
   const [searchSymbol, setSearchSymbol] = useState("");
@@ -44,10 +45,7 @@ const StockList = () => {
         }`}
       >
         <main>
-          <StockListTable
-            searchSymbol={searchSymbol}
-            setSearchSymbol={setSearchSymbol}
-          />
+          <StockListTable searchSymbol={searchSymbol} />
         </main>
       </div>
     </div>

@@ -1,158 +1,54 @@
-import { useState, useEffect } from "react";
+// hooks/stockshooks/useStocks.js
+import { useQuery } from "@tanstack/react-query";
+import { stockList } from "../../api/stocksApiService";
 
-const dummyStocks = [
-  {
-    symbol: "AAPL",
-    name: "Apple Inc.",
-    price: 189.98,
-    volume: 45678900,
-    change: 2.34,
-    changePercent: 1.25,
-    open: 187.5,
-    high: 190.25,
-    low: 186.75,
-  },
-  {
-    symbol: "MSFT",
-    name: "Microsoft Corporation",
-    price: 420.72,
-    volume: 32456700,
-    change: -3.15,
-    changePercent: -0.74,
-    open: 423.5,
-    high: 425.8,
-    low: 419.2,
-  },
-  {
-    symbol: "GOOGL",
-    name: "Alphabet Inc.",
-    price: 152.45,
-    volume: 28765400,
-    change: 5.62,
-    changePercent: 3.83,
-    open: 148.2,
-    high: 153.75,
-    low: 147.8,
-  },
-  {
-    symbol: "AMZN",
-    name: "Amazon.com Inc.",
-    price: 178.75,
-    volume: 45672300,
-    change: 1.22,
-    changePercent: 0.69,
-    open: 177.8,
-    high: 179.9,
-    low: 176.45,
-  },
-  {
-    symbol: "TSLA",
-    name: "Tesla Inc.",
-    price: 172.63,
-    volume: 98765400,
-    change: -8.91,
-    changePercent: -4.91,
-    open: 180.2,
-    high: 181.5,
-    low: 171.8,
-  },
-  {
-    symbol: "GOOGL",
-    name: "Alphabet Inc.",
-    price: 152.45,
-    volume: 28765400,
-    change: 5.62,
-    changePercent: 3.83,
-    open: 148.2,
-    high: 153.75,
-    low: 147.8,
-  },
-  {
-    symbol: "AMZN",
-    name: "Amazon.com Inc.",
-    price: 178.75,
-    volume: 45672300,
-    change: 1.22,
-    changePercent: 0.69,
-    open: 177.8,
-    high: 179.9,
-    low: 176.45,
-  },
-  {
-    symbol: "TSLA",
-    name: "Tesla Inc.",
-    price: 172.63,
-    volume: 98765400,
-    change: -8.91,
-    changePercent: -4.91,
-    open: 180.2,
-    high: 181.5,
-    low: 171.8,
-  },
-  {
-    symbol: "GOOGL",
-    name: "Alphabet Inc.",
-    price: 152.45,
-    volume: 28765400,
-    change: 5.62,
-    changePercent: 3.83,
-    open: 148.2,
-    high: 153.75,
-    low: 147.8,
-  },
-  {
-    symbol: "AMZN",
-    name: "Amazon.com Inc.",
-    price: 178.75,
-    volume: 45672300,
-    change: 1.22,
-    changePercent: 0.69,
-    open: 177.8,
-    high: 179.9,
-    low: 176.45,
-  },
-  {
-    symbol: "TSLA",
-    name: "Tesla Inc.",
-    price: 172.63,
-    volume: 98765400,
-    change: -8.91,
-    changePercent: -4.91,
-    open: 180.2,
-    high: 181.5,
-    low: 171.8,
-  },
-];
+const useStocks = (searchSymbol = "", sortBy = "name", sortOrder = "asc") => {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["stocks"],
+    queryFn: stockList,
+  });
 
-const useStocks = (searchSymbol, sortBy, sortOrder) => {
-  const [filteredStocks, setFilteredStocks] = useState(dummyStocks);
+  if (isLoading) return [];
+  if (isError) return [];
 
-  useEffect(() => {
-    let result = dummyStocks.filter(
-      (stock) =>
-        stock.symbol.toLowerCase().includes(searchSymbol.toLowerCase()) ||
-        stock.name.toLowerCase().includes(searchSymbol.toLowerCase())
+  // Normalize data
+  let stocks = data?.data.map((stock) => ({
+    symbol: stock.symbol.toUpperCase(),
+    name: stock.company_name,
+    sector: stock.sector,
+    open: parseFloat(stock.open_price),
+    high: parseFloat(stock.high_price),
+    low: parseFloat(stock.low_price),
+    price: parseFloat(stock.close_price),
+    change: parseFloat(stock.close_price) - parseFloat(stock.open_price),
+    changePercent:
+      ((parseFloat(stock.close_price) - parseFloat(stock.open_price)) /
+        parseFloat(stock.open_price)) *
+      100,
+    volume: Math.floor(Math.random() * 10000000),
+  }));
+
+  if (searchSymbol) {
+    stocks = stocks.filter((stock) =>
+      stock.symbol.toLowerCase().includes(searchSymbol.toLowerCase())
     );
+  }
 
-    result.sort((a, b) => {
-      let compareA = a[sortBy];
-      let compareB = b[sortBy];
+  // Sort
+  stocks.sort((a, b) => {
+    const valueA = a[sortBy];
+    const valueB = b[sortBy];
 
-      if (typeof compareA === "string") {
-        return sortOrder === "asc"
-          ? compareA.localeCompare(compareB)
-          : compareB.localeCompare(compareA);
-      } else if (typeof compareA === "number") {
-        return sortOrder === "asc" ? compareA - compareB : compareB - compareA;
-      }
+    if (typeof valueA === "string") {
+      return sortOrder === "asc"
+        ? valueA.localeCompare(valueB)
+        : valueB.localeCompare(valueA);
+    }
 
-      return 0;
-    });
+    return sortOrder === "asc" ? valueA - valueB : valueB - valueA;
+  });
 
-    setFilteredStocks(result);
-  }, [searchSymbol, sortBy, sortOrder]);
-
-  return filteredStocks;
+  return stocks;
 };
 
 export default useStocks;
