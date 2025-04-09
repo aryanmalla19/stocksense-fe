@@ -4,6 +4,7 @@ import { FaRegUser, FaSignOutAlt } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { toast } from "react-hot-toast";
 
 const ProfileImage = () => {
   const { theme } = useContext(ThemeContext);
@@ -20,6 +21,7 @@ const ProfileImage = () => {
 
   const handleLogout = () => {
     logout();
+    toast.success("Logout successfully");
   };
 
   return (

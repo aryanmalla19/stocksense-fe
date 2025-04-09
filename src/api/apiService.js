@@ -25,6 +25,16 @@ export const loginUser = async (data) => {
   }
 };
 
+export const verifyEmail = async (data) => {
+  try {
+    const response = await axiosInstance.post("/auth/email/resend", data);
+    return response.data;
+  } catch (error) {
+    console.error("Validation Errors:", error.response.data);
+    throw error.response.data ?? new Error("Reverifying email failed");
+  }
+};
+
 export const resetPassword = async (data) => {
   try {
     const response = await axiosInstance.post("/auth/reset-password", data);

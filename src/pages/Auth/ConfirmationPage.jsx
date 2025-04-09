@@ -1,7 +1,16 @@
 import React from "react";
 import confirmation from "../../assets/confirmation.png";
+import useVerifyEmail from "../../hooks/useVerifyEmail";
 
 const ConfirmationPage = () => {
+  const { resentLink, isLoading } = useVerifyEmail();
+
+  const handleClick = () => {
+    const email = localStorage.getItem("userEmail");
+    console.log("Resending email for:", email);
+    resentLink.mutate({ email });
+  };
+
   return (
     <div className="flex flex-col h-screen justify-around items-center ">
       <div className="flex flex-col justify-center items-center gap-5">
@@ -11,14 +20,15 @@ const ConfirmationPage = () => {
         <h1 className="text-3xl font-bold text-[#4D4D4d]">
           Check Your Mail For Verification
         </h1>
-        We have send email to your Mail Box to confirm the validity of our email
-        address.
+        We have sent an email to your mailbox to confirm your email address.
       </div>
-      <div className="">
-        If you didn't get any mail{" "}
-        <span className="font-semibold text-teal-700 cursor-pointer">
-          Resend Confirmation mail
-        </span>
+      <div>
+        If you didn't get any mail
+        <div onClick={handleClick}>
+          <span className="font-semibold text-teal-700 cursor-pointer pl-2 hover:text-red-400">
+            {isLoading ? "Resending..." : "Resend Confirmation mail"}
+          </span>
+        </div>
       </div>
     </div>
   );
