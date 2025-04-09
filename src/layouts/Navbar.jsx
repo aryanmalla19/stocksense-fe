@@ -11,18 +11,17 @@ const Navbar = () => {
 
   return (
     <div
-      className={`px-6 py-4 border-b flex items-center justify-between ${
+      className={`px-6 mr-5 py-7 border-b flex items-center justify-between ${
         theme === "dark"
           ? "bg-[var(--dark-bg-primary)] border-[var(--dark-border-primary)] text-[var(--dark-text-primary)]"
-          : "bg-[var(--bg-primary)] border-[var(--border-primary)] text-[var(--text-primary)]"
+          : "bg-gray-100 border-[var(--border-primary)] text-[var(--text-primary)]"
       }`}
     >
       {/* Welcome Text */}
-      <h2 className="font-semibold text-xl md:text-lg">
-        Welcome to{" "}
-        <span className="text-[var(--dark-text-accent)]">Stockify</span>,
-        <span className="text-xl md:text-lg px-2 font-bold text-[var(--dark-text-accent)]">
-          Neetu Rai
+      <h2 className="font-semibold md:text-lg ">
+        Welcome to
+        <span className="text-[var(--dark-text-accent)] pl-2">
+          Stockify, Neetu Rai
         </span>
       </h2>
 

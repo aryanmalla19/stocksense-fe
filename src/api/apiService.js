@@ -11,7 +11,7 @@ export const registerUser = async (data) => {
     return response.data;
   } catch (error) {
     console.error("Validation Errors:", error.response.data);
-    throw error ?? new Error("Login failed");
+    throw error ?? new Error("Register failed");
   }
 };
 
@@ -22,5 +22,25 @@ export const loginUser = async (data) => {
   } catch (error) {
     console.error("Validation Errors:", error.response.data);
     throw error.response.data ?? new Error("Login failed");
+  }
+};
+
+export const verifyEmail = async (data) => {
+  try {
+    const response = await axiosInstance.post("/auth/email/resend", data);
+    return response.data;
+  } catch (error) {
+    console.error("Validation Errors:", error.response.data);
+    throw error.response.data ?? new Error("Reverifying email failed");
+  }
+};
+
+export const resetPassword = async (data) => {
+  try {
+    const response = await axiosInstance.post("/auth/reset-password", data);
+    return response.data;
+  } catch (error) {
+    console.error("Validation Errors:", error.response.data);
+    throw error.response.data ?? new Error("Password reset failed");
   }
 };

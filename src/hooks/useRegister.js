@@ -10,15 +10,16 @@ const useRegister = () => {
 
   const mutation = useMutation({
     mutationFn: registerUser,
-    onSuccess: () => {
+    onSuccess: (data) => {
       toast.success("Registration successful!");
-      setTimeout(() => {
-        navigate("/confirmation");
-      }, 1000);
+      const email = data?.user?.email;
+      if (email) {
+        localStorage.setItem("userEmail", email);
+      }
+      navigate("/confirmation");
     },
     onError: (error) => {
       if (error.response?.status === 422) {
-        // If backend sends errors in "errors" object, extract them
         setServerErrors(error.response.data.errors || {});
       } else {
         const errorMessage =
