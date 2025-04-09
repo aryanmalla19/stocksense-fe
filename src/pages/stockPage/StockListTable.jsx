@@ -43,9 +43,7 @@ const StockListRow = React.memo(({ stock, theme }) => {
       </div>
 
       {/* Action Buttons */}
-      <div className="stockList justify-center ml-10">
-        +
-      </div>
+      <div className="stockList justify-center ml-10">+</div>
     </div>
   );
 });
@@ -91,9 +89,11 @@ const StockListTable = ({ searchSymbol }) => {
 
 export default StockListTable;
 
-{/* <button className="text-blue-500 hover:text-blue-700">
+{
+  /* <button className="text-blue-500 hover:text-blue-700">
           <FaEdit />
         </button>
         <button className="text-red-500 hover:text-red-700">
           <FaTrash />
-        </button> */}
+        </button> */
+}
