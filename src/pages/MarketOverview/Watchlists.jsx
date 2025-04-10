@@ -1,12 +1,12 @@
-import React from 'react'
-import StockList from '../stockPage/StockList'
+import React from "react";
+import StockList from "../stockPage/StockList";
 
 function Watchlists() {
   return (
     <div>
-        <StockList/>
+      <StockList />
     </div>
-  )
+  );
 }
 
-export default Watchlists
+export default Watchlists;

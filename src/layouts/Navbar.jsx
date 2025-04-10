@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`px-6 mr-5 py-7 border-b flex items-center justify-between ${
+      className={`px-6 py-7 border-b flex items-center justify-between ${
         theme === "dark"
           ? "bg-[var(--dark-bg-primary)] border-[var(--dark-border-primary)] text-[var(--dark-text-primary)]"
           : "bg-gray-100 border-[var(--border-primary)] text-[var(--text-primary)]"

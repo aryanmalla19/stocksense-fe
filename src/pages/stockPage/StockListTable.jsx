@@ -2,30 +2,38 @@ import React, { useContext, useState } from "react";
 import StockListTableHeader from "./StockListTableHeader";
 import { ThemeContext } from "../../context/ThemeContext";
 import useStocks from "../../hooks/stockshooks/useStocks";
+import Pagination from "./Pagination";
 
 const StockListRow = React.memo(({ stock, theme }) => {
   return (
     <div
-      className={`grid grid-cols-8 rounded-md px-4 py-3 items-center text-sm ${
-        theme === "dark" ? "details-bg-dark " : "details-bg-light"
+      className={`grid grid-cols-18 rounded-md items-center text-sm ${
+        theme === "dark" ? "details-bg-dark" : "details-bg-light"
       }`}
     >
-      {/* Symbol */}
-      <div className="font-medium stockList">{stock.symbol}</div>
+      {/* Symbol (1 column) */}
+      <div className="col-span-2 font-medium stockList">{stock.symbol}</div>
 
-      {/* Name */}
-      <div className="stockList">{stock.name}</div>
+      {/* Company Name (3 columns) */}
+      <div className="col-span-4 stockList">{stock.name}</div>
 
-      <div className="stockList">{stock.sector}</div>
+      {/* Sector (1 column) */}
+      <div className="col-span-2 stockList">{stock.sector}</div>
 
-      {/* Price */}
-      <div className="stockList">${stock.open.toFixed(2)}</div>
-      <div className="stockList">${stock.price.toFixed(2)}</div>
-      <div className="stockList">${stock.high.toFixed(2)}</div>
-      <div className="stockList">${stock.low.toFixed(2)}</div>
+      {/* Open Price (1 column) */}
+      <div className="col-span-2 stockList">${stock.open.toFixed(2)}</div>
 
-      {/* Action Buttons */}
-      <div className="stockList justify-center ml-10">+</div>
+      {/* Close Price (1 column) */}
+      <div className="col-span-2 stockList">${stock.price.toFixed(2)}</div>
+
+      {/* High Price (1 column) */}
+      <div className="col-span-2 stockList">${stock.high.toFixed(2)}</div>
+
+      {/* Low Price (1 column) */}
+      <div className="col-span-2 stockList">${stock.low.toFixed(2)}</div>
+
+      {/* Action Buttons (1 column) */}
+      <div className="col-span-1 stockList justify-center">+</div>
     </div>
   );
 });
@@ -51,7 +59,7 @@ const StockListTable = ({ searchSymbol }) => {
         onSort={handleSort}
       />
 
-      <div className="overflow-y-auto h-110 flex-1 scrollbar-hidden">
+      <div className="overflow-y-auto h-90 flex-1 scrollbar-hidden">
         <div className="space-y-2 mt-2">
           {filteredStocks.length === 0 ? (
             <div className="text-center text-gray-500">No Stock Found</div>
@@ -62,6 +70,8 @@ const StockListTable = ({ searchSymbol }) => {
           )}
         </div>
       </div>
+
+      <Pagination />
     </section>
   );
 };
