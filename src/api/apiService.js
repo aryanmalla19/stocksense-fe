@@ -11,7 +11,7 @@ export const registerUser = async (data) => {
     return response.data;
   } catch (error) {
     console.error("Validation Errors:", error.response.data);
-    throw error ?? new Error("Register failed");
+    throw error.response.data ?? new Error("Register failed");
   }
 };
 
@@ -47,7 +47,7 @@ export const forgotPassword = async (data) => {
 
 export const resetPassword = async (data) => {
   try {
-    const response = await axiosInstance.put("auth/reset-password", data);
+    const response = await axiosInstance.put("/auth/reset-password", data);
     return response.data;
   } catch (error) {
     console.error("Validation Errors:", error.response.data);

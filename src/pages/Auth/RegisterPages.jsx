@@ -29,7 +29,7 @@ const RegisterPages = () => {
 
   return (
     <div>
-      <form className="w-[380px] " onSubmit={handleSubmit(onSubmit)}>
+      <form className="w-[380px]" onSubmit={handleSubmit(onSubmit)}>
         {/* Name Field */}
         <Input
           {...register("name", {
@@ -42,7 +42,7 @@ const RegisterPages = () => {
           type="text"
           placeholder="Enter Name"
           icon={FaUser}
-          onChange={() => setServerErrors(null)}
+          onChange={() => setServerErrors({})}
         />
         {errors.name && (
           <p className="text-red-500 text-sm my-2">*{errors.name.message}</p>
@@ -63,7 +63,7 @@ const RegisterPages = () => {
           type="email"
           placeholder="Enter your email"
           icon={FaEnvelope}
-          onChange={() => setServerErrors(null)}
+          onChange={() => setServerErrors({})}
         />
         {errors.email && (
           <p className="text-red-500 text-sm my-2">*{errors.email.message}</p>
@@ -86,7 +86,7 @@ const RegisterPages = () => {
           icon={FaLock}
           showToggle
           onToggle={() => setShowPassword(!showPassword)}
-          onChange={() => setServerErrors(null)}
+          onChange={() => setServerErrors({})}
         />
         {errors.password && (
           <p className="text-red-500 text-sm my-2">
@@ -111,11 +111,18 @@ const RegisterPages = () => {
           icon={FaLock}
           showToggle
           onToggle={() => setShowPassword(!showPassword)}
-          onChange={() => setServerErrors(null)}
+          onChange={() => setServerErrors({})}
         />
         {errors.password_confirmation && (
           <p className="text-red-500 text-sm my-2">
             *{errors.password_confirmation.message}
+          </p>
+        )}
+
+        {/* General Server Error */}
+        {serverErrors?.general && (
+          <p className="text-red-500 text-sm my-2 text-center">
+            *{serverErrors.general}
           </p>
         )}
 

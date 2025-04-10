@@ -5,8 +5,16 @@ import { toast } from "react-hot-toast";
 const useVerifyEmail = () => {
   const mutation = useMutation({
     mutationFn: verifyEmail,
-    onSuccess: () => toast.success("Verification email sent!"),
-    onError: () => toast.error("Failed to resend email."),
+    onSuccess: () =>
+      toast.success("Verification email resent successfully!", {
+        duration: 5000,
+        position: "top-right",
+      }),
+    onError: () =>
+      toast.error("Failed to resend email.", {
+        duration: 5000,
+        position: "top-right",
+      }),
   });
 
   return {

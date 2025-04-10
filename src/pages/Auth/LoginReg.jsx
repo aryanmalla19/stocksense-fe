@@ -1,12 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import LoginPages from "./LoginPages";
 import RegisterPages from "./RegisterPages";
 import Welcome from "./Welcome";
+import { toast } from "react-hot-toast";
 
 const LoginReg = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const location = useLocation();
 
   const toggleAuthMode = () => setIsLoggedIn(!isLoggedIn);
+
+  // Handle verification redirect
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const message = searchParams.get("message");
+    const error = searchParams.get("error");
+
+    if (message === "email_verified") {
+      toast.success("Email verified successfully", {
+        duration: 5000,
+        position: "top-right",
+      });
+      window.history.replaceState({}, document.title, "/loginReg");
+      setIsLoggedIn(true); // Switch to login mode after verification
+    } else if (message === "already_verified") {
+      toast("Email was already verified", {
+        duration: 5000,
+        position: "top-right",
+        style: {
+          background: "#e8f0fe",
+          color: "#333",
+        },
+      });
+      window.history.replaceState({}, document.title, "/loginReg");
+      setIsLoggedIn(true);
+    } else if (error === "invalid_signature") {
+      toast.error("Invalid or expired verification link", {
+        duration: 5000,
+        position: "top-right",
+      });
+    } else if (error === "invalid_link") {
+      toast.error("Invalid verification link", {
+        duration: 5000,
+        position: "top-right",
+      });
+    }
+  }, [location]);
+
   return (
     <div>
       <div className="relative flex justify-center items-center min-h-screen bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff]">
