@@ -3,37 +3,38 @@ import StockListTableHeader from "./StockListTableHeader";
 import { ThemeContext } from "../../context/ThemeContext";
 import useStocks from "../../hooks/stockshooks/useStocks";
 import Pagination from "./Pagination";
+import Addwatchlist from "./Addwatchlist";
 
 const StockListRow = React.memo(({ stock, theme }) => {
   return (
     <div
-      className={`grid grid-cols-18 rounded-md items-center text-sm ${
+      className={`grid grid-cols-18 rounded-md  text-sm ${
         theme === "dark" ? "details-bg-dark" : "details-bg-light"
       }`}
     >
       {/* Symbol (1 column) */}
-      <div className="col-span-2 font-medium stockList">{stock.symbol}</div>
+      <div className="col-span-2 font-medium ">{stock.symbol}</div>
 
       {/* Company Name (3 columns) */}
-      <div className="col-span-4 stockList">{stock.name}</div>
+      <div className="col-span-4 ">{stock.name}</div>
 
       {/* Sector (1 column) */}
-      <div className="col-span-2 stockList">{stock.sector}</div>
+      <div className="col-span-2 ">{stock.sector}</div>
 
       {/* Open Price (1 column) */}
-      <div className="col-span-2 stockList">${stock.open.toFixed(2)}</div>
+      <div className="col-span-2 ">${stock.open.toFixed(2)}</div>
 
       {/* Close Price (1 column) */}
-      <div className="col-span-2 stockList">${stock.price.toFixed(2)}</div>
+      <div className="col-span-2 ">${stock.price.toFixed(2)}</div>
 
       {/* High Price (1 column) */}
-      <div className="col-span-2 stockList">${stock.high.toFixed(2)}</div>
+      <div className="col-span-2 ">${stock.high.toFixed(2)}</div>
 
       {/* Low Price (1 column) */}
-      <div className="col-span-2 stockList">${stock.low.toFixed(2)}</div>
+      <div className="col-span-2 ">${stock.low.toFixed(2)}</div>
 
       {/* Action Buttons (1 column) */}
-      <div className="col-span-1 stockList justify-center">+</div>
+      <Addwatchlist stockID={stock.id} />
     </div>
   );
 });

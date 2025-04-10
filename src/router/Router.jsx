@@ -10,7 +10,6 @@ import ProfilePage from "../pages/profilePage/MainProfile/ProfilePage";
 import SettingPage from "../pages/profilePage/MainSetting/SettingPage";
 import ConfirmationPage from "../pages/Auth/ConfirmationPage";
 import BuySellPage from "../pages/OrderManagement/BuySellPage";
-import Watchlists from "../pages/MarketOverview/Watchlists";
 import LoginReg from "../pages/Auth/LoginReg";
 import ForgotPassword from "../pages/Auth/ForgotPassword";
 import ResetPassword from "../pages/Auth/ResetPassword";
@@ -53,8 +52,8 @@ const Router = createBrowserRouter([
         element: <ApplyPage />,
       },
       {
-        path: "/watchlists",
-        element: <Watchlists />,
+        path: "",
+        element: <ApplyPage />,
       },
     ],
   },

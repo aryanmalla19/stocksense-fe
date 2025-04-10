@@ -23,13 +23,12 @@ const PortfolioTracker = () => {
       icon: FaDollarSign,
       stats: "+2.5% from last month",
     },
-    ,
     {
       title: "Current Holdings",
       data: "$4,365.60",
       icon: FaDollarSign,
       stats: "+2.5% from last month",
-    }
+    },
   ];
 
   return (
@@ -37,7 +36,8 @@ const PortfolioTracker = () => {
       {items.map((item, index) => (
         <div
           key={index}
-          className="flex items-start justify-between border border-gray-500 w-[23%] bg-[#1e3c72] text-white py-6 px-6 rounded-md shadow-lg" >
+          className="flex items-start justify-between border border-gray-500 w-[23%] bg-[#1e3c72] text-white py-6 px-6 rounded-md shadow-lg"
+        >
           <div className="">
             <h3 className="text-base pb-1 font-medium">{item.title}</h3>
             <p className="text-xl font-bold">{item.data}</p>

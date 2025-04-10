@@ -13,6 +13,7 @@ const useStocks = (searchSymbol = "", sortBy = "name", sortOrder = "asc") => {
 
   // Normalize data
   let stocks = data?.data.map((stock) => ({
+    id: stock.id,
     symbol: stock.symbol.toUpperCase(),
     name: stock.company_name,
     sector: stock.sector,
