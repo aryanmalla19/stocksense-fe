@@ -9,7 +9,7 @@ import useLogin from "../../hooks/authhooks/useLogin";
 import { useForm } from "react-hook-form";
 import useAuthStore from "../../store/authStore";
 
-const LoginPages = () => {
+const LoginPages = ({ isLoggedIn }) => {
   const [showPassword, setShowPassword] = useState(false);
   const token = useAuthStore((store) => store.token);
   const { mutate, serverErrors, isLoading, setServerErrors } = useLogin();
@@ -30,7 +30,7 @@ const LoginPages = () => {
 
   return (
     <div>
-      <form className="w-full max-w-[400px] " onSubmit={handleSubmit(onSubmit)}>
+      <form className="w-full max-w-[400px]" onSubmit={handleSubmit(onSubmit)}>
         {/* Email Field */}
         <Input
           {...register("email", { required: "Email is required" })}
@@ -53,7 +53,6 @@ const LoginPages = () => {
           onToggle={() => setShowPassword(!showPassword)}
           onChange={() => setServerErrors({})}
         />
-
         {errors.password && (
           <p className="text-red-600 my-2">*{errors.password.message}</p>
         )}
