@@ -3,8 +3,8 @@ import {
   TbSortAscending2Filled,
   TbSortDescending2Filled,
 } from "react-icons/tb";
-
 import { RxCaretSort } from "react-icons/rx";
+import { useLocation } from "react-router-dom";
 
 const SortableHeader = ({ label, sortBy, sortOrder, onSort, columnKey }) => {
   const handleSort = () => onSort(columnKey);
@@ -43,6 +43,9 @@ const SortableHeader = ({ label, sortBy, sortOrder, onSort, columnKey }) => {
 };
 
 const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
+  const location = useLocation();
+  const isWatchlist = location.pathname.includes("watch-list");
+
   return (
     <div className="grid grid-cols-18 bg-gray-200 dark:bg-gray-800 text-stone-900 dark:text-white rounded-md px-4 py-3 font-semibold text-left ">
       {/* Symbol (1 column) */}
@@ -115,9 +118,15 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
       </div>
 
       {/* Favourite (1 column) */}
-      <div className="col-span-1 stockList ml-4">
-        <h3>Favourite</h3>
-      </div>
+      {isWatchlist ? (
+        <div className="col-span-1 stockList ml-4">
+          <h3>Action</h3>
+        </div>
+      ) : (
+        <div className="col-span-1 stockList ml-4">
+          <h3>Favourites</h3>
+        </div>
+      )}
     </div>
   );
 };

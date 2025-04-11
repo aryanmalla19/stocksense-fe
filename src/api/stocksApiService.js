@@ -31,7 +31,23 @@ export const postStockWatchList = async (stockID) => {
     console.log(response);
     return response.data;
   } catch (error) {
-    console.error("Error fetching stocks:", error.response?.data || error);
+    console.error(
+      "Error posting stocks watchlist:",
+      error.response?.data || error
+    );
+    throw error;
+  }
+};
+
+export const fetchStockWatchList = async () => {
+  try {
+    const response = await axiosInstance.get("/users/watchlists");
+    return response.data;
+  } catch (error) {
+    console.log(
+      "Error fetching stocks watchlist:",
+      error.response?.data || error
+    );
     throw error;
   }
 };

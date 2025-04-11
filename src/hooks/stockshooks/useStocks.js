@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { stockList } from "../../api/stocksApiService";
 
-const useStocks = (searchSymbol = "", sortBy = "name", sortOrder = "asc") => {
+const useStocks = (searchSymbol = "") => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["stocks"],
     queryFn: stockList,
@@ -29,25 +29,12 @@ const useStocks = (searchSymbol = "", sortBy = "name", sortOrder = "asc") => {
     volume: Math.floor(Math.random() * 10000000),
   }));
 
+  // Filter by symbol
   if (searchSymbol) {
     stocks = stocks.filter((stock) =>
       stock.symbol.toLowerCase().includes(searchSymbol.toLowerCase())
     );
   }
-
-  // Sort
-  stocks.sort((a, b) => {
-    const valueA = a[sortBy];
-    const valueB = b[sortBy];
-
-    if (typeof valueA === "string") {
-      return sortOrder === "asc"
-        ? valueA.localeCompare(valueB)
-        : valueB.localeCompare(valueA);
-    }
-
-    return sortOrder === "asc" ? valueA - valueB : valueB - valueA;
-  });
 
   return stocks;
 };
