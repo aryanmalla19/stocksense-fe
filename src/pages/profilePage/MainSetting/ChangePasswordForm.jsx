@@ -1,16 +1,40 @@
 // components/ChangePasswordForm.js
 import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../../context/ThemeContext";
+import useChangePassword from "../../../hooks/authhooks/useChangePassword";
 
 const ChangePasswordForm = ({ onClose }) => {
   const { theme } = useContext(ThemeContext);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const { changePasswordMutation, isLoading } = useChangePassword();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onClose();
+
+    if (newPassword !== confirmPassword) {
+      toast.error("Passwords do not match!");
+      return;
+    }
+
+    changePasswordMutation.mutate(
+      {
+        recent_password: currentPassword,
+        new_password: newPassword,
+        password_confirmation: confirmPassword,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Password has been changed successfully!");
+          navigate("/login");
+          onClose(); // Close form after success
+        },
+        onError: (err) => {
+          toast.error(err?.message || "Failed to change password");
+        },
+      }
+    );
   };
 
   return (
