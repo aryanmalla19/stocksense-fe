@@ -13,6 +13,7 @@ import BuySellPage from "../pages/OrderManagement/BuySellPage";
 import LoginReg from "../pages/Auth/LoginReg";
 import ForgotPassword from "../pages/Auth/ForgotPassword";
 import ResetPassword from "../pages/Auth/ResetPassword";
+import WatchList from "../pages/stockPage/WatchList";
 
 const Router = createBrowserRouter([
   {
@@ -52,8 +53,8 @@ const Router = createBrowserRouter([
         element: <ApplyPage />,
       },
       {
-        path: "",
-        element: <ApplyPage />,
+        path: "/watch-list",
+        element: <WatchList />,
       },
     ],
   },
