@@ -24,3 +24,14 @@ export const stockList = async () => {
     throw error ?? new Error("Failed to fetch the Stock list");
   }
 };
+
+
+export const changePassword = async (data) => {
+  try {
+    const response = await axiosInstance.post("/auth/change-password", data);
+    return response.data;
+  } catch (error) {
+    console.error("Validation Errors:", error.response.data);
+    throw error.response.data ?? new Error("Password change failed");
+  }
+};
