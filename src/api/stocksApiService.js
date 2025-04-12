@@ -2,7 +2,7 @@ import axios from "axios";
 
 const authState = JSON.parse(localStorage.getItem("auth-storage"));
 const token = authState?.state?.token;
-console.log(token);
+// console.log(token);
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -46,6 +46,19 @@ export const fetchStockWatchList = async () => {
   } catch (error) {
     console.log(
       "Error fetching stocks watchlist:",
+      error.response?.data || error
+    );
+    throw error;
+  }
+};
+
+export const deleteStockWatchList = async (stockID) => {
+  try {
+    const response = await axiosInstance.delete(`/users/watchlists/${stockID}`);
+    return response.data;
+  } catch (error) {
+    console.log(
+      "Error deleting stocks watchlist:",
       error.response?.data || error
     );
     throw error;

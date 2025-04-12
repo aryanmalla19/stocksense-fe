@@ -8,11 +8,7 @@ const useFetchWatchList = () => {
       console.log("Successfully fetched all watchlist data", data);
     },
     onError: (error) => {
-      if (error.response && error.response.status === 429) {
-        console.error("Too many requests. Please try again later.");
-      } else {
-        console.error("Error fetching stocks watchlist:", error);
-      }
+      console.error("Error fetching stocks watchlist:", error);
     },
   });
   return {
