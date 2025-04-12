@@ -47,7 +47,7 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
   const isWatchlist = location.pathname.includes("watch-list");
 
   return (
-    <div className="grid grid-cols-18 bg-gray-200 dark:bg-gray-800 text-stone-900 dark:text-white rounded-md px-4 py-3 font-semibold text-left ">
+    <div className="grid grid-cols-20 bg-gray-200 dark:bg-gray-800 text-stone-900 dark:text-white rounded-md px-4 py-3 font-semibold text-left ">
       {/* Symbol (1 column) */}
       <div className="col-span-2 stockList">Symbol</div>
 
@@ -114,6 +114,16 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
           sortOrder={sortOrder}
           onSort={onSort}
           columnKey="low"
+        />
+      </div>
+
+      <div className="col-span-2  ">
+        <SortableHeader
+          label="Current"
+          sortBy={sortBy}
+          sortOrder={sortOrder}
+          onSort={onSort}
+          columnKey="current"
         />
       </div>
 
