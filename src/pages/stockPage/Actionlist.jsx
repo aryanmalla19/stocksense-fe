@@ -26,7 +26,7 @@ const Actionlist = ({ stockID, removeStock }) => {
         <div className="flex gap-3">
           <button
             onClick={handleClick}
-            className="text-red-500 hover:text-red-700"
+            className="text-red-500 hover:text-red-700 cursor-pointer"
             title="Delete"
           >
             <FaTrash />
