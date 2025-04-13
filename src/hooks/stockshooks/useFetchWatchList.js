@@ -1,9 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { fetchStockWatchList } from "../../api/stocksApiService";
 
 const useFetchWatchList = () => {
-  const mutation = useMutation({
-    mutationFn: fetchStockWatchList,
+  const { data, isLoading, error, refetch } = useQuery({
+    queryKey: ["watch-list"],
+    queryFn: fetchStockWatchList,
     onSuccess: (data) => {
       console.log("Successfully fetched all watchlist data", data);
     },
@@ -11,10 +12,12 @@ const useFetchWatchList = () => {
       console.error("Error fetching stocks watchlist:", error);
     },
   });
+
   return {
-    fetchWatchList: mutation,
-    isLoading: mutation.isLoading,
-    error: mutation.error,
+    watchList: data,
+    isLoading,
+    error,
+    refetch,
   };
 };
 

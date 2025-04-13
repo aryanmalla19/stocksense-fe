@@ -1,4 +1,3 @@
-// StockListTable.js
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeContext";
@@ -13,7 +12,7 @@ const StockListTable = ({ searchSymbol }) => {
   const location = useLocation();
   const isWatchlist = location.pathname.includes("watch-list");
 
-  const { fetchWatchList } = useFetchWatchList();
+  const { refetch } = useFetchWatchList();
   const [watchListStocks, setWatchListStocks] = useState([]);
 
   const handleRemoveStock = (stockID) => {
@@ -24,14 +23,17 @@ const StockListTable = ({ searchSymbol }) => {
 
   useEffect(() => {
     if (isWatchlist) {
-      fetchWatchList.mutate(undefined, {
-        onSuccess: (res) => {
-          const stocks = res.data.map((item) => item.stock);
+      refetch().then((res) => {
+        const watchListArray = res.data?.data;
+        if (Array.isArray(watchListArray)) {
+          const stocks = watchListArray.map((item) => item.stock);
           setWatchListStocks(stocks);
-        },
+        } else {
+          console.warn("Watchlist data is not an array:", watchListArray);
+        }
       });
     }
-  }, [isWatchlist]);
+  }, [isWatchlist, refetch]);
 
   const filteredStocks = useStocks(searchSymbol);
   const displayStocks = isWatchlist ? watchListStocks : filteredStocks;
