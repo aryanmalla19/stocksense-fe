@@ -1,7 +1,7 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa";
 import useDeleteWatchList from "../../hooks/stockshooks/useDeleteWatchList";
-import { toast, Toaster } from "react-hot-toast"; // Make sure to install this if not already
+import { toast, Toaster } from "react-hot-toast";
 
 const Actionlist = ({ stockID, removeStock }) => {
   const { deleteWatchlist } = useDeleteWatchList();

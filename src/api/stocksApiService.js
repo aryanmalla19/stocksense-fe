@@ -2,7 +2,7 @@ import axios from "axios";
 
 const authState = JSON.parse(localStorage.getItem("auth-storage"));
 const token = authState?.state?.token;
-// console.log(token);
+console.log(token);
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -61,6 +61,16 @@ export const deleteStockWatchList = async (stockID) => {
       "Error deleting stocks watchlist:",
       error.response?.data || error
     );
+    throw error;
+  }
+};
+
+export const pagination = async () => {
+  try {
+    const response = await axiosInstance.get("");
+    return response.data;
+  } catch (error) {
+    console.log("Error in Pagination", error.response?.data || error);
     throw error;
   }
 };
