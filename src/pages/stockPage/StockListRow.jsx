@@ -1,6 +1,6 @@
 // StockListRow.js
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Addwatchlist from "./Addwatchlist";
 import Actionlist from "./Actionlist";
 
@@ -14,24 +14,26 @@ const StockListRow = React.memo(({ stock, theme, removeStock }) => {
         theme === "dark" ? "details-bg-dark" : "details-bg-light"
       }`}
     >
-      <div className="col-span-2 font-medium">{stock.symbol}</div>
-      <div className="col-span-4">{stock.company_name}</div>
-      <div className="col-span-2">{stock.sector}</div>
-      <div className="col-span-2">
-        ${parseFloat(stock.open_price).toFixed(2)}
-      </div>
-      <div className="col-span-2">
-        ${parseFloat(stock.high_price).toFixed(2)}
-      </div>
-      <div className="col-span-2">
-        ${parseFloat(stock.low_price).toFixed(2)}
-      </div>
-      <div className="col-span-2">
-        ${parseFloat(stock.close_price).toFixed(2)}
-      </div>
-      <div className="col-span-2">
-        ${parseFloat(stock.current_price).toFixed(2)}
-      </div>
+      <Link to={`/stocksID/${stock.id}`} className="contents">
+        <div className="col-span-2 font-medium">{stock.symbol}</div>
+        <div className="col-span-4">{stock.company_name}</div>
+        <div className="col-span-2">{stock.sector}</div>
+        <div className="col-span-2">
+          ${parseFloat(stock.open_price).toFixed(2)}
+        </div>
+        <div className="col-span-2">
+          ${parseFloat(stock.high_price).toFixed(2)}
+        </div>
+        <div className="col-span-2">
+          ${parseFloat(stock.low_price).toFixed(2)}
+        </div>
+        <div className="col-span-2">
+          ${parseFloat(stock.close_price).toFixed(2)}
+        </div>
+        <div className="col-span-2">
+          ${parseFloat(stock.current_price).toFixed(2)}
+        </div>
+      </Link>
 
       {isWatchlist ? (
         <Actionlist stockID={stock.id} removeStock={removeStock} />

@@ -23,6 +23,19 @@ export const stockList = async () => {
   }
 };
 
+export const fetchStockBYId = async (StocksID) => {
+  try {
+    const response = await axiosInstance.get(`/stocks/${StocksID}`);
+    return response.data;
+  } catch (error) {
+    console.log(
+      "Error fetching individual stocks",
+      error.response?.data || error
+    );
+    throw error ?? new Error("Failed to fetch the Stock list");
+  }
+};
+
 export const postStockWatchList = async (stockID) => {
   try {
     const response = await axiosInstance.post("/users/watchlists", {

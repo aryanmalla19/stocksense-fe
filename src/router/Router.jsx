@@ -14,6 +14,7 @@ import LoginReg from "../pages/Auth/LoginReg";
 import ForgotPassword from "../pages/Auth/ForgotPassword";
 import ResetPassword from "../pages/Auth/ResetPassword";
 import WatchList from "../pages/stockPage/WatchList";
+import StockListID from "../pages/stockPage/StockListID";
 
 const Router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const Router = createBrowserRouter([
       {
         path: "stocks",
         element: <StockList />,
+      },
+      {
+        path: "stocksID/:id",
+        element: <StockListID />,
       },
       {
         path: "buysell",
