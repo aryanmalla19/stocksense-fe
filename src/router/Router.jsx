@@ -15,6 +15,7 @@ import ForgotPassword from "../pages/Auth/ForgotPassword";
 import ResetPassword from "../pages/Auth/ResetPassword";
 import WatchList from "../pages/stockPage/WatchList";
 import StockListID from "../pages/stockPage/StockListID";
+import { OtpPage } from "../pages/Auth/OtpPage";
 
 const Router = createBrowserRouter([
   {
@@ -79,6 +80,10 @@ const Router = createBrowserRouter([
     path: "/reset-password",
     element: <ResetPassword />,
   },
+  {
+    path: '/otp',
+    element: <OtpPage/>
+  }
 ]);
 
 export default Router;
