@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../../context/ThemeContext";
 import ChangePasswordForm from "./ChangePasswordForm";
 import { enableTwoFactor } from "../../../api/stocksApiService";
+import { disableTwoFactor } from "../../../api/stocksApiService";
+
 
 const SecurityPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -10,6 +12,10 @@ const SecurityPage = () => {
   const twoFactorEnable = ()=>{
     enableTwoFactor();
   }
+
+  const twoFactorDisable = () => {
+    disableTwoFactor();
+  };
 
   return (
     <>
@@ -61,6 +67,12 @@ const SecurityPage = () => {
             Enable
           </button>
 
+          <button
+            className="mt-2 px-4 py-2 bg-teal-700 text-white rounded-lg cursor-pointer"
+            onClick={twoFactorDisable}
+          >
+            Disable
+          </button>
         </div>
       </div>
 
