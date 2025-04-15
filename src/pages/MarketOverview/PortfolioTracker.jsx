@@ -65,12 +65,12 @@ const PortfolioTracker = () => {
 
   return (
     <div className=" flex gap-4">
-      <div className="overflow-x-auto hide-scrollbar">
-        <div className="flex gap-4 h-auto w-200 ">
+      <div className="overflow-x-auto hide-scrollbar border-amber-500 ">
+        <div className="flex gap-4 h-auto max-w-[1210px] ">
           {stocksData.map((stock, index) => (
             <div
               key={index}
-              className={`w-[320px] h-[174px] rounded-[12px] p-4 shrink-0 space-y-5 ${
+              className={`w-[300px] h-[174px] rounded-[12px] p-4 shrink-0 space-y-5 ${
                 theme === "dark"
                   ? "bg-dark-bg text-dark-text"
                   : "bg-light-bg text-light-text"

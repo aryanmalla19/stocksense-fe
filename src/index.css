@@ -15,28 +15,33 @@ body {
 /* Dark and Light Theme styles */
 .bg-dark-bg {
     background-color: var(--dark-bg);
-  }
+}
   
-  .text-dark-text {
+.text-dark-text {
     color: var(--dark-text);
-  }
+}
   
-  .bg-light-bg {
+.bg-light-bg {
     background-color: var(--light-bg);
-  }
+}
   
-  .text-light-text {
+.text-light-text {
     color: var(--light-text);
-  }
-  
-  .text-accent-green {
+}
+    
+.text-accent-green {
     color: var(--accent-green);
-  }
+}
   
-  .bg-button-bg {
+.bg-button-bg {
     background-color: var(--button-bg);
-  }
-  
+}
+.outlet-container{
+    @apply m-4
+}
+.hide-scrollbar::-webkit-scrollbar{
+    display: none;
+}
 /* .auth-bg {
     @apply bg-gradient-to-r min-h-screen flex justify-center;
 }
@@ -67,9 +72,7 @@ body {
     @apply flex cursor-pointer items-center justify-center border border-gray-300 p-2 rounded-md hover:bg-gray-100
 }
 
-.outlet-container{
-    @apply m-4
-}
+
 .details-container{
     @apply pr-8 m-4
 }
@@ -95,6 +98,4 @@ body {
 .paragraph {
     @apply text-lg font-semibold mb-4
 }
-.hide-scrollbar::-webkit-scrollbar{
-    display: none;
-} */
+ */
