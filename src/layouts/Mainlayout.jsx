@@ -8,9 +8,9 @@ import PrivateRoute from "../components/common/PrivateRoute";
 const Mainlayout = () => {
   const { theme } = useContext(ThemeContext);
   return (
-    <div className="flex">
+    <div className="flex ">
       <PrivateRoute>
-        <div className="w-1/2 md:w-1/4 lg:w-1/5 xl:w-1/6">
+        <div className="w-[250px] ">
           <Sidebar />
         </div>
         <div
@@ -20,9 +20,11 @@ const Mainlayout = () => {
               : "bg-[#F3F8FF] text-[#757575] "
           }`}
         >
-          <Navbar />
-          <div className="p-6 h-full ">
-            <Outlet />
+          <div className="">
+            <Navbar />
+            <div className="outlet-container ">
+              <Outlet />
+            </div>
           </div>
         </div>
       </PrivateRoute>
