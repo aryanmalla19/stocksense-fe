@@ -13,6 +13,7 @@ const SecurityPage = () => {
     enableTwoFactor();
   }
 
+  
   const twoFactorDisable = () => {
     disableTwoFactor();
   };
