@@ -1,8 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import Slider from "../../components/stocks/Slider";
 
 const PortfolioTracker = () => {
   const { theme } = useContext(ThemeContext);
+  const scrollRef = useRef(null);
 
   const stocksData = [
     {
@@ -63,10 +66,32 @@ const PortfolioTracker = () => {
     },
   ];
 
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    const scrollAmount = 320;
+    const interval = setInterval(() => {
+      if (scrollContainer) {
+        const { scrollLeft, offsetWidth, scrollWidth } = scrollContainer;
+
+        // Add small buffer to handle smooth scrolling precision issues
+        const atEnd = scrollLeft + offsetWidth >= scrollWidth - 10;
+
+        if (atEnd) {
+          scrollContainer.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          scrollContainer.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        }
+      }
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className=" flex gap-4">
-      <div className="overflow-x-auto hide-scrollbar border-amber-500 ">
-        <div className="flex gap-4 h-auto max-w-[1210px] ">
+    <div className="flex gap-4">
+      <Slider direction="left" />
+      <div className="overflow-x-auto hide-scrollbar" ref={scrollRef}>
+        <div className="flex gap-4 h-auto max-w-[1210px] p-4">
           {stocksData.map((stock, index) => (
             <div
               key={index}
