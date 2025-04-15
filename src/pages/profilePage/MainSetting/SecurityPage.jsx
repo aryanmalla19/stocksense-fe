@@ -1,10 +1,15 @@
 import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../../context/ThemeContext";
 import ChangePasswordForm from "./ChangePasswordForm";
+import { enableTwoFactor } from "../../../api/stocksApiService";
 
 const SecurityPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { theme } = useContext(ThemeContext);
+
+  const twoFactorEnable = ()=>{
+    enableTwoFactor();
+  }
 
   return (
     <>
@@ -48,6 +53,14 @@ const SecurityPage = () => {
           <p className="text-sm text-gray-400">
             Protect your account with two-factor authentication
           </p>
+
+          <button
+            className="mt-2 px-4 py-2 bg-teal-700 text-white rounded-lg cursor-pointer"
+            onClick={twoFactorEnable}
+          >
+            Enable
+          </button>
+
         </div>
       </div>
 
