@@ -99,6 +99,7 @@ export const pagination = async () => {
   }
 };
 
+
 // Function to enable two factor OTP
 export const enableTwoFactor = async () => {
   try {
