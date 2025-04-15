@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { stockList } from "../../api/stocksApiService";
 
-const useStocks = (searchSymbol = "", sortBy = "name", sortOrder = "asc") => {
+const useStocks = (searchSymbol = "") => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["stocks"],
     queryFn: stockList,
@@ -12,41 +12,26 @@ const useStocks = (searchSymbol = "", sortBy = "name", sortOrder = "asc") => {
   if (isError) return [];
 
   // Normalize data
-  let stocks = data?.data.map((stock) => ({
-    symbol: stock.symbol.toUpperCase(),
-    name: stock.company_name,
-    sector: stock.sector,
-    open: parseFloat(stock.open_price),
-    high: parseFloat(stock.high_price),
-    low: parseFloat(stock.low_price),
-    price: parseFloat(stock.close_price),
-    change: parseFloat(stock.close_price) - parseFloat(stock.open_price),
-    changePercent:
-      ((parseFloat(stock.close_price) - parseFloat(stock.open_price)) /
-        parseFloat(stock.open_price)) *
-      100,
-    volume: Math.floor(Math.random() * 10000000),
-  }));
+  let stocks = data?.data.map((stock) => {
+    return {
+      id: stock.id,
+      symbol: stock.symbol.toUpperCase(),
+      company_name: stock.company_name,
+      sector: stock.sector,
+      open_price: parseFloat(stock.open_price),
+      high_price: parseFloat(stock.high_price),
+      low_price: parseFloat(stock.low_price),
+      close_price: parseFloat(stock.close_price),
+      current_price: parseFloat(stock.current_price),
+    };
+  });
 
+  // Filter by symbol
   if (searchSymbol) {
     stocks = stocks.filter((stock) =>
       stock.symbol.toLowerCase().includes(searchSymbol.toLowerCase())
     );
   }
-
-  // Sort
-  stocks.sort((a, b) => {
-    const valueA = a[sortBy];
-    const valueB = b[sortBy];
-
-    if (typeof valueA === "string") {
-      return sortOrder === "asc"
-        ? valueA.localeCompare(valueB)
-        : valueB.localeCompare(valueA);
-    }
-
-    return sortOrder === "asc" ? valueA - valueB : valueB - valueA;
-  });
 
   return stocks;
 };

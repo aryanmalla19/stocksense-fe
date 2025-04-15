@@ -1,32 +1,32 @@
 import React from "react";
 import {
-  FaSortAlphaDown,
-  FaSortAlphaUp,
-  FaSortNumericDown,
-  FaSortNumericUp,
-  FaSort,
-} from "react-icons/fa";
+  TbSortAscending2Filled,
+  TbSortDescending2Filled,
+} from "react-icons/tb";
+import { RxCaretSort } from "react-icons/rx";
+import { useLocation } from "react-router-dom";
 
 const SortableHeader = ({ label, sortBy, sortOrder, onSort, columnKey }) => {
   const handleSort = () => onSort(columnKey);
 
   const getIcon = () => {
     if (sortBy === columnKey) {
-      if (sortOrder === "asc") {
-        return columnKey === "company_name" ? (
-          <FaSortAlphaDown className="text-red-500" />
+      if (columnKey === "name" || columnKey === "sector") {
+        return sortOrder === "asc" ? (
+          <TbSortAscending2Filled className="text-green-500" />
         ) : (
-          <FaSortNumericDown className="text-red-500" />
+          <TbSortDescending2Filled className="text-red-500" />
         );
       } else {
-        return columnKey === "company_name" ? (
-          <FaSortAlphaUp className="text-green-500" />
+        // For numeric values: reverse icons
+        return sortOrder === "asc" ? (
+          <TbSortDescending2Filled className="text-red-500" />
         ) : (
-          <FaSortNumericUp className="text-green-500" />
+          <TbSortAscending2Filled className="text-green-500" />
         );
       }
     }
-    return <FaSort />;
+    return <RxCaretSort />;
   };
 
   return (
@@ -43,66 +43,100 @@ const SortableHeader = ({ label, sortBy, sortOrder, onSort, columnKey }) => {
 };
 
 const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
+  const location = useLocation();
+  const isWatchlist = location.pathname.includes("watch-list");
+
   return (
-    <div className="grid grid-cols-8 bg-gray-200 dark:bg-gray-800 text-stone-900 dark:text-white rounded-md px-4 py-2 font-semibold text-center items-center">
-      {/* Symbol (No sorting) */}
-      <div className="stockList">Symbol</div>
+    <div className="grid grid-cols-20 bg-gray-200 dark:bg-gray-800 text-stone-900 dark:text-white rounded-md px-4 py-3 font-semibold text-left ">
+      {/* Symbol (1 column) */}
+      <div className="col-span-2 stockList">Symbol</div>
 
-      {/* Company Name */}
-      <SortableHeader
-        label="Company Name"
-        sortBy={sortBy}
-        sortOrder={sortOrder}
-        onSort={onSort}
-        columnKey="company_name"
-      />
-
-      {/* Sector Name */}
-      <SortableHeader
-        label="Sector"
-        sortBy={sortBy}
-        sortOrder={sortOrder}
-        onSort={onSort}
-        columnKey="sector"
-      />
-
-      {/* Close Price */}
-      <SortableHeader
-        label="Open Price"
-        sortBy={sortBy}
-        sortOrder={sortOrder}
-        onSort={onSort}
-        columnKey="open_price"
-      />
-
-      <SortableHeader
-        label="Close Price"
-        sortBy={sortBy}
-        sortOrder={sortOrder}
-        onSort={onSort}
-        columnKey="close"
-      />
-
-      <SortableHeader
-        label="High Price"
-        sortBy={sortBy}
-        sortOrder={sortOrder}
-        onSort={onSort}
-        columnKey="high_price"
-      />
-
-      <SortableHeader
-        label="low Price"
-        sortBy={sortBy}
-        sortOrder={sortOrder}
-        onSort={onSort}
-        columnKey="low_price"
-      />
-
-      {/* Action Column */}
-      <div className="stockList ml-15">
-        <h3>Favourite</h3>
+      {/* Company Name (3 columns) */}
+      <div className="col-span-4">
+        <SortableHeader
+          label="Company Name"
+          sortBy={sortBy}
+          sortOrder={sortOrder}
+          onSort={onSort}
+          columnKey="name"
+        />
       </div>
+
+      {/* Sector (1 column) */}
+      <div className="col-span-2">
+        <SortableHeader
+          label="Sector"
+          sortBy={sortBy}
+          sortOrder={sortOrder}
+          onSort={onSort}
+          columnKey="sector"
+        />
+      </div>
+
+      {/* Open Price (1 column) */}
+      <div className="col-span-2">
+        <SortableHeader
+          label="Open Price"
+          sortBy={sortBy}
+          sortOrder={sortOrder}
+          onSort={onSort}
+          columnKey="open"
+        />
+      </div>
+
+      {/* Close Price (1 column) */}
+      <div className="col-span-2">
+        <SortableHeader
+          label="Close Price"
+          sortBy={sortBy}
+          sortOrder={sortOrder}
+          onSort={onSort}
+          columnKey="close"
+        />
+      </div>
+
+      {/* High Price (1 column) */}
+      <div className="col-span-2">
+        <SortableHeader
+          label="High Price"
+          sortBy={sortBy}
+          sortOrder={sortOrder}
+          onSort={onSort}
+          columnKey="high"
+        />
+      </div>
+
+      {/* Low Price (1 column) */}
+      <div className="col-span-2  ">
+        <SortableHeader
+          label="Low Price"
+          sortBy={sortBy}
+          sortOrder={sortOrder}
+          onSort={onSort}
+          columnKey="low"
+        />
+      </div>
+
+      <div className="col-span-2  ">
+        <SortableHeader
+          label="Current"
+          sortBy={sortBy}
+          sortOrder={sortOrder}
+          onSort={onSort}
+          columnKey="current"
+        />
+      </div>
+
+      {/* Favourite (1 column) */}
+      {isWatchlist ? (
+        <div className="col-span-1 stockList ml-4">
+          <h3>Action</h3>
+        </div>
+      ) : (
+        <div className="col-span-1 stockList ml-4">
+          <h3>Favourites</h3>
+        </div>
+      )}
     </div>
   );
 };
