@@ -111,3 +111,16 @@ export const enableTwoFactor = async () => {
     throw error ?? new Error("Failed to enable the two factor");
   }
 };
+
+// Function to disable two factor OTP
+export const disableTwoFactor = async () => {
+  try {
+    const response = await axiosInstance.post("/auth/2fa/disable");
+    console.log(response);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching stocks:", error.response?.data || error);
+    throw error ?? new Error("Failed to disable the two factor");
+  }
+};
