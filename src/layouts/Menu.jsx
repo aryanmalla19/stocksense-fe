@@ -9,6 +9,7 @@ import {
   FiLayers,
   FiShoppingCart,
 } from "react-icons/fi";
+import { IoMdHelpCircleOutline } from "react-icons/io";
 
 const menuItems = [
   {
@@ -38,7 +39,7 @@ const Menu = () => {
         theme === "dark" ? "text-white" : "text-gray-900"
       }`}
     >
-      <div className="flex-1 overflow-y-auto py-4">
+      <div className="flex-1 overflow-y-auto py-10">
         {menuItems.map((category) => (
           <div className="mb-6" key={category.title}>
             <button className="px-2 py-1 text-[15px] font-semibold uppercase tracking-wider bg-teal-700 hover:bg-teal-800 text-white rounded-md ml-5">
@@ -60,6 +61,17 @@ const Menu = () => {
             </div>
           </div>
         ))}
+        <div className="mt-40">
+          <hr
+            className={`border ${
+              theme === "dark" ? "border-[#616161]" : "border-[#EEEEEE]"
+            }`}
+          ></hr>
+          <span className="flex justify-center items-center gap-2 my-2">
+            <IoMdHelpCircleOutline />
+            <p className="text-[15px] font-semibold">Help</p>
+          </span>
+        </div>
       </div>
     </div>
   );

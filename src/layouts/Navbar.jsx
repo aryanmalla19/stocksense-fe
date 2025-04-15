@@ -10,13 +10,7 @@ const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <div
-      className={`px-6 py-7 border-b flex items-center justify-between ${
-        theme === "dark"
-          ? "bg-[var(--dark-bg-primary)] border-[var(--dark-border-primary)] text-[var(--dark-text-primary)]"
-          : "bg-gray-100 border-[var(--border-primary)] text-[var(--text-primary)]"
-      }`}
-    >
+    <div className="px-6 py-7 flex items-center justify-between">
       {/* Welcome Text */}
       <h2 className="font-semibold md:text-lg ">
         Welcome to

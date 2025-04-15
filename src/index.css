@@ -16,7 +16,7 @@ body {
     --border-primary: #e2e8f0;
   
     /* Dark Theme */
-    --dark-bg-primary: #1a202c;
+    --dark-bg-primary: #000000;
     --dark-bg-secondary: #2d3748;
     --dark-text-primary: #ffffff;
     --dark-text-accent: #14c2ab;

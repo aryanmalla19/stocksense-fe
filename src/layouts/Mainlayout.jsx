@@ -8,20 +8,20 @@ import PrivateRoute from "../components/common/PrivateRoute";
 const Mainlayout = () => {
   const { theme } = useContext(ThemeContext);
   return (
-    <div className="flex fixed w-full">
+    <div className="flex">
       <PrivateRoute>
-        <div className="w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6">
+        <div className="w-1/2 md:w-1/4 lg:w-1/5 xl:w-1/6">
           <Sidebar />
         </div>
-        <div className="bg-[#f7f8fa] flex-1">
+        <div
+          className={`flex-1  ${
+            theme === "dark"
+              ? "bg-[#202020] text-white"
+              : "bg-[#F3F8FF] text-[#757575] "
+          }`}
+        >
           <Navbar />
-          <div
-            className={`p-6 h-full ${
-              theme === "dark"
-                ? "bg-[var(--dark-bg-primary)] text-[var(--dark-text-primary)] border-r border-[var(--dark-border-primary)]"
-                : "bg-[--bg-secondary)] text-[var(--text-primary)]"
-            }`}
-          >
+          <div className="p-6 h-full ">
             <Outlet />
           </div>
         </div>
