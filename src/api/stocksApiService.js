@@ -23,6 +23,17 @@ export const stockList = async () => {
   }
 };
 
+
+export const changePassword = async (data) => {
+  try {
+    const response = await axiosInstance.post("/auth/change-password", data);
+    return response.data;
+  } catch (error) {
+    console.error("Validation Errors:", error.response.data);
+    throw error.response.data ?? new Error("Password change failed");
+  }
+};
+
 export const fetchStockBYId = async (StocksID) => {
   try {
     const response = await axiosInstance.get(`/stocks/${StocksID}`);

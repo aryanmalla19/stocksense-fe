@@ -1,16 +1,45 @@
 // components/ChangePasswordForm.js
 import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../../context/ThemeContext";
+import useChangePassword from "../../../hooks/authhooks/useChangePassword";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../../../components/common/LoadingSpinner";
 
 const ChangePasswordForm = ({ onClose }) => {
   const { theme } = useContext(ThemeContext);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const { changePasswordMutation, isLoading } = useChangePassword();
+  const navigate = useNavigate();
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onClose();
+
+    if (newPassword !== confirmPassword) {
+      toast.error("Passwords do not match!");
+      return;
+    }
+
+    changePasswordMutation.mutate(
+      {
+        recent_password: currentPassword,
+        new_password: newPassword,
+        new_password_confirmation: confirmPassword,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Password has been changed successfully!");
+          navigate("/");
+          onClose(); // Close form after success
+        },
+        onError: (err) => {
+          toast.error(err?.message || "Failed to change password");
+        },
+      }
+    );
   };
 
   return (
@@ -95,9 +124,10 @@ const ChangePasswordForm = ({ onClose }) => {
           </button>
           <button
             type="submit"
+            disabled={isLoading}
             className="px-4 py-2 bg-teal-700 text-white rounded-lg hover:bg-teal-800"
           >
-            Change Password
+            {isLoading ? "Loading..." : "Change Password"}
           </button>
         </div>
       </form>
