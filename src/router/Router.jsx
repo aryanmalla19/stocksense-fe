@@ -10,10 +10,11 @@ import ProfilePage from "../pages/profilePage/MainProfile/ProfilePage";
 import SettingPage from "../pages/profilePage/MainSetting/SettingPage";
 import ConfirmationPage from "../pages/Auth/ConfirmationPage";
 import BuySellPage from "../pages/OrderManagement/BuySellPage";
-import Watchlists from "../pages/MarketOverview/Watchlists";
 import LoginReg from "../pages/Auth/LoginReg";
 import ForgotPassword from "../pages/Auth/ForgotPassword";
 import ResetPassword from "../pages/Auth/ResetPassword";
+import WatchList from "../pages/stockPage/WatchList";
+import StockListID from "../pages/stockPage/StockListID";
 
 const Router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const Router = createBrowserRouter([
       {
         path: "stocks",
         element: <StockList />,
+      },
+      {
+        path: "stocksID/:id",
+        element: <StockListID />,
       },
       {
         path: "buysell",
@@ -53,8 +58,8 @@ const Router = createBrowserRouter([
         element: <ApplyPage />,
       },
       {
-        path: "/watchlists",
-        element: <Watchlists />,
+        path: "/watch-list",
+        element: <WatchList />,
       },
     ],
   },

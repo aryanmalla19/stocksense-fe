@@ -17,7 +17,7 @@ const menuItems = [
       { icon: <FiTrendingUp />, label: "Dashboard", href: "/" },
       { icon: <FiList />, label: "Stocks List", href: "/stocks" },
       { icon: <FiShoppingCart />, label: "Trade Stocks", href: "/buysell" },
-      { icon: <FiStar />, label: "Watchlist", href: "/watchlists" },
+      { icon: <FiStar />, label: "Watchlist", href: "/watch-list" },
     ],
   },
   {
