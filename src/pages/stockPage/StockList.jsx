@@ -23,9 +23,7 @@ const StockList = () => {
           </h1>
           <p
             className={`text-sm mt-1 ${
-              theme === "dark"
-                ? "text-[var(--dark-text-accent)]"
-                : "text-[var(--text-accent)]"
+              theme === "dark" ? "text-dark-text" : "text-light-text"
             }`}
           >
             Track your favorite stocks
@@ -34,6 +32,7 @@ const StockList = () => {
 
         {/* Search Stock using Symbol */}
         <SearchStock
+          theme={theme}
           searchSymbol={searchSymbol}
           setSearchSymbol={setSearchSymbol}
         />
@@ -44,14 +43,14 @@ const StockList = () => {
 
       {/* Main Content */}
       <div
-        className={`outlet-container border rounded-md ${
+        className={`outlet-container rounded-md p-4 ${
           theme === "dark"
-            ? "border-[var(--dark-border-primary)]"
-            : "border-[var(--border-primary)]"
+            ? "bg-dark-bg border border-dark-bg shadow-md shadow-black/30"
+            : "bg-white border border-gray-200 shadow-md shadow-gray-300"
         }`}
       >
         <main>
-          <StockListTable searchSymbol={searchSymbol} />
+          <StockListTable searchSymbol={searchSymbol} theme={theme} />
         </main>
       </div>
     </div>

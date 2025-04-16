@@ -42,12 +42,18 @@ const SortableHeader = ({ label, sortBy, sortOrder, onSort, columnKey }) => {
   );
 };
 
-const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
+const StockListTableHeader = ({ sortBy, sortOrder, onSort, theme }) => {
   const location = useLocation();
   const isWatchlist = location.pathname.includes("watch-list");
 
   return (
-    <div className="grid grid-cols-20 bg-gray-200 dark:bg-gray-800 text-stone-900 dark:text-white rounded-md px-4 py-3 font-semibold text-left ">
+    <div
+      className={`grid grid-cols-20 rounded-md px-4 py-3 font-semibold text-left text-[15px] ${
+        theme === "dark"
+          ? "bg-gray-900 text-dark-text "
+          : "bg-gray-200 text-light-text "
+      }`}
+    >
       {/* Symbol (1 column) */}
       <div className="col-span-2 stockList">Symbol</div>
 
