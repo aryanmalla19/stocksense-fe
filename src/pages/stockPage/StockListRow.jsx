@@ -10,7 +10,7 @@ const StockListRow = React.memo(({ stock, theme, removeStock }) => {
 
   return (
     <div
-      className={`grid grid-cols-20 rounded-md text-sm p-3 ${
+      className={`grid grid-cols-20 rounded-md text-sm p-3 items-center ${
         theme === "dark"
           ? "bg-gray-800 text-dark-text hover:bg-gray-700"
           : "bg-gray-100 text-light-text hover:bg-gray-200"

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import StockListTableHeader from "./StockListTableHeader";
-import Pagination from "./Pagination";
+// import Pagination from "./Pagination";
 import useFetchWatchList from "../../hooks/stockshooks/useFetchWatchList";
 import useStocks from "../../hooks/stockshooks/useStocks";
 import StockListRow from "./StockListRow";
@@ -57,7 +57,7 @@ const StockListTable = ({ searchSymbol, theme }) => {
         </div>
       </div>
 
-      <Pagination />
+      {/* <Pagination /> */}
     </section>
   );
 };
