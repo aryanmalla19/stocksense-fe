@@ -10,7 +10,7 @@ const Mainlayout = () => {
   return (
     <div className="flex ">
       <PrivateRoute>
-        <div className="w-[240px] ">
+        <div className="min-w-[240px] ">
           <Sidebar />
         </div>
         <div
