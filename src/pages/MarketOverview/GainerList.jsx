@@ -12,7 +12,7 @@ const GainerList = ({ theme }) => {
           : "bg-light-bg text-light-text"
       }`}
     >
-      <h1 className="text-blue-400 font-bold rounded-md text-xl text-center">
+      <h1 className="text-red-400 font-bold rounded-md text-xl text-center">
         Top Gainers
       </h1>
 
@@ -32,7 +32,11 @@ const GainerList = ({ theme }) => {
             <div className="w-9 h-9 flex items-center justify-center rounded-full text-lg font-bold bg-blue-400 text-white">
               {stock.company_name?.charAt(0)}
             </div>
-            <ul className="flex justify-around w-full">
+            <ul
+              className={`flex justify-around w-full p-2 rounded-md ${
+                theme === "dark" ? "hover:bg-gray-700" : "hover:bg-gray-100"
+              }`}
+            >
               <li>{stock.symbol}</li>
               <li className="text-accent-green">{stock.open_price}</li>
               <li className="text-accent-green">{stock.close_price}</li>
