@@ -17,7 +17,7 @@ const WatchListPage = () => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className="w-full h-[400px]  rounded-lg p-4 relative">
+    <div className="w-full h-[450px]  rounded-lg p-4 relative">
       {/* Filter buttons container with margin-bottom */}
       <ul className="flex absolute top-4 right-4 z-40 mb-4 ">
         {Object.keys(chartconfig).map((item) => (
@@ -42,22 +42,28 @@ const WatchListPage = () => {
             <AreaChart data={data}>
               <defs>
                 <linearGradient id="chartColor" x1="0" y1="0" x2="0" y2="1">
-                  <stop
-                    offset="5%"
-                    stopColor={
-                      theme === "dark" ? "#312e81" : "rgb(199 210 254)"
-                    }
-                    stopOpacity={0.8}
-                  />
-                  <stop
-                    offset="95%"
-                    stopColor={
-                      theme === "dark" ? "#312e81" : "rgb(199 210 254)"
-                    }
-                    stopOpacity={0}
-                  />
+                  {theme === "dark" ? (
+                    <>
+                      <stop offset="0%" stopColor="#0149B3" stopOpacity={0.8} />
+                      <stop
+                        offset="100%"
+                        stopColor="#000000"
+                        stopOpacity={0.8}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <stop offset="0%" stopColor="#1573FE" stopOpacity={0.8} />
+                      <stop
+                        offset="100%"
+                        stopColor="#FFFFFF"
+                        stopOpacity={0.8}
+                      />
+                    </>
+                  )}
                 </linearGradient>
               </defs>
+
               <Tooltip
                 contentStyle={
                   theme === "dark" ? { backgroundColor: "#111827" } : null
@@ -71,10 +77,10 @@ const WatchListPage = () => {
               <Area
                 type="monotone"
                 dataKey="value"
-                stroke="#fffff"
+                stroke="#1573FE"
                 fill="url(#chartColor)"
                 fillOpacity={1}
-                strokeWidth={0.5}
+                strokeWidth={0}
               />
               <XAxis
                 dataKey="date"

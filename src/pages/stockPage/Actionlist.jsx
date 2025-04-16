@@ -1,7 +1,7 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa";
 import useDeleteWatchList from "../../hooks/stockshooks/useDeleteWatchList";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 const Actionlist = ({ stockID, removeStock }) => {
   const { deleteWatchlist } = useDeleteWatchList();
@@ -21,7 +21,6 @@ const Actionlist = ({ stockID, removeStock }) => {
 
   return (
     <div className="p-4">
-      <Toaster position="top-center" reverseOrder={false} />
       <ul className="space-y-2">
         <div className="flex gap-3">
           <button

@@ -7,10 +7,10 @@ const Sidebar = () => {
   const { theme } = useContext(ThemeContext);
   return (
     <div
-      className={`p-2 border-r ${
+      className={`p-2 ${
         theme === "dark"
-          ? "bg-[var(--dark-bg-primary)] text-[var(--dark-text-primary)] border-[var(--dark-border-primary)]"
-          : "bg-gray-100  border-[var(--border-primary)] text-[var(--text-primary)]"
+          ? "bg-[#000000] text-white "
+          : "bg-[#FFFFFF] text-[#757575]"
       }`}
     >
       <header className="flex flex-col items-center justify-between lg:justify-start gap-2">

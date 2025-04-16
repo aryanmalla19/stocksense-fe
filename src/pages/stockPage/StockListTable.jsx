@@ -1,14 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { ThemeContext } from "../../context/ThemeContext";
 import StockListTableHeader from "./StockListTableHeader";
-import Pagination from "./Pagination";
+// import Pagination from "./Pagination";
 import useFetchWatchList from "../../hooks/stockshooks/useFetchWatchList";
 import useStocks from "../../hooks/stockshooks/useStocks";
 import StockListRow from "./StockListRow";
 
-const StockListTable = ({ searchSymbol }) => {
-  const { theme } = useContext(ThemeContext);
+const StockListTable = ({ searchSymbol, theme }) => {
   const location = useLocation();
   const isWatchlist = location.pathname.includes("watch-list");
 
@@ -40,7 +38,7 @@ const StockListTable = ({ searchSymbol }) => {
 
   return (
     <section className="details-container">
-      <StockListTableHeader />
+      <StockListTableHeader theme={theme} />
 
       <div className="overflow-y-auto h-90 flex-1 scrollbar-hidden">
         <div className="space-y-2 mt-2">
@@ -59,7 +57,7 @@ const StockListTable = ({ searchSymbol }) => {
         </div>
       </div>
 
-      <Pagination />
+      {/* <Pagination /> */}
     </section>
   );
 };

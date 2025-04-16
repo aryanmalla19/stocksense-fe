@@ -1,30 +1,55 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
 body {
   font-family: 'Quicksand', sans-serif;
 }
 
-
-:root {
-    /* Light Theme (default) */
-    --bg-primary: #f8fcf7;
-    --bg-secondary: #edf2f7;
-    --text-primary: #4d4d4d;
-    --text-accent: #2b6cb0;
-    --border-primary: #e2e8f0;
+:root{
+  --dark-bg: #000000;
+  --light-bg: #FFFFFF;
+  --dark-text: #FEFEFE;
+  --light-text: #000000;
+  --accent-green: #049C6B;
+  --button-bg: #103E63;
+  --hover-bg:#082E66;
+}
+/* Dark and Light Theme styles */
+.bg-dark-bg {
+    background-color: var(--dark-bg);
+}
   
-    /* Dark Theme */
-    --dark-bg-primary: #1a202c;
-    --dark-bg-secondary: #2d3748;
-    --dark-text-primary: #ffffff;
-    --dark-text-accent: #14c2ab;
-    --bg-green: #076f28;
-    --dark-border-primary: #4a5568;
+.text-dark-text {
+    color: var(--dark-text);
+}
+  
+.bg-light-bg {
+    background-color: var(--light-bg);
+}
+  
+.text-light-text {
+    color: var(--light-text);
+}
+    
+.text-accent-green {
+    color: var(--accent-green);
+}
+  
+.bg-button-bg {
+    background-color: var(--button-bg);
+}
+.border-dark-bg {
+  border-color: var(--dark-bg);
+}
+.hover\:bg-hover-dark:hover {
+    background-color: var(--hover-bg);
   }
-  
-  
+
+.outlet-container{
+    @apply m-4
+}
+.hide-scrollbar::-webkit-scrollbar{
+    display: none;
+}
 .auth-bg {
     @apply bg-gradient-to-r min-h-screen flex justify-center;
 }
@@ -55,9 +80,7 @@ body {
     @apply flex cursor-pointer items-center justify-center border border-gray-300 p-2 rounded-md hover:bg-gray-100
 }
 
-.outlet-container{
-    @apply m-4
-}
+
 .details-container{
     @apply pr-8 m-4
 }

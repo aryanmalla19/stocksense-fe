@@ -4,7 +4,7 @@ import WatchListPage from "./WatchListPage";
 
 const Overview = () => {
   return (
-    <div>
+    <div className="outlet-container">
       <PortfolioTracker />
       <WatchListPage />
     </div>
