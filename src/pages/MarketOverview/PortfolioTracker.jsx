@@ -1,11 +1,36 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import Slider from "../../components/stocks/Slider";
+import Slider from "react-slick";
+import SliderCarousel from "../../components/stocks/SliderCarousel";
 
 const PortfolioTracker = () => {
   const { theme } = useContext(ThemeContext);
-  const scrollRef = useRef(null);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: { slidesToShow: 3 },
+      },
+      {
+        breakpoint: 768,
+        settings: { slidesToShow: 2 },
+      },
+      {
+        breakpoint: 480,
+        settings: { slidesToShow: 1 },
+      },
+    ],
+  };
 
   const stocksData = [
     {
@@ -66,64 +91,47 @@ const PortfolioTracker = () => {
     },
   ];
 
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    const scrollAmount = 320;
-    const interval = setInterval(() => {
-      if (scrollContainer) {
-        const { scrollLeft, offsetWidth, scrollWidth } = scrollContainer;
-
-        // Add small buffer to handle smooth scrolling precision issues
-        const atEnd = scrollLeft + offsetWidth >= scrollWidth - 10;
-
-        if (atEnd) {
-          scrollContainer.scrollTo({ left: 0, behavior: "smooth" });
-        } else {
-          scrollContainer.scrollBy({ left: scrollAmount, behavior: "smooth" });
-        }
-      }
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div className="flex gap-4">
-      <Slider direction="left" />
-      <div className="overflow-x-auto hide-scrollbar" ref={scrollRef}>
-        <div className="flex gap-4 h-auto max-w-[1210px] p-4">
-          {stocksData.map((stock, index) => (
-            <div
-              key={index}
-              className={`w-[300px] h-[174px] rounded-[12px] p-4 shrink-0 space-y-5 ${
-                theme === "dark"
-                  ? "bg-dark-bg text-dark-text"
-                  : "bg-light-bg text-light-text"
-              }`}
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 flex items-center justify-center rounded-full text-lg font-bold bg-[#F61C7A] text-white">
-                  {stock.companyName.charAt(0)}
+    <div className="relative">
+      <SliderCarousel direction="left" />
+      <Slider {...settings} className="max-w-[1210px] p-4">
+        {stocksData.map((stock, index) => (
+          <React.Fragment key={index}>
+            <div className="px-2 flex gap-8">
+              <div
+                className={`w-[300px] h-[174px] rounded-[12px] p-4 space-y-5 ${
+                  theme === "dark"
+                    ? "bg-dark-bg text-dark-text"
+                    : "bg-light-bg text-light-text"
+                }`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full text-lg font-bold bg-[#F61C7A] text-white">
+                    {stock.companyName.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="text-[16px] font-semibold">
+                      {stock.companyName}
+                    </p>
+                    <p className="text-[12px]">{stock.symbol}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-[16px] font-semibold">
-                    {stock.companyName}
-                  </p>
-                  <p className="text-[12px]">{stock.symbol}</p>
+
+                <p>${stock.currentValue.toLocaleString()}</p>
+
+                <div className="text-accent-green font-semibold flex justify-between">
+                  <p>PNL Daily</p>
+                  <p>+${stock.pnlValue}</p>
+                  <p>+{stock.pnlPercent}%</p>
                 </div>
-              </div>
-
-              <p>${stock.currentValue.toLocaleString()}</p>
-
-              <div className="text-accent-green font-semibold flex justify-between">
-                <p>PNL Daily</p>
-                <p>+${stock.pnlValue}</p>
-                <p>+{stock.pnlPercent}%</p>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
+
+            {/* Spacer div after every 2 items */}
+            {(index + 1) % 2 === 0 && <div className="w-4" />}
+          </React.Fragment>
+        ))}
+      </Slider>
     </div>
   );
 };

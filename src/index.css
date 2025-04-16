@@ -42,7 +42,7 @@ body {
 .hide-scrollbar::-webkit-scrollbar{
     display: none;
 }
-/* .auth-bg {
+.auth-bg {
     @apply bg-gradient-to-r min-h-screen flex justify-center;
 }
 
@@ -98,4 +98,3 @@ body {
 .paragraph {
     @apply text-lg font-semibold mb-4
 }
- */
