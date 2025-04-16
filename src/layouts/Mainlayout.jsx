@@ -21,9 +21,9 @@ const Mainlayout = () => {
           }`}
         >
           <div className="">
-            <Navbar />
+            <Navbar theme={theme} />
             <div className="outlet-container ">
-              <Outlet />
+              <Outlet theme={theme} />
             </div>
           </div>
         </div>

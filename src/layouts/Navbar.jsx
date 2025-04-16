@@ -2,12 +2,10 @@ import React, { useContext } from "react";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
 import { IoIosNotifications, IoIosSettings } from "react-icons/io";
 import { ThemeContext } from "../context/ThemeContext";
-import { FaRegUser } from "react-icons/fa";
-import { FaSignOutAlt } from "react-icons/fa";
 import ProfileImage from "../store/ProfileImage";
 
-const Navbar = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+const Navbar = ({ theme }) => {
+  const { toggleTheme } = useContext(ThemeContext);
 
   return (
     <div className="px-6 py-7 flex items-center justify-between">
@@ -42,7 +40,7 @@ const Navbar = () => {
         </div>
 
         {/* Profile Image */}
-        <ProfileImage />
+        <ProfileImage theme={theme} />
       </div>
     </div>
   );

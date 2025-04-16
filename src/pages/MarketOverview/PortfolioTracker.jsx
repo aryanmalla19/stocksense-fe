@@ -106,7 +106,7 @@ const PortfolioTracker = () => {
                 }`}
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full text-lg font-bold bg-[#F61C7A] text-white">
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full text-lg font-bold bg-blue-400 text-white">
                     {stock.companyName.charAt(0)}
                   </div>
                   <div>

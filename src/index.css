@@ -11,6 +11,7 @@ body {
   --light-text: #000000;
   --accent-green: #049C6B;
   --button-bg: #103E63;
+  --hover-bg:#082E66;
 }
 /* Dark and Light Theme styles */
 .bg-dark-bg {
@@ -37,8 +38,12 @@ body {
     background-color: var(--button-bg);
 }
 .border-dark-bg {
-    border-color: var(--dark-bg);
+  border-color: var(--dark-bg);
+}
+.hover\:bg-hover-dark:hover {
+    background-color: var(--hover-bg);
   }
+
 .outlet-container{
     @apply m-4
 }

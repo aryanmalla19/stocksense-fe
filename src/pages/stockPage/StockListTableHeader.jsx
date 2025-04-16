@@ -48,10 +48,10 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort, theme }) => {
 
   return (
     <div
-      className={`grid grid-cols-20 rounded-md px-4 py-3 font-semibold text-left text-[15px] ${
+      className={`grid grid-cols-20 rounded-md px-4 py-3 font-semibold text-left text-[15px] transition-all drop-shadow-sm  ${
         theme === "dark"
           ? "bg-gray-900 text-dark-text "
-          : "bg-gray-200 text-light-text "
+          : "bg-white text-light-text"
       }`}
     >
       {/* Symbol (1 column) */}

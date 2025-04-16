@@ -10,10 +10,8 @@ const SearchStock = ({ searchSymbol, setSearchSymbol, theme }) => {
           placeholder="Search Symbol..."
           value={searchSymbol}
           onChange={(e) => setSearchSymbol(e.target.value)}
-          className={`p-2 w-full pl-10 rounded-full focus:outline-none ${
-            theme === "dark"
-              ? "bg-gray-700 text-white"
-              : "bg-gray-200 text-black"
+          className={`p-2 w-full pl-10 rounded-full focus:outline-none shadow-sm ${
+            theme === "dark" ? "bg-gray-700 text-white" : "bg-white text-black"
           }`}
         />
         <FaSearch className="absolute left-3 top-3 text-gray-500 dark:text-gray-300" />

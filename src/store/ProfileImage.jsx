@@ -1,13 +1,11 @@
-import React, { useState, useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import React, { useState } from "react";
 import { FaRegUser, FaSignOutAlt } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/authhooks/useAuth";
 import { toast } from "react-hot-toast";
 
-const ProfileImage = () => {
-  const { theme } = useContext(ThemeContext);
+const ProfileImage = ({ theme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { logout } = useAuth();
 
@@ -39,28 +37,24 @@ const ProfileImage = () => {
           <div className="fixed inset-0 z-10" onClick={handleClose} />
 
           <div
-            className={`absolute w-52 rounded-lg z-20 ${
+            className={`absolute w-52 rounded-lg z-20 shadow-md ${
               theme === "dark"
-                ? "bg-[var(--dark-bg-primary)] border-gray-700"
-                : "bg-gray-100 border-gray-200 shadow-2xl"
+                ? "bg-dark-bg text-dark-text border-black shadow-2xl"
+                : "bg-light-bg text-light-text border-white"
             } border mt-2 right-0 flex flex-col`}
           >
-            <div
-              className={`border-b p-2 ${
-                theme === "light" ? "border-gray-300" : "border-gray-700"
-              }`}
-            >
+            <div className="border-b p-2 ">
               <h1 className="font-semibold">John Doe</h1>
               <p className="text-sm">john@example.com</p>
             </div>
             <div className="flex p-2 flex-col">
               <Link to="/profile">
-                <div className="flex items-center py-1 cursor-pointer">
+                <div className="flex items-center p-2 rounded-md cursor-pointer hover:bg-hover-dark hover:text-white">
                   <FaRegUser />
                   <p className="ml-3">Profile</p>
                 </div>
               </Link>
-              <div className="flex items-center py-1 cursor-pointer">
+              <div className="flex items-center p-2 rounded-md cursor-pointer hover:bg-hover-dark hover:text-white">
                 <Link to="/settings">
                   <div className="flex items-center py-1 cursor-pointer">
                     <IoIosSettings />
@@ -70,13 +64,13 @@ const ProfileImage = () => {
               </div>
             </div>
             <div
-              className={`flex border-t p-2 cursor-pointer ${
-                theme === "light" ? "border-gray-300" : "border-gray-700"
-              } items-center`}
+              className={` border-t  rounded-md cursor-pointer `}
               onClick={handleLogout}
             >
-              <FaSignOutAlt />
-              <p className="ml-3">Logout</p>
+              <div className="hover:text-red-400 flex items-center p-2">
+                <FaSignOutAlt />
+                <p className="ml-3 ">Logout</p>
+              </div>
             </div>
           </div>
         </>
