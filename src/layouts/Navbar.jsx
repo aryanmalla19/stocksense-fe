@@ -3,20 +3,27 @@ import { MdLightMode, MdDarkMode } from "react-icons/md";
 import { IoIosNotifications, IoIosSettings } from "react-icons/io";
 import { ThemeContext } from "../context/ThemeContext";
 import ProfileImage from "../store/ProfileImage";
+import { GiHamburgerMenu } from "react-icons/gi";
 
-const Navbar = ({ theme }) => {
+const Navbar = ({ theme, collapsed, setCollapsed }) => {
   const { toggleTheme } = useContext(ThemeContext);
 
   return (
     <div className="px-6 py-7 flex items-center justify-between">
-      {/* Welcome Text */}
-      <h2 className="font-semibold md:text-lg ">
-        Welcome to
-        <span className="text-[var(--dark-text-accent)] pl-2">
-          Stockify, Neetu Rai
-        </span>
-      </h2>
-
+      <div className="flex items-center gap-4">
+        <button
+          className="text-2xl cursor-pointer"
+          onClick={() => setCollapsed(!collapsed)}
+        >
+          <GiHamburgerMenu />
+        </button>
+        <h2 className="font-semibold md:text-lg">
+          Welcome to
+          <span className="text-[var(--dark-text-accent)] pl-2">
+            Stockify, Neetu Rai
+          </span>
+        </h2>
+      </div>
       {/* Navbar Icons */}
       <div className="flex items-center space-x-6">
         {/* Notification Icon */}
@@ -27,7 +34,6 @@ const Navbar = ({ theme }) => {
           </div>
         </div>
 
-        {/* Theme Toggle Button */}
         <div
           className="w-6 h-6 flex items-center justify-center rounded-full cursor-pointer transition-all hover:scale-110"
           onClick={toggleTheme}
@@ -39,7 +45,6 @@ const Navbar = ({ theme }) => {
           )}
         </div>
 
-        {/* Profile Image */}
         <ProfileImage theme={theme} />
       </div>
     </div>

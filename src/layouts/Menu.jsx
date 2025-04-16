@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { ThemeContext } from "../context/ThemeContext";
 import {
   FiTrendingUp,
   FiList,
@@ -30,9 +29,7 @@ const menuItems = [
   },
 ];
 
-const Menu = () => {
-  const { theme } = useContext(ThemeContext);
-
+const Menu = ({ collapsed, theme }) => {
   return (
     <div
       className={`flex flex-col justify-between h-screen text-lg ${
@@ -42,9 +39,11 @@ const Menu = () => {
       <div className="flex-1 overflow-y-auto py-10">
         {menuItems.map((category) => (
           <div className="mb-6" key={category.title}>
-            <button className="px-2 py-1 text-[15px] font-semibold uppercase tracking-wider bg-teal-700 hover:bg-teal-800 text-white rounded-md ml-5">
-              {category.title}
-            </button>
+            {!collapsed && (
+              <button className="hidden md:inline px-2 py-1 text-[15px] font-semibold uppercase tracking-wider bg-teal-700 hover:bg-teal-800 text-white rounded-md ml-5">
+                {category.title}
+              </button>
+            )}
             <div className="mt-3">
               {category.items.map((item) => (
                 <Link
@@ -55,7 +54,9 @@ const Menu = () => {
                   }`}
                 >
                   <span className="mr-3 text-lg">{item.icon}</span>
-                  <span>{item.label}</span>
+                  {!collapsed && (
+                    <span className="hidden md:inline">{item.label}</span>
+                  )}
                 </Link>
               ))}
             </div>
