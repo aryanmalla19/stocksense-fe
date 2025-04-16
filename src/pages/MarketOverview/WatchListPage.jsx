@@ -17,8 +17,7 @@ const WatchListPage = () => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className="w-full h-[450px]  rounded-lg p-4 relative">
-      {/* Filter buttons container with margin-bottom */}
+    <div className=" h-[410px]  rounded-lg p-4 relative">
       <ul className="flex absolute top-4 right-4 z-40 mb-4 ">
         {Object.keys(chartconfig).map((item) => (
           <li key={item} className="ml-2 first:ml-0 ">
@@ -31,7 +30,6 @@ const WatchListPage = () => {
         ))}
       </ul>
 
-      {/* Chart container with top padding to create space for buttons */}
       <div className="pt-12 h-full">
         {loading ? (
           <div className="flex items-center justify-center h-full">

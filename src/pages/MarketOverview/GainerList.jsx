@@ -1,0 +1,48 @@
+import React from "react";
+import useStocks from "../../hooks/stockshooks/useStocks";
+
+const GainerList = ({ theme }) => {
+  const stocks = useStocks();
+
+  return (
+    <div
+      className={`p-3 rounded-md ${
+        theme === "dark"
+          ? "bg-dark-bg text-dark-text"
+          : "bg-light-bg text-light-text"
+      }`}
+    >
+      <h1 className="text-blue-400 font-bold rounded-md text-xl text-center">
+        Top Gainers
+      </h1>
+
+      <div className="mt-5">
+        <ul className="flex justify-around font-semibold w- ml-2 ">
+          <li>Symbol</li>
+          <li>CH</li>
+          <li>CH%</li>
+          <li>LTP</li>
+        </ul>
+        <hr className="border-gray-400 w-full my-2" />
+      </div>
+
+      <div>
+        {stocks.slice(0, 5).map((stock) => (
+          <div className="flex items-center gap-3 p-2" key={stock.id}>
+            <div className="w-9 h-9 flex items-center justify-center rounded-full text-lg font-bold bg-blue-400 text-white">
+              {stock.company_name?.charAt(0)}
+            </div>
+            <ul className="flex justify-around w-full">
+              <li>{stock.symbol}</li>
+              <li className="text-accent-green">{stock.open_price}</li>
+              <li className="text-accent-green">{stock.close_price}</li>
+              <li>{stock.current_price}</li>
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default GainerList;
