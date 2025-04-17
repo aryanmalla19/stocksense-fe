@@ -15,7 +15,7 @@ import ForgotPassword from "../pages/Auth/ForgotPassword";
 import ResetPassword from "../pages/Auth/ResetPassword";
 import WatchList from "../pages/stockPage/WatchList";
 import StockListID from "../pages/stockPage/StockListID";
-import { OtpPage } from "../pages/Auth/OtpPage";
+import OtpPage from "../pages/Auth/OtpPage";
 import Page404 from "../components/common/Page404";
 
 const Router = createBrowserRouter([

@@ -1,19 +1,21 @@
-import React, { useContext, useState } from "react";
-import { ThemeContext } from "../../../context/ThemeContext";
+import React, { useState } from "react";
 import ChangePasswordForm from "./ChangePasswordForm";
 import { enableTwoFactor } from "../../../api/stocksApiService";
 import { disableTwoFactor } from "../../../api/stocksApiService";
+import ToggleButton from "../../../components/common/ToggleButton";
 
-const SecurityPage = () => {
+const SecurityPage = ({ theme }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { theme } = useContext(ThemeContext);
+  const [is2FAEnabled, setIs2FAEnabled] = useState(false);
 
-  const twoFactorEnable = () => {
-    enableTwoFactor();
-  };
-
-  const twoFactorDisable = () => {
-    disableTwoFactor();
+  const handleToggle = () => {
+    const newValue = !is2FAEnabled;
+    setIs2FAEnabled(newValue);
+    if (newValue) {
+      enableTwoFactor();
+    } else {
+      disableTwoFactor();
+    }
   };
 
   return (
@@ -32,7 +34,9 @@ const SecurityPage = () => {
         {/* Password Section */}
         <div
           className={`p-6 rounded-lg w-1/2 ${
-            theme === "dark" ? "bg-gray-800 text-white" : "bg-gray-200"
+            theme === "dark"
+              ? "bg-dark-bg text-dark-text"
+              : "bg-light-bg text-light-text"
           }`}
         >
           <h3 className="text-lg font-semibold">Password</h3>
@@ -50,7 +54,9 @@ const SecurityPage = () => {
 
         <div
           className={`p-6 rounded-lg w-1/2 ${
-            theme === "dark" ? "bg-gray-800 text-white" : "bg-gray-200"
+            theme === "dark"
+              ? "bg-dark-bg text-dark-text"
+              : "bg-light-bg text-light-text"
           }`}
         >
           <h3 className="text-lg font-semibold">Two-Factor Authentication</h3>
@@ -58,25 +64,17 @@ const SecurityPage = () => {
             Protect your account with two-factor authentication
           </p>
 
-          <button
-            className="mt-2 px-4 py-2 bg-teal-700 text-white rounded-lg cursor-pointer"
-            onClick={twoFactorEnable}
-          >
-            Enable
-          </button>
-
-          <button
-            className="mt-2 px-4 py-2 bg-teal-700 text-white rounded-lg cursor-pointer"
-            onClick={twoFactorDisable}
-          >
-            Disable
-          </button>
+          <div className="mt-5">
+            <ToggleButton isToggled={is2FAEnabled} onToggle={handleToggle} />
+          </div>
         </div>
       </div>
 
       <div
         className={`p-6 rounded-lg ${
-          theme === "dark" ? "bg-gray-800 text-white" : "bg-gray-200"
+          theme === "dark"
+            ? "bg-dark-bg text-dark-text"
+            : "bg-light-bg text-light-text"
         }`}
       >
         <h3 className="text-lg font-semibold">Account Security</h3>
@@ -92,9 +90,9 @@ const SecurityPage = () => {
           <span>Suspicious Activity Alerts</span>
         </div>
 
-        <button className="mt-4 w-full px-4 py-2 bg-red-600 text-white rounded-lg">
+        {/* <button className="mt-4 w-full px-4 py-2 bg-blue-400 text-white rounded-lg">
           Sign Out From All Devices
-        </button>
+        </button> */}
       </div>
     </>
   );

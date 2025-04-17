@@ -9,7 +9,9 @@ const SettingPage = () => {
   const getTabClass = (tabName) => {
     const isActive = activeTab === tabName;
     if (theme === "dark") {
-      return isActive ? "bg-gray-700 text-white" : "bg-gray-900 text-white";
+      return isActive
+        ? "bg-gray-300 text-light-text"
+        : "bg-dark-bg text-dark-text";
     }
     return isActive ? "bg-gray-100" : "bg-white";
   };
@@ -21,7 +23,9 @@ const SettingPage = () => {
 
       <div
         className={`flex text-center text-gray-600 gap-2 mt-4 font-semibold p-2 rounded-md ${
-          theme === "dark" ? "bg-gray-800" : "bg-gray-200"
+          theme === "dark"
+            ? "bg-dark-bg text-dark-text"
+            : "bg-light-bg text-light-text"
         }`}
       >
         {["Security", "Notification"].map((tab) => (
@@ -38,7 +42,7 @@ const SettingPage = () => {
       </div>
 
       {/* Active Page */}
-      <SettingActivePage activeTab={activeTab} />
+      <SettingActivePage activeTab={activeTab} theme={theme} />
     </div>
   );
 };

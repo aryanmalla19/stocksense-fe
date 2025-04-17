@@ -12,9 +12,15 @@ const notificationOptions = [
   },
 ];
 
-const NotificationPage = () => {
+const NotificationPage = ({ theme }) => {
   return (
-    <div className="border border-gray-600 rounded-md p-4 my-4">
+    <div
+      className={` rounded-md p-4 my-4 ${
+        theme === "dark"
+          ? "bg-dark-bg text-dark-text"
+          : "bg-light-bg text-light-text"
+      }`}
+    >
       <h2 className="header">Notification Settings</h2>
       <p className="paragraph">Choose how you want to receive notifications</p>
 

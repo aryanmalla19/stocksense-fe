@@ -1,16 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
-const ToggleButton = () => {
-  const [isToggled, setIsToggled] = useState(false);
-
-  const handleToggle = () => {
-    setIsToggled(!isToggled);
-  };
-
+const ToggleButton = ({ isToggled, onToggle }) => {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <button
-        onClick={handleToggle}
+        onClick={onToggle}
         style={{
           position: "relative",
           width: "50px",

@@ -4,7 +4,6 @@ import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-
 const useVerifyOtp = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -12,7 +11,7 @@ const useVerifyOtp = () => {
   const mutation = useMutation({
     mutationFn: verifyOTP,
     onSuccess: (data) => {
-    console.log(data);
+      console.log(data);
       console.log("OTP verified", data);
 
       const token = data?.access_token;

@@ -2,12 +2,12 @@ import React from "react";
 import SecurityPage from "./SecurityPage";
 import NotificationPage from "./NotificationPage";
 
-const SettingActivePage = ({ activeTab }) => {
+const SettingActivePage = ({ activeTab, theme }) => {
   return (
     <div>
-      {activeTab === "Security" && <SecurityPage />}
+      {activeTab === "Security" && <SecurityPage theme={theme} />}
 
-      {activeTab === "Notification" && <NotificationPage />}
+      {activeTab === "Notification" && <NotificationPage theme={theme} />}
     </div>
   );
 };
