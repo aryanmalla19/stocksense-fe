@@ -20,14 +20,11 @@ const SecurityPage = () => {
 
   return (
     <>
-      {/* Dark Background Overlay When Modal is Open */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-gray-50 bg-opacity-10 backdrop-blur-sm z-40"></div>
-      )}
-
-      {/* Modal Form */}
-      {isModalOpen && (
-        <ChangePasswordForm onClose={() => setIsModalOpen(false)} />
+        <>
+          <div className="fixed inset-0 bg-[rgba(0,0,0,0.5)] backdrop-blur-[4px] z-30"></div>
+          <ChangePasswordForm onClose={() => setIsModalOpen(false)} />
+        </>
       )}
 
       <div className="flex gap-4 my-4">
@@ -50,7 +47,6 @@ const SecurityPage = () => {
           </button>
         </div>
 
-        {/* Two-Factor Authentication Section */}
         <div
           className={`p-6 rounded-lg w-1/2 ${
             theme === "dark" ? "bg-gray-800 text-white" : "bg-gray-200"
@@ -77,7 +73,6 @@ const SecurityPage = () => {
         </div>
       </div>
 
-      {/* Account Security Section */}
       <div
         className={`p-6 rounded-lg ${
           theme === "dark" ? "bg-gray-800 text-white" : "bg-gray-200"

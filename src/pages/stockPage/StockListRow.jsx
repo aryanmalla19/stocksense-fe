@@ -10,8 +10,8 @@ const StockListRow = React.memo(({ stock, theme, removeStock }) => {
 
   return (
     <div
-      className={`grid grid-cols-20 rounded-md text-sm ${
-        theme === "dark" ? "details-bg-dark" : "details-bg-light"
+      className={`grid grid-cols-20 rounded-md text-sm p-3 items-center ${
+        theme === "dark" ? " hover:bg-gray-700" : " hover:bg-gray-100"
       }`}
     >
       <Link to={`/stocksID/${stock.id}`} className="contents">

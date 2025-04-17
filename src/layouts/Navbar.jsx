@@ -2,29 +2,28 @@ import React, { useContext } from "react";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
 import { IoIosNotifications, IoIosSettings } from "react-icons/io";
 import { ThemeContext } from "../context/ThemeContext";
-import { FaRegUser } from "react-icons/fa";
-import { FaSignOutAlt } from "react-icons/fa";
 import ProfileImage from "../store/ProfileImage";
+import { GiHamburgerMenu } from "react-icons/gi";
 
-const Navbar = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+const Navbar = ({ theme, collapsed, setCollapsed }) => {
+  const { toggleTheme } = useContext(ThemeContext);
 
   return (
-    <div
-      className={`px-6 py-7 border-b flex items-center justify-between ${
-        theme === "dark"
-          ? "bg-[var(--dark-bg-primary)] border-[var(--dark-border-primary)] text-[var(--dark-text-primary)]"
-          : "bg-gray-100 border-[var(--border-primary)] text-[var(--text-primary)]"
-      }`}
-    >
-      {/* Welcome Text */}
-      <h2 className="font-semibold md:text-lg ">
-        Welcome to
-        <span className="text-[var(--dark-text-accent)] pl-2">
-          Stockify, Neetu Rai
-        </span>
-      </h2>
-
+    <div className="px-6 py-7 flex items-center justify-between">
+      <div className="flex items-center gap-4">
+        <button
+          className="text-2xl cursor-pointer"
+          onClick={() => setCollapsed(!collapsed)}
+        >
+          <GiHamburgerMenu />
+        </button>
+        <h2 className="font-semibold md:text-lg">
+          Welcome to
+          <span className="text-[var(--dark-text-accent)] pl-2">
+            Stockify, Neetu Rai
+          </span>
+        </h2>
+      </div>
       {/* Navbar Icons */}
       <div className="flex items-center space-x-6">
         {/* Notification Icon */}
@@ -35,7 +34,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Theme Toggle Button */}
         <div
           className="w-6 h-6 flex items-center justify-center rounded-full cursor-pointer transition-all hover:scale-110"
           onClick={toggleTheme}
@@ -47,8 +45,7 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Profile Image */}
-        <ProfileImage />
+        <ProfileImage theme={theme} />
       </div>
     </div>
   );

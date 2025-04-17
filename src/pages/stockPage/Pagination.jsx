@@ -1,32 +1,22 @@
 import React from "react";
-import usePagination from "../../hooks/stockshooks/usePagination";
 
-const Pagination = () => {
-  const { paginationData, isLoading, error, refetch } = usePagination();
-  // Handle loading state
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  // Handle error state
-  if (error) {
-    return <div>Error loading pagination data: {error.message}</div>;
-  }
+const Pagination = ({ pageNumber, setPageNumber }) => {
   return (
     <div className="flex items-center justify-center gap-4 py-4">
-      {/* Previous Button */}
       <button
-      // onClick={}
-        className={`px-4 py-2 rounded-md bg-teal-600 text-white transition duration-300 cursor-pointer`}
+        onClick={() => setPageNumber((prev) => prev - 1)}
+        disabled={pageNumber <= 1}
+        className={`px-4 py-2 rounded-md bg-teal-600 text-white transition duration-300 cursor-pointer ${
+          pageNumber <= 1 ? "opacity-50 cursor-not-allowed" : ""
+        }`}
       >
         Prev
       </button>
 
-      {/* Page Number */}
-      <h2 className="text-xl font-semibold text-white">1</h2>
+      <h2 className="text-xl font-semibold text-white">{pageNumber}</h2>
 
-      {/* Next Button */}
       <button
+        onClick={() => setPageNumber((prev) => prev + 1)}
         className={`px-4 py-2 rounded-md bg-teal-600 text-white transition duration-300 cursor-pointer`}
       >
         Next

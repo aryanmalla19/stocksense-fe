@@ -45,12 +45,23 @@ export const forgotPassword = async (data) => {
   }
 };
 
-export const resetPassword = async (data) => {
+export const resetPassword = async ({
+  password,
+  password_confirmation,
+  token,
+  email,
+}) => {
   try {
-    const response = await axiosInstance.put("/auth/reset-password", data);
+    const response = await axiosInstance.post(
+      `/auth/reset-password?token=${token}&email=${email}`,
+      {
+        password,
+        password_confirmation,
+      }
+    );
     return response.data;
   } catch (error) {
-    console.error("Validation Errors:", error.response.data);
-    throw error.response.data ?? new Error("Password reset failed");
+    console.error("Validation Errors:", error.response?.data);
+    throw error.response?.data ?? new Error("Password reset failed");
   }
 };

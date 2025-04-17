@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import useFetchStocksID from "../../hooks/stockshooks/useFetchStocksID";
-import WatchListPage from "../MarketOverview/WatchListPage";
-import { AiOutlineDollarCircle } from "react-icons/ai";
-import { FaBuilding, FaChartLine, FaRegClone } from "react-icons/fa";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const StockListID = () => {
   const { id } = useParams();
   const { data, isLoading, error } = useFetchStocksID(id);
+  const { theme } = useContext(ThemeContext);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error fetching stock data: {error.message}</div>;
@@ -15,54 +14,19 @@ const StockListID = () => {
   const { data: stock } = data;
 
   return (
-    <div className="p-6">
-      {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-left text-3xl font-bold">WatchList</h1>
+    <div
+      className={`p-4 rounded-md flex items-center ${
+        theme === "dark"
+          ? "bg-dark-bg text-dark-text"
+          : "bg-light-bg text-red-500"
+      }`}
+    >
+      <div className="w-12 h-12 mr-4 flex items-center justify-center rounded-full text-lg font-bold bg-blue-400 text-white">
+        {stock.company_name?.charAt(0)}
       </div>
-
-      {/* Grid Layout */}
-      <div className="grid grid-cols-3 gap-6">
-        {/* WatchList Section */}
-        <div className="col-span-2">
-          <WatchListPage />
-        </div>
-
-        {/* Stock Details Section */}
-        <div className="col-span-1">
-          <div className="text-gray-300 rounded-lg shadow p-6 text-left border border-gray-700">
-            <h2 className="text-2xl font-bold mb-5 text-center underline">
-              Details of Stock
-            </h2>
-            <div className="space-y-10">
-              <div className="flex items-center justify-between">
-                <span className="font-medium flex items-center gap-2">
-                  <FaRegClone /> Symbol:
-                </span>
-                <span>{stock.symbol}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="font-medium flex items-center gap-2">
-                  <FaBuilding /> Company:
-                </span>
-                <span>{stock.company_name}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="font-medium flex items-center gap-2">
-                  <FaChartLine /> Sector:
-                </span>
-                <span>{stock.sector}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="font-medium flex items-center gap-2">
-                  <AiOutlineDollarCircle /> Current Price:
-                </span>
-                <span>${stock.current_price}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <h1 className=" text-3xl text-semibold">
+        {stock.company_name} ({stock.symbol})
+      </h1>
     </div>
   );
 };
