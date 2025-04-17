@@ -23,7 +23,6 @@ export const stockList = async () => {
   }
 };
 
-
 export const changePassword = async (data) => {
   try {
     const response = await axiosInstance.post("/auth/change-password", data);
