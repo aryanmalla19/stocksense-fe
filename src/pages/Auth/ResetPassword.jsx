@@ -7,12 +7,11 @@ const ResetPassword = () => {
   const { resetPasswordmutation, isLoading } = useResetPassword();
   const [searchParams] = useSearchParams();
 
-  // Correctly accessing query parameters
   const token = searchParams.get("token");
   const email = searchParams.get("email");
 
-  console.log("Token:", token); // Log token
-  console.log("Email:", email); // Log email
+  console.log("Token:", token);
+  console.log("Email:", email);
 
   const [password, setPassword] = useState("");
   const [password_confirmation, setConfirmPassword] = useState("");
@@ -25,7 +24,6 @@ const ResetPassword = () => {
       return;
     }
 
-    // Ensure mutation is defined before calling mutate
     if (!resetPasswordmutation) {
       console.error("resetPasswordMutation is not defined");
       return;

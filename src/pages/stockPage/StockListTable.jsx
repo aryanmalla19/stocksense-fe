@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import StockListRow from "./StockListRow";
 import { stockList } from "../../api/stocksApiService";
 
-const StockListTable = ({ theme }) => {
+const StockListTable = ({ theme, searchSymbol }) => {
   const location = useLocation();
   const isWatchlist = location.pathname.includes("watch-list");
 
@@ -44,7 +44,13 @@ const StockListTable = ({ theme }) => {
     }
   }, [isWatchlist, refetch]);
 
-  const displayStocks = isWatchlist ? watchListStocks : data?.data ?? [];
+  const displayStocks = isWatchlist
+    ? watchListStocks.filter((stock) =>
+        stock.symbol.toLowerCase().includes 
+      )
+    : data?.data?.filter((stock) =>
+        stock.symbol.toLowerCase().includes(searchSymbol.toLowerCase())
+      ) ?? [];
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error fetching stocks.</div>;

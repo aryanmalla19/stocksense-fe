@@ -1,8 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
-import { postStockWatchList } from "../../api/stocksApiService";
+import {
+  postStockWatchList,
+  deleteStockWatchList,
+} from "../../api/stocksApiService";
 
 const useAddWatchList = () => {
-  const mutation = useMutation({
+  const addMutation = useMutation({
     mutationFn: postStockWatchList,
     onSuccess: (data) => {
       console.log("Stock added to watchlist:", data);
@@ -11,16 +14,32 @@ const useAddWatchList = () => {
       console.error("Error adding to watchlist:", error);
     },
   });
-  const addWatchList = (stockID) => {
-    mutation.mutate(stockID);
+
+  const removeMutation = useMutation({
+    mutationFn: deleteStockWatchList,
+    onSuccess: (data) => {
+      console.log("Stock removed from watchlist:", data);
+    },
+    onError: (error) => {
+      console.error("Error removing from watchlist:", error);
+    },
+  });
+
+  const addWatchList = (stockID, options) => {
+    addMutation.mutate(stockID, options);
+  };
+
+  const removeWatchList = (stockID, options) => {
+    removeMutation.mutate(stockID, options);
   };
 
   return {
     addWatchList,
-    isLoading: mutation.isLoading,
-    isError: mutation.isError,
-    error: mutation.error,
-    data: mutation.data,
+    removeWatchList,
+    isLoading: addMutation.isLoading || removeMutation.isLoading,
+    isError: addMutation.isError || removeMutation.isError,
+    error: addMutation.error || removeMutation.error,
+    data: addMutation.data || removeMutation.data,
   };
 };
 

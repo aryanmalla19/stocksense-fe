@@ -1,4 +1,3 @@
-// StockListRow.js
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import Addwatchlist from "./Addwatchlist";
@@ -38,7 +37,10 @@ const StockListRow = React.memo(({ stock, theme, removeStock }) => {
       {isWatchlist ? (
         <Actionlist stockID={stock.id} removeStock={removeStock} />
       ) : (
-        <Addwatchlist stockID={stock.id} />
+        <Addwatchlist
+          stockID={stock.id}
+          initialIsWatchlist={stock.is_watchlist}
+        />
       )}
     </div>
   );

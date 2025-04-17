@@ -2,6 +2,7 @@ import React from "react";
 import { FaSearch } from "react-icons/fa";
 
 const SearchStock = ({ searchSymbol, setSearchSymbol, theme }) => {
+  console.log(searchSymbol);
   return (
     <div>
       <div className="relative w-100">

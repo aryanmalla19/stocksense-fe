@@ -13,11 +13,14 @@ const axiosInstance = axios.create({
 });
 
 // Function to fetch stock data
-export const stockList = async ({ page = 1, limit = 5 }) => {
+export const stockList = async ({ page }) => {
   try {
-    const response = await axiosInstance.get(
-      `/stocks?page=${page}&limit=${limit}`
-    );
+    const response = await axiosInstance.get(`/stocks`, {
+      params: {
+        page: page,
+        per_page: 6,
+      },
+    });
     return response.data;
   } catch (error) {
     console.error("Error fetching stocks:", error.response?.data || error);
@@ -26,10 +29,10 @@ export const stockList = async ({ page = 1, limit = 5 }) => {
 };
 
 //search query
-export const searchQuery = async (search) => {
+export const searchQuery = async (searchText) => {
   try {
-    const response = await axiosInstance.get(`/stocks`, {
-      params: { search },
+    const response = await axiosInstance.get(`/stocks?symbol=${searchText}`, {
+      params: { searchText },
     });
     return response.data;
   } catch (error) {
