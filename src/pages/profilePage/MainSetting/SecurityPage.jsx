@@ -4,16 +4,14 @@ import ChangePasswordForm from "./ChangePasswordForm";
 import { enableTwoFactor } from "../../../api/stocksApiService";
 import { disableTwoFactor } from "../../../api/stocksApiService";
 
-
 const SecurityPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { theme } = useContext(ThemeContext);
 
-  const twoFactorEnable = ()=>{
+  const twoFactorEnable = () => {
     enableTwoFactor();
-  }
+  };
 
-  
   const twoFactorDisable = () => {
     disableTwoFactor();
   };
@@ -23,7 +21,10 @@ const SecurityPage = () => {
       {isModalOpen && (
         <>
           <div className="fixed inset-0 bg-[rgba(0,0,0,0.5)] backdrop-blur-[4px] z-30"></div>
-          <ChangePasswordForm onClose={() => setIsModalOpen(false)} />
+          <ChangePasswordForm
+            onClose={() => setIsModalOpen(false)}
+            theme={theme}
+          />
         </>
       )}
 

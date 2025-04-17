@@ -11,7 +11,7 @@ const useChangePassword = () => {
       console.error("Password change failed:", error);
     },
   });
-  return { resetPasswordMutation: mutation, isLoading: mutation.isLoading };
+  return { changePasswordMutation: mutation, isLoading: mutation.isLoading };
 };
 
 export default useChangePassword;

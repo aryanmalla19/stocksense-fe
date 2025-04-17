@@ -6,15 +6,8 @@ const useVerifyEmail = () => {
   const mutation = useMutation({
     mutationFn: verifyEmail,
     onSuccess: () =>
-      toast.success("Verification email resent successfully!", {
-        duration: 5000,
-        position: "top-right",
-      }),
-    onError: () =>
-      toast.error("Failed to resend email.", {
-        duration: 5000,
-        position: "top-right",
-      }),
+      toast.success("Verification email resent successfully!", {}),
+    onError: () => toast.error("Failed to resend email.", {}),
   });
 
   return {

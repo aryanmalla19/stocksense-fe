@@ -5,10 +5,9 @@ import useVerifyOtp from "../../hooks/authhooks/useVerifyOtp";
 export const OtpPage = () => {
   var [otp, setOtp] = useState(["", "", "", "", "", ""]);
 
-  const private_token = Cookies.get('private_token');
+  const private_token = Cookies.get("private_token");
   const email = Cookies.get("email");
   const { otpVerifymutation, isLoading } = useVerifyOtp();
-
 
   const handleChange = (e, index) => {
     const value = e.target.value;
@@ -30,19 +29,19 @@ export const OtpPage = () => {
     }
   };
 
-  const verifyOTP = (e)=>{
-
+  const verifyOTP = (e) => {
     e.preventDefault();
-    otp = otp.join('');
-     otpVerifymutation.mutate({
-       otp,private_token, email
-     });
+    otp = otp.join("");
+    otpVerifymutation.mutate({
+      otp,
+      private_token,
+      email,
+    });
+  };
 
-  }
-
-    // if (token) {
-    //   return <Navigate to="/" replace />;
-    // }
+  // if (token) {
+  //   return <Navigate to="/" replace />;
+  // }
 
   return (
     <div className="flex flex-col items-center">

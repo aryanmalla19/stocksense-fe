@@ -1,19 +1,17 @@
-// components/ChangePasswordForm.js
-import React, { useContext, useState } from "react";
-import { ThemeContext } from "../../../context/ThemeContext";
+import React, { useState } from "react";
 import useChangePassword from "../../../hooks/authhooks/useChangePassword";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../../components/common/LoadingSpinner";
+import useAuth from "../../../hooks/authhooks/useAuth";
 
-const ChangePasswordForm = ({ onClose }) => {
-  const { theme } = useContext(ThemeContext);
+const ChangePasswordForm = ({ onClose, theme }) => {
+  const { logout } = useAuth();
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { changePasswordMutation, isLoading } = useChangePassword();
   const navigate = useNavigate();
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,8 +30,9 @@ const ChangePasswordForm = ({ onClose }) => {
       {
         onSuccess: () => {
           toast.success("Password has been changed successfully!");
+          logout();
           navigate("/");
-          onClose(); // Close form after success
+          onClose();
         },
         onError: (err) => {
           toast.error(err?.message || "Failed to change password");
@@ -45,7 +44,7 @@ const ChangePasswordForm = ({ onClose }) => {
   return (
     <div
       className={`fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md p-6 rounded-lg shadow-lg ${
-        theme === "dark" ? "bg-gray-800 text-white" : "bg-white"
+        theme === "dark" ? "bg-dark-bg text-dark-text" : "bg-white"
       }`}
     >
       <div className="flex justify-between items-center mb-4">
@@ -125,9 +124,9 @@ const ChangePasswordForm = ({ onClose }) => {
           <button
             type="submit"
             disabled={isLoading}
-            className="px-4 py-2 bg-teal-700 text-white rounded-lg hover:bg-teal-800"
+            className="px-4 py-2 bg-teal-700 text-white rounded-lg hover:bg-teal-800 flex items-center justify-center gap-2"
           >
-            {isLoading ? "Loading..." : "Change Password"}
+            {isLoading ? <LoadingSpinner /> : "Change Password"}
           </button>
         </div>
       </form>

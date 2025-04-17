@@ -41,6 +41,7 @@ export const searchQuery = async (searchText) => {
   }
 };
 
+//function to change password
 export const changePassword = async (data) => {
   try {
     const response = await axiosInstance.post("/auth/change-password", data);
@@ -51,6 +52,7 @@ export const changePassword = async (data) => {
   }
 };
 
+//function to fetch Stockby Id
 export const fetchStockBYId = async (StocksID) => {
   try {
     const response = await axiosInstance.get(`/stocks/${StocksID}`);
@@ -64,6 +66,7 @@ export const fetchStockBYId = async (StocksID) => {
   }
 };
 
+//function to post watchlist
 export const postStockWatchList = async (stockID) => {
   try {
     const response = await axiosInstance.post("/users/watchlists", {
@@ -80,6 +83,7 @@ export const postStockWatchList = async (stockID) => {
   }
 };
 
+//function to get watchlist
 export const fetchStockWatchList = async () => {
   try {
     const response = await axiosInstance.get("/users/watchlists");
@@ -93,6 +97,7 @@ export const fetchStockWatchList = async () => {
   }
 };
 
+//function to delete watchlist
 export const deleteStockWatchList = async (stockID) => {
   try {
     const response = await axiosInstance.delete(`/users/watchlists/${stockID}`);
@@ -106,6 +111,7 @@ export const deleteStockWatchList = async (stockID) => {
   }
 };
 
+//function for pagination
 export const pagination = async () => {
   try {
     const response = await axiosInstance.get("");
@@ -116,13 +122,10 @@ export const pagination = async () => {
   }
 };
 
-
 // Function to enable two factor OTP
 export const enableTwoFactor = async () => {
   try {
     const response = await axiosInstance.post("/auth/2fa/enable");
-    console.log(response);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching stocks:", error.response?.data || error);
@@ -134,8 +137,6 @@ export const enableTwoFactor = async () => {
 export const disableTwoFactor = async () => {
   try {
     const response = await axiosInstance.post("/auth/2fa/disable");
-    console.log(response);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching stocks:", error.response?.data || error);
