@@ -16,6 +16,7 @@ import ResetPassword from "../pages/Auth/ResetPassword";
 import WatchList from "../pages/stockPage/WatchList";
 import StockListID from "../pages/stockPage/StockListID";
 import { OtpPage } from "../pages/Auth/OtpPage";
+import Page404 from "../components/common/Page404";
 
 const Router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const Router = createBrowserRouter([
         path: "/watch-list",
         element: <WatchList />,
       },
+      {
+        path: "*",
+        element: <Page404 />,
+      },
     ],
   },
   {
@@ -81,9 +86,13 @@ const Router = createBrowserRouter([
     element: <ResetPassword />,
   },
   {
-    path: '/otp',
-    element: <OtpPage/>
-  }
+    path: "/otp",
+    element: <OtpPage />,
+  },
+  {
+    path: "*",
+    element: <Page404 />,
+  },
 ]);
 
 export default Router;
