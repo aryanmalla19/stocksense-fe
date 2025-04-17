@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -17,7 +18,9 @@ export const registerUser = async (data) => {
 
 export const loginUser = async (data) => {
   try {
+    Cookies.set("email", data['email']);
     const response = await axiosInstance.post("/auth/login", data);
+    console.log(response);
     return response.data;
   } catch (error) {
     console.error("Validation Errors:", error.response.data);
@@ -63,5 +66,16 @@ export const resetPassword = async ({
   } catch (error) {
     console.error("Validation Errors:", error.response?.data);
     throw error.response?.data ?? new Error("Password reset failed");
+  }
+};
+
+
+export const verifyOTP = async (data) => {
+  try {
+    const response = await axiosInstance.post("/auth/verify-otp", data);
+    return response.data;
+  } catch (error) {
+    console.error("Validation Errors:", error.response.data);
+    throw error.response.data ?? new Error("OTP verification failed");
   }
 };

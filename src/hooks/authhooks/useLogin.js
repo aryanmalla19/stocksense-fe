@@ -4,6 +4,8 @@ import { loginUser } from "../../api/apiService";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
+import Cookies from "js-cookie";
+
 
 const useLogin = () => {
   const [serverErrors, setServerErrors] = useState({});
@@ -13,6 +15,11 @@ const useLogin = () => {
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
+      if (data?.private_token){
+        navigate("/otp");
+        Cookies.set("private_token", data['private_token']);
+      }
+
       const token = data?.access_token;
 
       if (token) {
