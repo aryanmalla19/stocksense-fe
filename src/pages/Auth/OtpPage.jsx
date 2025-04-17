@@ -1,7 +1,14 @@
 import React, { useState } from "react";
+import Cookies from "js-cookie";
+import useVerifyOtp from "../../hooks/authhooks/useVerifyOtp";
 
 export const OtpPage = () => {
-  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  var [otp, setOtp] = useState(["", "", "", "", "", ""]);
+
+  const private_token = Cookies.get('private_token');
+  const email = Cookies.get("email");
+  const { otpVerifymutation, isLoading } = useVerifyOtp();
+
 
   const handleChange = (e, index) => {
     const value = e.target.value;
@@ -23,6 +30,20 @@ export const OtpPage = () => {
     }
   };
 
+  const verifyOTP = (e)=>{
+
+    e.preventDefault();
+    otp = otp.join('');
+     otpVerifymutation.mutate({
+       otp,private_token, email
+     });
+
+  }
+
+    // if (token) {
+    //   return <Navigate to="/" replace />;
+    // }
+
   return (
     <div className="flex flex-col items-center">
       <h2 className="text-2xl font-bold mb-4">Enter OTP</h2>
@@ -41,7 +62,7 @@ export const OtpPage = () => {
         ))}
       </div>
       <button
-        onClick={() => console.log("OTP Submitted:", otp.join(""))}
+        onClick={verifyOTP}
         className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
       >
         Submit
