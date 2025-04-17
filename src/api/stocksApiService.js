@@ -105,3 +105,40 @@ export const deleteStockWatchList = async (stockID) => {
     throw error;
   }
 };
+
+export const pagination = async () => {
+  try {
+    const response = await axiosInstance.get("");
+    return response.data;
+  } catch (error) {
+    console.log("Error in Pagination", error.response?.data || error);
+    throw error;
+  }
+};
+
+
+// Function to enable two factor OTP
+export const enableTwoFactor = async () => {
+  try {
+    const response = await axiosInstance.post("/auth/2fa/enable");
+    console.log(response);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching stocks:", error.response?.data || error);
+    throw error ?? new Error("Failed to enable the two factor");
+  }
+};
+
+// Function to disable two factor OTP
+export const disableTwoFactor = async () => {
+  try {
+    const response = await axiosInstance.post("/auth/2fa/disable");
+    console.log(response);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching stocks:", error.response?.data || error);
+    throw error ?? new Error("Failed to disable the two factor");
+  }
+};
