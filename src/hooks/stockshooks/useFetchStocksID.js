@@ -1,4 +1,3 @@
-// useFetchStocksID.js
 import { useQuery } from "@tanstack/react-query";
 import { fetchStockBYId } from "../../api/stocksApiService";
 

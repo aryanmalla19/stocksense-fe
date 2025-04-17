@@ -1,17 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import StockListTableHeader from "./StockListTableHeader";
-// import Pagination from "./Pagination";
+import Pagination from "./Pagination";
 import useFetchWatchList from "../../hooks/stockshooks/useFetchWatchList";
-import useStocks from "../../hooks/stockshooks/useStocks";
+import { useQuery } from "@tanstack/react-query";
 import StockListRow from "./StockListRow";
+import { stockList } from "../../api/stocksApiService";
 
-const StockListTable = ({ searchSymbol, theme }) => {
+const StockListTable = ({ theme }) => {
   const location = useLocation();
   const isWatchlist = location.pathname.includes("watch-list");
 
+  // watchlist
   const { refetch } = useFetchWatchList();
   const [watchListStocks, setWatchListStocks] = useState([]);
+
+  // pagination
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["stocks", pageNumber],
+    queryFn: () => stockList({ page: pageNumber, limit: 5 }),
+    keepPreviousData: true,
+  });
 
   const handleRemoveStock = (stockID) => {
     setWatchListStocks((prevStocks) =>
@@ -33,8 +44,10 @@ const StockListTable = ({ searchSymbol, theme }) => {
     }
   }, [isWatchlist, refetch]);
 
-  const filteredStocks = useStocks(searchSymbol);
-  const displayStocks = isWatchlist ? watchListStocks : filteredStocks;
+  const displayStocks = isWatchlist ? watchListStocks : data?.data ?? [];
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error fetching stocks.</div>;
 
   return (
     <section className="details-container">
@@ -57,7 +70,7 @@ const StockListTable = ({ searchSymbol, theme }) => {
         </div>
       </div>
 
-      {/* <Pagination /> */}
+      <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} />
     </section>
   );
 };

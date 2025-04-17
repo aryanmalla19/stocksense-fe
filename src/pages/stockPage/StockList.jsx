@@ -1,10 +1,10 @@
-// StockList.js
 import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import StockListTable from "./StockListTable";
 import SearchStock from "./SearchStock";
 import Calendar from "../../components/stocks/Calender";
 import { useLocation } from "react-router-dom";
+import useSearchStock from "../../hooks/stockshooks/useSearchStock";
 
 const StockList = () => {
   const [searchSymbol, setSearchSymbol] = useState("");
@@ -13,9 +13,14 @@ const StockList = () => {
 
   const isWatchlist = location.pathname.includes("watch-list");
 
+  const {
+    data: stocks = [],
+    isLoading,
+    isError,
+  } = useSearchStock(searchSymbol);
+
   return (
     <div>
-      {/* Header Section */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold py-2">
@@ -30,18 +35,15 @@ const StockList = () => {
           </p>
         </div>
 
-        {/* Search Stock using Symbol */}
         <SearchStock
           theme={theme}
           searchSymbol={searchSymbol}
           setSearchSymbol={setSearchSymbol}
         />
 
-        {/* Current date */}
         <Calendar />
       </div>
 
-      {/* Main Content */}
       <div
         className={`outlet-container rounded-md p-4 ${
           theme === "dark"
@@ -50,7 +52,14 @@ const StockList = () => {
         }`}
       >
         <main>
-          <StockListTable searchSymbol={searchSymbol} theme={theme} />
+          {isLoading && <p>Loading stocks...</p>}
+          {isError && <p>Error fetching stocks.</p>}
+
+          <StockListTable
+            searchSymbol={searchSymbol}
+            stocks={stocks}
+            theme={theme}
+          />
         </main>
       </div>
     </div>

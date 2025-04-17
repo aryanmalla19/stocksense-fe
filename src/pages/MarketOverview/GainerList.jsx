@@ -2,7 +2,23 @@ import React from "react";
 import useStocks from "../../hooks/stockshooks/useStocks";
 
 const GainerList = ({ theme }) => {
-  const stocks = useStocks();
+  const { stocks, isLoading, isError } = useStocks();
+
+  if (isLoading) {
+    return (
+      <div className="p-3 rounded-md">
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="p-3 rounded-md">
+        <h1>Error fetching stock data</h1>
+      </div>
+    );
+  }
 
   return (
     <div

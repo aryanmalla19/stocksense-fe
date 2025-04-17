@@ -13,13 +13,28 @@ const axiosInstance = axios.create({
 });
 
 // Function to fetch stock data
-export const stockList = async () => {
+export const stockList = async ({ page = 1, limit = 5 }) => {
   try {
-    const response = await axiosInstance.get("/stocks");
+    const response = await axiosInstance.get(
+      `/stocks?page=${page}&limit=${limit}`
+    );
     return response.data;
   } catch (error) {
     console.error("Error fetching stocks:", error.response?.data || error);
     throw error ?? new Error("Failed to fetch the Stock list");
+  }
+};
+
+//search query
+export const searchQuery = async (search) => {
+  try {
+    const response = await axiosInstance.get(`/stocks`, {
+      params: { search },
+    });
+    return response.data;
+  } catch (error) {
+    console.log("Error fetching stocks:", error.response?.data || error);
+    throw error ?? new Error("Failed to search the stock list");
   }
 };
 
@@ -84,16 +99,6 @@ export const deleteStockWatchList = async (stockID) => {
       "Error deleting stocks watchlist:",
       error.response?.data || error
     );
-    throw error;
-  }
-};
-
-export const pagination = async () => {
-  try {
-    const response = await axiosInstance.get("");
-    return response.data;
-  } catch (error) {
-    console.log("Error in Pagination", error.response?.data || error);
     throw error;
   }
 };
