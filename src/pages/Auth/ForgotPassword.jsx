@@ -6,7 +6,7 @@ import { FiMail, FiArrowRight } from "react-icons/fi";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const { forgotPasswordMutation, isLoading } = useForgotPassword();
+  const { forgotPasswordMutation } = useForgotPassword();
 
   const handleSubmit = (e) => {
     e.preventDefault();
