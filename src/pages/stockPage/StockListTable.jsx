@@ -32,6 +32,8 @@ const StockListTable = ({ theme, searchSymbol }) => {
     }
   };
 
+  console.log(data);
+
   const handleRemoveStock = (stockID) => {
     setWatchListStocks((prevStocks) =>
       prevStocks.filter((stock) => stock.id !== stockID)
@@ -87,7 +89,7 @@ const StockListTable = ({ theme, searchSymbol }) => {
         </div>
       </div>
 
-      <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} />
+      <Pagination links={data?.links} pageNumber={pageNumber} setPageNumber={setPageNumber} />
     </section>
   );
 };
