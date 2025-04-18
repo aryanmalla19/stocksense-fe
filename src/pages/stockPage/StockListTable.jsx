@@ -21,7 +21,7 @@ const StockListTable = ({ theme, searchSymbol }) => {
   // Pagination
   const [pageNumber, setPageNumber] = useState(1);
 
-  const { data, isLoading, isError } = useSort(sortBy, sortOrder);
+  const { data, isLoading, isError } = useSort(sortBy, sortOrder, pageNumber);
 
   const handleSort = (columnKey) => {
     if (sortBy === columnKey) {

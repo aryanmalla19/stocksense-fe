@@ -28,13 +28,13 @@ export const stockList = async ({ page, per_page = 10 }) => {
   }
 };
 
-export const sortStocks = async (params) => {
+export const sortStocks = async ( sortBy, sortOrder, page ) => {
   try {
-    // console.log(params?.queryKey[1]);
     const response = await axiosInstance.get(`/stocks`, {
       params: {
-        column: params?.queryKey[1].column,
-        direction: params?.queryKey[1].direction,
+        column: sortBy,
+        direction: sortOrder,
+        page: page,
       },
     });
     return response.data;
