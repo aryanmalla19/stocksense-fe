@@ -2,8 +2,7 @@ import React from "react";
 import useStocks from "../../hooks/stockshooks/useStocks";
 
 const GainerList = ({ theme }) => {
-  const { stocks, isLoading, isError } = useStocks();
-
+  const { data, isLoading, isError } = useStocks("", 1, 5);
   if (isLoading) {
     return (
       <div className="p-3 rounded-md">
@@ -43,7 +42,7 @@ const GainerList = ({ theme }) => {
       </div>
 
       <div>
-        {stocks.slice(0, 5).map((stock) => (
+        {data?.data.map((stock) => (
           <div className="flex items-center gap-3 p-2" key={stock.id}>
             <div className="w-9 h-9 flex items-center justify-center rounded-full text-lg font-bold bg-blue-400 text-white">
               {stock.company_name?.charAt(0)}

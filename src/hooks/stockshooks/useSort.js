@@ -3,7 +3,7 @@ import { sortStocks } from "../../api/stocksApiService";
 
 const useSort = (sortBy, sortOrder) => {
   return useQuery({
-    queryKey: ["stocks", { column: sortBy, dir: sortOrder }],
+    queryKey: ["stocks", { column: sortBy, direction: sortOrder }],
     queryFn: sortStocks,
     keepPreviousData: true,
   });

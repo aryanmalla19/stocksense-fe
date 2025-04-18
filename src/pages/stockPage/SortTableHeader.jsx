@@ -5,7 +5,7 @@ import {
 } from "react-icons/tb";
 import { RxCaretSort } from "react-icons/rx";
 
-const SorTableHeader = ({ label, sortBy, sortOrder, onSort, columnKey }) => {
+const SortTableHeader = ({ label, sortBy, sortOrder, onSort, columnKey }) => {
   const handleSort = () => onSort(columnKey);
 
   const getIcon = () => {
@@ -28,14 +28,11 @@ const SorTableHeader = ({ label, sortBy, sortOrder, onSort, columnKey }) => {
   };
 
   return (
-    <button
-      onClick={handleSort}
-      className="flex items-center gap-1 focus:outline-none"
-    >
-      <h3>{label}</h3>
-      {getIcon()}
-    </button>
+    <div onClick={handleSort} className="flex items-center cursor-pointer">
+      <span>{label}</span>
+      <span className="ml-1">{getIcon()}</span>
+    </div>
   );
 };
 
-export default SorTableHeader;
+export default SortTableHeader;
