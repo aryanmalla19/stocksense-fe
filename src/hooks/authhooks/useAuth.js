@@ -1,4 +1,3 @@
-import React from "react";
 import useAuthStore from "../../store/authStore";
 
 const useAuth = () => {
@@ -6,15 +5,15 @@ const useAuth = () => {
   const setToken = useAuthStore((state) => state.setToken);
   const clearToken = useAuthStore((state) => state.clearToken);
 
-  const login = (newToken) => {
-    setToken(newToken);
+  const login = (accessToken, refreshToken) => {
+    setToken({ accessToken, refreshToken });
   };
 
   const logout = () => {
     clearToken();
   };
 
-  return { login, logout, token };
+  return { token, login, logout };
 };
 
 export default useAuth;
