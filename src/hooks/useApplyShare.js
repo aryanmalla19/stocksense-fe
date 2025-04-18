@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const useApplyShare = () => {
+const useApplyShare = (issuePrice = 100) => {
   const [kittaAmount, setKittaAmount] = useState("");
   const [amount, setAmount] = useState("");
   const [agreedTerm, setAgreedTerms] = useState(false);
@@ -10,7 +10,7 @@ const useApplyShare = () => {
 
     if (!isNaN(value) && value >= 10) {
       setKittaAmount(value);
-      setAmount(value * 100);
+      setAmount(value * issuePrice);
     } else {
       setKittaAmount(value);
       setAmount("");

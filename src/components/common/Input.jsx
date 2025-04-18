@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const Input = ({
   name,
@@ -10,6 +11,9 @@ const Input = ({
   icon: Icon,
   className,
 }) => {
+  const { theme } = useContext(ThemeContext);
+
+
   return (
     <div className="relative">
       {Icon && (
@@ -21,7 +25,8 @@ const Input = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className={className}
+        className={`${className} ${theme == 'light'? 'input-light':'input-dark'}`}
+        min={0}
         required
       />
       {/* Error message */}
