@@ -28,6 +28,22 @@ export const stockList = async ({ page }) => {
   }
 };
 
+//sort the stocks
+export const sortStocks = async (column, direction) => {
+  try {
+    const response = await axios.get(`/stocks`, {
+      params: {
+        column,
+        direction,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching sorted stocks:", error);
+    throw error;
+  }
+};
+
 //search query
 export const searchQuery = async (searchText) => {
   try {

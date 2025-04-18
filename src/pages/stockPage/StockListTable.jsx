@@ -3,26 +3,34 @@ import { useLocation } from "react-router-dom";
 import StockListTableHeader from "./StockListTableHeader";
 import Pagination from "./Pagination";
 import useFetchWatchList from "../../hooks/stockshooks/useFetchWatchList";
-import { useQuery } from "@tanstack/react-query";
 import StockListRow from "./StockListRow";
-import { stockList } from "../../api/stocksApiService";
+import useSort from "../../hooks/stockshooks/useSort";
 
 const StockListTable = ({ theme, searchSymbol }) => {
   const location = useLocation();
   const isWatchlist = location.pathname.includes("watch-list");
 
-  // watchlist
+  // Watchlist state
   const { refetch } = useFetchWatchList();
   const [watchListStocks, setWatchListStocks] = useState([]);
 
-  // pagination
+  // Sorting state
+  const [sortBy, setSortBy] = useState("name");
+  const [sortOrder, setSortOrder] = useState("asc");
+
+  // Pagination
   const [pageNumber, setPageNumber] = useState(1);
 
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["stocks", pageNumber],
-    queryFn: () => stockList({ page: pageNumber, limit: 5 }),
-    keepPreviousData: true,
-  });
+  const { data, isLoading, isError } = useSort(sortBy, sortOrder);
+
+  const handleSort = (columnKey) => {
+    if (sortBy === columnKey) {
+      setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+    } else {
+      setSortBy(columnKey);
+      setSortOrder("asc");
+    }
+  };
 
   const handleRemoveStock = (stockID) => {
     setWatchListStocks((prevStocks) =>
@@ -46,7 +54,7 @@ const StockListTable = ({ theme, searchSymbol }) => {
 
   const displayStocks = isWatchlist
     ? watchListStocks.filter((stock) =>
-        stock.symbol.toLowerCase().includes 
+        stock.symbol.toLowerCase().includes(searchSymbol.toLowerCase())
       )
     : data?.data?.filter((stock) =>
         stock.symbol.toLowerCase().includes(searchSymbol.toLowerCase())
@@ -57,7 +65,12 @@ const StockListTable = ({ theme, searchSymbol }) => {
 
   return (
     <section className="details-container">
-      <StockListTableHeader theme={theme} />
+      <StockListTableHeader
+        theme={theme}
+        sortBy={sortBy}
+        sortOrder={sortOrder}
+        onSort={handleSort}
+      />
 
       <div className="overflow-y-auto h-90 flex-1 scrollbar-hidden">
         <div className="space-y-2 mt-2">
