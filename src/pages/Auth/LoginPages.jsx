@@ -9,7 +9,7 @@ import useLogin from "../../hooks/authhooks/useLogin";
 import { useForm } from "react-hook-form";
 import useAuthStore from "../../store/authStore";
 
-const LoginPages = ({ isLoggedIn }) => {
+const LoginPages = () => {
   const [showPassword, setShowPassword] = useState(false);
   const token = useAuthStore((store) => store.token);
   const { mutate, serverErrors, isLoading, setServerErrors } = useLogin();
@@ -18,7 +18,7 @@ const LoginPages = ({ isLoggedIn }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ mode: "onChange" });
 
   const onSubmit = (data) => {
     mutate(data);
@@ -38,41 +38,46 @@ const LoginPages = ({ isLoggedIn }) => {
           placeholder="Enter your email"
           icon={FaEnvelope}
           onChange={() => setServerErrors({})}
+          error={errors.email}
         />
-        {errors.email && (
-          <p className="text-red-600 my-2">*{errors.email.message}</p>
+        {(errors.email || serverErrors?.email) && (
+          <p className="text-red-500 text-sm my-2 animate-fade-in">
+            *{errors.email?.message || serverErrors?.email}
+          </p>
         )}
+
 
         {/* Password Field */}
         <Input
-          {...register("password", { required: "Password is required" })}
+          {...register("password", {
+            required: "Password is required",
+            minLength: {
+              value: 6,
+              message: "Password must be at least 6 characters",
+            },
+          })}
           placeholder="Enter your password"
           type={showPassword ? "text" : "password"}
           icon={FaLock}
           showToggle
           onToggle={() => setShowPassword(!showPassword)}
           onChange={() => setServerErrors({})}
+          error={errors.password}
         />
-        {errors.password && (
-          <p className="text-red-600 my-2">*{errors.password.message}</p>
-        )}
-
-        <Rememberme />
-        {serverErrors.general && (
-          <p className="text-red-600 text-center my-4">
-            *{serverErrors.general}
+        {(errors.password || serverErrors?.password) && (
+          <p className="text-red-500 text-sm my-2 animate-fade-in">
+          *{errors.password?.message || serverErrors?.password}
           </p>
         )}
+
+
+        <Rememberme />
 
         {/* Submit Button */}
         <button
           type="submit"
           className="auth-button cursor-pointer bg-gradient-to-l from-teal-500 to-teal-800 hover:from-teal-600 hover:to-teal-700 transition duration-200 w-full"
-          disabled={
-            isLoading ||
-            Object.keys(errors).length > 0 ||
-            Object.keys(serverErrors).length > 0
-          }
+          disabled={isLoading}
         >
           {isLoading ? <LoadingSpinner /> : "Login"}
         </button>

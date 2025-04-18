@@ -31,11 +31,13 @@ const useLogin = () => {
       }
     },
     onError: (error) => {
-      setServerErrors({});
-      const errorMessage =
-        error?.error || "Login failed. Please try again later.";
-      setServerErrors({ general: errorMessage });
-      toast.error(errorMessage);
+      // console.log(error);
+      if(error.errors){
+        setServerErrors(error.errors);
+        toast.error("Login failed");
+        return;
+      }
+      toast.error(error.error);
     },
   });
 
