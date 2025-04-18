@@ -12,7 +12,7 @@ import { IoMdHelpCircleOutline } from "react-icons/io";
 
 const menuItems = [
   {
-    title: "MARKET",
+    title: "Market Open",
     items: [
       { icon: <FiTrendingUp />, label: "Dashboard", href: "/" },
       { icon: <FiList />, label: "Stocks List", href: "/stocks" },
@@ -40,7 +40,7 @@ const Menu = ({ collapsed, theme }) => {
         {menuItems.map((category) => (
           <div className="mb-6" key={category.title}>
             {!collapsed && (
-              <button className="hidden md:inline px-2 py-1 text-[15px] font-semibold uppercase tracking-wider bg-teal-700 hover:bg-teal-800 text-white rounded-md ml-5">
+              <button className="hidden md:inline px-6 py-2 text-[15px] font-semibold uppercase tracking-wider bg-teal-700 hover:bg-teal-800 text-white rounded-md ml-5">
                 {category.title}
               </button>
             )}

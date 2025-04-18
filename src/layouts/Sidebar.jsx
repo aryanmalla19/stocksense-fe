@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../assets/logo.png";
 import Menu from "./Menu";
+import { Link } from "react-router-dom";
 
 const Sidebar = ({ collapsed, theme }) => {
   return (
@@ -15,7 +16,7 @@ const Sidebar = ({ collapsed, theme }) => {
         <div className="flex items-center mt-3 justify-between">
           <img src={logo} alt="logo" className="w-18 h-12 mr-3" />
           {!collapsed && (
-            <p className="hidden lg:block font-bold mr-5 text-2xl ">Stockify</p>
+            <Link to='/' className="hidden lg:block font-bold mr-5 text-2xl ">Stockify</Link>
           )}
         </div>
       </header>
