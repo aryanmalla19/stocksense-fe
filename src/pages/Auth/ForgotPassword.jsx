@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import useForgotPassword from "../../hooks/authhooks/useForgotPassword";
+import forgot from "../../assets/forgot.png";
+import { FiMail, FiArrowRight } from "react-icons/fi";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -27,37 +29,56 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff] text-center px-4">
-      <img
-        src="https://cdni.iconscout.com/illustration/premium/thumb/forgot-password-illustration-download-in-svg-png-gif-file-formats--lock-pin-security-crime-illustrations-2368063.png"
-        alt="Forgot Password"
-        className="w-120 h-120"
-      />
-      <div className="flex flex-col gap-3 mb-3">
-        <h2 className="font-bold text-3xl text-gray-500">Forgot password?</h2>
-        <p className="font-semibold text-2xl text-gray-500">
-          No worries, we’ll send you reset instructions to your email.
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
+      <div className="text-center py-5">
+        <img
+          src={forgot}
+          alt="Forgot Password"
+          className="w-55 h-55 mx-auto mb-6 animate-float"
+        />
+        <h2 className="text-3xl font-bold text-gray-800 mb-2">
+          Forgot your password?
+        </h2>
+        <p className="text-gray-600">
+          No worries! Enter your email and we'll send you reset instructions.
         </p>
       </div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          id="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-        />
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="relative">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <FiMail className="h-5 w-5 text-gray-400" />
+          </div>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:none"
+          />
+        </div>
 
         <button
           type="submit"
-          className="px-4 py-2 text-white bg-teal-700 rounded hover:bg-teal-600 my-5"
-          disabled={isLoading}
+          className="w-full flex items-center justify-center px-6
+          py-3 rounded-lg text-white bg-teal-700 hover:bg-teal-600 font-medium transition duration-200"
         >
-          {isLoading ? "Loading..." : "Send Reset Link"}
+          Send Reset Link
+          <FiArrowRight className="ml-2" />
         </button>
       </form>
+
+      <p className="text-center text-xl text-gray-500 mt-5">
+        Remember your password?
+        <a
+          href="/login"
+          className="text-indigo-600 hover:text-indigo-800  font-semibold"
+        >
+          Login
+        </a>
+      </p>
     </div>
   );
 };
