@@ -2,7 +2,7 @@ import React from "react";
 import useStocks from "../../hooks/stockshooks/useStocks";
 
 const GainerList = ({ theme }) => {
-  const { data, isLoading, isError } = useStocks("", 1, 5);
+  const { data, isLoading, isError } = useStocks({per_page:5});
   if (isLoading) {
     return (
       <div className="p-3 rounded-md">
