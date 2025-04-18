@@ -4,7 +4,7 @@ import { fetchStockWatchList } from "../../api/stocksApiService";
 const useFetchWatchList = () => {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["watch-list"],
-    queryFn: fetchStockWatchList,
+    queryFn: fetchStockWatchList, 
     onSuccess: (data) => {
       console.log("Successfully fetched all watchlist data", data);
     },
@@ -14,7 +14,7 @@ const useFetchWatchList = () => {
   });
 
   return {
-    watchList: data,
+    data,
     isLoading,
     error,
     refetch,

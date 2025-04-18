@@ -103,7 +103,8 @@ export const postStockWatchList = async (stockID) => {
 export const fetchStockWatchList = async () => {
   try {
     const response = await axiosInstance.get("/users/watchlists");
-    return response.data;
+    console.log(response.data?.data);
+    return response.data?.data;
   } catch (error) {
     console.log(
       "Error fetching stocks watchlist:",
@@ -112,6 +113,7 @@ export const fetchStockWatchList = async () => {
     throw error;
   }
 };
+
 
 //function to delete watchlist
 export const deleteStockWatchList = async (stockID) => {
