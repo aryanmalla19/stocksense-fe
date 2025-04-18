@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import SorTableHeader from "./SortTableHeader";
+import SortTableHeader from "./SortTableHeader";
 
 const StockListTableHeader = ({ sortBy, sortOrder, onSort, theme }) => {
   const location = useLocation();
@@ -20,17 +20,17 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort, theme }) => {
             <th className="col-span-2 text-left">Symbol</th>
 
             <th className="col-span-4 text-left">
-              <SorTableHeader
+              <SortTableHeader
                 label="Company Name"
                 sortBy={sortBy}
                 sortOrder={sortOrder}
                 onSort={onSort}
-                columnKey="name"
+                columnKey="company_name"
               />
             </th>
 
             <th className="col-span-2 text-left">
-              <SorTableHeader
+              <SortTableHeader
                 label="Sector"
                 sortBy={sortBy}
                 sortOrder={sortOrder}
@@ -40,52 +40,52 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort, theme }) => {
             </th>
 
             <th className="col-span-2 text-left">
-              <SorTableHeader
+              <SortTableHeader
                 label="Open Price"
                 sortBy={sortBy}
                 sortOrder={sortOrder}
                 onSort={onSort}
-                columnKey="open"
+                columnKey="open_price"
               />
             </th>
 
             <th className="col-span-2 text-left">
-              <SorTableHeader
+              <SortTableHeader
                 label="Close Price"
                 sortBy={sortBy}
                 sortOrder={sortOrder}
                 onSort={onSort}
-                columnKey="close"
+                columnKey="close_price"
               />
             </th>
 
             <th className="col-span-2 text-left">
-              <SorTableHeader
+              <SortTableHeader
                 label="High Price"
                 sortBy={sortBy}
                 sortOrder={sortOrder}
                 onSort={onSort}
-                columnKey="high"
+                columnKey="high_price"
               />
             </th>
 
             <th className="col-span-2 text-left">
-              <SorTableHeader
+              <SortTableHeader
                 label="Low Price"
                 sortBy={sortBy}
                 sortOrder={sortOrder}
                 onSort={onSort}
-                columnKey="low"
+                columnKey="low_price"
               />
             </th>
 
             <th className="col-span-2 text-left">
-              <SorTableHeader
+              <SortTableHeader
                 label="Current"
                 sortBy={sortBy}
                 sortOrder={sortOrder}
                 onSort={onSort}
-                columnKey="current"
+                columnKey="current_price"
               />
             </th>
 

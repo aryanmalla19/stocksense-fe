@@ -13,12 +13,12 @@ const axiosInstance = axios.create({
 });
 
 // Function to fetch stock data
-export const stockList = async ({ page }) => {
+export const stockList = async ({ page, per_page = 10 }) => {
   try {
     const response = await axiosInstance.get(`/stocks`, {
       params: {
         page: page,
-        per_page: 6,
+        per_page: per_page,
       },
     });
     return response.data;
@@ -28,13 +28,13 @@ export const stockList = async ({ page }) => {
   }
 };
 
-//sort the stocks
-export const sortStocks = async (column, direction) => {
+export const sortStocks = async (params) => {
   try {
-    const response = await axios.get(`/stocks`, {
+    // console.log(params?.queryKey[1]);
+    const response = await axiosInstance.get(`/stocks`, {
       params: {
-        column,
-        direction,
+        column: params?.queryKey[1].column,
+        direction: params?.queryKey[1].direction,
       },
     });
     return response.data;

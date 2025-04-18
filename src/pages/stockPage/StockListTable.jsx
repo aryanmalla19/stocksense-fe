@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import StockListTableHeader from "./StockListTableHeader";
 import Pagination from "./Pagination";
@@ -15,8 +15,8 @@ const StockListTable = ({ theme, searchSymbol }) => {
   const [watchListStocks, setWatchListStocks] = useState([]);
 
   // Sorting state
-  const [sortBy, setSortBy] = useState("name");
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortBy, setSortBy] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
 
   // Pagination
   const [pageNumber, setPageNumber] = useState(1);
@@ -52,13 +52,11 @@ const StockListTable = ({ theme, searchSymbol }) => {
     }
   }, [isWatchlist, refetch]);
 
-  const displayStocks = isWatchlist
-    ? watchListStocks.filter((stock) =>
-        stock.symbol.toLowerCase().includes(searchSymbol.toLowerCase())
-      )
-    : data?.data?.filter((stock) =>
-        stock.symbol.toLowerCase().includes(searchSymbol.toLowerCase())
-      ) ?? [];
+  const displayStocks = useMemo(() => {
+    return (isWatchlist ? watchListStocks : data?.data ?? []).filter((stock) =>
+      stock.symbol.toLowerCase().includes(searchSymbol.toLowerCase())
+    );
+  }, [isWatchlist, watchListStocks, data?.data, searchSymbol]);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error fetching stocks.</div>;
