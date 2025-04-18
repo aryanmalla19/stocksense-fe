@@ -106,3 +106,11 @@ body {
 .paragraph {
     @apply text-lg font-semibold mb-4
 }
+
+.input-light{
+    background-color: white;
+}
+
+.input-dark{
+    background-color: rgb(156, 156, 156);
+}

@@ -159,3 +159,13 @@ export const disableTwoFactor = async () => {
     throw error ?? new Error("Failed to disable the two factor");
   }
 };
+
+export const IpoDetails = async () => {
+  try {
+    const response = await axiosInstance.get("/ipo-details");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching stocks:", error.response?.data || error);
+    throw error ?? new Error("Failed to disable the two factor");
+  }
+};
