@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { MdOutlineDashboard } from "react-icons/md";
 import {
-  FiTrendingUp,
   FiList,
   FiStar,
   FiPieChart,
@@ -11,7 +11,7 @@ import {
 import { IoMdHelpCircleOutline } from "react-icons/io";
 
 const menuItems = [
-  { icon: <FiTrendingUp />, label: "Dashboard", href: "/" },
+  { icon: <MdOutlineDashboard />, label: "Dashboard", href: "/" },
   { icon: <FiList />, label: "Stocks List", href: "/stocks" },
   { icon: <FiShoppingCart />, label: "Trade Stocks", href: "/buysell" },
   { icon: <FiStar />, label: "Watchlist", href: "/watch-list" },

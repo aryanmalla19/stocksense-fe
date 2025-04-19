@@ -42,7 +42,7 @@ const GainerList = ({ theme }) => {
       </div>
 
       <div>
-        {data?.data.map((stock) => (
+        {data?.data.slice(0, 5).map((stock) => (
           <div className="flex items-center gap-3 p-2" key={stock.id}>
             <div className="w-9 h-9 flex items-center justify-center rounded-full text-lg font-bold bg-blue-400 text-white">
               {stock.company_name?.charAt(0)}

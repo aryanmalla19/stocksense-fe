@@ -16,6 +16,18 @@ axiosInstance.interceptors.request.use((config) => {
 
 export default axiosInstance;
 
+//function to fetch user details
+export const Users = async () => {
+  try {
+    const response = await axiosInstance.get("/users/portfolios");
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching user data :", error.response?.data || error);
+    throw error ?? new Error("Failed to fetch the user data");
+  }
+};
+
 // Function to fetch stock data
 export const stockList = async ({ page, per_page = 10 }) => {
   try {
