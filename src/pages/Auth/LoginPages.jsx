@@ -9,9 +9,10 @@ import useLogin from "../../hooks/authhooks/useLogin";
 import { useForm } from "react-hook-form";
 import useAuthStore from "../../store/authStore";
 
-const LoginPages = ({ isLoggedIn }) => {
+const LoginPages = () => {
   const [showPassword, setShowPassword] = useState(false);
   const token = useAuthStore((store) => store.token);
+
   const { mutate, serverErrors, isLoading, setServerErrors } = useLogin();
 
   const {
@@ -21,6 +22,7 @@ const LoginPages = ({ isLoggedIn }) => {
   } = useForm();
 
   const onSubmit = (data) => {
+    // console.log(data);
     mutate(data);
   };
 
@@ -37,6 +39,7 @@ const LoginPages = ({ isLoggedIn }) => {
           type="text"
           placeholder="Enter your email"
           icon={FaEnvelope}
+          autoComplete="email"
           onChange={() => setServerErrors({})}
         />
         {errors.email && (
@@ -49,6 +52,7 @@ const LoginPages = ({ isLoggedIn }) => {
           placeholder="Enter your password"
           type={showPassword ? "text" : "password"}
           icon={FaLock}
+          autoComplete="current-password"
           showToggle
           onToggle={() => setShowPassword(!showPassword)}
           onChange={() => setServerErrors({})}
@@ -68,11 +72,6 @@ const LoginPages = ({ isLoggedIn }) => {
         <button
           type="submit"
           className="auth-button cursor-pointer bg-gradient-to-l from-teal-500 to-teal-800 hover:from-teal-600 hover:to-teal-700 transition duration-200 w-full"
-          disabled={
-            isLoading ||
-            Object.keys(errors).length > 0 ||
-            Object.keys(serverErrors).length > 0
-          }
         >
           {isLoading ? <LoadingSpinner /> : "Login"}
         </button>

@@ -1,16 +1,32 @@
 import axios from "axios";
 
-const authState = JSON.parse(localStorage.getItem("auth-storage"));
-const token = authState?.state?.token;
-console.log(token);
-
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   withCredentials: true,
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
 });
+
+axiosInstance.interceptors.request.use((config) => {
+  const authState = JSON.parse(localStorage.getItem("auth-storage"));
+  const token = authState?.state?.token;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+export default axiosInstance;
+
+//function to fetch user details
+export const Users = async () => {
+  try {
+    const response = await axiosInstance.get("/users/portfolios");
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching user data :", error.response?.data || error);
+    throw error ?? new Error("Failed to fetch the user data");
+  }
+};
 
 // Function to fetch stock data
 export const stockList = async ({ page, per_page = 10 }) => {
@@ -88,7 +104,6 @@ export const postStockWatchList = async (stockID) => {
     const response = await axiosInstance.post("/users/watchlists", {
       stock_id: Number(stockID),
     });
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error(

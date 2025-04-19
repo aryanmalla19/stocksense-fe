@@ -13,7 +13,7 @@ const Page404 = () => {
         The page you're looking for doesn’t exist or has been moved.
       </p>
       <Link
-        to="/"
+        to="/login"
         className="px-6 py-3 bg-teal-700 text-white rounded-lg font-semibold hover:bg-teal-600 transition duration-300"
       >
         Go to Homepage

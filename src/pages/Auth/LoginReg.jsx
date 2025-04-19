@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import LoginPages from "./LoginPages";
 import RegisterPages from "./RegisterPages";
 import Welcome from "./Welcome";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const LoginReg = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const toggleAuthMode = () => setIsLoggedIn(!isLoggedIn);
+  const isLogin = location.pathname === "/login";
+
+  const toggleAuthMode = () => {
+    navigate(isLogin ? "/register" : "/login");
+  };
 
   return (
     <div>
@@ -14,27 +20,23 @@ const LoginReg = () => {
         <div className="relative w-full max-w-[1100px] md:h-[1000px] xl:h-[610px] bg-white rounded-xl shadow-xl flex flex-col md:flex-row overflow-x-hidden">
           <div
             className={`bg-teal-800 text-white p-10 w-full flex flex-col justify-center items-center rounded-b-[100px] transition-all duration-500 ${
-              isLoggedIn
+              isLogin
                 ? "md:w-2/3 md:rounded-r-[150px] md:rounded-l-none"
                 : "md:w-1/2 md:rounded-l-[150px] md:rounded-r-none"
-            } ${isLoggedIn ? "" : "translate-x-full"}`}
+            } ${isLogin ? "" : "translate-x-full"}`}
           >
-            <Welcome isLoggedIn={isLoggedIn} toggleAuthMode={toggleAuthMode} />
+            <Welcome isLogin={isLogin} toggleAuthMode={toggleAuthMode} />
           </div>
 
           <div
             className={`w-full md:w-1/2 flex flex-col justify-center items-center p-8 bg-white transition-all duration-500 ${
-              isLoggedIn ? "" : "-translate-x-full"
+              isLogin ? "" : "-translate-x-full"
             }`}
           >
             <h2 className="text-4xl font-bold mb-6 text-gray-700">
-              {isLoggedIn ? "Login" : "Register"}
+              {isLogin ? "Login" : "Register"}
             </h2>
-            {isLoggedIn ? (
-              <LoginPages isLoggedIn={isLoggedIn} />
-            ) : (
-              <RegisterPages isLoggedIn={isLoggedIn} />
-            )}
+            {isLogin ? <LoginPages /> : <RegisterPages />}
           </div>
         </div>
       </div>
