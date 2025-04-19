@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteStockWatchList } from "../../api/stocksApiService";
+import { deleteStockWatchList } from "../../api/watchlistapi";
 
 const useDeleteWatchList = () => {
   const queryClient = useQueryClient();
