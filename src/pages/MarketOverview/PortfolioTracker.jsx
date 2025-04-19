@@ -96,7 +96,7 @@ const PortfolioTracker = () => {
       <SliderCarousel direction="left" />
       <Slider {...settings} className="max-w-[1210px] p-4">
         {stocksData.map((stock, index) => (
-          <React.Fragment key={index}>
+          <div key={index}>
             <div className="px-2 flex gap-8">
               <div
                 className={`w-[300px] h-[174px] rounded-[12px] p-4 space-y-5 ${
@@ -129,7 +129,7 @@ const PortfolioTracker = () => {
 
             {/* Spacer div after every 2 items */}
             {(index + 1) % 2 === 0 && <div className="w-4" />}
-          </React.Fragment>
+          </div>
         ))}
       </Slider>
     </div>
