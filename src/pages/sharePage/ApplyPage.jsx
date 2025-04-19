@@ -4,6 +4,8 @@ import Input from "../../components/common/Input";
 import useApplyShare from "../../hooks/useApplyShare";
 import useFetchIpoDetail from "../../hooks/stockshooks/useFetchIpoDetail";
 import { useParams } from "react-router-dom";
+import useApplyIpo from "../../hooks/ipohooks/useApplyIpo";
+import toast from "react-hot-toast";
 
 // Reusable Input Field
 const InputField = ({ label, placeholder, value, onChange, readOnly = false }) => (
@@ -24,7 +26,7 @@ const ApplyPage = () => {
   const { theme } = useContext(ThemeContext);
   const isDark = theme === "dark";
   const { id } = useParams();
-  const { data, isLoading, error } = useFetchIpoDetail(id);
+  const { data, isLoading } = useFetchIpoDetail(id);
 
   const ipo = data?.data;
   const stock = ipo?.stock;
@@ -36,15 +38,26 @@ const ApplyPage = () => {
     handleChange,
     handleTermsChange,
   } = useApplyShare(ipo?.issue_price);
+  
+  const { mutate: submitIpoApplication, isPending, isSuccess, isError, error } = useApplyIpo();
 
-  useEffect(() => {
-    if (ipo) {
-      console.log("IPO detail:", ipo);
-    }
-  }, [ipo]);
+  const handleSubmit = () => {
+    submitIpoApplication(
+      { ipoId: ipo.id, appliedShares: kittaAmount },
+      {
+        onSuccess: (data) => {
+          console.log("Application submitted", data);
+          toast.success("Application submitted");
+        },
+        onError: (err) => {
+          console.error("Failed to apply", err);
+          toast.error(err?.response.data.message);
+        },
+      }
+    );
+  };
 
   if (isLoading) return <p className="text-gray-500 p-4">Loading IPO details...</p>;
-  if (error) return <p className="text-red-600 p-4">Failed to load IPO data.</p>;
 
   return (
     <div className={`p-6 rounded-lg min-h-screen ${isDark ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-800"}`}>
@@ -97,6 +110,7 @@ const ApplyPage = () => {
           </div>
 
           <button
+            onClick={handleSubmit}
             disabled={!agreedTerm}
             className={`mt-4 cursor-pointer px-6 py-2 rounded-md font-medium text-white transition ${
               agreedTerm
@@ -104,7 +118,7 @@ const ApplyPage = () => {
                 : "bg-teal-700 opacity-50 cursor-not-allowed"
             }`}
           >
-            Submit Application
+            {isPending ? "Submitting..." : isSuccess ? "Applied!" : "Submit Application"}
           </button>
         </div>
       </div>

@@ -91,7 +91,6 @@ export const postStockWatchList = async (stockID) => {
     const response = await axiosInstance.post("/users/watchlists", {
       stock_id: Number(stockID),
     });
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error(
@@ -183,5 +182,18 @@ export const UserSetting = async () => {
   } catch (error){
     console.error("Error fetching User Settings details:", error.response?.data || error);
     throw error ?? new Error("Failed to fetch User Settings details");
+  }
+}
+
+export const applyIpo = async ({ipoId, appliedShares}) => {
+  try{
+    const response = await axiosInstance.post('/ipo-applications', {
+      ipo_id: ipoId,
+      applied_shares: appliedShares,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error Applying Ipo Applications:", error.response?.data || error);
+    throw error ?? new Error("Failed to post ipo applications");
   }
 }
