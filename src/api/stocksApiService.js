@@ -174,3 +174,14 @@ export const IpoDetails = async (id = null) => {
     throw error ?? new Error("Failed to fetch IPO details");
   }
 };
+
+
+export const UserSetting = async () => {
+  try{
+    const response = await axiosInstance.get('/users/settings');
+    return response?.data.data;
+  } catch (error){
+    console.error("Error fetching User Settings details:", error.response?.data || error);
+    throw error ?? new Error("Failed to fetch User Settings details");
+  }
+}

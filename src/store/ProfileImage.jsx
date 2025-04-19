@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import useAuth from "../hooks/authhooks/useAuth";
 import { toast } from "react-hot-toast";
 
-const ProfileImage = ({ theme }) => {
+const ProfileImage = ({ name, email, theme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { logout } = useAuth();
 
@@ -44,8 +44,8 @@ const ProfileImage = ({ theme }) => {
             } border mt-2 right-0 flex flex-col`}
           >
             <div className="border-b p-2 ">
-              <h1 className="font-semibold">John Doe</h1>
-              <p className="text-sm">john@example.com</p>
+              <h1 className="font-semibold">{name}</h1>
+              <p className="text-sm">{email}</p>
             </div>
             <div className="flex p-2 flex-col">
               <Link to="/profile">

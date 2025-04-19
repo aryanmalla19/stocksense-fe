@@ -4,10 +4,12 @@ import { IoIosNotifications, IoIosSettings } from "react-icons/io";
 import { ThemeContext } from "../context/ThemeContext";
 import ProfileImage from "../store/ProfileImage";
 import { GiHamburgerMenu } from "react-icons/gi";
+import useFetchUserData from "../hooks/authhooks/useFetchUserData";
 
 const Navbar = ({ theme, collapsed, setCollapsed }) => {
   const { toggleTheme } = useContext(ThemeContext);
-
+  const {data, refetch, isLoading, error} = useFetchUserData();
+  console.log(data);
   return (
     <div className="px-6 py-7 flex items-center justify-between">
       <div className="flex items-center gap-4">
@@ -20,7 +22,7 @@ const Navbar = ({ theme, collapsed, setCollapsed }) => {
         <h2 className="font-semibold md:text-lg">
           Welcome to
           <span className="text-[var(--dark-text-accent)] pl-2">
-            Stockify, Neetu Rai
+            Stockify, {data?.name}
           </span>
         </h2>
       </div>
@@ -45,7 +47,7 @@ const Navbar = ({ theme, collapsed, setCollapsed }) => {
           )}
         </div>
 
-        <ProfileImage theme={theme} />
+        <ProfileImage name={data?.name} email={data?.email} theme={theme} />
       </div>
     </div>
   );
