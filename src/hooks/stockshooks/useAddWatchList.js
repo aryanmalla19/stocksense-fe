@@ -3,12 +3,14 @@ import {
   postStockWatchList,
   deleteStockWatchList,
 } from "../../api/stocksApiService";
+import toast from "react-hot-toast";
 
 const useAddWatchList = () => {
   const addMutation = useMutation({
     mutationFn: postStockWatchList,
     onSuccess: (data) => {
       console.log("Stock added to watchlist:", data);
+      toast.success("Added to WatchList")
     },
     onError: (error) => {
       console.error("Error adding to watchlist:", error);
@@ -19,6 +21,7 @@ const useAddWatchList = () => {
     mutationFn: deleteStockWatchList,
     onSuccess: (data) => {
       console.log("Stock removed from watchlist:", data);
+      toast.success("Removed from WatchList")
     },
     onError: (error) => {
       console.error("Error removing from watchlist:", error);
