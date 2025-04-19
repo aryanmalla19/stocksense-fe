@@ -92,7 +92,6 @@ export const postStockWatchList = async (stockID) => {
     const response = await axiosInstance.post("/users/watchlists", {
       stock_id: Number(stockID),
     });
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error(
