@@ -3,12 +3,11 @@ import { ThemeContext } from "../../context/ThemeContext";
 import Slider from "react-slick";
 import SliderCarousel from "../../components/stocks/SliderCarousel";
 import useFetchWatchList from "../../hooks/stockshooks/useFetchWatchList"; // adjust the path accordingly
-import LoadingSpinner from "../../components/common/LoadingSpinner";
 
 const PortfolioTracker = () => {
   const { theme } = useContext(ThemeContext);
   const { data: stocksData, isLoading, error } = useFetchWatchList();
-  console.log(stocksData);
+
   const settings = {
     dots: false,
     infinite: true,

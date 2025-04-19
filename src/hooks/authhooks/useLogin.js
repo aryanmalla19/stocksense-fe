@@ -27,6 +27,7 @@ const useLogin = () => {
       if (accessToken && refreshToken) {
         login(accessToken, refreshToken);
         toast.success("Login successful");
+
         navigate("/");
       } else {
         toast.error("Access token not found in response.");

@@ -32,7 +32,6 @@ const StockListTable = ({ theme, searchSymbol }) => {
     }
   };
 
-  console.log(data);
 
   const handleRemoveStock = (stockID) => {
     setWatchListStocks((prevStocks) =>
@@ -43,7 +42,7 @@ const StockListTable = ({ theme, searchSymbol }) => {
   useEffect(() => {
     if (isWatchlist) {
       refetch().then((res) => {
-        const watchListArray = res.data?.data;
+        const watchListArray = res?.data;
         if (Array.isArray(watchListArray)) {
           const stocks = watchListArray.map((item) => item.stock);
           setWatchListStocks(stocks);

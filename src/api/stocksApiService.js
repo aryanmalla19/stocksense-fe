@@ -1,15 +1,18 @@
 import axios from "axios";
 
-const authState = JSON.parse(localStorage.getItem("auth-storage"));
-const token = authState?.state?.token.accessToken;
-console.log(token);
-
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
-  withCredentials: true,
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
+});
+
+axiosInstance.interceptors.request.use((config) => {
+  const authState = JSON.parse(localStorage.getItem("auth-storage"));
+  const token = authState?.state?.accessToken;
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
 });
 
 // Function to fetch stock data
@@ -103,7 +106,6 @@ export const postStockWatchList = async (stockID) => {
 export const fetchStockWatchList = async () => {
   try {
     const response = await axiosInstance.get("/users/watchlists");
-    console.log(response.data?.data);
     return response.data?.data;
   } catch (error) {
     console.log(
