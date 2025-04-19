@@ -5,62 +5,61 @@ import Calendar from "../../components/stocks/Calender";
 import NorecordsFound from "../../components/common/NorecordsFound";
 import useFetchIpoDetail from "../../hooks/stockshooks/useFetchIpoDetail";
 
-
 const MyASBAPage = () => {
   const { theme } = useContext(ThemeContext);
   const [items, setItems] = useState([]);
-  const {data, refetch, isLoading, error } = useFetchIpoDetail();
+  const { data, refetch, isLoading, error } = useFetchIpoDetail();
+
   useEffect(() => {
     if (data?.data) {
       setItems(data.data);
-      console.log(data.data);
     }
   }, [data]);
 
-  return (
+  const isDark = theme === "dark";
 
-    <div>
-      <div className="flex justify-between">
-        <h2 className="mb-4 font-bold text-2xl">ISSUED Initial Public Offering LIST - IPO</h2>
+  const containerClasses = `p-4 rounded-lg shadow-md transition-all flex items-center justify-between ${
+    isDark ? "bg-gray-800 text-white" : "bg-white text-gray-900"
+  }`;
+
+  return (
+    <div className="p-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <h2 className="text-2xl font-semibold">Issued IPO List</h2>
         <Calendar />
       </div>
 
       {items.length === 0 ? (
-        <NorecordsFound />
+        <div className="mt-8">
+          <NorecordsFound />
+        </div>
       ) : (
-        <div className="flex flex-col gap-4 my-4">
-          <div
-              key={data.id}
-              className={`p-3 rounded-lg font-bold transition-all shadow flex items-center justify-between ${
-                theme === "dark" ? "details-bg-dark" : "bg-white text-black px-4 py-2 rounded;"
-              }`}
-            >
-              <h2>Company Name</h2>
-              <h2>Open Date</h2>
-              <h2>Close Date</h2>
-              <h2>Listing Date</h2>
-              <h2>issue Price</h2>
-              <h2>Total Shares</h2>
-              <h2></h2>
-            </div>
-          {items?.map((data) => (
-            <div
-              key={data.id}
-              className={`p-3 rounded-lg transition-all shadow flex items-center justify-between ${
-                theme === "dark" ? "details-bg-dark" : "bg-white text-black px-4 py-2 rounded;"
-              }`}
-            >
-              <h2>{data.company_name}</h2>
-              <h2>{data.open_date}</h2>
-              <h2>{data.close_date}</h2>
-              <h2>{data.listing_date}</h2>
-              <h2>{data.issue_price}</h2>
-              <h2>{data.total_shares}</h2>
-              <Link to={`/apply/${data.id}`}>
-                <button className={`px-5 py-2 rounded-md bg-teal-700 text-white cursor-pointer`}>
-                  Apply
-                </button>
-              </Link>
+        <div className="mt-6 flex flex-col gap-4">
+          {/* Header Row */}
+          <div className={`${containerClasses} font-bold bg-teal-600 text-white`}>
+            <div className="w-1/5">Company</div>
+            <div className="w-1/5 text-center">Open Date</div>
+            <div className="w-1/5 text-center">Close Date</div>
+            <div className="w-1/5 text-center">Listing Date</div>
+            <div className="w-1/5 text-center">Issue Price</div>
+            <div className="w-fit"></div>
+          </div>
+
+          {/* Data Rows */}
+          {items.map((ipo) => (
+            <div key={ipo.id} className={containerClasses}>
+              <div className="w-1/5">{ipo.company_name}</div>
+              <div className="w-1/5 text-center">{ipo.open_date}</div>
+              <div className="w-1/5 text-center">{ipo.close_date}</div>
+              <div className="w-1/5 text-center">{ipo.listing_date}</div>
+              <div className="w-1/5 text-center">Rs. {ipo.issue_price}</div>
+              <div className="w-fit">
+                <Link to={`/apply/${ipo.id}`}>
+                  <button className="px-4 cursor-pointer py-2 rounded-md bg-teal-600 hover:bg-teal-700 text-white transition">
+                    Apply
+                  </button>
+                </Link>
+              </div>
             </div>
           ))}
         </div>
