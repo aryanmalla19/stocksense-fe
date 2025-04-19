@@ -1,16 +1,20 @@
 import axios from "axios";
 
-const authState = JSON.parse(localStorage.getItem("auth-storage"));
-const token = authState?.state?.token;
-console.log(token);
-
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   withCredentials: true,
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
 });
+
+axiosInstance.interceptors.request.use((config) => {
+  const authState = JSON.parse(localStorage.getItem("auth-storage"));
+  const token = authState?.state?.token;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+export default axiosInstance;
 
 // Function to fetch stock data
 export const stockList = async ({ page, per_page = 10 }) => {
