@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchStockWatchList } from "../../api/stocksApiService";
+import { fetchStockWatchList } from "../../api/watchlistapi";
 
 const useFetchWatchList = () => {
   const { data, isLoading, error, refetch } = useQuery({

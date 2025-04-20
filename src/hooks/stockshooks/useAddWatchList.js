@@ -1,8 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import {
-  postStockWatchList,
   deleteStockWatchList,
-} from "../../api/stocksApiService";
+  postStockWatchList,
+} from "../../api/watchlistapi";
+from "../../api/stocksApiService";
 import toast from "react-hot-toast";
 
 const useAddWatchList = () => {

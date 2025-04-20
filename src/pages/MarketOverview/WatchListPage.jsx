@@ -7,7 +7,6 @@ import {
   AreaChart,
   Tooltip,
 } from "recharts";
-import ChartFilter from "../../components/stocks/ChartFilter";
 import { ThemeContext } from "../../context/ThemeContext";
 import chartconfig from "../../api/chartconfig";
 
@@ -52,6 +51,7 @@ const WatchListPage = ({ prices }) => {
         ) : (
           <ResponsiveContainer key={filter} width="100%" height="100%">
             <AreaChart data={formattedData}>
+
               <defs>
                 <linearGradient id="chartColor" x1="0" y1="0" x2="0" y2="1">
                   {theme === "dark" ? (
@@ -73,7 +73,7 @@ const WatchListPage = ({ prices }) => {
                   theme === "dark" ? { backgroundColor: "#111827" } : null
                 }
                 itemStyle={theme === "dark" ? { color: "#818cf8" } : null}
-                formatter={(value) => [`$${value}`, "Price"]}
+                formatter={(value) => [`Rs ${value}`, "Price"]}
                 labelFormatter={(label) =>
                   `Date: ${new Date(label).toLocaleString()}`
                 }
@@ -87,23 +87,19 @@ const WatchListPage = ({ prices }) => {
                 fillOpacity={1}
                 strokeWidth={0}
               />
+
               <XAxis
                 dataKey="date"
                 tick={{
                   fontSize: 12,
                   fill: theme === "dark" ? "#ffffff" : "#4d4d4d",
                 }}
-                tickFormatter={(date) => {
-                  const dateObj = new Date(date);
-                  return filter === "1D"
-                    ? dateObj.toLocaleTimeString()
-                    : dateObj.toLocaleDateString();
-                }}
               />
+
               <YAxis
                 domain={["auto", "auto"]}
                 tickCount={6}
-                tickFormatter={(value) => `$${value.toFixed(2)}`}
+                tickFormatter={(value) => `Rs ${value}`}
                 tick={{
                   fontSize: 12,
                   fill: theme === "dark" ? "#ffffff" : "#4d4d4d",

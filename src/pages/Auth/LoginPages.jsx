@@ -19,6 +19,7 @@ const LoginPages = () => {
   } = useForm({ mode: "onChange" });
 
   const onSubmit = (data) => {
+    // console.log(data);
     mutate(data);
   };
 
@@ -36,6 +37,7 @@ const LoginPages = () => {
           type="text"
           placeholder="Enter your email"
           icon={FaEnvelope}
+          autoComplete="email"
           onChange={() => setServerErrors({})}
           error={errors.email}
         />
@@ -57,6 +59,7 @@ const LoginPages = () => {
           placeholder="Enter your password"
           type={showPassword ? "text" : "password"}
           icon={FaLock}
+          autoComplete="current-password"
           showToggle
           onToggle={() => setShowPassword(!showPassword)}
           onChange={() => setServerErrors({})}

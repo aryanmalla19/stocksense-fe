@@ -24,8 +24,8 @@ const useVerifyOtp = () => {
         toast.error("Access token not found in response.");
       }
     },
-    onError: (error) => {
-      console.error("OTP verification failed:", error);
+    onError: () => {
+      toast.error("OTP verification failed");
     },
   });
   return { otpVerifymutation: mutation, isLoading: mutation.isLoading };

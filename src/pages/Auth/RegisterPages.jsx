@@ -61,6 +61,7 @@ const RegisterPages = () => {
           type="email"
           placeholder="Enter your email"
           icon={FaEnvelope}
+          autoComplete="email"
           onChange={() => setServerErrors({})}
         />
         {(errors.email || serverErrors?.email) && (
@@ -80,6 +81,7 @@ const RegisterPages = () => {
           placeholder="Enter your password"
           type={showPassword ? "text" : "password"}
           icon={FaLock}
+          autoComplete="password"
           showToggle
           onToggle={() => setShowPassword(!showPassword)}
           onChange={() => setServerErrors({})}
@@ -101,6 +103,7 @@ const RegisterPages = () => {
           placeholder="Confirm Password"
           type={showPassword ? "text" : "password"}
           icon={FaLock}
+          autoComplete="confirmpassword"
           showToggle
           onToggle={() => setShowPassword(!showPassword)}
           onChange={() => setServerErrors({})}

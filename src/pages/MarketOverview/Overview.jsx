@@ -13,7 +13,7 @@ const Overview = () => {
     <div className="outlet-container space-y-4">
       <PortfolioTracker />
 
-      <div className="flex gap-4">
+      <div className="flex gap-4 h-95">
         <div className="w-2/3">
           <WatchListPage prices={data?.data.prices} />
         </div>

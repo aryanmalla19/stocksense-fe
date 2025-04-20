@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "./axiosInstance";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -15,20 +15,11 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
-// Function to fetch stock data
 export const stockList = async ({ page, per_page = 10 }) => {
-  try {
-    const response = await axiosInstance.get(`/stocks`, {
-      params: {
-        page: page,
-        per_page: per_page,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching stocks:", error.response?.data || error);
-    throw error ?? new Error("Failed to fetch the Stock list");
-  }
+  const response = await axiosInstance.get("/stocks", {
+    params: { page, per_page },
+  });
+  return response.data;
 };
 
 export const sortStocks = async ( sortBy, sortOrder, page ) => {
@@ -47,31 +38,13 @@ export const sortStocks = async ( sortBy, sortOrder, page ) => {
   }
 };
 
-//search query
 export const searchQuery = async (searchText) => {
-  try {
-    const response = await axiosInstance.get(`/stocks?symbol=${searchText}`, {
-      params: { searchText },
-    });
-    return response.data;
-  } catch (error) {
-    console.log("Error fetching stocks:", error.response?.data || error);
-    throw error ?? new Error("Failed to search the stock list");
-  }
+  const response = await axiosInstance.get(`/stocks`, {
+    params: { symbol: searchText },
+  });
+  return response.data;
 };
 
-//function to change password
-export const changePassword = async (data) => {
-  try {
-    const response = await axiosInstance.post("/auth/change-password", data);
-    return response.data;
-  } catch (error) {
-    console.error("Validation Errors:", error.response.data);
-    throw error.response.data ?? new Error("Password change failed");
-  }
-};
-
-//function to fetch Stockby Id
 export const fetchStockBYId = async (StocksID) => {
   try {
     const response = await axiosInstance.get(`/stocks/${StocksID}`);
@@ -163,15 +136,9 @@ export const disableTwoFactor = async () => {
   }
 };
 
-export const IpoDetails = async (id = null) => {
-  try {
-    const endpoint = id ? `/ipo-details/${id}` : "/ipo-details";
-    const response = await axiosInstance.get(endpoint);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching IPO details:", error.response?.data || error);
-    throw error ?? new Error("Failed to fetch IPO details");
-  }
+export const history = async (id) => {
+  const response = await axiosInstance.get(`/stocks/${id}/history`);
+  return response.data;
 };
 
 

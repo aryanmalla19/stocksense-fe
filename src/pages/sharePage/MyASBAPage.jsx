@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import { Link } from "react-router-dom";
 import Calendar from "../../components/stocks/Calender";
-import NorecordsFound from "../../components/common/NorecordsFound";
 import useFetchIpoDetail from "../../hooks/stockshooks/useFetchIpoDetail";
 
 const MyASBAPage = () => {

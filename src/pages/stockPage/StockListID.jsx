@@ -5,12 +5,14 @@ import { ThemeContext } from "../../context/ThemeContext";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { BadgeCheck, EyeOff } from "lucide-react";
 
+
 const StockListID = () => {
   const { id } = useParams();
   const { data, isLoading, error } = useFetchStocksID(id);
   const { theme } = useContext(ThemeContext);
 
   if (isLoading) return <div className="p-4 text-center">Loading...</div>;
+
   if (error) return <div>Error fetching stock data: {error.message}</div>;
 
   const { data: stock } = data;

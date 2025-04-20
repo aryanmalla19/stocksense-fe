@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { MdOutlineDashboard } from "react-icons/md";
 import {
-  FiTrendingUp,
   FiList,
   FiStar,
   FiPieChart,
@@ -30,6 +30,9 @@ const menuItems = [
 ];
 
 const Menu = ({ collapsed, theme }) => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <div
       className={`flex flex-col justify-between h-screen text-lg ${
@@ -67,7 +70,7 @@ const Menu = ({ collapsed, theme }) => {
             className={`border ${
               theme === "dark" ? "border-[#616161]" : "border-[#EEEEEE]"
             }`}
-          ></hr>
+          />
           <span className="flex justify-center items-center gap-2 my-2">
             <IoMdHelpCircleOutline />
             <p className="text-[15px] font-semibold">Help</p>

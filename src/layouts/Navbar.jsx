@@ -1,14 +1,18 @@
 import React, { useContext } from "react";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
-import { IoIosNotifications, IoIosSettings } from "react-icons/io";
 import { ThemeContext } from "../context/ThemeContext";
 import ProfileImage from "../store/ProfileImage";
 import { GiHamburgerMenu } from "react-icons/gi";
 import useFetchUserData from "../hooks/authhooks/useFetchUserData";
+import NotificationPage from "../pages/Navbar/NotificationPage";
+import useUserDetails from "../hooks/authhooks/useUserDetails";
 
 const Navbar = ({ theme, collapsed, setCollapsed }) => {
-  const { toggleTheme } = useContext(ThemeContext);
   const {data, refetch, isLoading, error} = useFetchUserData();
+  const { toggleTheme } = useContext(ThemeContext);
+  const { userDetails } = useUserDetails();
+  const detail = userDetails?.data?.[0]?.user;
+
   return (
     <div className="px-6 py-7 flex items-center justify-between">
       <div className="flex items-center gap-4">
@@ -25,15 +29,9 @@ const Navbar = ({ theme, collapsed, setCollapsed }) => {
           </span>
         </h2>
       </div>
-      {/* Navbar Icons */}
       <div className="flex items-center space-x-6">
         {/* Notification Icon */}
-        <div className="relative cursor-pointer hover:scale-110 transition-transform">
-          <IoIosNotifications className="w-6 h-6" />
-          <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-4 h-4 flex justify-center items-center rounded-full">
-            1
-          </div>
-        </div>
+        <NotificationPage />
 
         <div
           className="w-6 h-6 flex items-center justify-center rounded-full cursor-pointer transition-all hover:scale-110"
@@ -47,6 +45,7 @@ const Navbar = ({ theme, collapsed, setCollapsed }) => {
         </div>
 
         <ProfileImage name={data?.name} email={data?.email} theme={theme} />
+
       </div>
     </div>
   );
