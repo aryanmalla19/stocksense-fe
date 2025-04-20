@@ -29,7 +29,7 @@ export const fetchStockBYId = async (StocksID) => {
   return response.data;
 };
 
-export const history = async () => {
-  const response = await axiosInstance.get(`/stocks/8/history`);
+export const history = async (id) => {
+  const response = await axiosInstance.get(`/stocks/${id}/history`);
   return response.data;
 };

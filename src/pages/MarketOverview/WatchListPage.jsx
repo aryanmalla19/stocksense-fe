@@ -8,31 +8,29 @@ import {
   Tooltip,
 } from "recharts";
 import { ThemeContext } from "../../context/ThemeContext";
+import Filter from "./Filter";
 
 const WatchListPage = ({ Stockhistory }) => {
   const { theme } = useContext(ThemeContext);
-
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedPriceType, setSelectedPriceType] = useState("open_price");
 
-  // Process Stockhistory data to use formattedDate and current_price
   useEffect(() => {
-    if (Stockhistory.length > 0) {
-      const chartData = Stockhistory.map((item) => ({
-        date: new Date(item.date).toLocaleString(),
-        value: parseFloat(item.current_price),
+    if (Stockhistory && Stockhistory.length > 0) {
+      const formattedData = Stockhistory.map((item) => ({
+        date: item.date?.split("T")[0] || "",
+        value: parseFloat(item[selectedPriceType]),
       }));
-
-      setData(chartData);
-      setLoading(false);
-    } else {
+      setData(formattedData);
       setLoading(false);
     }
-  }, [Stockhistory]); // Run effect whenever Stockhistory changes
+  }, [Stockhistory, selectedPriceType]);
 
   return (
-    <div className="h-[410px] rounded-lg p-4 relative">
-      <div className="pt-12 h-full">
+    <div className="h-[510px] rounded-lg p-4 relative">
+      <Filter theme={theme} onSelect={(type) => setSelectedPriceType(type)} />
+      <div className="h-full">
         {loading ? (
           <div className="flex items-center justify-center h-full">
             <p>Loading chart data...</p>
@@ -69,7 +67,7 @@ const WatchListPage = ({ Stockhistory }) => {
                   theme === "dark" ? { backgroundColor: "#111827" } : null
                 }
                 itemStyle={theme === "dark" ? { color: "#818cf8" } : null}
-                formatter={(value) => [`$${value}`, "Price"]}
+                formatter={(value) => [`Rs ${value}`, "Price"]}
                 labelFormatter={(label) =>
                   `Date: ${new Date(label).toLocaleString()}`
                 }
@@ -90,16 +88,12 @@ const WatchListPage = ({ Stockhistory }) => {
                   fontSize: 12,
                   fill: theme === "dark" ? "#ffffff" : "#4d4d4d",
                 }}
-                tickFormatter={(date) => {
-                  const dateObj = new Date(date);
-                  return dateObj.toLocaleTimeString(); // Simple format
-                }}
               />
 
               <YAxis
                 domain={["auto", "auto"]}
                 tickCount={6}
-                tickFormatter={(value) => `$${value.toFixed(2)}`}
+                tickFormatter={(value) => `Rs ${value.toFixed(2)}`}
                 tick={{
                   fontSize: 12,
                   fill: theme === "dark" ? "#ffffff" : "#4d4d4d",

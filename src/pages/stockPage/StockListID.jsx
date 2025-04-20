@@ -34,7 +34,7 @@ const StockListID = () => {
           {stock.company_name} ({stock.symbol})
         </h1>
       </div>
-      <WatchListPage Stockhistory={Stockhistory} />
+      <WatchListPage Stockhistory={Stockhistory} id={id} />
     </>
   );
 };
