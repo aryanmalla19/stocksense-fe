@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Area,
   XAxis,
@@ -7,36 +7,36 @@ import {
   AreaChart,
   Tooltip,
 } from "recharts";
-import ChartFilter from "../../components/stocks/ChartFilter";
 import { ThemeContext } from "../../context/ThemeContext";
-import useStockChart from "../../hooks/useStockChart";
-import chartconfig from "../../api/chartconfig";
+import Filter from "./Filter";
 
-const WatchListPage = () => {
-  const { filter, setFilter, data, loading } = useStockChart("AAPL");
+const WatchListPage = ({ Stockhistory }) => {
   const { theme } = useContext(ThemeContext);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedPriceType, setSelectedPriceType] = useState("open_price");
+
+  useEffect(() => {
+    if (Stockhistory && Stockhistory.length > 0) {
+      const formattedData = Stockhistory.map((item) => ({
+        date: item.date?.split("T")[0] || "",
+        value: parseFloat(item[selectedPriceType]),
+      }));
+      setData(formattedData);
+      setLoading(false);
+    }
+  }, [Stockhistory, selectedPriceType]);
 
   return (
-    <div className=" h-[410px]  rounded-lg p-4 relative">
-      <ul className="flex absolute top-4 right-4 z-40 mb-4 ">
-        {Object.keys(chartconfig).map((item) => (
-          <li key={item} className="ml-2 first:ml-0 ">
-            <ChartFilter
-              text={item}
-              active={filter === item}
-              onClick={() => setFilter(item)}
-            />
-          </li>
-        ))}
-      </ul>
-
-      <div className="pt-12 h-full">
+    <div className="w-full h-full rounded-lg p-4 relative">
+      <Filter theme={theme} onSelect={(type) => setSelectedPriceType(type)} />
+      <div className="h-full">
         {loading ? (
           <div className="flex items-center justify-center h-full">
             <p>Loading chart data...</p>
           </div>
         ) : data.length > 0 ? (
-          <ResponsiveContainer key={filter} width="100%" height="100%">
+          <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={data}>
               <defs>
                 <linearGradient id="chartColor" x1="0" y1="0" x2="0" y2="1">
@@ -67,11 +67,12 @@ const WatchListPage = () => {
                   theme === "dark" ? { backgroundColor: "#111827" } : null
                 }
                 itemStyle={theme === "dark" ? { color: "#818cf8" } : null}
-                formatter={(value) => [`$${value}`, "Price"]}
+                formatter={(value) => [`Rs ${value}`, "Price"]}
                 labelFormatter={(label) =>
                   `Date: ${new Date(label).toLocaleString()}`
                 }
               />
+
               <Area
                 type="monotone"
                 dataKey="value"
@@ -80,23 +81,19 @@ const WatchListPage = () => {
                 fillOpacity={1}
                 strokeWidth={0}
               />
+
               <XAxis
                 dataKey="date"
                 tick={{
                   fontSize: 12,
                   fill: theme === "dark" ? "#ffffff" : "#4d4d4d",
                 }}
-                tickFormatter={(date) => {
-                  const dateObj = new Date(date);
-                  return filter === "1D"
-                    ? dateObj.toLocaleTimeString()
-                    : dateObj.toLocaleDateString();
-                }}
               />
+
               <YAxis
                 domain={["auto", "auto"]}
                 tickCount={6}
-                tickFormatter={(value) => `$${value.toFixed(2)}`}
+                tickFormatter={(value) => `Rs ${value}`}
                 tick={{
                   fontSize: 12,
                   fill: theme === "dark" ? "#ffffff" : "#4d4d4d",

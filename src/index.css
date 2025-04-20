@@ -43,6 +43,10 @@ body {
 .hover\:bg-hover-dark:hover {
     background-color: var(--hover-bg);
   }
+  .hover\:bg-button-bg:hover {
+    background-color: var(--button-bg);
+  }
+  
 
 .outlet-container{
     @apply m-4
