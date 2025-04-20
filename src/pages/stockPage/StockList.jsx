@@ -21,12 +21,12 @@ const StockList = () => {
 
   const [stocks, setStocks] = useState(fetchedStocks);
 
-  // Keep using previous data while new one is loading
+  // Keep using previous data while new one is loading, but avoid unnecessary updates
   useEffect(() => {
-    if (!isLoading && !isError) {
-      setStocks(fetchedStocks);
+    if (!isLoading && !isError && JSON.stringify(fetchedStocks) !== JSON.stringify(stocks)) {
+      setStocks(fetchedStocks); // Update only when new data is fetched
     }
-  }, [fetchedStocks, isLoading, isError]);
+  }, [fetchedStocks, isLoading, isError, stocks]);
 
   return (
     <div>
