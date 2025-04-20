@@ -7,6 +7,7 @@ import {
   FiPieChart,
   FiLayers,
   FiShoppingCart,
+  FiTrendingUp,
 } from "react-icons/fi";
 import { IoMdHelpCircleOutline } from "react-icons/io";
 

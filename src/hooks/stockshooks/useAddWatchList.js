@@ -3,7 +3,6 @@ import {
   deleteStockWatchList,
   postStockWatchList,
 } from "../../api/watchlistapi";
-from "../../api/stocksApiService";
 import toast from "react-hot-toast";
 
 const useAddWatchList = () => {
