@@ -1,10 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import StockListTable from "./StockListTable";
 import SearchStock from "./SearchStock";
 import Calendar from "../../components/stocks/Calender";
 import { useLocation } from "react-router-dom";
-import useSearchStock from "../../hooks/stockshooks/useSearchStock";
 
 const StockList = () => {
   const [searchSymbol, setSearchSymbol] = useState("");
@@ -12,21 +11,6 @@ const StockList = () => {
   const location = useLocation();
 
   const isWatchlist = location.pathname.includes("watch-list");
-
-  const {
-    data: fetchedStocks = [],
-    isLoading,
-    isError,
-  } = useSearchStock(searchSymbol);
-
-  const [stocks, setStocks] = useState(fetchedStocks);
-
-  // Keep using previous data while new one is loading, but avoid unnecessary updates
-  useEffect(() => {
-    if (!isLoading && !isError && JSON.stringify(fetchedStocks) !== JSON.stringify(stocks)) {
-      setStocks(fetchedStocks); // Update only when new data is fetched
-    }
-  }, [fetchedStocks, isLoading, isError, stocks]);
 
   return (
     <div>
@@ -65,12 +49,8 @@ const StockList = () => {
         }`}
       >
         <main>
-          {isError && <p className="text-red-500">Error fetching stocks.</p>}
-
-          {/* Keep showing last known good data during loading */}
           <StockListTable
             searchSymbol={searchSymbol}
-            stocks={stocks}
             theme={theme}
           />
         </main>

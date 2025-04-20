@@ -1,7 +1,7 @@
 import axiosInstance from "./axiosInstance";
 
 export const Users = async () => {
-  const response = await axiosInstance.get("/users/portfolios");
+  const response = await axiosInstance.get("/portfolios");
   return response.data;
 };
 

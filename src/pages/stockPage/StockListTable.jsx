@@ -10,18 +10,15 @@ const StockListTable = ({ theme, searchSymbol }) => {
   const location = useLocation();
   const isWatchlist = location.pathname.includes("watch-list");
 
-  const { refetch } = useFetchWatchList();
   const [watchListStocks, setWatchListStocks] = useState([]);
-
   const [sortBy, setSortBy] = useState("");
   const [sortOrder, setSortOrder] = useState("");
-
   const [pageNumber, setPageNumber] = useState(1);
 
-  const { data: fetchedData, isLoading, isError } = useSort(sortBy, sortOrder, pageNumber);
-
-  const [stocksData, setStocksData] = useState(fetchedData?.data ?? []);
-
+  const { refetch } = useFetchWatchList(); // For fetching the watchlist
+  const { data: fetchedData, isLoading, isError, refetch: refetchSortedData } = useSort(sortBy, sortOrder, pageNumber); // For sorted data
+  console.log(fetchedData);
+  // Handle table header sorting clicks
   const handleSort = (columnKey) => {
     if (sortBy === columnKey) {
       setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
@@ -31,40 +28,42 @@ const StockListTable = ({ theme, searchSymbol }) => {
     }
   };
 
+  // Remove a stock locally when toggled off in watchlist view
   const handleRemoveStock = (stockID) => {
-    setWatchListStocks((prevStocks) =>
-      prevStocks.filter((stock) => stock.id !== stockID)
-    );
+    if (isWatchlist) {
+      setWatchListStocks((prev) =>
+        prev.filter((stock) => stock.id !== stockID)
+      );
+      // Call the refetch function to update the sorted list of stocks
+      refetchSortedData();  // This will refetch the sorted data after the stock removal
+    }
   };
 
-  // Keep previous data while loading
-  useEffect(() => {
-    if (!isLoading && !isError) {
-      setStocksData(fetchedData?.data ?? []);
-    }
-  }, [fetchedData, isLoading, isError]);
-
-  // Fetch watchlist if applicable
+  // Fetch watchlist items if we're on the watch-list route
   useEffect(() => {
     if (isWatchlist) {
       refetch().then((res) => {
-        const watchListArray = res?.data;
-        if (Array.isArray(watchListArray)) {
-          const stocks = watchListArray.map((item) => item.stock);
+        const array = res?.data?.data;
+        if (Array.isArray(array)) {
+          const stocks = array.map((item) => item.stock);
           setWatchListStocks(stocks);
         } else {
-          console.warn("Watchlist data is not an array:", watchListArray);
+          console.warn("Expected an array from watchlist API, got:", array);
         }
       });
     }
   }, [isWatchlist, refetch]);
 
+  // Choose data source: watchlist vs. sorted stocks from useSort
   const displayStocks = useMemo(() => {
-    const baseData = isWatchlist ? watchListStocks : stocksData;
-    return baseData.filter((stock) =>
-      stock.symbol.toLowerCase().includes(searchSymbol.toLowerCase())
+    const base = isWatchlist ? watchListStocks : fetchedData?.data ?? [];
+    return base.filter((s) =>
+      s.symbol.toLowerCase().includes(searchSymbol.toLowerCase())
     );
-  }, [isWatchlist, watchListStocks, stocksData, searchSymbol]);
+  }, [isWatchlist, watchListStocks, fetchedData, searchSymbol]);
+
+  // Display previous data while loading new data
+  const currentStocks = isLoading ? watchListStocks : displayStocks;
 
   return (
     <section className="details-container">
@@ -77,24 +76,26 @@ const StockListTable = ({ theme, searchSymbol }) => {
 
       <div className="overflow-y-auto h-90 flex-1 scrollbar-hidden transition-opacity duration-300">
         <div className="space-y-2 mt-2">
-          {displayStocks.length === 0 ? (
+          {/* Show previous data while loading */}
+          {currentStocks.length === 0 ? (
             <div className="text-center text-gray-500">No Stock Found</div>
           ) : (
-            displayStocks.map((stock, index) => (
+            currentStocks.map((stock, idx) => (
               <StockListRow
-                key={index}
+                key={stock.id || idx}
                 stock={stock}
                 theme={theme}
                 removeStock={handleRemoveStock}
+                refetchSortedData={refetchSortedData}  // Pass refetchSortedData here
               />
             ))
           )}
         </div>
 
-        {/* Optional small loading indicator */}
-        {isLoading && (
-          <div className="text-center mt-4 text-sm text-gray-400 italic">
-            Updating list...
+        {/* Error handling */}
+        {isError && (
+          <div className="text-center mt-4 text-sm text-red-500">
+            Failed to load data.
           </div>
         )}
       </div>

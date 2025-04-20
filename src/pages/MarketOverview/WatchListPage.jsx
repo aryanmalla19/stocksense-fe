@@ -9,6 +9,7 @@ import {
 } from "recharts";
 import { ThemeContext } from "../../context/ThemeContext";
 import chartconfig from "../../api/chartconfig";
+import ChartFilter from "../../components/stocks/ChartFilter";
 
 const WatchListPage = ({ prices }) => {
   const { theme } = useContext(ThemeContext);
