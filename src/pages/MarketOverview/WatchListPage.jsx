@@ -28,7 +28,7 @@ const WatchListPage = ({ Stockhistory }) => {
   }, [Stockhistory, selectedPriceType]);
 
   return (
-    <div className="h-[510px] rounded-lg p-4 relative">
+    <div className="w-full h-[450px] rounded-lg p-2 relative">
       <Filter theme={theme} onSelect={(type) => setSelectedPriceType(type)} />
       <div className="h-full">
         {loading ? (
@@ -93,7 +93,7 @@ const WatchListPage = ({ Stockhistory }) => {
               <YAxis
                 domain={["auto", "auto"]}
                 tickCount={6}
-                tickFormatter={(value) => `Rs ${value.toFixed(2)}`}
+                tickFormatter={(value) => `Rs ${value}`}
                 tick={{
                   fontSize: 12,
                   fill: theme === "dark" ? "#ffffff" : "#4d4d4d",

@@ -4,6 +4,8 @@ import useFetchStocksID from "../../hooks/stockshooks/useFetchStocksID";
 import { ThemeContext } from "../../context/ThemeContext";
 import useHistoryID from "../../hooks/stockshooks/useHistoryID";
 import WatchListPage from "../marketOverview/WatchListPage";
+import StockDetails from "./StockDetails";
+import MarketSummary from "./MarketSummary";
 
 const StockListID = () => {
   const { id } = useParams();
@@ -20,21 +22,27 @@ const StockListID = () => {
 
   return (
     <>
-      <div
-        className={`p-4 rounded-md flex items-center ${
-          theme === "dark"
-            ? "bg-dark-bg text-dark-text"
-            : "bg-light-bg text-red-500"
-        }`}
-      >
-        <div className="w-12 h-12 mr-4 flex items-center justify-center rounded-full text-lg font-bold bg-blue-400 text-white">
-          {stock.company_name?.charAt(0)}
+      <StockDetails theme={theme} stock={stock} />
+      <div className="flex flex-col md:flex-row w-full gap-2 my-4 h-120">
+        <div
+          className={`w-full md:w-1/2 border ${
+            theme === "dark"
+              ? " bg-dark-bg text-dark-text border-gray-800"
+              : "border-gray-100 bg-light-bg text-light-text"
+          } rounded-md`}
+        >
+          <MarketSummary theme={theme} stock={stock} />
         </div>
-        <h1 className=" text-3xl text-semibold">
-          {stock.company_name} ({stock.symbol})
-        </h1>
+        <div
+          className={`w-3/3 border ${
+            theme === "dark"
+              ? " bg-dark-bg text-dark-text border-gray-800"
+              : "border-gray-100 bg-light-bg text-light-text"
+          } rounded-md`}
+        >
+          <WatchListPage Stockhistory={Stockhistory} id={id} />
+        </div>
       </div>
-      <WatchListPage Stockhistory={Stockhistory} id={id} />
     </>
   );
 };

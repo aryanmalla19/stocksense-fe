@@ -1,4 +1,3 @@
-// useHistoryID.js
 import { useQuery } from "@tanstack/react-query";
 import { history } from "../../api/stocksApiService";
 
