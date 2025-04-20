@@ -7,7 +7,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 const LoginReg = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
   const isLogin = location.pathname === "/login";
 
   const toggleAuthMode = () => {

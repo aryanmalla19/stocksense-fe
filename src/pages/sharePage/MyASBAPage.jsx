@@ -7,91 +7,62 @@ import useFetchIpoDetail from "../../hooks/stockshooks/useFetchIpoDetail";
 const MyASBAPage = () => {
   const { theme } = useContext(ThemeContext);
   const [items, setItems] = useState([]);
-  const { data } = useFetchIpoDetail();
+  const { data, refetch, isLoading, error } = useFetchIpoDetail();
 
   useEffect(() => {
     if (data?.data) {
       setItems(data.data);
-      console.log(data.data);
     }
   }, [data]);
 
+  const isDark = theme === "dark";
+
+  const containerClasses = `p-4 rounded-lg shadow-md transition-all flex items-center justify-between ${
+    isDark ? "bg-gray-800 text-white" : "bg-white text-gray-900"
+  }`;
+
   return (
-    <div className="p-4">
-      {/* Header Section */}
-      <div className="flex justify-between items-center mb-6">
-        <h2
-          className={`font-bold text-2xl ${
-            theme === "dark" ? "text-white" : "text-gray-800"
-          }`}
-        >
-          ISSUED Initial Public Offering LIST - IPO
-        </h2>
+    <div className="p-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <h2 className="text-2xl font-semibold">Issued IPO List</h2>
         <Calendar />
       </div>
 
-      {/* IPO Table */}
-      <div
-        className={`overflow-x-auto rounded-md p-4 ${
-          theme === "dark"
-            ? "bg-dark-bg border border-dark-bg shadow-md shadow-black/30"
-            : "bg-white border border-gray-200 shadow-md shadow-gray-300"
-        }`}
-      >
-        <table className="min-w-full text-sm text-left ">
-          <thead>
-            <tr
-              className={`${
-                theme === "dark"
-                  ? "bg-gray-800 text-white"
-                  : "bg-gray-100 text-gray-800"
-              }`}
-            >
-              <th className="px-4 py-3">Company</th>
-              <th className="px-4 py-3">Open Date</th>
-              <th className="px-4 py-3">Close Date</th>
-              <th className="px-4 py-3">Listing Date</th>
-              <th className="px-4 py-3">Issue Price</th>
-              <th className="px-4 py-3">Total Shares</th>
-              <th className="px-4 py-3">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.length === 0 ? (
-              <tr>
-                <td colSpan="7" className="text-center py-6">
-                  No IPO records found.
-                </td>
-              </tr>
-            ) : (
-              items.map((data) => (
-                <tr
-                  key={data.id}
-                  className={`rounded-md text-sm ${
-                    theme === "dark"
-                      ? "hover:bg-gray-700"
-                      : "hover:bg-gray-100 "
-                  }`}
-                >
-                  <td className="px-4 py-3">{data.company_name}</td>
-                  <td className="px-4 py-3">{data.open_date}</td>
-                  <td className="px-4 py-3">{data.close_date}</td>
-                  <td className="px-4 py-3">{data.listing_date}</td>
-                  <td className="px-4 py-3">Rs. {data.issue_price}</td>
-                  <td className="px-4 py-3">{data.total_shares}</td>
-                  <td className="px-4 py-3">
-                    <Link to={`/apply/${data.id}`}>
-                      <button className="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-md shadow-sm">
-                        Apply
-                      </button>
-                    </Link>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+      {items.length === 0 ? (
+        <div className="mt-8">
+          <NorecordsFound />
+        </div>
+      ) : (
+        <div className="mt-6 flex flex-col gap-4">
+          {/* Header Row */}
+          <div className={`${containerClasses} font-bold bg-teal-600 text-white`}>
+            <div className="w-1/5">Company</div>
+            <div className="w-1/5 text-center">Open Date</div>
+            <div className="w-1/5 text-center">Close Date</div>
+            <div className="w-1/5 text-center">Listing Date</div>
+            <div className="w-1/5 text-center">Issue Price</div>
+            <div className="w-fit"></div>
+          </div>
+
+          {/* Data Rows */}
+          {items.map((ipo) => (
+            <div key={ipo.id} className={containerClasses}>
+              <div className="w-1/5">{ipo.company_name}</div>
+              <div className="w-1/5 text-center">{ipo.open_date}</div>
+              <div className="w-1/5 text-center">{ipo.close_date}</div>
+              <div className="w-1/5 text-center">{ipo.listing_date}</div>
+              <div className="w-1/5 text-center">Rs. {ipo.issue_price}</div>
+              <div className="w-fit">
+                <Link to={`/apply/${ipo.id}`}>
+                  <button className="px-4 cursor-pointer py-2 rounded-md bg-teal-600 hover:bg-teal-700 text-white transition">
+                    Apply
+                  </button>
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

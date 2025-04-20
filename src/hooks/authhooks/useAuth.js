@@ -1,19 +1,20 @@
 import useAuthStore from "../../store/authStore";
 
 const useAuth = () => {
-  const token = useAuthStore((state) => state.token);
-  const setToken = useAuthStore((state) => state.setToken);
-  const clearToken = useAuthStore((state) => state.clearToken);
+  const accessToken = useAuthStore((state) => state.accessToken);
+  const refreshToken = useAuthStore((state) => state.refreshToken);
+  const setTokens = useAuthStore((state) => state.setTokens);
+  const clearTokens = useAuthStore((state) => state.clearTokens);
 
-  const login = (newToken) => {
-    setToken(newToken);
+  const login = (accessToken, refreshToken) => {
+    setTokens(accessToken, refreshToken);
   };
 
   const logout = () => {
-    clearToken();
+    clearTokens();
   };
 
-  return { login, logout, token };
+  return { accessToken, refreshToken, login, logout };
 };
 
 export default useAuth;

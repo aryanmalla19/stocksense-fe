@@ -2,10 +2,12 @@ import React, { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import Slider from "react-slick";
 import SliderCarousel from "../../components/stocks/SliderCarousel";
+import useFetchWatchList from "../../hooks/stockshooks/useFetchWatchList"; 
 import useStocks from "../../hooks/stockshooks/useStocks";
 
 const PortfolioTracker = () => {
   const { theme } = useContext(ThemeContext);
+  const { data: stocksData, isLoading, error } = useFetchWatchList();
 
   const settings = {
     dots: false,
@@ -18,23 +20,16 @@ const PortfolioTracker = () => {
     cssEase: "linear",
     arrows: false,
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: { slidesToShow: 3 },
-      },
-      {
-        breakpoint: 768,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 480,
-        settings: { slidesToShow: 1 },
-      },
+      { breakpoint: 1024, settings: { slidesToShow: 3 } },
+      { breakpoint: 768, settings: { slidesToShow: 2 } },
+      { breakpoint: 480, settings: { slidesToShow: 1 } },
     ],
   };
 
-  const { data: response } = useStocks();
-  const stocks = response?.data || [];
+  if (isLoading) return <p>Loading watchlist...</p>;
+  if (error) return <p>Error loading watchlist: {error.message}</p>;
+  if (!stocksData || !Array.isArray(stocksData)) return <p>No stocks found.</p>;
+
 
   return (
     <div className="relative">
@@ -52,27 +47,28 @@ const PortfolioTracker = () => {
               >
                 <div className="flex items-center gap-4 h-12">
                   <div className="w-12 h-12 flex items-center justify-center rounded-full text-lg font-bold bg-blue-400 text-white">
-                    {stock.company_name.charAt(0)}
+                    {stock?.stock.company_name?.charAt(0) || "?"}
                   </div>
                   <div>
-                    <p className="text-[16px] font-semibold ">
-                      {stock.company_name}
+                    <p className="text-[16px] font-semibold">
+                      {stock?.stock.company_name || "Unknown"}
+
                     </p>
-                    <p className="text-[12px]">{stock.symbol}</p>
+                    <p className="text-[12px]">{stock?.stock.symbol || "-"}</p>
                   </div>
                 </div>
 
-                <p className="text-red-400">${stock.current_price}</p>
+                <p>${stock?.stock.current_price?.toLocaleString() || "0.00"}</p>
 
                 <div className="text-accent-green font-semibold flex justify-between">
                   <p>PNL Daily</p>
-                  <p>+${stock.high_price}</p>
-                  <p>+{stock.low_price}%</p>
+                  <p>+${stock?.stock.pnlValue || 0}</p>
+                  <p>+{stock?.stock.pnlPercent || 0}%</p>
+
                 </div>
               </div>
             </div>
 
-            {/* Spacer div after every 2 items */}
             {(index + 1) % 2 === 0 && <div className="w-4" />}
           </div>
         ))}

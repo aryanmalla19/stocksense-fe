@@ -19,13 +19,13 @@ const PortfolioPage = () => {
           <div
             key={item.label}
             className={`relative font-semibold pb-4 px-2 cursor-pointer ${
-              activeTab === item.label ? "text-blue-600" : "text-gray-400"
+              activeTab === item.label ? "text-teal-700" : "text-gray-400"
             }`}
             onClick={() => setActiveTab(item.label)}
           >
             <h2>{item.label}</h2>
             {activeTab === item.label && (
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-blue-600 rounded-t"></div>
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-teal-700 rounded-t"></div>
             )}
           </div>
         ))}

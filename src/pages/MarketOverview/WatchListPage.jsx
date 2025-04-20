@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import {
   Area,
   XAxis,
@@ -8,55 +8,61 @@ import {
   Tooltip,
 } from "recharts";
 import { ThemeContext } from "../../context/ThemeContext";
-import Filter from "./Filter";
+import chartconfig from "../../api/chartconfig";
 
-const WatchListPage = ({ Stockhistory }) => {
+const WatchListPage = ({ prices }) => {
   const { theme } = useContext(ThemeContext);
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [selectedPriceType, setSelectedPriceType] = useState("open_price");
+  const [filter, setFilter] = useState("1M"); // default filter
 
-  useEffect(() => {
-    if (Stockhistory && Stockhistory.length > 0) {
-      const formattedData = Stockhistory.map((item) => ({
-        date: item.date?.split("T")[0] || "",
-        value: parseFloat(item[selectedPriceType]),
-      }));
-      setData(formattedData);
-      setLoading(false);
-    }
-  }, [Stockhistory, selectedPriceType]);
+  // Format prices data
+  const formattedData = useMemo(() => {
+    if (!prices || prices.length === 0) return [];
+
+    // Sort by date just in case
+    const sortedPrices = [...prices].sort(
+      (a, b) => new Date(a.date) - new Date(b.date)
+    );
+
+    return sortedPrices.map((price) => ({
+      date: price.date,
+      value: parseFloat(price.close_price),
+    }));
+  }, [prices]);
 
   return (
-    <div className="w-full h-full rounded-lg p-4 relative">
-      <Filter theme={theme} onSelect={(type) => setSelectedPriceType(type)} />
-      <div className="h-full">
-        {loading ? (
+    <div className="h-[410px] rounded-lg p-4 relative">
+      <ul className="flex absolute top-4 right-4 z-40 mb-4">
+        {Object.keys(chartconfig).map((item) => (
+          <li key={item} className="ml-2 first:ml-0">
+            <ChartFilter
+              text={item}
+              active={filter === item}
+              onClick={() => setFilter(item)}
+            />
+          </li>
+        ))}
+      </ul>
+
+      <div className="pt-12 h-full">
+        {formattedData.length === 0 ? (
           <div className="flex items-center justify-center h-full">
-            <p>Loading chart data...</p>
+            <p>No data available</p>
           </div>
-        ) : data.length > 0 ? (
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={data}>
+        ) : (
+          <ResponsiveContainer key={filter} width="100%" height="100%">
+            <AreaChart data={formattedData}>
+
               <defs>
                 <linearGradient id="chartColor" x1="0" y1="0" x2="0" y2="1">
                   {theme === "dark" ? (
                     <>
                       <stop offset="0%" stopColor="#0149B3" stopOpacity={0.8} />
-                      <stop
-                        offset="100%"
-                        stopColor="#000000"
-                        stopOpacity={0.8}
-                      />
+                      <stop offset="100%" stopColor="#000000" stopOpacity={0.8} />
                     </>
                   ) : (
                     <>
                       <stop offset="0%" stopColor="#1573FE" stopOpacity={0.8} />
-                      <stop
-                        offset="100%"
-                        stopColor="#FFFFFF"
-                        stopOpacity={0.8}
-                      />
+                      <stop offset="100%" stopColor="#FFFFFF" stopOpacity={0.8} />
                     </>
                   )}
                 </linearGradient>
@@ -101,10 +107,6 @@ const WatchListPage = ({ Stockhistory }) => {
               />
             </AreaChart>
           </ResponsiveContainer>
-        ) : (
-          <div className="flex items-center justify-center h-full">
-            <p>No data available</p>
-          </div>
         )}
       </div>
     </div>

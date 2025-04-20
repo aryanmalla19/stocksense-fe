@@ -17,7 +17,15 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort, theme }) => {
                 : "bg-white text-light-text"
             }`}
           >
-            <th className="col-span-2 text-left">Symbol</th>
+            <th className="col-span-2 text-left">
+            <SortTableHeader
+                label="Symbol"
+                sortBy={sortBy}
+                sortOrder={sortOrder}
+                onSort={onSort}
+                columnKey="symbol"
+              />
+            </th>
 
             <th className="col-span-4 text-left">
               <SortTableHeader

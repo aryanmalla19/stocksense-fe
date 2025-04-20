@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import StockListTable from "./StockListTable";
 import SearchStock from "./SearchStock";
@@ -14,13 +14,23 @@ const StockList = () => {
   const isWatchlist = location.pathname.includes("watch-list");
 
   const {
-    data: stocks = [],
+    data: fetchedStocks = [],
     isLoading,
     isError,
   } = useSearchStock(searchSymbol);
 
+  const [stocks, setStocks] = useState(fetchedStocks);
+
+  // Keep using previous data while new one is loading, but avoid unnecessary updates
+  useEffect(() => {
+    if (!isLoading && !isError && JSON.stringify(fetchedStocks) !== JSON.stringify(stocks)) {
+      setStocks(fetchedStocks); // Update only when new data is fetched
+    }
+  }, [fetchedStocks, isLoading, isError, stocks]);
+
   return (
     <div>
+      {/* Header Section */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold py-2">
@@ -35,26 +45,29 @@ const StockList = () => {
           </p>
         </div>
 
-        <SearchStock
-          theme={theme}
-          searchSymbol={searchSymbol}
-          setSearchSymbol={setSearchSymbol}
-        />
-
-        <Calendar />
+        {/* Search & Calendar */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-4 sm:mt-0">
+          <SearchStock
+            theme={theme}
+            searchSymbol={searchSymbol}
+            setSearchSymbol={setSearchSymbol}
+          />
+          <Calendar />
+        </div>
       </div>
 
+      {/* Main Content */}
       <div
-        className={`outlet-container rounded-md p-4 ${
+        className={`outlet-container rounded-md p-4 transition-colors duration-300 ${
           theme === "dark"
             ? "bg-dark-bg border border-dark-bg shadow-md shadow-black/30"
             : "bg-white border border-gray-200 shadow-md shadow-gray-300"
         }`}
       >
         <main>
-          {isLoading && <p>Loading stocks...</p>}
-          {isError && <p>Error fetching stocks.</p>}
+          {isError && <p className="text-red-500">Error fetching stocks.</p>}
 
+          {/* Keep showing last known good data during loading */}
           <StockListTable
             searchSymbol={searchSymbol}
             stocks={stocks}

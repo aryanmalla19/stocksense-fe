@@ -10,18 +10,17 @@ const StockListTable = ({ theme, searchSymbol }) => {
   const location = useLocation();
   const isWatchlist = location.pathname.includes("watch-list");
 
-  // Watchlist state
   const { refetch } = useFetchWatchList();
   const [watchListStocks, setWatchListStocks] = useState([]);
 
-  // Sorting state
   const [sortBy, setSortBy] = useState("");
   const [sortOrder, setSortOrder] = useState("");
 
-  // Pagination
   const [pageNumber, setPageNumber] = useState(1);
 
-  const { data, isLoading, isError } = useSort(sortBy, sortOrder);
+  const { data: fetchedData, isLoading, isError } = useSort(sortBy, sortOrder, pageNumber);
+
+  const [stocksData, setStocksData] = useState(fetchedData?.data ?? []);
 
   const handleSort = (columnKey) => {
     if (sortBy === columnKey) {
@@ -38,10 +37,18 @@ const StockListTable = ({ theme, searchSymbol }) => {
     );
   };
 
+  // Keep previous data while loading
+  useEffect(() => {
+    if (!isLoading && !isError) {
+      setStocksData(fetchedData?.data ?? []);
+    }
+  }, [fetchedData, isLoading, isError]);
+
+  // Fetch watchlist if applicable
   useEffect(() => {
     if (isWatchlist) {
       refetch().then((res) => {
-        const watchListArray = res.data?.data;
+        const watchListArray = res?.data;
         if (Array.isArray(watchListArray)) {
           const stocks = watchListArray.map((item) => item.stock);
           setWatchListStocks(stocks);
@@ -53,13 +60,11 @@ const StockListTable = ({ theme, searchSymbol }) => {
   }, [isWatchlist, refetch]);
 
   const displayStocks = useMemo(() => {
-    return (isWatchlist ? watchListStocks : data?.data ?? []).filter((stock) =>
+    const baseData = isWatchlist ? watchListStocks : stocksData;
+    return baseData.filter((stock) =>
       stock.symbol.toLowerCase().includes(searchSymbol.toLowerCase())
     );
-  }, [isWatchlist, watchListStocks, data?.data, searchSymbol]);
-
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error fetching stocks.</div>;
+  }, [isWatchlist, watchListStocks, stocksData, searchSymbol]);
 
   return (
     <section className="details-container">
@@ -70,7 +75,7 @@ const StockListTable = ({ theme, searchSymbol }) => {
         onSort={handleSort}
       />
 
-      <div className="overflow-y-auto h-90 flex-1 scrollbar-hidden">
+      <div className="overflow-y-auto h-90 flex-1 scrollbar-hidden transition-opacity duration-300">
         <div className="space-y-2 mt-2">
           {displayStocks.length === 0 ? (
             <div className="text-center text-gray-500">No Stock Found</div>
@@ -85,9 +90,20 @@ const StockListTable = ({ theme, searchSymbol }) => {
             ))
           )}
         </div>
+
+        {/* Optional small loading indicator */}
+        {isLoading && (
+          <div className="text-center mt-4 text-sm text-gray-400 italic">
+            Updating list...
+          </div>
+        )}
       </div>
 
-      <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} />
+      <Pagination
+        links={fetchedData?.links}
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+      />
     </section>
   );
 };

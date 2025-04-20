@@ -4,7 +4,7 @@ import useAuthStore from "../../store/authStore";
 import LoadingSpinner from "./LoadingSpinner";
 
 const PrivateRoute = ({ children }) => {
-  const token = useAuthStore((state) => state.token);
+  const token = useAuthStore((state) => state.accessToken);
   const isLoading = useAuthStore((state) => state.isLoading);
 
   if (isLoading) {

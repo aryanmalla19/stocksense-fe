@@ -22,7 +22,6 @@ const RegisterPages = () => {
   const onSubmit = (data) => {
     mutate(data);
   };
-
   if (token) {
     return <Navigate to="/" replace />;
   }
@@ -44,11 +43,10 @@ const RegisterPages = () => {
           icon={FaUser}
           onChange={() => setServerErrors({})}
         />
-        {errors.name && (
-          <p className="text-red-500 text-sm my-2">*{errors.name.message}</p>
-        )}
-        {serverErrors?.name && (
-          <p className="text-red-500 text-sm my-2">*{serverErrors.name[0]}</p>
+      {(errors.name || serverErrors?.name) && (
+          <p className="text-red-500 text-sm my-2 animate-fade-in">
+          *{errors.name?.message || serverErrors?.name}
+          </p>
         )}
 
         {/* Email Field */}
@@ -66,13 +64,11 @@ const RegisterPages = () => {
           autoComplete="email"
           onChange={() => setServerErrors({})}
         />
-        {errors.email && (
-          <p className="text-red-500 text-sm my-2">*{errors.email.message}</p>
+        {(errors.email || serverErrors?.email) && (
+          <p className="text-red-500 text-sm my-2 animate-fade-in">
+          *{errors.email?.message || serverErrors?.email}
+          </p>
         )}
-        {serverErrors?.email && (
-          <p className="text-red-500 text-sm my-2">*{serverErrors.email[0]}</p>
-        )}
-
         {/* Password Field */}
         <Input
           {...register("password", {
@@ -90,14 +86,10 @@ const RegisterPages = () => {
           onToggle={() => setShowPassword(!showPassword)}
           onChange={() => setServerErrors({})}
         />
-        {errors.password && (
-          <p className="text-red-500 text-sm my-2">
-            *{errors.password.message}
-          </p>
-        )}
-        {serverErrors?.password && (
-          <p className="text-red-500 text-sm my-2">
-            *{serverErrors.password[0]}
+
+        {(errors.password || serverErrors?.password) && (
+          <p className="text-red-500 text-sm my-2 animate-fade-in">
+          *{errors.password?.message || serverErrors?.password}
           </p>
         )}
 
@@ -116,23 +108,16 @@ const RegisterPages = () => {
           onToggle={() => setShowPassword(!showPassword)}
           onChange={() => setServerErrors({})}
         />
-        {errors.password_confirmation && (
-          <p className="text-red-500 text-sm my-2">
-            *{errors.password_confirmation.message}
-          </p>
-        )}
-
-        {/* General Server Error */}
-        {serverErrors?.general && (
-          <p className="text-red-500 text-sm my-2 text-center">
-            *{serverErrors.general}
+        {(errors.password_confiration || serverErrors?.password_confiration) && (
+          <p className="text-red-500 text-sm my-2 animate-fade-in">
+          *{errors.password_confiration?.message || serverErrors?.password_confiration}
           </p>
         )}
 
         {/* Submit Button */}
         <button
           type="submit"
-          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors duration-200"
+          className="auth-button cursor-pointer bg-gradient-to-l from-teal-500 to-teal-800 hover:from-teal-600 hover:to-teal-700 transition duration-200 w-full"
           disabled={isLoading}
         >
           {isLoading ? (
