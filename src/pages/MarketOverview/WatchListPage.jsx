@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import {
   Area,
   XAxis,
@@ -9,18 +9,32 @@ import {
 } from "recharts";
 import ChartFilter from "../../components/stocks/ChartFilter";
 import { ThemeContext } from "../../context/ThemeContext";
-import useStockChart from "../../hooks/useStockChart";
 import chartconfig from "../../api/chartconfig";
 
-const WatchListPage = () => {
-  const { filter, setFilter, data, loading } = useStockChart("AAPL");
+const WatchListPage = ({ prices }) => {
   const { theme } = useContext(ThemeContext);
+  const [filter, setFilter] = useState("1M"); // default filter
+
+  // Format prices data
+  const formattedData = useMemo(() => {
+    if (!prices || prices.length === 0) return [];
+
+    // Sort by date just in case
+    const sortedPrices = [...prices].sort(
+      (a, b) => new Date(a.date) - new Date(b.date)
+    );
+
+    return sortedPrices.map((price) => ({
+      date: price.date,
+      value: parseFloat(price.close_price),
+    }));
+  }, [prices]);
 
   return (
-    <div className=" h-[410px]  rounded-lg p-4 relative">
-      <ul className="flex absolute top-4 right-4 z-40 mb-4 ">
+    <div className="h-[410px] rounded-lg p-4 relative">
+      <ul className="flex absolute top-4 right-4 z-40 mb-4">
         {Object.keys(chartconfig).map((item) => (
-          <li key={item} className="ml-2 first:ml-0 ">
+          <li key={item} className="ml-2 first:ml-0">
             <ChartFilter
               text={item}
               active={filter === item}
@@ -31,32 +45,24 @@ const WatchListPage = () => {
       </ul>
 
       <div className="pt-12 h-full">
-        {loading ? (
+        {formattedData.length === 0 ? (
           <div className="flex items-center justify-center h-full">
-            <p>Loading chart data...</p>
+            <p>No data available</p>
           </div>
-        ) : data.length > 0 ? (
+        ) : (
           <ResponsiveContainer key={filter} width="100%" height="100%">
-            <AreaChart data={data}>
+            <AreaChart data={formattedData}>
               <defs>
                 <linearGradient id="chartColor" x1="0" y1="0" x2="0" y2="1">
                   {theme === "dark" ? (
                     <>
                       <stop offset="0%" stopColor="#0149B3" stopOpacity={0.8} />
-                      <stop
-                        offset="100%"
-                        stopColor="#000000"
-                        stopOpacity={0.8}
-                      />
+                      <stop offset="100%" stopColor="#000000" stopOpacity={0.8} />
                     </>
                   ) : (
                     <>
                       <stop offset="0%" stopColor="#1573FE" stopOpacity={0.8} />
-                      <stop
-                        offset="100%"
-                        stopColor="#FFFFFF"
-                        stopOpacity={0.8}
-                      />
+                      <stop offset="100%" stopColor="#FFFFFF" stopOpacity={0.8} />
                     </>
                   )}
                 </linearGradient>
@@ -72,6 +78,7 @@ const WatchListPage = () => {
                   `Date: ${new Date(label).toLocaleString()}`
                 }
               />
+
               <Area
                 type="monotone"
                 dataKey="value"
@@ -104,10 +111,6 @@ const WatchListPage = () => {
               />
             </AreaChart>
           </ResponsiveContainer>
-        ) : (
-          <div className="flex items-center justify-center h-full">
-            <p>No data available</p>
-          </div>
         )}
       </div>
     </div>

@@ -9,7 +9,6 @@ import useFetchUserData from "../hooks/authhooks/useFetchUserData";
 const Navbar = ({ theme, collapsed, setCollapsed }) => {
   const { toggleTheme } = useContext(ThemeContext);
   const {data, refetch, isLoading, error} = useFetchUserData();
-  console.log(data);
   return (
     <div className="px-6 py-7 flex items-center justify-between">
       <div className="flex items-center gap-4">

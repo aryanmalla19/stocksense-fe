@@ -201,7 +201,6 @@ export const applyIpo = async ({ipoId, appliedShares}) => {
 export const UserPortfolio = async () => {
   try {
     const response = await axiosInstance.get('/portfolios');
-    console.log(response?.data);
     return response?.data?.data;
   } catch (error) {
     console.error("Error fetching User Protfolio details:", error.response?.data || error);
