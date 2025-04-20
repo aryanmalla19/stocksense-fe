@@ -28,7 +28,7 @@ const WatchListPage = ({ Stockhistory }) => {
   }, [Stockhistory, selectedPriceType]);
 
   return (
-    <div className="w-full h-[450px] rounded-lg p-2 relative">
+    <div className="w-full h-full rounded-lg p-4 relative">
       <Filter theme={theme} onSelect={(type) => setSelectedPriceType(type)} />
       <div className="h-full">
         {loading ? (

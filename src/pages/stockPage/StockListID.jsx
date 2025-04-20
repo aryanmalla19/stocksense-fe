@@ -34,7 +34,7 @@ const StockListID = () => {
           <MarketSummary theme={theme} stock={stock} />
         </div>
         <div
-          className={`w-3/3 border ${
+          className={`w-3/3 border pb-8 ${
             theme === "dark"
               ? " bg-dark-bg text-dark-text border-gray-800"
               : "border-gray-100 bg-light-bg text-light-text"
