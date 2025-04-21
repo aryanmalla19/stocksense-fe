@@ -89,7 +89,7 @@ const Menu = ({ collapsed, theme }) => {
                           <Link
                             to={subItem.href}
                             key={subItem.label}
-                            className={`flex items-center px-4 py-2 text-[14px] font-medium transition-colors duration-200 mx-3 rounded-md 
+                            className={`flex items-center px-4 py-2 text-[15px] font-medium transition-colors duration-200 mx-3 rounded-md 
                             ${
                               isActive
                                 ? theme === "dark"
