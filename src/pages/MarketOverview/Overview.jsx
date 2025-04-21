@@ -8,14 +8,14 @@ import useFetchStocksID from "../../hooks/stockshooks/useFetchStocksID";
 const Overview = () => {
   const { theme } = useContext(ThemeContext);
   const { data, isLoading, error } = useFetchStocksID(1);
-
+  
   return (
     <div className="outlet-container space-y-4">
       <PortfolioTracker />
 
       <div className="flex gap-4 h-95">
         <div className="w-2/3">
-          <WatchListPage prices={data?.data.prices} />
+          <WatchListPage Stockhistory={data?.data.prices} />
         </div>
         <div className="w-1/2">
           <GainerList theme={theme} />
