@@ -18,6 +18,7 @@ import WatchList from "../pages/stockPage/WatchList";
 import StockListID from "../pages/stockPage/StockListID";
 import OtpPage from "../pages/Auth/OtpPage";
 import Page404 from "../components/common/Page404";
+import VerifyEmail from "../pages/Auth/VerifyEmail";
 
 const Router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ const Router = createBrowserRouter([
   {
     path: "/reset-password",
     element: <ResetPassword />,
+  },
+  {
+    path: "/email-verified",
+    element: <VerifyEmail />,
   },
   {
     path: "/otp",
