@@ -8,7 +8,7 @@ import NotificationPage from "../pages/Navbar/NotificationPage";
 import useUserDetails from "../hooks/authhooks/useUserDetails";
 
 const Navbar = ({ theme, collapsed, setCollapsed }) => {
-  const {data, refetch, isLoading, error} = useFetchUserData();
+  const { data } = useFetchUserData();
   const { toggleTheme } = useContext(ThemeContext);
   const { userDetails } = useUserDetails();
   const detail = userDetails?.data?.[0]?.user;
@@ -45,7 +45,6 @@ const Navbar = ({ theme, collapsed, setCollapsed }) => {
         </div>
 
         <ProfileImage name={data?.name} email={data?.email} theme={theme} />
-
       </div>
     </div>
   );

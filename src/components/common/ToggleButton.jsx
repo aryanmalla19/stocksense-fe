@@ -1,8 +1,14 @@
 import React from "react";
 
-const ToggleButton = ({ isToggled, onToggle }) => {
+const ToggleButton = ({
+  isToggled,
+  onToggle,
+  leftLabel = "",
+  rightLabel = "",
+}) => {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
+      <span className="px-2 font-semibold">{leftLabel}</span>
       <button
         onClick={onToggle}
         style={{
@@ -32,6 +38,7 @@ const ToggleButton = ({ isToggled, onToggle }) => {
           }}
         />
       </button>
+      <span className="px-2 font-semibold">{rightLabel}</span>
     </div>
   );
 };
