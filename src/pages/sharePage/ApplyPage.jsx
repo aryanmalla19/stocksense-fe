@@ -6,15 +6,8 @@ import useApplyShare from "../../hooks/useApplyShare";
 import useFetchIpoDetail from "../../hooks/stockshooks/useFetchIpoDetail";
 import useApplyIpo from "../../hooks/ipohooks/useApplyIpo";
 import IPOApplyform from "./IPOApplyform";
-import {
-  FiTrendingUp,
-  FiCalendar,
-  FiDollarSign,
-  FiLayers,
-  FiClock,
-  FiCheckCircle,
-} from "react-icons/fi";
 import ApplyShareOverview from "./ApplyShareOverview";
+import { FiCheckCircle } from "react-icons/fi";
 
 const ApplyPage = () => {
   const { theme } = useContext(ThemeContext);
@@ -65,25 +58,64 @@ const ApplyPage = () => {
       <ApplyShareOverview ipo={ipo} stock={stock} isDark={isDark} />
 
       {/* Application Form */}
-      <div
-        className={`rounded-lg p-6 shadow-lg max-w-2xl mx-auto mt-8 ${
-          isDark ? "bg-gray-800" : "bg-white"
-        }`}
-      >
-        <h3 className="text-lg font-semibold mb-4">Apply for Shares</h3>
-        <IPOApplyform
-          kittaAmount={kittaAmount}
-          handleChange={handleChange}
-          amount={amount}
-          agreedTerm={agreedTerm}
-          handleTermsChange={handleTermsChange}
-          handleSubmit={handleSubmit}
-          isPending={isPending}
-          isSuccess={isSuccess}
-          error={error}
-          minKitta={1}
-          maxKitta={ipo.max_shares_per_investor || 1000}
-        />
+      <div className="flex gap-4 max-w-full">
+        <div
+          className={`rounded-lg p-6 shadow-lg  mx-auto mt-2 w-1/2  ${
+            isDark ? "bg-dark-bg text-dark-text" : "bg-light-bg text-light-text"
+          }`}
+        >
+          <h3 className="text-2xl font-semibold mb-4 flex items-center justify-center gap-2">
+            <FiCheckCircle
+              className={`p-2 rounded-full text-3xl  ${
+                isDark
+                  ? "bg-teal-900/50 text-teal-600 "
+                  : "bg-teal-600/50 text-white"
+              }`}
+            />
+            Apply for Shares
+          </h3>
+          <IPOApplyform
+            isDark={isDark}
+            kittaAmount={kittaAmount}
+            handleChange={handleChange}
+            amount={amount}
+            agreedTerm={agreedTerm}
+            handleTermsChange={handleTermsChange}
+            handleSubmit={handleSubmit}
+            isPending={isPending}
+            isSuccess={isSuccess}
+            error={error}
+            minKitta={1}
+            maxKitta={ipo.max_shares_per_investor || 1000}
+          />
+        </div>
+        <div
+          className={`rounded-lg p-6 shadow-lg mx-auto mt-2 ${
+            isDark ? "bg-dark-bg text-dark-text" : "bg-light-bg text-light-text"
+          }`}
+        >
+          <h4 className="text-lg font-semibold mb-2">Important Information</h4>
+          <ul className="list-disc list-inside text-sm leading-relaxed space-y-2">
+            <li>
+              Please verify all details before submitting your application.
+            </li>
+            <li>
+              Once submitted, your application cannot be edited or canceled.
+            </li>
+            <li>
+              Ensure you have sufficient balance in your bank account to cover
+              the total amount.
+            </li>
+            <li>
+              You will receive a confirmation notification once your application
+              is successful.
+            </li>
+            <li>
+              Applying multiple times using the same credentials may lead to
+              disqualification.
+            </li>
+          </ul>
+        </div>
       </div>
     </>
   );
