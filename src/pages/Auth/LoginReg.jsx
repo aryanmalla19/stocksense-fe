@@ -8,7 +8,7 @@ const LoginReg = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isLogin = location.pathname === "/login";
-
+  console.log(isLogin);
   const toggleAuthMode = () => {
     navigate(isLogin ? "/register" : "/login");
   };

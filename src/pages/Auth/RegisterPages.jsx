@@ -10,7 +10,6 @@ import useAuthStore from "../../store/authStore";
 
 const RegisterPages = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const token = useAuthStore((store) => store.token);
   const { mutate, isLoading, serverErrors, setServerErrors } = useRegister();
   const {
     register,
@@ -22,9 +21,6 @@ const RegisterPages = () => {
   const onSubmit = (data) => {
     mutate(data);
   };
-  if (token) {
-    return <Navigate to="/" replace />;
-  }
 
   return (
     <div>

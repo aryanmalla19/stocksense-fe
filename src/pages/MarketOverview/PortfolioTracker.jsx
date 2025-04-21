@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import Slider from "react-slick";
 import SliderCarousel from "../../components/stocks/SliderCarousel";
-import useFetchWatchList from "../../hooks/stockshooks/useFetchWatchList"; 
+import useFetchWatchList from "../../hooks/stockshooks/useFetchWatchList";
+import { useStocks } from "../../hooks/stockshooks/useStocks";
 
 const PortfolioTracker = () => {
   const { theme } = useContext(ThemeContext);
   const { data: stocksData, isLoading, error } = useFetchWatchList();
-  console.log(stocksData);
+  const { data: allStocksData, isLoading: isStocksLoading } = useStocks(1,1,10);
+
   const settings = {
     dots: false,
     infinite: true,
@@ -25,16 +27,31 @@ const PortfolioTracker = () => {
     ],
   };
 
-  if (isLoading) return <p>Loading watchlist...</p>;
+  if (isLoading || isStocksLoading) return <p>Loading watchlist...</p>;
   if (error) return <p>Error loading watchlist: {error.message}</p>;
-  if (!stocksData?.data || !Array.isArray(stocksData?.data)) return <p></p>;
+  if (!stocksData?.data || !Array.isArray(stocksData.data)) return <p>No data</p>;
 
+  const watchList = stocksData.data;
+  let finalStocks = [...watchList];
+
+  if (watchList.length < 4 && allStocksData?.data?.length) {
+    const remainingCount = 4 - watchList.length;
+
+    const extraStocks = allStocksData.data
+      .filter(stock =>
+        !watchList.some(watchItem => watchItem.stock.symbol === stock.symbol)
+      )
+      .slice(0, remainingCount)
+      .map(stock => ({ stock })); // match watchlist shape
+
+    finalStocks = [...finalStocks, ...extraStocks];
+  }
 
   return (
     <div className="relative">
       <SliderCarousel direction="left" theme={theme} />
-      <Slider {...settings} className="max-w-[1210px]  p-4">
-        {stocksData?.data?.map((stock, index) => (
+      <Slider {...settings} className="max-w-[1210px] p-4">
+        {finalStocks.map((stock, index) => (
           <div key={index}>
             <div className="px-2 flex gap-8">
               <div
@@ -51,7 +68,6 @@ const PortfolioTracker = () => {
                   <div>
                     <p className="text-[16px] font-semibold">
                       {stock?.stock.company_name || "Unknown"}
-
                     </p>
                     <p className="text-[12px]">{stock?.stock.symbol || "-"}</p>
                   </div>
@@ -63,7 +79,6 @@ const PortfolioTracker = () => {
                   <p>PNL Daily</p>
                   <p>+${stock?.stock.pnlValue || 0}</p>
                   <p>+{stock?.stock.pnlPercent || 0}%</p>
-
                 </div>
               </div>
             </div>
