@@ -17,6 +17,7 @@ import WatchList from "../pages/stockPage/WatchList";
 import StockListID from "../pages/stockPage/StockListID";
 import OtpPage from "../pages/Auth/OtpPage";
 import Page404 from "../components/common/Page404";
+import Notification from "../pages/Notifications/Notification";
 
 const Router = createBrowserRouter([
   {
@@ -88,6 +89,10 @@ const Router = createBrowserRouter([
   {
     path: "/otp",
     element: <OtpPage />,
+  },
+  {
+    path: "/notifications",
+    element: <Notification />,
   },
   {
     path: "*",
