@@ -1,5 +1,5 @@
 import React from "react";
-import useStocks from "../../hooks/stockshooks/useStocks";
+import {useStocks} from "../../hooks/stockshooks/useStocks";
 
 const GainerList = ({ theme }) => {
   const { data, isLoading, isError } = useStocks({per_page:5});

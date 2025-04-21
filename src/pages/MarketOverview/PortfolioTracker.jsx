@@ -3,7 +3,6 @@ import { ThemeContext } from "../../context/ThemeContext";
 import Slider from "react-slick";
 import SliderCarousel from "../../components/stocks/SliderCarousel";
 import useFetchWatchList from "../../hooks/stockshooks/useFetchWatchList"; 
-import useStocks from "../../hooks/stockshooks/useStocks";
 
 const PortfolioTracker = () => {
   const { theme } = useContext(ThemeContext);
