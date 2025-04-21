@@ -1,7 +1,5 @@
 import axiosInstance from "./axiosInstance";
 
-
-
 export const stockList = async ({ page, per_page = 10 }) => {
   const response = await axiosInstance.get("/stocks", {
     params: { page, per_page },
@@ -9,7 +7,7 @@ export const stockList = async ({ page, per_page = 10 }) => {
   return response.data;
 };
 
-export const sortStocks = async ( sortBy, sortOrder, page ) => {
+export const sortStocks = async (sortBy, sortOrder, page) => {
   try {
     const response = await axiosInstance.get(`/stocks`, {
       params: {
@@ -35,6 +33,7 @@ export const searchQuery = async (searchText) => {
 export const fetchStockBYId = async (StocksID) => {
   try {
     const response = await axiosInstance.get(`/stocks/${StocksID}`);
+    console.log(response?.data);
     return response.data;
   } catch (error) {
     console.log(
@@ -74,7 +73,6 @@ export const fetchStockWatchList = async () => {
     throw error;
   }
 };
-
 
 //function to delete watchlist
 export const deleteStockWatchList = async (stockID) => {
@@ -128,36 +126,44 @@ export const history = async (id) => {
   return response.data;
 };
 
-
 export const UserSetting = async () => {
-  try{
-    const response = await axiosInstance.get('/users/settings');
+  try {
+    const response = await axiosInstance.get("/users/settings");
     return response?.data.data;
-  } catch (error){
-    console.error("Error fetching User Settings details:", error.response?.data || error);
+  } catch (error) {
+    console.error(
+      "Error fetching User Settings details:",
+      error.response?.data || error
+    );
     throw error ?? new Error("Failed to fetch User Settings details");
   }
-}
+};
 
-export const applyIpo = async ({ipoId, appliedShares}) => {
-  try{
-    const response = await axiosInstance.post('/ipo-applications', {
+export const applyIpo = async ({ ipoId, appliedShares }) => {
+  try {
+    const response = await axiosInstance.post("/ipo-applications", {
       ipo_id: ipoId,
       applied_shares: appliedShares,
     });
     return response.data;
   } catch (error) {
-    console.error("Error Applying Ipo Applications:", error.response?.data || error);
+    console.error(
+      "Error Applying Ipo Applications:",
+      error.response?.data || error
+    );
     throw error ?? new Error("Failed to post ipo applications");
   }
-}
+};
 
 export const UserPortfolio = async () => {
   try {
-    const response = await axiosInstance.get('/portfolios');
+    const response = await axiosInstance.get("/portfolios");
     return response?.data?.data;
   } catch (error) {
-    console.error("Error fetching User Protfolio details:", error.response?.data || error);
-    throw error ?? new Error("Failed to fetch User Protfolio details"); 
+    console.error(
+      "Error fetching User Protfolio details:",
+      error.response?.data || error
+    );
+    throw error ?? new Error("Failed to fetch User Protfolio details");
   }
-}
+};
