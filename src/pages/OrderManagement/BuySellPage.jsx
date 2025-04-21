@@ -3,6 +3,7 @@ import useFetchUserData from "../../hooks/authhooks/useFetchUserData";
 import ToggleButton from "../../components/common/ToggleButton";
 import { ThemeContext } from "../../context/ThemeContext";
 import BuyStockPage from "./BuyStockPage";
+import OrderBook from "./OrderBook";
 
 const BuySellPage = () => {
   const [isToggled, setIsToggled] = useState(false);
@@ -49,6 +50,9 @@ const BuySellPage = () => {
       ></hr>
       <div className="px-10 py-5">
         <BuyStockPage isToggled={isToggled} theme={theme} />
+      </div>
+      <div>
+        <OrderBook theme={theme} />
       </div>
     </div>
   );
