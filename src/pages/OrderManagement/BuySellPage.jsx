@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import useFetchUserData from "../../hooks/authhooks/useFetchUserData";
 import ToggleButton from "../../components/common/ToggleButton";
 import { ThemeContext } from "../../context/ThemeContext";
-import SellStockPage from "./SellStockPage";
 import BuyStockPage from "./BuyStockPage";
 
 const BuySellPage = () => {
@@ -49,7 +48,7 @@ const BuySellPage = () => {
         } `}
       ></hr>
       <div className="px-10 py-5">
-        <BuyStockPage />
+        <BuyStockPage isToggled={isToggled} theme={theme} />
       </div>
     </div>
   );

@@ -19,11 +19,9 @@ const LoginPages = () => {
   } = useForm({ mode: "onChange" });
 
   const onSubmit = (data) => {
-    // console.log(data);
     mutate(data);
   };
 
-  
   const accessToken = useAuthStore((store) => store.accessToken);
   if (accessToken) {
     return <Navigate to="/" />;
