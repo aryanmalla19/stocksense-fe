@@ -17,7 +17,6 @@ const StockListTable = ({ theme, searchSymbol }) => {
 
   const { refetch } = useFetchWatchList(); // For fetching the watchlist
   const { data: fetchedData, isLoading, isError, refetch: refetchSortedData } = useSort(sortBy, sortOrder, pageNumber); // For sorted data
-  console.log(fetchedData);
   // Handle table header sorting clicks
   const handleSort = (columnKey) => {
     if (sortBy === columnKey) {

@@ -9,7 +9,7 @@ export const postStockWatchList = async (stockID) => {
 
 export const fetchStockWatchList = async () => {
   const response = await axiosInstance.get("/users/watchlists");
-  return response.data;
+  return response?.data;
 };
 
 export const deleteStockWatchList = async (stockID) => {

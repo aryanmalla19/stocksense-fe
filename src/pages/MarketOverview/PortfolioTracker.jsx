@@ -7,7 +7,7 @@ import useFetchWatchList from "../../hooks/stockshooks/useFetchWatchList";
 const PortfolioTracker = () => {
   const { theme } = useContext(ThemeContext);
   const { data: stocksData, isLoading, error } = useFetchWatchList();
-
+  console.log(stocksData);
   const settings = {
     dots: false,
     infinite: true,
@@ -27,14 +27,14 @@ const PortfolioTracker = () => {
 
   if (isLoading) return <p>Loading watchlist...</p>;
   if (error) return <p>Error loading watchlist: {error.message}</p>;
-  if (!stocksData || !Array.isArray(stocksData)) return <p>No stocks found.</p>;
+  if (!stocksData?.data || !Array.isArray(stocksData?.data)) return <p></p>;
 
 
   return (
     <div className="relative">
       <SliderCarousel direction="left" theme={theme} />
       <Slider {...settings} className="max-w-[1210px]  p-4">
-        {stocks.map((stock, index) => (
+        {stocksData?.data?.map((stock, index) => (
           <div key={index}>
             <div className="px-2 flex gap-8">
               <div
