@@ -29,6 +29,18 @@ const OtpPage = () => {
     }
   };
 
+  const handlePaste = (e) => {
+    e.preventDefault();
+    const pastedText = e.clipboardData.getData("text");
+    const chars = pastedText.split("");
+
+    const newOtp = [...OTP];
+    for (let i = 0; i < 6; i++) {
+      newOtp[i] = chars[i] || "";
+    }
+    setOTP(newOtp);
+  };
+
   const verifyOTP = (e) => {
     e.preventDefault();
     otpVerifymutation.mutate({
@@ -58,6 +70,7 @@ const OtpPage = () => {
             value={digit}
             onChange={(e) => handleChange(e, index)}
             onKeyDown={(e) => handleKeyDown(e, index)}
+            onPaste={handlePaste}
             className="w-12 h-12 text-center border border-gray-900 rounded-md text-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
           />
         ))}

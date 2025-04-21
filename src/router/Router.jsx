@@ -18,6 +18,9 @@ import WatchList from "../pages/stockPage/WatchList";
 import StockListID from "../pages/stockPage/StockListID";
 import OtpPage from "../pages/Auth/OtpPage";
 import Page404 from "../components/common/Page404";
+import VerifyEmail from "../pages/Auth/VerifyEmail";
+import { Holdings } from "../api/ipoApi";
+import PortfolioHistory from "../pages/portfolioPage/PortfolioHistory";
 
 const Router = createBrowserRouter([
   {
@@ -43,6 +46,14 @@ const Router = createBrowserRouter([
       {
         path: "portfolio",
         element: <PortfolioPage />,
+      },
+      {
+        path: "portfolio/holdings",
+        element: <Holdings />,
+      },
+      {
+        path: "portfolio/history",
+        element: <PortfolioHistory />,
       },
       {
         path: "profile",
@@ -85,6 +96,10 @@ const Router = createBrowserRouter([
   {
     path: "/reset-password",
     element: <ResetPassword />,
+  },
+  {
+    path: "/email-verified",
+    element: <VerifyEmail />,
   },
   {
     path: "/otp",

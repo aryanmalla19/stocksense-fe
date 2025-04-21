@@ -14,7 +14,7 @@ const Mainlayout = () => {
       <PrivateRoute>
         <div
           className={`${
-            collapsed ? "w-[100px]" : "w-[240px]"
+            collapsed ? "w-[100px]" : "w-[260px]"
           } transition-all duration-300`}
         >
           <Sidebar collapsed={collapsed} theme={theme} />
