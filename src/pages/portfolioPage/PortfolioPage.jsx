@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ActivePage from "./ActivePage";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const items = [
   { label: "My Portfolio" },
-  { label: "Allocation" },
+  { label: "Holdings" },
   { label: "Add Shares" },
   { label: "History" },
 ];
 
 const PortfolioPage = () => {
   const [activeTab, setActiveTab] = useState("My Portfolio");
+  const { theme } = useContext(ThemeContext);
 
   return (
     <div className="w-full">
@@ -19,7 +21,7 @@ const PortfolioPage = () => {
           <div
             key={item.label}
             className={`relative font-semibold pb-4 px-2 cursor-pointer ${
-              activeTab === item.label ? "text-teal-700" : "text-gray-400"
+              activeTab === item.label ? "text-gray-700" : "text-gray-400"
             }`}
             onClick={() => setActiveTab(item.label)}
           >
@@ -31,7 +33,7 @@ const PortfolioPage = () => {
         ))}
       </div>
 
-      <ActivePage activeTab={activeTab} />
+      <ActivePage activeTab={activeTab} theme={theme} />
     </div>
   );
 };

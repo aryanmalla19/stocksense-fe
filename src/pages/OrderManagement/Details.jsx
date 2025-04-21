@@ -34,7 +34,7 @@ const Details = ({ selectedStock, theme, isToggled, handleSubmit }) => {
         <div>
           <button
             onClick={handleSubmit}
-            className="bg-green-500 text-white rounded-md p-1 px-3 mr-3"
+            className="bg-teal-700 text-white rounded-md p-1 px-3 mr-3"
           >
             {isToggled ? "Sell" : "Buy"}
           </button>

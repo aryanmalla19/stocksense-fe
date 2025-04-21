@@ -19,3 +19,8 @@ export const buySell = async (payload) => {
     throw error;
   }
 };
+
+export const Holdings = async () => {
+  const response = await axiosInstance.get("/transactions");
+  return response.data;
+};
