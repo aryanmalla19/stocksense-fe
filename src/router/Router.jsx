@@ -20,10 +20,10 @@ import OtpPage from "../pages/Auth/OtpPage";
 import Page404 from "../components/common/Page404";
 import VerifyEmail from "../pages/Auth/VerifyEmail";
 
-import PortfolioHistory from "../pages/portfolioPage/PortfolioHistory";
 import UserManagement from "../admin/user/UserManagement";
 import Holdings from "../pages/portfolioPage/Holdings";
 import Transactions from "../pages/portfolioPage/Transactions";
+import IPOList from "../pages/sharePage/IPOList";
 
 const Router = createBrowserRouter([
   {
@@ -69,6 +69,10 @@ const Router = createBrowserRouter([
       {
         path: "shares",
         element: <MyASBAPage />,
+      },
+      {
+        path: "ipo-list",
+        element: <IPOList />,
       },
       {
         path: "apply/:id",

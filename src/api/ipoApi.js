@@ -29,3 +29,8 @@ export const Transactions = async () => {
   const response = await axiosInstance.get("/transactions");
   return response.data;
 };
+
+export const IpoApplication = async () => {
+  const response = await axiosInstance.get("/ipo-applications");
+  return response.data;
+};
