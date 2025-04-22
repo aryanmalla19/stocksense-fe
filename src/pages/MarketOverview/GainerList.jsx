@@ -27,12 +27,7 @@ const GainerList = ({ theme }) => {
           : "bg-light-bg text-light-text"
       }`}
     >
-      <h1
-        className="text-xl font-bold text-center bg-clip-text text-transparent"
-        style={{
-          backgroundImage: "linear-gradient(to right, #DC3545, #FF6F61)",
-        }}
-      >
+      <h1 className="text-xl text-[#E72E7A] font-bold text-center bg-clip-text ">
         Top Gainers
       </h1>
 

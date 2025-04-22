@@ -41,7 +41,9 @@ const Holdings = () => {
               <p>{item.quantity}</p>
               <p>{item.average_price}</p>
               <p>{investment}</p>
-              <p>Sell</p>
+              <p className="p-2 rounded-md bg-button-bg w-20 text-center">
+                Sell
+              </p>
             </div>
           );
         })}

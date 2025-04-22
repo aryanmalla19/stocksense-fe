@@ -54,7 +54,7 @@ const WatchListPage = ({ Stockhistory }) => {
                     </>
                   ) : (
                     <>
-                      <stop offset="0%" stopColor="#1573FE" stopOpacity={0.8} />
+                      <stop offset="0%" stopColor="#923eb9" stopOpacity={0.8} />
                       <stop
                         offset="100%"
                         stopColor="#FFFFFF"
