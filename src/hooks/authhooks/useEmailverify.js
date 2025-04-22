@@ -12,10 +12,12 @@ const useEmailverify = () => {
       toast.success("Email verified successfully!");
       navigate("/login");
     },
-    onError: () => {
+    onError: (error) => {
       toast.error("Invalid or expired verification link.");
+      console.log(error, "wdferf");
       navigate("/login");
     },
+    // onSettled:() =>{}
   });
 };
 

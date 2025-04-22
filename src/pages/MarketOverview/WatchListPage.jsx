@@ -45,7 +45,7 @@ const WatchListPage = ({ Stockhistory }) => {
                 <linearGradient id="chartColor" x1="0" y1="0" x2="0" y2="1">
                   {theme === "dark" ? (
                     <>
-                      <stop offset="0%" stopColor="#0149B3" stopOpacity={0.8} />
+                      <stop offset="0%" stopColor="#923eb9" stopOpacity={0.8} />
                       <stop
                         offset="100%"
                         stopColor="#000000"
@@ -54,7 +54,7 @@ const WatchListPage = ({ Stockhistory }) => {
                     </>
                   ) : (
                     <>
-                      <stop offset="0%" stopColor="#1573FE" stopOpacity={0.8} />
+                      <stop offset="0%" stopColor="#923eb9" stopOpacity={0.8} />
                       <stop
                         offset="100%"
                         stopColor="#FFFFFF"
