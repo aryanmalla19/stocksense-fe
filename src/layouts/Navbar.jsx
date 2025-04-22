@@ -14,7 +14,7 @@ const Navbar = ({ theme, collapsed, setCollapsed }) => {
     <div
       className={`px-6 py-7 flex items-center justify-between sticky top-0 ${
         theme === "dark" ? "bg-black" : "bg-white"
-      } z-10`}
+      } z-100`}
     >
       <div className="flex items-center gap-4">
         <button
