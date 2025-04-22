@@ -19,8 +19,8 @@ import StockListID from "../pages/stockPage/StockListID";
 import OtpPage from "../pages/Auth/OtpPage";
 import Page404 from "../components/common/Page404";
 import VerifyEmail from "../pages/Auth/VerifyEmail";
-import PortfolioHistory from "../pages/portfolioPage/PortfolioHistory";
 import Holdings from "../pages/portfolioPage/Holdings";
+import Transactions from "../pages/portfolioPage/Transactions";
 
 const Router = createBrowserRouter([
   {
@@ -52,8 +52,8 @@ const Router = createBrowserRouter([
         element: <Holdings />,
       },
       {
-        path: "portfolio/history",
-        element: <PortfolioHistory />,
+        path: "portfolio/transactions",
+        element: <Transactions />,
       },
       {
         path: "profile",
