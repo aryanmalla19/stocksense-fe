@@ -2,11 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { Holdings } from "../../api/ipoApi";
 
 const useGetHoldings = () => {
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ["holdings"],
     queryFn: Holdings,
   });
-  return { data };
+  return { data, refetch };
 };
 
 export default useGetHoldings;
