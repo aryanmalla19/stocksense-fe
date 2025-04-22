@@ -2,7 +2,7 @@ import axiosInstance from "./axiosInstance";
 
 export const Users = async () => {
   const response = await axiosInstance.get("/profile");
-  return response.data;
+  return response?.data;
 };
 
 export const emailverify = async (token) => {

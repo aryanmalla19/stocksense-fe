@@ -3,20 +3,26 @@ import ChangePasswordForm from "./ChangePasswordForm";
 
 import ToggleButton from "../../../components/common/ToggleButton";
 import { disableTwoFactor, enableTwoFactor } from "../../../api/userApi";
+import useUserDetails from "../../../hooks/authhooks/useUserDetails";
 
 const SecurityPage = ({ theme }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [is2FAEnabled, setIs2FAEnabled] = useState(false);
+  const { userDetails, refetch } = useUserDetails(); // get refetch
 
-  const handleToggle = () => {
-    const newValue = !is2FAEnabled;
-    setIs2FAEnabled(newValue);
-    if (newValue) {
-      enableTwoFactor();
-    } else {
-      disableTwoFactor();
+  const handleToggle = async () => {
+    const currentStatus = userDetails?.data?.two_factor_enabled;
+    try {
+      if (currentStatus) {
+        await disableTwoFactor();
+      } else {
+        await enableTwoFactor();
+      }
+      refetch(); // re-fetch user details after toggle
+    } catch (error) {
+      console.error("Failed to toggle 2FA:", error);
     }
   };
+
 
   return (
     <>
@@ -65,7 +71,10 @@ const SecurityPage = ({ theme }) => {
           </p>
 
           <div className="mt-5">
-            <ToggleButton isToggled={is2FAEnabled} onToggle={handleToggle} />
+            <ToggleButton
+              isToggled={userDetails?.data?.two_factor_enabled}
+              onToggle={handleToggle}
+            />
           </div>
         </div>
       </div>
