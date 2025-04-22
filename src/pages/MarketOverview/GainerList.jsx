@@ -1,8 +1,8 @@
 import React from "react";
-import {useStocks} from "../../hooks/stockshooks/useStocks";
+import { useStocks } from "../../hooks/stockshooks/useStocks";
 
 const GainerList = ({ theme }) => {
-  const { data, isLoading, isError } = useStocks({per_page:5});
+  const { data, isLoading, isError } = useStocks({ per_page: 5 });
   if (isLoading) {
     return (
       <div className="p-3 rounded-md">
@@ -44,7 +44,7 @@ const GainerList = ({ theme }) => {
       <div>
         {data?.data.slice(0, 5).map((stock) => (
           <div className="flex items-center gap-3 p-2" key={stock.id}>
-            <div className="w-9 h-9 flex items-center justify-center rounded-full text-lg font-bold bg-blue-400 text-white">
+            <div className="w-9 h-9 flex items-center justify-center rounded-full text-lg font-bold bg-gradient-to-br from-[#7F00FF] to-[#E100FF] text-white">
               {stock.company_name?.charAt(0)}
             </div>
             <ul

@@ -17,12 +17,13 @@ const Holdings = () => {
           theme === "dark" ? "bg-dark-bg" : "bg-light-bg"
         }`}
       >
-        <div className="grid grid-cols-5 font-semibold text-sm border-b py-3 ">
+        <div className="grid grid-cols-6 font-semibold text-xl border-b py-3 ">
           <p>Company</p>
           <p>Symbol</p>
           <p>Quantity</p>
           <p>Avg. Price (Rs)</p>
           <p>Investment (Rs)</p>
+          <p>Action</p>
         </div>
 
         {holdings.map((item, index) => {
@@ -30,7 +31,7 @@ const Holdings = () => {
 
           return (
             <div
-              className={`grid grid-cols-5 py-4 text-sm border-b hover:bg-gray-100/10 ${
+              className={`grid grid-cols-6 py-4 text-sm border-b hover:bg-gray-100/10 ${
                 theme === "dark" ? "hover:bg-gray-700/30" : "hover:bg-gray-100"
               }`}
               key={index}
@@ -40,6 +41,7 @@ const Holdings = () => {
               <p>{item.quantity}</p>
               <p>{item.average_price}</p>
               <p>{investment}</p>
+              <p>Sell</p>
             </div>
           );
         })}
