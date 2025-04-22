@@ -7,7 +7,7 @@ import useUserDetails from "../../../hooks/authhooks/useUserDetails";
 
 const SecurityPage = ({ theme }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { userDetails, refetch } = useUserDetails(); // get refetch
+  const { userDetails, refetch } = useUserDetails();
 
   const handleToggle = async () => {
     const currentStatus = userDetails?.data?.two_factor_enabled;
@@ -17,12 +17,11 @@ const SecurityPage = ({ theme }) => {
       } else {
         await enableTwoFactor();
       }
-      refetch(); // re-fetch user details after toggle
+      refetch();
     } catch (error) {
       console.error("Failed to toggle 2FA:", error);
     }
   };
-
 
   return (
     <>
