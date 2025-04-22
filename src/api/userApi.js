@@ -1,14 +1,15 @@
 import axiosInstance from "./axiosInstance";
 
 export const Users = async () => {
-  const response = await axiosInstance.get("/portfolios");
+  const response = await axiosInstance.get("/profile");
   return response.data;
 };
 
 export const emailverify = async (token) => {
   const response = await axiosInstance.get(
-    `/api/v1/auth/email/verify-by-token?access_token=${token}`
+    `/auth/email/verify?access_token=${token}`
   );
+  console.log("Email verification:", response);
   return response.data;
 };
 

@@ -2,11 +2,16 @@ import React, { useState, useEffect } from "react";
 import { IoMdAddCircle, IoMdRemoveCircle } from "react-icons/io";
 import useAddWatchList from "../../hooks/stockshooks/useAddWatchList";
 
-const WatchlistToggleButton = ({ stockID, initialIsWatchlist, removeStock, refetchSortedData }) => {
-  const { addWatchList, removeWatchList, isLoading, isError, error } = useAddWatchList();
+const WatchlistToggleButton = ({
+  stockID,
+  initialIsWatchlist,
+  removeStock,
+  refetchSortedData,
+}) => {
+  const { addWatchList, removeWatchList, isLoading, isError, error } =
+    useAddWatchList();
   const [isWatchlist, setIsWatchlist] = useState(initialIsWatchlist);
 
-  // Sync local state with initialIsWatchlist when it changes
   useEffect(() => {
     setIsWatchlist(initialIsWatchlist);
   }, [initialIsWatchlist]);
@@ -29,7 +34,7 @@ const WatchlistToggleButton = ({ stockID, initialIsWatchlist, removeStock, refet
         }
       },
       onError: () => {
-        setIsWatchlist(previous); // Revert back on error
+        setIsWatchlist(previous);
       },
     });
   };
