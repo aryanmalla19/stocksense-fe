@@ -21,7 +21,8 @@ const Filter = ({ theme, onSelect }) => {
     <div className="relative text-right font-semibold">
       <button
         onClick={handleClick}
-        className="inline-flex items-center gap-2 px-4 py-2 bg-teal-700 text-white rounded-md shadow hover:bg-teal-600 transition duration-200 ease-in-out"
+        className="inline-flex items-center gap-2 px-4 py-2 text-white rounded-md shadow transition duration-200 ease-in-out hover:opacity-90"
+        style={{ background: "linear-gradient(to right, #17A2B8, #5BC0DE)" }}
       >
         <FiFilter className="text-lg" />
         Type
