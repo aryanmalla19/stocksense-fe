@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { MdOutlineDashboard } from "react-icons/md";
+import { RiUserShared2Fill } from "react-icons/ri";
+
+import { BsDatabaseFillGear } from "react-icons/bs";
+import { RiBriefcase4Fill } from "react-icons/ri";
+import { FaHeadphonesAlt } from "react-icons/fa";
+
+import { FaClipboardList } from "react-icons/fa";
+
+
+
 import {
   FiList,
   FiStar,
@@ -19,7 +29,19 @@ const menuItems = [
   { icon: <FiStar />, label: "Watchlist", href: "/watch-list" },
   { icon: <FiPieChart />, label: "Portfolio", href: "/portfolio" },
   { icon: <FiLayers />, label: "IPO Applications", href: "/shares" },
+
+
+
+  { icon: < RiUserShared2Fill />, label: "User Management", href: "/usermanagement" },
+  { icon: <BsDatabaseFillGear />, label: "Stock Management", href: "/admin/stocks" },
+  { icon: <RiBriefcase4Fill />, label: "Portfolios", href: "/admin/portfolios" },
+  { icon: <FaHeadphonesAlt />, label: "Support", href: "/admin/support" },
+  { icon: <FaClipboardList />, label: "IpoListing", href: "/admin/ipolistig" },
+
+
 ];
+
+
 
 const portfolioItems = [
   { label: "My Portfolio", href: "/portfolio" },
@@ -47,7 +69,7 @@ const Menu = ({ collapsed, theme }) => {
       }`}
     >
       <div className="flex-1 overflow-y-auto py-10">
-        <div className="mt-3 h-85">
+        <div className="mt-3 ">
           {menuItems.map((item) => {
             if (item.label === "Portfolio") {
               return (
@@ -141,7 +163,7 @@ const Menu = ({ collapsed, theme }) => {
           })}
         </div>
 
-        <div className="mt-40">
+        <div className="mt-30">
           <hr
             className={`border ${
               theme === "dark" ? "border-[#616161]" : "border-[#EEEEEE]"
