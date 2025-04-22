@@ -46,7 +46,7 @@ const menuItems = [
 const portfolioItems = [
   { label: "My Portfolio", href: "/portfolio" },
   { label: "Holdings", href: "/portfolio/holdings" },
-  { label: "History", href: "/portfolio/history" },
+  { label: "Transactions", href: "/portfolio/transactions" },
 ];
 
 const Menu = ({ collapsed, theme }) => {

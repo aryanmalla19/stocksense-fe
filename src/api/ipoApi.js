@@ -24,3 +24,8 @@ export const Holdings = async () => {
   const response = await axiosInstance.get("/users/holdings");
   return response.data;
 };
+
+export const Transactions = async () => {
+  const response = await axiosInstance.get("/transactions");
+  return response.data;
+};

@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { useStocks } from "../../hooks/stockshooks/useStocks";
+import React from "react";
 import Details from "./Details";
-import useBuySell from "../../hooks/ipohooks/useBuySell";
 
 const InputField = ({ label, type, theme, value, onChange }) => {
   return (
@@ -12,43 +10,27 @@ const InputField = ({ label, type, theme, value, onChange }) => {
         value={value}
         onChange={onChange}
         className={`p-1.5 w-24 border rounded-md mt-2 
-              ${
-                theme === "dark"
-                  ? "bg-black text-white border-gray-700"
-                  : "bg-white text-black border-gray-200"
-              }`}
+          ${
+            theme === "dark"
+              ? "bg-black text-white border-gray-700"
+              : "bg-white text-black border-gray-200"
+          }`}
       />
     </div>
   );
 };
 
-const BuyStockPage = ({ isToggled, theme }) => {
-  const { data } = useStocks("", "", "");
-  const [selectedSymbol, setSelectedSymbol] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const { buySellData } = useBuySell();
-  console.log(buySellData);
-
-  const handleChange = (e) => {
-    setSelectedSymbol(e.target.value);
-  };
-
-  const selectedStock = data?.data?.find(
+const BuyStockPage = ({
+  theme,
+  stocksData,
+  selectedSymbol,
+  setSelectedSymbol,
+  quantity,
+  setQuantity,
+}) => {
+  const selectedStock = stocksData?.data?.find(
     (stock) => stock.symbol === selectedSymbol
   );
-
-  const handleSubmit = () => {
-    if (!selectedStock) return;
-
-    const payload = {
-      stock_id: selectedStock.id,
-      type: isToggled ? "sell" : "buy",
-      quantity: parseInt(quantity),
-    };
-
-    console.log("Submitting payload: ", payload);
-    buySellData(payload);
-  };
 
   return (
     <div className="flex flex-col">
@@ -57,7 +39,7 @@ const BuyStockPage = ({ isToggled, theme }) => {
           <p className="font-semibold mb-1">Symbol</p>
           <select
             value={selectedSymbol}
-            onChange={handleChange}
+            onChange={(e) => setSelectedSymbol(e.target.value)}
             className={`p-1.5 border rounded-md mt-2 
               ${
                 theme === "dark"
@@ -65,7 +47,10 @@ const BuyStockPage = ({ isToggled, theme }) => {
                   : "bg-white text-black border-gray-200"
               }`}
           >
-            {data?.data?.map((item, index) => (
+            <option value="" disabled>
+              Select a stock
+            </option>
+            {stocksData?.data?.map((item, index) => (
               <option
                 key={index}
                 value={item.symbol}
@@ -85,7 +70,8 @@ const BuyStockPage = ({ isToggled, theme }) => {
           label="Price"
           type="number"
           theme={theme}
-          value={selectedStock?.current_price}
+          value={selectedStock?.current_price || ""}
+          onChange={() => {}}
         />
         <InputField
           label="Quantity"
@@ -96,12 +82,7 @@ const BuyStockPage = ({ isToggled, theme }) => {
         />
       </div>
       <div className="mt-4">
-        <Details
-          handleSubmit={handleSubmit}
-          selectedStock={selectedStock}
-          theme={theme}
-          isToggled={isToggled}
-        />
+        <Details selectedStock={selectedStock} theme={theme} />
       </div>
     </div>
   );

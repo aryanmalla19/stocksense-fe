@@ -13,9 +13,9 @@ const Mainlayout = () => {
     <div className="flex">
       <PrivateRoute>
         <div
-          className={`${
+          className={`transition-all duration-300 border-r ${
             collapsed ? "w-[100px]" : "w-[260px]"
-          } transition-all duration-300`}
+          } ${theme === "dark" ? "border-r-gray-600" : "border-r-gray-200"}`}
         >
           <Sidebar collapsed={collapsed} theme={theme} />
         </div>
