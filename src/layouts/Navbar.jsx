@@ -3,15 +3,12 @@ import { MdLightMode, MdDarkMode } from "react-icons/md";
 import { ThemeContext } from "../context/ThemeContext";
 import ProfileImage from "../store/ProfileImage";
 import { GiHamburgerMenu } from "react-icons/gi";
-import useFetchUserData from "../hooks/authhooks/useFetchUserData";
 import NotificationPage from "../pages/Navbar/NotificationPage";
 import useUserDetails from "../hooks/authhooks/useUserDetails";
 
 const Navbar = ({ theme, collapsed, setCollapsed }) => {
-  const { data } = useFetchUserData();
   const { toggleTheme } = useContext(ThemeContext);
   const { userDetails } = useUserDetails();
-  const detail = userDetails?.data?.[0]?.user;
 
   return (
     <div className="px-6 py-7 flex items-center justify-between">
@@ -25,7 +22,7 @@ const Navbar = ({ theme, collapsed, setCollapsed }) => {
         <h2 className="font-semibold md:text-lg">
           Welcome to
           <span className="text-[var(--dark-text-accent)] pl-2">
-            Stockify, {data?.name}
+            Stock Sense, {userDetails?.data.name}
           </span>
         </h2>
       </div>
@@ -44,7 +41,11 @@ const Navbar = ({ theme, collapsed, setCollapsed }) => {
           )}
         </div>
 
-        <ProfileImage name={data?.name} email={data?.email} theme={theme} />
+        <ProfileImage
+          name={userDetails?.data.name}
+          email={userDetails?.data.email}
+          theme={theme}
+        />
       </div>
     </div>
   );

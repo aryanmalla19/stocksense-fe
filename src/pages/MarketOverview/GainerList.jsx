@@ -1,8 +1,8 @@
 import React from "react";
-import {useStocks} from "../../hooks/stockshooks/useStocks";
+import { useStocks } from "../../hooks/stockshooks/useStocks";
 
 const GainerList = ({ theme }) => {
-  const { data, isLoading, isError } = useStocks({per_page:5});
+  const { data, isLoading, isError } = useStocks({ per_page: 5 });
   if (isLoading) {
     return (
       <div className="p-3 rounded-md">
@@ -27,7 +27,12 @@ const GainerList = ({ theme }) => {
           : "bg-light-bg text-light-text"
       }`}
     >
-      <h1 className="text-red-400 font-bold rounded-md text-xl text-center">
+      <h1
+        className="text-xl font-bold text-center bg-clip-text text-transparent"
+        style={{
+          backgroundImage: "linear-gradient(to right, #DC3545, #FF6F61)",
+        }}
+      >
         Top Gainers
       </h1>
 
@@ -44,7 +49,7 @@ const GainerList = ({ theme }) => {
       <div>
         {data?.data.slice(0, 5).map((stock) => (
           <div className="flex items-center gap-3 p-2" key={stock.id}>
-            <div className="w-9 h-9 flex items-center justify-center rounded-full text-lg font-bold bg-blue-400 text-white">
+            <div className="w-9 h-9 flex items-center justify-center rounded-full text-lg font-bold bg-gradient-to-br from-[#7F00FF] to-[#E100FF] text-white">
               {stock.company_name?.charAt(0)}
             </div>
             <ul

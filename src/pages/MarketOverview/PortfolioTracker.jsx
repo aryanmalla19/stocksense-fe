@@ -8,7 +8,11 @@ import { useStocks } from "../../hooks/stockshooks/useStocks";
 const PortfolioTracker = () => {
   const { theme } = useContext(ThemeContext);
   const { data: stocksData, isLoading, error } = useFetchWatchList();
-  const { data: allStocksData, isLoading: isStocksLoading } = useStocks(1,1,10);
+  const { data: allStocksData, isLoading: isStocksLoading } = useStocks(
+    1,
+    1,
+    10
+  );
 
   const settings = {
     dots: false,
@@ -29,7 +33,8 @@ const PortfolioTracker = () => {
 
   if (isLoading || isStocksLoading) return <p>Loading watchlist...</p>;
   if (error) return <p>Error loading watchlist: {error.message}</p>;
-  if (!stocksData?.data || !Array.isArray(stocksData.data)) return <p>No data</p>;
+  if (!stocksData?.data || !Array.isArray(stocksData.data))
+    return <p>No data</p>;
 
   const watchList = stocksData.data;
   let finalStocks = [...watchList];
@@ -38,11 +43,14 @@ const PortfolioTracker = () => {
     const remainingCount = 4 - watchList.length;
 
     const extraStocks = allStocksData.data
-      .filter(stock =>
-        !watchList.some(watchItem => watchItem.stock.symbol === stock.symbol)
+      .filter(
+        (stock) =>
+          !watchList.some(
+            (watchItem) => watchItem.stock.symbol === stock.symbol
+          )
       )
       .slice(0, remainingCount)
-      .map(stock => ({ stock })); // match watchlist shape
+      .map((stock) => ({ stock })); // match watchlist shape
 
     finalStocks = [...finalStocks, ...extraStocks];
   }
@@ -62,7 +70,7 @@ const PortfolioTracker = () => {
                 }`}
               >
                 <div className="flex items-center gap-4 h-12">
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full text-lg font-bold bg-blue-400 text-white">
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full text-lg font-bold bg-gradient-to-br from-[#7F00FF] to-[#E100FF] text-white">
                     {stock?.stock.company_name?.charAt(0) || "?"}
                   </div>
                   <div>

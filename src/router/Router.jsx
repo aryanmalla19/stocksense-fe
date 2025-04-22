@@ -19,8 +19,8 @@ import StockListID from "../pages/stockPage/StockListID";
 import OtpPage from "../pages/Auth/OtpPage";
 import Page404 from "../components/common/Page404";
 import VerifyEmail from "../pages/Auth/VerifyEmail";
-import { Holdings } from "../api/ipoApi";
 import PortfolioHistory from "../pages/portfolioPage/PortfolioHistory";
+import Holdings from "../pages/portfolioPage/Holdings";
 
 const Router = createBrowserRouter([
   {

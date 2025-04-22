@@ -22,7 +22,7 @@ const Mainlayout = () => {
         <div
           className={`flex-1 ${
             theme === "dark"
-              ? "bg-[#202020] text-white"
+              ? "bg-[#000000] text-white"
               : "bg-[#F3F8FF] text-[#757575]"
           }`}
         >

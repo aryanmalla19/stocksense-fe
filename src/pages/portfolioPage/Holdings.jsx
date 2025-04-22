@@ -1,37 +1,55 @@
-import React from "react";
-import useGetTransaction from "../../hooks/ipohooks/useGetTransaction";
+import React, { useContext } from "react";
+import useGetHoldings from "../../hooks/ipohooks/useGetHoldings";
+import { ThemeContext } from "../../context/ThemeContext";
 
-const Holdings = ({ theme }) => {
-  const { data } = useGetTransaction();
-  const transactions = data?.data || [];
-  console.log(transactions);
+const Holdings = () => {
+  const { data } = useGetHoldings();
+  const holdings = data?.data || [];
+  const { theme } = useContext(ThemeContext);
+
   return (
     <div
-      className={`p-4 rounded-md ${
-        theme === "dark"
-          ? "bg-dark-bg text-dark-text"
-          : "bg-light-bg text-light-text"
-      }`}
+      className={`${theme === "dark" ? " text-dark-text" : " text-light-text"}`}
     >
-      <div className="flex justify-between font-bold border-b pb-2 mb-2">
-        <p>Company Name</p>
-        <p>Quantity</p>
-        <p>Price</p>
-        <p>Total Price</p>
-        <p>Transaction Fee</p>
-      </div>
+      <h2 className="text-2xl font-semibold mb-4  pb-2">Your Holdings</h2>
+      <div
+        className={`p-6 rounded-xl shadow-md transition-all ${
+          theme === "dark" ? "bg-dark-bg" : "bg-light-bg"
+        }`}
+      >
+        <div className="grid grid-cols-6 font-semibold text-xl border-b py-3 ">
+          <p>Company</p>
+          <p>Symbol</p>
+          <p>Quantity</p>
+          <p>Avg. Price (Rs)</p>
+          <p>Investment (Rs)</p>
+          <p>Action</p>
+        </div>
 
-      {transactions.map((item, index) => {
-        return (
-          <div className="flex justify-between py-2" key={index}>
-            <p>{item.company_name}</p>
-            <p>{item.quantity}</p>
-            <p>{item.price}</p>
-            <p>{item.total_price}</p>
-            <p>{item.transaction_fee}</p>
-          </div>
-        );
-      })}
+        {holdings.map((item, index) => {
+          const investment = item.quantity * item.average_price;
+
+          return (
+            <div
+              className={`grid grid-cols-6 py-4 text-sm border-b hover:bg-gray-100/10 ${
+                theme === "dark" ? "hover:bg-gray-700/30" : "hover:bg-gray-100"
+              }`}
+              key={index}
+            >
+              <p>{item.stock.company_name}</p>
+              <p>{item.stock.symbol}</p>
+              <p>{item.quantity}</p>
+              <p>{item.average_price}</p>
+              <p>{investment}</p>
+              <p>Sell</p>
+            </div>
+          );
+        })}
+
+        {holdings.length === 0 && (
+          <p className="text-center mt-4 text-gray-500">No holdings found.</p>
+        )}
+      </div>
     </div>
   );
 };
