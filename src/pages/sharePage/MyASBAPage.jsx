@@ -81,7 +81,7 @@ const MyASBAPage = () => {
                   <td className="px-4 py-3">{data.total_shares}</td>
                   <td className="px-4 py-3">
                     <Link to={`/apply/${data.id}`}>
-                      <button className="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-md shadow-sm">
+                      <button className="px-4 py-2 bg-[#923eb9] hover:bg-[#af72cc] text-white rounded-md shadow-sm">
                         Apply
                       </button>
                     </Link>

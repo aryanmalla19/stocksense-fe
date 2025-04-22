@@ -1,20 +1,24 @@
 import React, { useEffect } from "react";
-import useEmailverify from "../../hooks/authhooks/useEmailverify";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import useAuthStore from "../../store/authStore";
 
 const VerifyEmail = () => {
   const [searchparams] = useSearchParams();
-  const token = searchparams.get("access_token");
-  const mutation = useEmailverify();
+  const accessToken = searchparams.get("access_token");
+  const refreshToken = searchparams.get("refresh_token");
+  const setTokens = useAuthStore((state) => state.setTokens);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (token) {
-      mutation.mutate(token);
+    if (accessToken && refreshToken) {
+      setTokens(accessToken, refreshToken);
+      navigate("/login");
     }
-  }, [token]);
+  }, [accessToken, refreshToken]);
+
   return (
     <div>
-      <p>Verifying email ...and... Redirecting to login page</p>
+      <p>Verifying email... and redirecting to login page</p>
     </div>
   );
 };
