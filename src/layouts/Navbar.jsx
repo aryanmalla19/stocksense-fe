@@ -11,7 +11,11 @@ const Navbar = ({ theme, collapsed, setCollapsed }) => {
   const { userDetails } = useUserDetails();
 
   return (
-    <div className="px-6 py-7 flex items-center justify-between">
+    <div
+      className={`px-6 py-7 flex items-center justify-between sticky top-0 ${
+        theme === "dark" ? "bg-black" : "bg-white"
+      } z-10`}
+    >
       <div className="flex items-center gap-4">
         <button
           className="text-2xl cursor-pointer"
