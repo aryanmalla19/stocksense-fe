@@ -21,6 +21,7 @@ import Page404 from "../components/common/Page404";
 import VerifyEmail from "../pages/Auth/VerifyEmail";
 import { Holdings } from "../api/ipoApi";
 import PortfolioHistory from "../pages/portfolioPage/PortfolioHistory";
+import UserManagement from "../admin/user/UserManagement";
 
 const Router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const Router = createBrowserRouter([
       {
         path: "/watch-list",
         element: <WatchList />,
+      },
+      {
+        path: "/usermanagement",
+        element: <UserManagement />,
       },
     ],
   },
