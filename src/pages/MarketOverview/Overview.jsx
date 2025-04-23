@@ -9,7 +9,7 @@ const Overview = () => {
   const { theme } = useContext(ThemeContext);
   const { historyData } = useHistoryID(1);
   return (
-    <div className="outlet-container space-y-4">
+    <div className="outlet-container">
       <PortfolioTracker />
 
       <div className="flex gap-4 h-95">

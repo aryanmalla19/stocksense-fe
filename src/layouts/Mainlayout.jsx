@@ -10,28 +10,44 @@ const Mainlayout = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div className="flex">
+    <div className="h-screen flex overflow-hidden">
       <PrivateRoute>
+        {/* Sticky Sidebar */}
         <div
-          className={`transition-all duration-300 border-r ${
+          className={`sticky top-0 h-screen transition-all duration-300 border-r z-30 ${
             collapsed ? "w-[100px]" : "w-[260px]"
-          } ${theme === "dark" ? "border-r-gray-600" : "border-r-gray-200"}`}
+          } ${
+            theme === "dark"
+              ? "border-r-gray-600 bg-black"
+              : "border-r-gray-200 bg-white"
+          }`}
         >
           <Sidebar collapsed={collapsed} theme={theme} />
         </div>
-        <div
-          className={`flex-1 ${
-            theme === "dark"
-              ? "bg-[#000000] text-white"
-              : "bg-[#F3F8FF] text-[#757575]"
-          }`}
-        >
-          <Navbar
-            theme={theme}
-            collapsed={collapsed}
-            setCollapsed={setCollapsed}
-          />
-          <div className="outlet-container">
+
+        <div className="flex-1 flex flex-col">
+          {/* Sticky Navbar */}
+          <div
+            className={`sticky top-0 z-20 ${
+              theme === "dark"
+                ? "bg-[#000000] text-white"
+                : "bg-[#F3F8FF] text-[#757575]"
+            }`}
+          >
+            <Navbar
+              theme={theme}
+              collapsed={collapsed}
+              setCollapsed={setCollapsed}
+            />
+          </div>
+
+          <div
+            className={`flex-1 overflow-auto ${
+              theme === "dark"
+                ? "bg-[#000000] text-white"
+                : "bg-[#F3F8FF] text-[#757575]"
+            }`}
+          >
             <Outlet />
           </div>
         </div>

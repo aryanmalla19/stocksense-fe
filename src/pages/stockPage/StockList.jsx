@@ -42,17 +42,14 @@ const StockList = () => {
 
       {/* Main Content */}
       <div
-        className={`outlet-container rounded-md p-4 transition-colors duration-300 ${
+        className={`outlet-container  rounded-md p-4 transition-colors duration-300 ${
           theme === "dark"
             ? "bg-dark-bg border border-dark-bg shadow-md shadow-black/30"
             : "bg-white border border-gray-200 shadow-md shadow-gray-300"
         }`}
       >
         <main>
-          <StockListTable
-            searchSymbol={searchSymbol}
-            theme={theme}
-          />
+          <StockListTable searchSymbol={searchSymbol} theme={theme} />
         </main>
       </div>
     </div>

@@ -50,13 +50,13 @@ const PortfolioTracker = () => {
           )
       )
       .slice(0, remainingCount)
-      .map((stock) => ({ stock })); // match watchlist shape
+      .map((stock) => ({ stock }));
 
     finalStocks = [...finalStocks, ...extraStocks];
   }
 
   return (
-    <div className="relative">
+    <div className="relative mt-5">
       <SliderCarousel direction="left" theme={theme} />
       <Slider {...settings} className="max-w-[1210px] p-4">
         {finalStocks.map((stock, index) => (
