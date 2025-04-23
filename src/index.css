@@ -9,7 +9,7 @@ body {
   --light-bg: #FFFFFF;
   --dark-text: #FEFEFE;
   --light-text: #000000;
-  --accent-green: #049C6B;
+  --purple-bg: #923EB9;
   --button-bg: #103E63;
   --hover-bg:#082E66;
 }
@@ -30,8 +30,8 @@ body {
     color: var(--light-text);
 }
     
-.text-accent-green {
-    color: var(--accent-green);
+.bg-purple-button {
+    background-color: var(--purple-bg);
 }
   
 .bg-button-bg {

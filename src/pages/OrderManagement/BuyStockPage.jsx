@@ -9,12 +9,8 @@ const InputField = ({ label, type, theme, value, onChange }) => {
         type={type}
         value={value}
         onChange={onChange}
-        className={`p-1.5 w-24 border rounded-md mt-2 
-          ${
-            theme === "dark"
-              ? "bg-black text-white border-gray-700"
-              : "bg-white text-black border-gray-200"
-          }`}
+        className={`p-1.5 w-24  rounded-md mt-2 
+          ${theme === "dark" ? "bg-gray-800 " : "bg-gray-100"}`}
       />
     </div>
   );
@@ -34,6 +30,9 @@ const BuyStockPage = ({
 
   return (
     <div className="flex flex-col">
+      <div className="mb-5">
+        <Details selectedStock={selectedStock} theme={theme} />
+      </div>
       <div className="flex flex-col gap-6 md:flex-row">
         <div>
           <p className="font-semibold mb-1">Symbol</p>
@@ -41,15 +40,9 @@ const BuyStockPage = ({
             value={selectedSymbol}
             onChange={(e) => setSelectedSymbol(e.target.value)}
             className={`p-1.5 border rounded-md mt-2 
-              ${
-                theme === "dark"
-                  ? "bg-black text-white border-gray-700"
-                  : "bg-white text-black border-gray-200"
-              }`}
+              ${theme === "dark" ? "bg-gray-800 " : "bg-gray-100"}`}
           >
-            <option value="" disabled>
-              Select a stock
-            </option>
+            Select a stock
             {stocksData?.data?.map((item, index) => (
               <option
                 key={index}
@@ -80,9 +73,6 @@ const BuyStockPage = ({
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
         />
-      </div>
-      <div className="mt-4">
-        <Details selectedStock={selectedStock} theme={theme} />
       </div>
     </div>
   );

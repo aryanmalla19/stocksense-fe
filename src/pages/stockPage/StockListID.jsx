@@ -22,25 +22,27 @@ const StockListID = () => {
 
   return (
     <>
-      <StockDetails theme={theme} stock={stock} />
-      <div className="flex flex-col md:flex-row w-full gap-2 my-4 h-120">
-        <div
-          className={`w-full md:w-1/2 border ${
-            theme === "dark"
-              ? " bg-dark-bg text-dark-text border-gray-800"
-              : "border-gray-100 bg-light-bg text-light-text"
-          } rounded-md`}
-        >
-          <MarketSummary theme={theme} stock={stock} />
-        </div>
-        <div
-          className={`w-3/3 border pb-8 ${
-            theme === "dark"
-              ? " bg-dark-bg text-dark-text border-gray-800"
-              : "border-gray-100 bg-light-bg text-light-text"
-          } rounded-md`}
-        >
-          <WatchListPage Stockhistory={Stockhistory} id={id} />
+      <div className="outlet-container">
+        <StockDetails theme={theme} stock={stock} />
+        <div className="flex flex-col md:flex-row w-full gap-2 my-4 h-120">
+          <div
+            className={`w-full md:w-1/2  ${
+              theme === "dark"
+                ? " bg-dark-bg text-dark-text border-gray-800"
+                : " bg-light-bg text-light-text"
+            } rounded-md`}
+          >
+            <MarketSummary theme={theme} stock={stock} />
+          </div>
+          <div
+            className={`w-3/3 border pb-8 ${
+              theme === "dark"
+                ? " bg-dark-bg text-dark-text border-gray-800"
+                : "border-gray-100 bg-light-bg text-light-text"
+            } rounded-md`}
+          >
+            <WatchListPage Stockhistory={Stockhistory} id={id} />
+          </div>
         </div>
       </div>
     </>
