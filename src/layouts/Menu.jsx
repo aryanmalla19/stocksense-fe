@@ -32,8 +32,14 @@ const menuItems = [
   {
     icon: <BsDatabaseFillGear />,
     label: "Stock Management",
-    href: "/admin/stocks",
+    href: "/stockmanagement",
   },
+  {
+    icon: <BsDatabaseFillGear />,
+    label: "Ipo Management",
+    href: "/ipomanagement",
+  },
+
   {
     icon: <RiBriefcase4Fill />,
     label: "Portfolios",
