@@ -1,54 +1,53 @@
 import React, { useEffect, useState } from "react";
-import Pusher from "pusher-js";
 
 const Notification = () => {
   const [connectionState, setConnectionState] = useState("Connecting...");
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    const pusher = new Pusher("bb224a14eb5d465cdf28", {
-      cluster: "ap1",
-      forceTLS: true,
-      enableStats: false,
-    });
+    const authState = JSON.parse(localStorage.getItem('auth-storage'))
+    // console.log(authState);
+    const token = authState?.state?.token;
+    // console.log(token);
+    const eventSource = new EventSource(
+      `http://localhost:8000/api/v1/auth/sse-notifications?token=${encodeURIComponent(token)}`
+    );
 
-    pusher.connection.bind("state_change", (states) => {
-      console.log("State change:", states);
-      setConnectionState(states.current);
-    });
+    eventSource.onopen = () => {
+      console.log("Connected to SSE!"); 
+      setConnectionState("Connected");
+    };
 
-    pusher.connection.bind("connected", () => {
-      console.log("Connected to Pusher!");
-    });
-
-    pusher.connection.bind("disconnected", () => {
-      console.warn("⚠️ Pusher DISCONNECTED");
-    });
-
-    pusher.connection.bind("error", (err) => {
-      console.error("Pusher ERROR:", err);
-    });
-
-    const channel = pusher.subscribe("general-notifications");
-
-    channel.bind("GeneralNotification", (data) => {
-      if (data?.message) {
-        setMessages((prev) => [...prev, data.message]);
+    eventSource.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data?.message) {
+          setMessages((prev) => [...prev, data.message]);
+        }
+      } catch (err) {
+        console.error("Error parsing SSE message:", err);
       }
-    });
+    };
 
+    // Handle errors
+    eventSource.onerror = (err) => {
+      console.error("SSE Error:", err);
+      setConnectionState("Disconnected");
+    };
+
+    // Cleanup on component unmount
     return () => {
-      pusher.disconnect();
-      console.log("Disconnected Pusher");
+      eventSource.close();
+      console.log("Disconnected SSE");
     };
   }, []);
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>🔔 Notification </h2>
+      <h2>🔔 Notification ({connectionState})</h2>
       <ul>
         {messages.map((msg, idx) => (
-          <li key={idx}> {msg}</li>
+          <li key={idx}>{msg}</li>
         ))}
       </ul>
     </div>
