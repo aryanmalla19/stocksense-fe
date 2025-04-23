@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import useGetHoldings from "../../hooks/ipohooks/useGetHoldings";
 import { ThemeContext } from "../../context/ThemeContext";
 import useBuySell from "../../hooks/ipohooks/useBuySell";
-import { FaArrowDown, FaMoneyBillAlt, FaTrashAlt } from "react-icons/fa"; // Font Awesome Icons
+import { FaSellcast } from "react-icons/fa";
 
 const Holdings = () => {
-  const { data, refetch, isLoading } = useGetHoldings();
+  const { data, refetch } = useGetHoldings();
   const holdings = data?.data || [];
   const { theme } = useContext(ThemeContext);
   const { buySellData } = useBuySell();
@@ -26,24 +26,21 @@ const Holdings = () => {
   };
 
   return (
-    <div
-      className={`${
-        theme === "dark" ? "text-dark-text" : "text-light-text"
-      } min-h-screen p-6`}
-    >
-      <h2 className="text-3xl font-semibold mb-6 pb-2 flex items-center justify-between">
-        Your Holdings
-        {isLoading && (
-          <div className="animate-spin h-6 w-6 border-4 border-t-transparent border-blue-500 rounded-full" />
-        )}
-      </h2>
+    <div>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8 text-[#9E15BF]">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold py-2">Your Holdings</h1>
+        </div>
+      </div>
 
       <div
-        className={`p-6 rounded-xl shadow-lg transition-all ${
-          theme === "dark" ? "bg-dark-bg" : "bg-light-bg"
+        className={`outlet-container rounded-md p-8 transition-colors duration-300  ${
+          theme === "dark"
+            ? "bg-dark-bg border border-dark-bg shadow-md shadow-black/30"
+            : "bg-white border border-gray-200 shadow-md shadow-gray-300"
         }`}
       >
-        <div className="grid grid-cols-6 font-semibold text-xl border-b py-3">
+        <div className="grid grid-cols-6 bg-purple-button  text-white font-semibold p-2 rounded-md">
           <p>Company</p>
           <p>Symbol</p>
           <p>Quantity</p>
@@ -60,26 +57,23 @@ const Holdings = () => {
 
             return (
               <div
-                className={`grid grid-cols-6 py-4 text-sm border-b hover:bg-gray-100/10 ${
-                  theme === "dark"
-                    ? "hover:bg-gray-700/30"
-                    : "hover:bg-gray-100"
-                }`}
                 key={index}
+                className={`grid grid-cols-6 gap-2  py-2 px-2 my-2 rounded-md  ${
+                  theme === "dark"
+                    ? " text-dark-text hover:bg-gray-700"
+                    : " hover:bg-gray-100 text-light-text"
+                }`}
               >
-                <p className="flex items-center">
-                  <FaArrowDown className="text-lg mr-2 text-green-500" />
-                  {item.stock.company_name}
-                </p>
+                <p>{item.stock.company_name}</p>
                 <p>{item.stock.symbol}</p>
                 <p>{item.quantity}</p>
                 <p>{item.average_price}</p>
                 <p>{investment}</p>
                 <p
                   onClick={() => handleClick(item.stock.id, item.quantity)}
-                  className="flex items-center justify-center cursor-pointer p-2 rounded-md bg-red-500 text-white w-24 hover:bg-red-600 transition-all"
+                  className="flex items-center gap-2 justify-center cursor-pointer rounded-md p-2 bg-[#5626C4] text-white w-24 transition-all"
                 >
-                  <FaTrashAlt className="mr-2" /> Sell
+                  <FaSellcast className="" /> Sell
                 </p>
               </div>
             );
