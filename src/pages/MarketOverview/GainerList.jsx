@@ -21,17 +21,17 @@ const GainerList = ({ theme }) => {
 
   return (
     <div
-      className={`p-3 rounded-md ${
+      className={`p-3 rounded-md my-2 ${
         theme === "dark"
           ? "bg-dark-bg text-dark-text"
-          : "bg-light-bg text-light-text"
+          : "bg-light-bg text-light-text shadow-md"
       }`}
     >
-      <h1 className="text-xl text-[#E72E7A] font-bold text-center bg-clip-text ">
+      <h1 className="text-xl text-[#E60576] font-bold text-center bg-clip-text ">
         Top Gainers
       </h1>
 
-      <div className="mt-5">
+      <div className="mt-3">
         <ul className="flex justify-around font-semibold w- ml-2 ">
           <li>Symbol</li>
           <li>CH</li>

@@ -63,10 +63,10 @@ const PortfolioTracker = () => {
           <div key={index}>
             <div className="px-2 flex gap-8">
               <div
-                className={`w-[300px] h-[174px] rounded-[12px] p-4 space-y-5 ${
+                className={`w-[300px] h-[174px] rounded-[12px] p-4 space-y-5 my-2 ${
                   theme === "dark"
                     ? "bg-dark-bg text-dark-text"
-                    : "bg-light-bg text-light-text"
+                    : "bg-light-bg text-light-text shadow-md"
                 }`}
               >
                 <div className="flex items-center gap-4 h-12">

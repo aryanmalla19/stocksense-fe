@@ -13,7 +13,7 @@ const Navbar = ({ theme, collapsed, setCollapsed }) => {
   return (
     <div
       className={`px-6 py-7 flex items-center justify-between sticky top-0 ${
-        theme === "dark" ? "bg-black" : "bg-white"
+        theme === "dark" ? "text-dark-text" : "text-light-text bg-light-bg"
       } z-100`}
     >
       <div className="flex items-center gap-4">
@@ -25,9 +25,7 @@ const Navbar = ({ theme, collapsed, setCollapsed }) => {
         </button>
         <h2 className="font-semibold md:text-lg">
           Welcome to
-          <span className="text-[var(--dark-text-accent)] pl-2">
-            Stock Sense, {userDetails?.data.name}
-          </span>
+          <span className=" pl-2">Stock Sense, {userDetails?.data.name}</span>
         </h2>
       </div>
       <div className="flex items-center space-x-6">
