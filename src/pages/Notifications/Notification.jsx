@@ -6,9 +6,7 @@ const Notification = () => {
 
   useEffect(() => {
     const authState = JSON.parse(localStorage.getItem('auth-storage'))
-    // console.log(authState);
     const token = authState?.state?.token;
-    // console.log(token);
     const eventSource = new EventSource(
       `http://localhost:8000/api/v1/auth/sse-notifications?token=${encodeURIComponent(token)}`
     );
@@ -29,13 +27,11 @@ const Notification = () => {
       }
     };
 
-    // Handle errors
     eventSource.onerror = (err) => {
       console.error("SSE Error:", err);
       setConnectionState("Disconnected");
     };
 
-    // Cleanup on component unmount
     return () => {
       eventSource.close();
       console.log("Disconnected SSE");
@@ -44,7 +40,7 @@ const Notification = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>🔔 Notification ({connectionState})</h2>
+      <h2> Notification ({connectionState})</h2>
       <ul>
         {messages.map((msg, idx) => (
           <li key={idx}>{msg}</li>
