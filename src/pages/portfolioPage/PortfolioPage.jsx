@@ -60,13 +60,13 @@ const PortfolioPage = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center mb-6 mx-6 text-[#9E15BF] mt-5">
+      <div className="flex justify-between items-center mb-6 mx-6 text-[#9E15BF] mt-5 ">
         <h1 className="text-3xl font-bold flex items-center gap-2">
           My Portfolio
         </h1>
       </div>
       <div
-        className={`outlet-container rounded-md mx-6 ${
+        className={`outlet-container rounded-md mx-6 shadow-md  ${
           isDark ? "bg-dark-bg" : "bg-light-bg"
         }`}
       >
