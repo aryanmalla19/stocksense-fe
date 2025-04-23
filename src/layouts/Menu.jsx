@@ -17,7 +17,7 @@ import MenuItem from "./MenuItems";
 import DropdownMenu from "./DropdownMenu";
 
 const menuItems = [
-  { icon: <MdOutlineDashboard />, label: "Dashboard", href: "/" },
+  { icon: <MdOutlineDashboard />, label: "Dashboard", href: "/dashboard" },
   { icon: <FiList />, label: "Stocks List", href: "/stocks" },
   { icon: <FiShoppingCart />, label: "Trade Stocks", href: "/buysell" },
   { icon: <FiStar />, label: "Watchlist", href: "/watch-list" },
