@@ -8,7 +8,7 @@ const useHistoryID = (id) => {
     enabled: !!id,
   });
 
-  return { historyData: data, isLoading, error };
+  return { data, isLoading, error };
 };
 
 export default useHistoryID;

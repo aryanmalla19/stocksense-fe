@@ -13,7 +13,7 @@ const Sidebar = ({ collapsed, theme }) => {
     >
       <header className="flex flex-col items-center justify-between lg:justify-start gap-2">
         <div className="flex flex-col items-center mt-3 justify-between gap-4">
-          <img src={logo} alt="logo" className="w-18 h-12 mr-3" />
+          <img src={logo} alt="logo" className="w-20 h-20 mr-3" />
           {!collapsed && (
             <p className="hidden lg:block font-bold mr-5 text-2xl ">
               Stock Sense

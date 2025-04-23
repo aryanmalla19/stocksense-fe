@@ -6,6 +6,7 @@ import useHistoryID from "../../hooks/stockshooks/useHistoryID";
 import WatchListPage from "../MarketOverview/WatchListPage";
 import StockDetails from "./StockDetails";
 import MarketSummary from "./MarketSummary";
+import Candlestick from "../../components/common/CandleStick";
 
 const StockListID = () => {
   const { id } = useParams();
@@ -41,7 +42,7 @@ const StockListID = () => {
                 : "border-gray-100 bg-light-bg text-light-text"
             } rounded-md`}
           >
-            <WatchListPage Stockhistory={Stockhistory} id={id} />
+            <Candlestick Stockhistory={Stockhistory} id={id} theme={theme} />
           </div>
         </div>
       </div>
