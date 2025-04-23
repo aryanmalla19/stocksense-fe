@@ -5,8 +5,10 @@ import WatchlistToggleButton from "./WatchListToggleButton";
 const StockListRow = React.memo(({ stock, theme, removeStock }) => {
   return (
     <div
-      className={`grid grid-cols-20 rounded-md text-sm p-3 items-center ${
-        theme === "dark" ? " hover:bg-gray-700" : " hover:bg-gray-100"
+      className={`grid grid-cols-20 rounded-md text-sm p-3 items-center  ${
+        theme === "dark"
+          ? " text-dark-text hover:bg-gray-700"
+          : " hover:bg-gray-100 text-light-text"
       }`}
     >
       <Link to={`/stocksID/${stock.id}`} className="contents">

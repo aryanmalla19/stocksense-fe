@@ -15,7 +15,7 @@ const StockList = () => {
   return (
     <div>
       {/* Header Section */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8 text-[#9E15BF]">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold py-2">
             {isWatchlist ? "Stock Watch List" : "Stock List"}
@@ -42,17 +42,14 @@ const StockList = () => {
 
       {/* Main Content */}
       <div
-        className={`outlet-container rounded-md p-4 transition-colors duration-300 ${
+        className={`outlet-container  rounded-md p-4 transition-colors duration-300 ${
           theme === "dark"
             ? "bg-dark-bg border border-dark-bg shadow-md shadow-black/30"
             : "bg-white border border-gray-200 shadow-md shadow-gray-300"
         }`}
       >
         <main>
-          <StockListTable
-            searchSymbol={searchSymbol}
-            theme={theme}
-          />
+          <StockListTable searchSymbol={searchSymbol} theme={theme} />
         </main>
       </div>
     </div>

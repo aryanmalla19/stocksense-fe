@@ -8,11 +8,11 @@ import {
   FiLayers,
   FiShoppingCart,
 } from "react-icons/fi";
-import { IoMdHelpCircleOutline } from "react-icons/io";
-import { RiUserShared2Fill } from "react-icons/ri"; // Import missing icon
-import { BsDatabaseFillGear } from "react-icons/bs"; // Import missing icon
-import { RiBriefcase4Fill } from "react-icons/ri"; // Import missing icon
-import { FaHeadphonesAlt, FaClipboardList } from "react-icons/fa"; // Import missing icons
+// import { IoMdHelpCircleOutline } from "react-icons/io";
+import { RiUserShared2Fill } from "react-icons/ri";
+import { BsDatabaseFillGear } from "react-icons/bs";
+import { RiBriefcase4Fill } from "react-icons/ri";
+import { FaHeadphonesAlt, FaClipboardList } from "react-icons/fa";
 import MenuItem from "./MenuItems";
 import DropdownMenu from "./DropdownMenu";
 
@@ -65,7 +65,7 @@ const Menu = ({ collapsed, theme }) => {
 
   return (
     <div
-      className={`flex flex-col justify-between h-screen text-lg ${
+      className={`flex flex-col justify-between h-screen text-lg  ${
         theme === "dark" ? "text-white" : "text-gray-900"
       }`}
     >

@@ -2,7 +2,7 @@ import React from "react";
 
 const Pagination = ({ pageNumber, setPageNumber, links }) => {
   return (
-    <div className="flex items-center justify-center gap-4 py-4">
+    <div className="flex items-center justify-center gap-4 pt-4">
       <button
         onClick={() => setPageNumber((prev) => prev - 1)}
         disabled={pageNumber <= 1}

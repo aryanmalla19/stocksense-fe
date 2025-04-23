@@ -8,7 +8,7 @@ const Sidebar = ({ collapsed, theme }) => {
       className={`p-2  ${
         theme === "dark"
           ? "bg-[#000000] text-white "
-          : "bg-[#F3F8FF] border border-r-gray-300 text-[#757575]"
+          : "bg-light-bg  border border-r-gray-300 text-[#757575]"
       }`}
     >
       <header className="flex flex-col items-center justify-between lg:justify-start gap-2">
