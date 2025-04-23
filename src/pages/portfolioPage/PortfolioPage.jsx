@@ -7,6 +7,7 @@ import {
   FaBalanceScale,
   FaChartLine,
 } from "react-icons/fa";
+import DonutChart from "../../components/common/DonoutChart";
 
 const PortfolioPage = () => {
   const { data, isLoading, error } = useFetchPortfolio();
@@ -92,6 +93,7 @@ const PortfolioPage = () => {
             </div>
           ))}
         </div>
+        <DonutChart />
       </div>
     </>
   );
