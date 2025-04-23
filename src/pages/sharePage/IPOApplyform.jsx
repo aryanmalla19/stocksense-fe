@@ -77,10 +77,10 @@ const IPOApplyform = ({
         <button
           onClick={handleSubmit}
           disabled={!agreedTerm || isPending || isSuccess || error}
-          className={`mt-4 px-6 py-2 rounded-md font-medium text-white transition ${
+          className={`mt-4 px-6 py-2 rounded-md font-medium transition bg-purple-button  text-white ${
             agreedTerm && !error && !isPending && !isSuccess
-              ? "bg-teal-700 hover:bg-teal-600 cursor-pointer"
-              : "bg-teal-700 opacity-50 cursor-not-allowed"
+              ? " cursor-pointer"
+              : " opacity-50 cursor-not-allowed"
           }`}
         >
           {isPending

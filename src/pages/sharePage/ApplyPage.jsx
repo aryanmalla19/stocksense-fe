@@ -54,7 +54,7 @@ const ApplyPage = () => {
   if (!ipo) return <p className="text-gray-500 p-4">IPO not found</p>;
 
   return (
-    <>
+    <div className="outlet-container shadow-md mt-3">
       <ApplyShareOverview ipo={ipo} stock={stock} isDark={isDark} />
 
       {/* Application Form */}
@@ -66,11 +66,7 @@ const ApplyPage = () => {
         >
           <h3 className="text-2xl font-semibold mb-4 flex items-center justify-center gap-2">
             <FiCheckCircle
-              className={`p-2 rounded-full text-3xl  ${
-                isDark
-                  ? "bg-teal-900/50 text-teal-600 "
-                  : "bg-teal-600/50 text-white"
-              }`}
+              className={`p-2 rounded-full text-3xl bg-purple-button  text-white`}
             />
             Apply for Shares
           </h3>
@@ -117,7 +113,7 @@ const ApplyPage = () => {
           </ul>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

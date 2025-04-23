@@ -75,7 +75,7 @@ const Menu = ({ collapsed, theme }) => {
         theme === "dark" ? "text-white" : "text-gray-900"
       }`}
     >
-      <div className="flex-1 overflow-y-auto py-4">
+      <div className="flex-1 overflow-y-auto scrollbar-hidden py-4">
         <div className="mt-2 h-60">
           {menuItems.map((item) => {
             if (item.label === "Portfolio") {

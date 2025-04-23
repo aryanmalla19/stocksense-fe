@@ -24,11 +24,7 @@ const ApplyShareOverview = ({ ipo, stock, isDark }) => {
           {ipo.company_name} ({stock?.symbol})
         </div>
         <span
-          className={`px-3 py-1 rounded-full text-sm font-medium ${
-            isDark
-              ? "bg-teal-900/50 text-teal-300"
-              : "bg-teal-100 text-teal-800"
-          }`}
+          className={`px-3 py-1 rounded-full text-sm font-medium bg-purple-button  text-white`}
         >
           {stock?.sector}
         </span>
@@ -76,17 +72,13 @@ const ApplyShareOverview = ({ ipo, stock, isDark }) => {
   );
 };
 
-const InfoCard = ({ icon, label, value, isDark }) => (
+const InfoCard = ({ icon, label, value }) => (
   <div className="flex items-start gap-3">
-    <div
-      className={`p-2 rounded-full ${
-        isDark ? "bg-teal-900/50 text-teal-600 " : "bg-teal-600/50 text-white"
-      }`}
-    >
+    <div className={`p-2 rounded-full bg-purple-button  text-white`}>
       {icon}
     </div>
     <div>
-      <div className="text-sm text-gray-600 dark:text-gray-400">{label}</div>
+      <div className="text-sm ">{label}</div>
       <div className="font-medium">{value}</div>
     </div>
   </div>

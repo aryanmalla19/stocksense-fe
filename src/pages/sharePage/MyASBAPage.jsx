@@ -17,36 +17,26 @@ const MyASBAPage = () => {
   }, [data]);
 
   return (
-    <div className="p-4">
-      {/* Header Section */}
-      <div className="flex justify-between items-center mb-6">
-        <h2
-          className={`font-bold text-2xl ${
-            theme === "dark" ? "text-white" : "text-gray-800"
-          }`}
-        >
-          ISSUED Initial Public Offering LIST - IPO
-        </h2>
-        <Calendar />
+    <div>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8 text-[#9E15BF]">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold py-2">
+            ISSUED Initial Public Offering LIST - IPO
+          </h1>
+        </div>
       </div>
 
-      {/* IPO Table */}
       <div
-        className={`overflow-x-auto rounded-md p-4 ${
-          theme === "dark"
-            ? "bg-dark-bg border border-dark-bg shadow-md shadow-black/30"
-            : "bg-white border border-gray-200 shadow-md shadow-gray-300"
-        }`}
+        className={`outlet-container rounded-md p-8 transition-colors duration-300 overflow-y-scroll scrollbar-hidden h-[550px]
+    ${
+      theme === "dark"
+        ? "bg-dark-bg border border-dark-bg shadow-md shadow-black/30"
+        : "bg-white border border-gray-200 shadow-md shadow-gray-300"
+    }`}
       >
         <table className="min-w-full text-sm text-left ">
           <thead>
-            <tr
-              className={`${
-                theme === "dark"
-                  ? "bg-gray-800 text-white"
-                  : "bg-gray-100 text-gray-800"
-              }`}
-            >
+            <tr className={`bg-purple-button  text-white font-semibold p-2 `}>
               <th className="px-4 py-3">Company</th>
               <th className="px-4 py-3">Open Date</th>
               <th className="px-4 py-3">Close Date</th>

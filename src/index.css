@@ -49,7 +49,7 @@ body {
   
 
 .outlet-container{
-    @apply mx-6 my-3 max-h-screen
+    @apply mx-6 my-3 
 }
 .hide-scrollbar::-webkit-scrollbar{
     display: none;
