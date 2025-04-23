@@ -8,6 +8,7 @@ import LoadingSpinner from "../../components/common/LoadingSpinner";
 import useLogin from "../../hooks/authhooks/useLogin";
 import { useForm } from "react-hook-form";
 import useAuthStore from "../../store/authStore";
+import GoogleLoginButton from "../../authcomponent/GoogleLoginButton";
 
 const LoginPages = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -80,7 +81,7 @@ const LoginPages = () => {
           {isLoading ? <LoadingSpinner /> : "Login"}
         </button>
 
-        <SocialLogin />
+        <GoogleLoginButton  key="login-google" />
       </form>
     </div>
   );
