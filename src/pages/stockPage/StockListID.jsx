@@ -42,7 +42,7 @@ const StockListID = () => {
                 : "border-gray-100 bg-light-bg text-light-text"
             } rounded-md`}
           >
-            <Candlestick Stockhistory={Stockhistory} id={id}/>
+            <Candlestick Stockhistory={Stockhistory} id={id} theme={theme} />
           </div>
         </div>
       </div>
