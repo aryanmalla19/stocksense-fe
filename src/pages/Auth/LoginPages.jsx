@@ -24,7 +24,7 @@ const LoginPages = () => {
 
   const accessToken = useAuthStore((store) => store.accessToken);
   if (accessToken) {
-    return <Navigate to="/" />;
+    return <Navigate to="/dashboard" />;
   }
   return (
     <div>

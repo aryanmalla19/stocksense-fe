@@ -28,7 +28,7 @@ const useLogin = () => {
         login(accessToken, refreshToken);
         toast.success("Login successful");
 
-        navigate("/");
+        navigate("/dashboard");
       } else {
         toast.error("Access token not found in response.");
       }
