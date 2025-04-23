@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import SortTableHeader from "./SortTableHeader";
 
-const StockListTableHeader = ({ sortBy, sortOrder, onSort, theme }) => {
+const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
   const location = useLocation();
   const isWatchlist = location.pathname.includes("watch-list");
 
@@ -11,14 +11,10 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort, theme }) => {
       <table className="min-w-[900px] w-full">
         <thead>
           <tr
-            className={`grid grid-cols-20 rounded-md px-4 py-3 font-semibold text-left text-[15px] transition-all drop-shadow-sm ${
-              theme === "dark"
-                ? "bg-gray-900 text-dark-text"
-                : "bg-white text-light-text"
-            }`}
+            className={`grid grid-cols-20 rounded-md px-4 py-3 bg-[#923EB9] text-dark-text font-semibold text-left text-[15px] transition-all drop-shadow-sm `}
           >
             <th className="col-span-2 text-left">
-            <SortTableHeader
+              <SortTableHeader
                 label="Symbol"
                 sortBy={sortBy}
                 sortOrder={sortOrder}

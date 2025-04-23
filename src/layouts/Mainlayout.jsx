@@ -45,7 +45,7 @@ const Mainlayout = () => {
             className={`flex-1 overflow-auto ${
               theme === "dark"
                 ? "bg-[#000000] text-white"
-                : "bg-[#F3F8FF] text-[#757575]"
+                : "bg-light-bg text-[#757575]"
             }`}
           >
             <Outlet />
