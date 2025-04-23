@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import SocialLogin from "../../authcomponent/SocialLogin";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import useRegister from "../../hooks/authhooks/useRegister";
 import Input from "../../components/stocks/Input";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
-import useAuthStore from "../../store/authStore";
+import GoogleLoginButton from "../../authcomponent/GoogleLoginButton";
 
 const RegisterPages = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -122,7 +120,7 @@ const RegisterPages = () => {
             "Sign Up"
           )}
         </button>
-        <SocialLogin />
+        <GoogleLoginButton key="register-google" />
       </form>
     </div>
   );
