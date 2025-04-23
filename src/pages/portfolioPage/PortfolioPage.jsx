@@ -32,17 +32,17 @@ const PortfolioPage = () => {
   const cardData = [
     {
       label: "Current Investment",
-      value: data?.amount,
+      value: parseFloat(data?.amount).toFixed(2),
       icon: <FaWallet className="text-3xl text-purple-600" />,
     },
     {
       label: "Total Investment",
-      value: data?.investment,
+      value: parseFloat(data?.investment).toFixed(2),
       icon: <FaPiggyBank className="text-3xl text-pink-500" />,
     },
     {
       label: "Net Worth",
-      value: data?.net_worth,
+      value: parseFloat(data?.net_worth).toFixed(2),
       icon: <FaBalanceScale className="text-3xl text-blue-500" />,
     },
     {
