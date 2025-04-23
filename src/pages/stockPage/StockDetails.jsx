@@ -3,10 +3,10 @@ import React from "react";
 const StockDetails = ({ theme, stock }) => {
   return (
     <div
-      className={`p-4 rounded-md ${
+      className={`p-4 rounded-md my-4 shadow-md ${
         theme === "dark"
           ? "bg-dark-bg text-dark-text"
-          : "bg-light-bg text-light-text"
+          : "bg-light-bg text-light-text "
       }`}
     >
       <div className="flex flex-wrap items-center justify-between gap-y-4">

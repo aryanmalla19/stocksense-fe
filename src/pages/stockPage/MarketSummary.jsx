@@ -2,8 +2,8 @@ import React from "react";
 
 const MarketSummary = ({ theme, stock }) => {
   return (
-    <div className=" p-4">
-      <div className="mb-6">
+    <div className="shadow-md h-120 p-4">
+      <div>
         <h2
           className={`font-bold text-lg mb-3 ${
             theme === "dark" ? "" : "text-red-500"
@@ -43,7 +43,7 @@ const MarketSummary = ({ theme, stock }) => {
 
       {/* Trading Day Range */}
       <div>
-        <h2 className="font-bold text-lg mb-3">Trading Day Range</h2>
+        <h2 className="font-bold text-lg ">Trading Day Range</h2>
         <div className="flex justify-between ">
           <span>Low</span>
           <span className="font-medium text-red-500">{stock.low_price}</span>

@@ -12,8 +12,8 @@ const MenuItem = ({ item, currentPath, theme, collapsed }) => {
       ${
         isActive
           ? theme === "dark"
-            ? "bg-[#923EB9]"
-            : "bg-[#923EB9] text-dark-text"
+            ? "bg-purple-button"
+            : "bg-purple-button text-dark-text"
           : ""
       } 
       `}

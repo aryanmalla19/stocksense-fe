@@ -2,14 +2,6 @@ import React from "react";
 import useFetchPortfolio from "../../hooks/userhooks/useFetchPortfolio";
 import { ThemeContext } from "../../context/ThemeContext";
 
-const formatCurrency = (value) => {
-  return Number(value).toLocaleString("en-IN", {
-    style: "currency",
-    currency: "INR",
-    minimumFractionDigits: 2,
-  });
-};
-
 const PortfolioPage = () => {
   const { data, isLoading, error } = useFetchPortfolio();
   const { theme } = React.useContext(ThemeContext);
@@ -31,53 +23,48 @@ const PortfolioPage = () => {
     return <p className="text-center text-red-500 py-6">Error loading data.</p>;
 
   return (
-    <div
-      className={`w-full rounded-xl overflow-hidden border ${
-        isDark
-          ? "bg-dark-bg border-gray-600 text-dark-text"
-          : "bg-light-bg border-gray-200 text-light-text"
-      }`}
-    >
-      <div className={`px-6 py-4 border-b `}>
-        <h2 className="text-xl font-bold text-center text-white">
-          Current Portfolio
-        </h2>
+    <>
+      <div className="flex justify-between items-center mb-6 mx-6 text-[#9E15BF] mt-5">
+        <h1 className="text-3xl font-bold flex items-center gap-2">
+          Portfolio
+        </h1>
       </div>
+      <div
+        className={`outlet-container rounded-md   ${
+          isDark
+            ? "bg-dark-bg border-gray-600 text-dark-text"
+            : "bg-light-bg border-gray-200 text-light-text"
+        }`}
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6 py-6">
+          <div className={baseCardStyle}>
+            <p className={labelStyle}>Current Investment</p>
+            <p className={`${valueStyle} text-gray-500`}>{data?.amount}</p>
+          </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6 py-6">
-        <div className={baseCardStyle}>
-          <p className={labelStyle}>Current Investment</p>
-          <p className={`${valueStyle} text-gray-500`}>
-            {formatCurrency(data?.amount)}
-          </p>
-        </div>
+          <div className={baseCardStyle}>
+            <p className={labelStyle}>Total Investment</p>
+            <p className={`${valueStyle} text-gray-500`}>{data?.investment}</p>
+          </div>
 
-        <div className={baseCardStyle}>
-          <p className={labelStyle}>Total Investment</p>
-          <p className={`${valueStyle} text-gray-500`}>
-            {formatCurrency(data?.investment)}
-          </p>
-        </div>
+          <div className={baseCardStyle}>
+            <p className={labelStyle}>Net Worth</p>
+            <p className={`${valueStyle} text-gray-500`}>{data?.net_worth}</p>
+          </div>
 
-        <div className={baseCardStyle}>
-          <p className={labelStyle}>Net Worth</p>
-          <p className={`${valueStyle} text-gray-500`}>
-            {formatCurrency(data?.net_worth)}
-          </p>
-        </div>
-
-        <div className={baseCardStyle}>
-          <p className={labelStyle}>Gain / Loss</p>
-          <p
-            className={`${valueStyle} ${
-              data?.gain_loss >= 0 ? "text-green-600" : "text-red-600"
-            }`}
-          >
-            {formatCurrency(data?.gain_loss)}
-          </p>
+          <div className={baseCardStyle}>
+            <p className={labelStyle}>Gain / Loss</p>
+            <p
+              className={`${valueStyle} ${
+                data?.gain_loss >= 0 ? "text-green-600" : "text-red-600"
+              }`}
+            >
+              {data?.gain_loss}
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
