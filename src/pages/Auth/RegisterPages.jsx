@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import SocialLogin from "../../authcomponent/SocialLogin";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import useRegister from "../../hooks/authhooks/useRegister";
 import Input from "../../components/stocks/Input";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
-import useAuthStore from "../../store/authStore";
+import GoogleLoginButton from "../../authcomponent/GoogleLoginButton";
 
 const RegisterPages = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const token = useAuthStore((store) => store.token);
   const { mutate, isLoading, serverErrors, setServerErrors } = useRegister();
   const {
     register,
@@ -22,10 +19,6 @@ const RegisterPages = () => {
   const onSubmit = (data) => {
     mutate(data);
   };
-
-  if (token) {
-    return <Navigate to="/" replace />;
-  }
 
   return (
     <div>
@@ -44,11 +37,10 @@ const RegisterPages = () => {
           icon={FaUser}
           onChange={() => setServerErrors({})}
         />
-        {errors.name && (
-          <p className="text-red-500 text-sm my-2">*{errors.name.message}</p>
-        )}
-        {serverErrors?.name && (
-          <p className="text-red-500 text-sm my-2">*{serverErrors.name[0]}</p>
+      {(errors.name || serverErrors?.name) && (
+          <p className="text-red-500 text-sm my-2 animate-fade-in">
+          *{errors.name?.message || serverErrors?.name}
+          </p>
         )}
 
         {/* Email Field */}
@@ -63,15 +55,14 @@ const RegisterPages = () => {
           type="email"
           placeholder="Enter your email"
           icon={FaEnvelope}
+          autoComplete="email"
           onChange={() => setServerErrors({})}
         />
-        {errors.email && (
-          <p className="text-red-500 text-sm my-2">*{errors.email.message}</p>
+        {(errors.email || serverErrors?.email) && (
+          <p className="text-red-500 text-sm my-2 animate-fade-in">
+          *{errors.email?.message || serverErrors?.email}
+          </p>
         )}
-        {serverErrors?.email && (
-          <p className="text-red-500 text-sm my-2">*{serverErrors.email[0]}</p>
-        )}
-
         {/* Password Field */}
         <Input
           {...register("password", {
@@ -84,18 +75,15 @@ const RegisterPages = () => {
           placeholder="Enter your password"
           type={showPassword ? "text" : "password"}
           icon={FaLock}
+          autoComplete="password"
           showToggle
           onToggle={() => setShowPassword(!showPassword)}
           onChange={() => setServerErrors({})}
         />
-        {errors.password && (
-          <p className="text-red-500 text-sm my-2">
-            *{errors.password.message}
-          </p>
-        )}
-        {serverErrors?.password && (
-          <p className="text-red-500 text-sm my-2">
-            *{serverErrors.password[0]}
+
+        {(errors.password || serverErrors?.password) && (
+          <p className="text-red-500 text-sm my-2 animate-fade-in">
+          *{errors.password?.message || serverErrors?.password}
           </p>
         )}
 
@@ -109,27 +97,21 @@ const RegisterPages = () => {
           placeholder="Confirm Password"
           type={showPassword ? "text" : "password"}
           icon={FaLock}
+          autoComplete="confirmpassword"
           showToggle
           onToggle={() => setShowPassword(!showPassword)}
           onChange={() => setServerErrors({})}
         />
-        {errors.password_confirmation && (
-          <p className="text-red-500 text-sm my-2">
-            *{errors.password_confirmation.message}
-          </p>
-        )}
-
-        {/* General Server Error */}
-        {serverErrors?.general && (
-          <p className="text-red-500 text-sm my-2 text-center">
-            *{serverErrors.general}
+        {(errors.password_confiration || serverErrors?.password_confiration) && (
+          <p className="text-red-500 text-sm my-2 animate-fade-in">
+          *{errors.password_confiration?.message || serverErrors?.password_confiration}
           </p>
         )}
 
         {/* Submit Button */}
         <button
           type="submit"
-          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors duration-200"
+          className="auth-button cursor-pointer bg-gradient-to-l from-teal-500 to-teal-800 hover:from-teal-600 hover:to-teal-700 transition duration-200 w-full"
           disabled={isLoading}
         >
           {isLoading ? (
@@ -138,7 +120,7 @@ const RegisterPages = () => {
             "Sign Up"
           )}
         </button>
-        <SocialLogin />
+        <GoogleLoginButton key="register-google" />
       </form>
     </div>
   );

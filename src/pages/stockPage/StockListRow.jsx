@@ -1,16 +1,14 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import Addwatchlist from "./Addwatchlist";
-import Actionlist from "./Actionlist";
+import { Link } from "react-router-dom";
+import WatchlistToggleButton from "./WatchListToggleButton";
 
 const StockListRow = React.memo(({ stock, theme, removeStock }) => {
-  const location = useLocation();
-  const isWatchlist = location.pathname.includes("watch-list");
-
   return (
     <div
-      className={`grid grid-cols-20 rounded-md text-sm p-3 items-center ${
-        theme === "dark" ? " hover:bg-gray-700" : " hover:bg-gray-100"
+      className={`grid grid-cols-20 rounded-md text-sm p-3 items-center  ${
+        theme === "dark"
+          ? " text-dark-text hover:bg-gray-700"
+          : " hover:bg-gray-100 text-light-text"
       }`}
     >
       <Link to={`/stocksID/${stock.id}`} className="contents">
@@ -34,14 +32,11 @@ const StockListRow = React.memo(({ stock, theme, removeStock }) => {
         </div>
       </Link>
 
-      {isWatchlist ? (
-        <Actionlist stockID={stock.id} removeStock={removeStock} />
-      ) : (
-        <Addwatchlist
-          stockID={stock.id}
-          initialIsWatchlist={stock.is_watchlist}
-        />
-      )}
+      <WatchlistToggleButton
+        stockID={stock.id}
+        initialIsWatchlist={stock.is_watchlist}
+        removeStock={removeStock}
+      />
     </div>
   );
 });

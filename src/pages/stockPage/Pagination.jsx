@@ -1,12 +1,12 @@
 import React from "react";
 
-const Pagination = ({ pageNumber, setPageNumber }) => {
+const Pagination = ({ pageNumber, setPageNumber, links }) => {
   return (
-    <div className="flex items-center justify-center gap-4 py-4">
+    <div className="flex items-center justify-center gap-4 pt-4">
       <button
         onClick={() => setPageNumber((prev) => prev - 1)}
         disabled={pageNumber <= 1}
-        className={`px-4 py-2 rounded-md bg-teal-600 text-white transition duration-300 cursor-pointer ${
+        className={`px-4 py-2 rounded-md bg-[#923EB9] text-white transition duration-300 cursor-pointer ${
           pageNumber <= 1 ? "opacity-50 cursor-not-allowed" : ""
         }`}
       >
@@ -16,8 +16,10 @@ const Pagination = ({ pageNumber, setPageNumber }) => {
       <h2 className="text-xl font-semibold text-white">{pageNumber}</h2>
 
       <button
-        onClick={() => setPageNumber((prev) => prev + 1)}
-        className={`px-4 py-2 rounded-md bg-teal-600 text-white transition duration-300 cursor-pointer`}
+        onClick={() => setPageNumber((prev) => (links?.next ? prev + 1 : prev))}
+        className={`px-4 py-2 rounded-md ${
+          links?.next ? "bg-[#923EB9]" : "bg-teal-900"
+        }  text-white transition duration-300 cursor-pointer`}
       >
         Next
       </button>

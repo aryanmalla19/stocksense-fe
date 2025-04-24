@@ -1,0 +1,87 @@
+import React, { useContext } from "react";
+import useGetHoldings from "../../hooks/ipohooks/useGetHoldings";
+import { ThemeContext } from "../../context/ThemeContext";
+import useBuySell from "../../hooks/ipohooks/useBuySell";
+import { FaSellcast } from "react-icons/fa";
+
+const Holdings = () => {
+  const { data, refetch } = useGetHoldings();
+  const holdings = data?.data || [];
+  const { theme } = useContext(ThemeContext);
+  const { buySellData } = useBuySell();
+
+  const handleClick = async (stock_id, quantity) => {
+    const payload = {
+      stock_id: stock_id,
+      type: "sell",
+      quantity: quantity,
+    };
+
+    try {
+      await buySellData(payload);
+      await refetch();
+    } catch (error) {
+      console.error("Sell failed:", error);
+    }
+  };
+
+  return (
+    <div>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8 text-[#9E15BF]">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold py-2">Your Holdings</h1>
+        </div>
+      </div>
+
+      <div
+        className={`outlet-container rounded-md p-8 transition-colors duration-300  ${
+          theme === "dark"
+            ? "bg-dark-bg border border-dark-bg shadow-md shadow-black/30"
+            : "bg-white border border-gray-200 shadow-md shadow-gray-300"
+        }`}
+      >
+        <div className="grid grid-cols-6 bg-purple-button  text-white font-semibold p-2 rounded-md">
+          <p>Company</p>
+          <p>Symbol</p>
+          <p>Quantity</p>
+          <p>Avg. Price (Rs)</p>
+          <p>Investment (Rs)</p>
+          <p>Action</p>
+        </div>
+
+        {holdings.length === 0 ? (
+          <p className="text-center mt-4 text-gray-500">No holdings found.</p>
+        ) : (
+          holdings.map((item, index) => {
+            const investment = item.quantity * item.average_price;
+
+            return (
+              <div
+                key={index}
+                className={`grid grid-cols-6 gap-2  py-2 px-2 my-2 rounded-md  ${
+                  theme === "dark"
+                    ? " text-dark-text hover:bg-gray-700"
+                    : " hover:bg-gray-100 text-light-text"
+                }`}
+              >
+                <p>{item.stock.company_name}</p>
+                <p>{item.stock.symbol}</p>
+                <p>{item.quantity}</p>
+                <p>{item.average_price}</p>
+                <p>{investment}</p>
+                <p
+                  onClick={() => handleClick(item.stock.id, item.quantity)}
+                  className="flex items-center gap-2 justify-center cursor-pointer rounded-md p-2 bg-[#5626C4] text-white w-24 transition-all"
+                >
+                  <FaSellcast className="" /> Sell
+                </p>
+              </div>
+            );
+          })
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Holdings;

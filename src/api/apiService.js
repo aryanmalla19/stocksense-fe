@@ -18,9 +18,8 @@ export const registerUser = async (data) => {
 
 export const loginUser = async (data) => {
   try {
-    Cookies.set("email", data['email']);
+    Cookies.set("email", data["email"]);
     const response = await axiosInstance.post("/auth/login", data);
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error("Validation Errors:", error.response.data);
@@ -68,7 +67,6 @@ export const resetPassword = async ({
     throw error.response?.data ?? new Error("Password reset failed");
   }
 };
-
 
 export const verifyOTP = async (data) => {
   try {

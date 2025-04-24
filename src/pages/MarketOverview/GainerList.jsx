@@ -1,9 +1,8 @@
 import React from "react";
-import useStocks from "../../hooks/stockshooks/useStocks";
+import { useStocks } from "../../hooks/stockshooks/useStocks";
 
 const GainerList = ({ theme }) => {
-  const { stocks, isLoading, isError } = useStocks();
-
+  const { data, isLoading, isError } = useStocks({ per_page: 5 });
   if (isLoading) {
     return (
       <div className="p-3 rounded-md">
@@ -22,17 +21,17 @@ const GainerList = ({ theme }) => {
 
   return (
     <div
-      className={`p-3 rounded-md ${
+      className={`p-3 rounded-md my-2 ${
         theme === "dark"
           ? "bg-dark-bg text-dark-text"
-          : "bg-light-bg text-light-text"
+          : "bg-light-bg text-light-text shadow-md"
       }`}
     >
-      <h1 className="text-red-400 font-bold rounded-md text-xl text-center">
+      <h1 className="text-xl text-[#E60576] font-bold text-center bg-clip-text ">
         Top Gainers
       </h1>
 
-      <div className="mt-5">
+      <div className="mt-3">
         <ul className="flex justify-around font-semibold w- ml-2 ">
           <li>Symbol</li>
           <li>CH</li>
@@ -43,9 +42,9 @@ const GainerList = ({ theme }) => {
       </div>
 
       <div>
-        {stocks.slice(0, 5).map((stock) => (
+        {data?.data.slice(0, 5).map((stock) => (
           <div className="flex items-center gap-3 p-2" key={stock.id}>
-            <div className="w-9 h-9 flex items-center justify-center rounded-full text-lg font-bold bg-blue-400 text-white">
+            <div className="w-9 h-9 flex items-center justify-center rounded-full text-lg font-bold bg-gradient-to-br from-[#7F00FF] to-[#E100FF] text-white">
               {stock.company_name?.charAt(0)}
             </div>
             <ul

@@ -19,16 +19,8 @@ const useRegister = () => {
       navigate("/confirmation");
     },
     onError: (error) => {
-      if (error.response?.status === 422) {
-        setServerErrors(error.response.data.errors || {});
-      } else {
-        const errorMessage =
-          error.response?.data?.message ||
-          error.message ||
-          "Registration failed";
-        setServerErrors({ general: errorMessage });
-        toast.error(errorMessage);
-      }
+      setServerErrors(error.errors || {});
+      toast.error("Registration failed");
     },
   });
 

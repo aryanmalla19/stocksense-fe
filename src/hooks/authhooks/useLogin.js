@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 import Cookies from "js-cookie";
 
-
 const useLogin = () => {
   const [serverErrors, setServerErrors] = useState({});
   const navigate = useNavigate();
@@ -15,35 +14,40 @@ const useLogin = () => {
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
-      if (data?.private_token){
+      const privateToken = data?.private_token;
+      const accessToken = data?.access_token;
+      const refreshToken = data?.refresh_token;
+
+      if (privateToken) {
+        Cookies.set("private_token", privateToken);
         navigate("/otp");
-        Cookies.set("private_token", data['private_token']);
+        return;
       }
 
-      const token = data?.access_token;
-
-      if (token) {
-        login(token);
+      if (accessToken && refreshToken) {
+        login(accessToken, refreshToken);
         toast.success("Login successful");
-        navigate("/");
+
+        navigate("/dashboard");
       } else {
         toast.error("Access token not found in response.");
       }
     },
     onError: (error) => {
-      setServerErrors({});
-      const errorMessage =
-        error?.error || "Login failed. Please try again later.";
-      setServerErrors({ general: errorMessage });
-      toast.error(errorMessage);
+      if (error?.errors) {
+        setServerErrors(error.errors);
+        toast.error("Login failed");
+      } else {
+        toast.error(error?.error || "An unexpected error occurred");
+      }
     },
   });
 
   return {
     mutate: mutation.mutate,
     serverErrors,
-    isLoading: mutation.isPending,
     setServerErrors,
+    isLoading: mutation.isPending,
   };
 };
 

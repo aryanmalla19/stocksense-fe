@@ -36,12 +36,8 @@ const Input = React.forwardRef(
               {type === "password" ? <FaEyeSlash /> : <FaEye />}
             </button>
           )}
+
         </div>
-        {error && (
-          <p className="text-[10px] text-red-500 absolute -bottom-4 left-1">
-            *{error.message}
-          </p>
-        )}
       </div>
     );
   }

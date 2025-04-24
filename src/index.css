@@ -5,11 +5,11 @@ body {
 }
 
 :root{
-  --dark-bg: #000000;
+  --dark-bg: #212121;
   --light-bg: #FFFFFF;
   --dark-text: #FEFEFE;
   --light-text: #000000;
-  --accent-green: #049C6B;
+  --purple-bg: #923EB9;
   --button-bg: #103E63;
   --hover-bg:#082E66;
 }
@@ -30,8 +30,8 @@ body {
     color: var(--light-text);
 }
     
-.text-accent-green {
-    color: var(--accent-green);
+.bg-purple-button {
+    background-color: var(--purple-bg);
 }
   
 .bg-button-bg {
@@ -43,9 +43,13 @@ body {
 .hover\:bg-hover-dark:hover {
     background-color: var(--hover-bg);
   }
+  .hover\:bg-button-bg:hover {
+    background-color: var(--button-bg);
+  }
+  
 
 .outlet-container{
-    @apply m-4
+    @apply mx-6 my-3 
 }
 .hide-scrollbar::-webkit-scrollbar{
     display: none;
@@ -106,3 +110,21 @@ body {
 .paragraph {
     @apply text-lg font-semibold mb-4
 }
+
+.input-light{
+    background-color: white;
+}
+
+.input-dark{
+    background-color: rgb(156, 156, 156);
+}
+
+/* @keyframes fade-in {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.2s ease-out;
+  } */
+  
