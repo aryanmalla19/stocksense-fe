@@ -109,7 +109,7 @@ function IpoManagement() {
 
       <div
         className={`rounded-md p-8 ${
-          theme === 'dark' ? 'bg-gray-800 shadow-md shadow-black/30' : 'bg-white border border-gray-200 shadow-md'
+          theme === 'dark' ? 'bg-dark-bg shadow-md shadow-black/30' : 'bg-white border border-gray-200 shadow-md'
         }`}
       >
         <IPOList
