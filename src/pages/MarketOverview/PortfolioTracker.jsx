@@ -9,9 +9,9 @@ const PortfolioTracker = () => {
   const { theme } = useContext(ThemeContext);
   const { data: stocksData, isLoading, error } = useFetchWatchList();
   const { data: allStocksData, isLoading: isStocksLoading } = useStocks(
-    1,
-    1,
-    10
+    "",
+    "",
+    ""
   );
 
   const settings = {
@@ -85,8 +85,8 @@ const PortfolioTracker = () => {
 
                 <div className="text-accent-green font-semibold flex justify-between">
                   <p>PNL Daily</p>
-                  <p>+${stock?.stock.pnlValue || 0}</p>
-                  <p>+{stock?.stock.pnlPercent || 0}%</p>
+                  <p>+${stock?.stock.open_price || 0}</p>
+                  <p>+{stock?.stock.close_price || 0}%</p>
                 </div>
               </div>
             </div>

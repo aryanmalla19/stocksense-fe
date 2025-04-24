@@ -7,14 +7,14 @@ import useHistoryID from "../../hooks/stockshooks/useHistoryID";
 
 const Overview = () => {
   const { theme } = useContext(ThemeContext);
-  const { historyData } = useHistoryID(1);
+  const { data } = useHistoryID(2);
   return (
     <div className="outlet-container">
       <PortfolioTracker />
 
       <div className="flex gap-4 h-95">
         <div className="w-2/3">
-          <WatchListPage Stockhistory={historyData?.data?.historic} />
+          <WatchListPage Stockhistory={data?.data?.historic} />
         </div>
         <div className="w-1/2">
           <GainerList theme={theme} />

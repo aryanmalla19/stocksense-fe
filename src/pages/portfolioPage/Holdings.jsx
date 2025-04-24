@@ -1,13 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import useGetHoldings from "../../hooks/ipohooks/useGetHoldings";
 import { ThemeContext } from "../../context/ThemeContext";
 import useBuySell from "../../hooks/ipohooks/useBuySell";
 import { FaSellcast } from "react-icons/fa";
+import ConfirmSellPage from "./ConfirmSellPage";
 
 const Holdings = () => {
+  const { theme } = useContext(ThemeContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedStock, setSelectedStock] = useState(null);
+
   const { data, refetch } = useGetHoldings();
   const holdings = data?.data || [];
-  const { theme } = useContext(ThemeContext);
+
   const { buySellData } = useBuySell();
 
   const handleClick = async (stock_id, quantity) => {
@@ -20,13 +25,31 @@ const Holdings = () => {
     try {
       await buySellData(payload);
       await refetch();
+      setIsModalOpen(false);
     } catch (error) {
       console.error("Sell failed:", error);
     }
   };
 
+  const openSellModal = (stock) => {
+    setSelectedStock(stock);
+    setIsModalOpen(true);
+  };
+
   return (
     <div>
+      {isModalOpen && selectedStock && (
+        <>
+          <div className="fixed inset-0 bg-[rgba(0,0,0,0.5)] backdrop-blur-[4px] z-30"></div>
+          <ConfirmSellPage
+            onClose={() => setIsModalOpen(false)}
+            theme={theme}
+            stockID={selectedStock.stock_id}
+            quantity={selectedStock.quantity}
+          />
+        </>
+      )}
+
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8 text-[#9E15BF]">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold py-2">Your Holdings</h1>
@@ -34,13 +57,13 @@ const Holdings = () => {
       </div>
 
       <div
-        className={`outlet-container rounded-md p-8 transition-colors duration-300  ${
+        className={`outlet-container rounded-md p-8 transition-colors duration-300 ${
           theme === "dark"
             ? "bg-dark-bg border border-dark-bg shadow-md shadow-black/30"
             : "bg-white border border-gray-200 shadow-md shadow-gray-300"
         }`}
       >
-        <div className="grid grid-cols-6 bg-purple-button  text-white font-semibold p-2 rounded-md">
+        <div className="grid grid-cols-6 bg-purple-button text-white font-semibold p-2 rounded-md">
           <p>Company</p>
           <p>Symbol</p>
           <p>Quantity</p>
@@ -58,10 +81,10 @@ const Holdings = () => {
             return (
               <div
                 key={index}
-                className={`grid grid-cols-6 gap-2  py-2 px-2 my-2 rounded-md  ${
+                className={`grid grid-cols-6 gap-2 py-2 px-2 my-2 rounded-md ${
                   theme === "dark"
-                    ? " text-dark-text hover:bg-gray-700"
-                    : " hover:bg-gray-100 text-light-text"
+                    ? "text-dark-text hover:bg-gray-700"
+                    : "hover:bg-gray-100 text-light-text"
                 }`}
               >
                 <p>{item.stock.company_name}</p>
@@ -69,11 +92,12 @@ const Holdings = () => {
                 <p>{item.quantity}</p>
                 <p>{item.average_price}</p>
                 <p>{investment}</p>
+
                 <p
-                  onClick={() => handleClick(item.stock.id, item.quantity)}
+                  onClick={() => openSellModal(item)}
                   className="flex items-center gap-2 justify-center cursor-pointer rounded-md p-2 bg-[#5626C4] text-white w-24 transition-all"
                 >
-                  <FaSellcast className="" /> Sell
+                  <FaSellcast /> Sell
                 </p>
               </div>
             );
