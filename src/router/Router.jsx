@@ -33,8 +33,6 @@ import PortfolioManagement from "../admin/user/PortfolioManagement";
 
 import Overview from "../pages/MarketOverview/Overview";
 
-
-
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -103,16 +101,16 @@ const Router = createBrowserRouter([
       {
         path: "/ipomanagement",
 
-        element:<IpoManagement />,
+        element: <IpoManagement />,
       },
       {
         path: "/portfoliomanagement",
-        element: <PortfolioManagement/>,
-      }
-
+        element: <PortfolioManagement />,
+      },
+      {
+        path: "/ipomanagement",
         element: <IpoManagement />,
       },
-
     ],
   },
   {
