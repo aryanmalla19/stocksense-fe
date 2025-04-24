@@ -28,7 +28,11 @@ import Transactions from "../pages/portfolioPage/Transactions";
 import IPOList from "../pages/sharePage/IPOList";
 import StockManagemant from "../admin/user/StockManagemant";
 import IpoManagement from "../admin/user/IpoManagement";
+
+import PortfolioManagement from "../admin/user/PortfolioManagement";
+
 import Overview from "../pages/MarketOverview/Overview";
+
 
 
 const Router = createBrowserRouter([
@@ -98,8 +102,17 @@ const Router = createBrowserRouter([
       },
       {
         path: "/ipomanagement",
+
+        element:<IpoManagement />,
+      },
+      {
+        path: "/portfoliomanagement",
+        element: <PortfolioManagement/>,
+      }
+
         element: <IpoManagement />,
       },
+
     ],
   },
   {
