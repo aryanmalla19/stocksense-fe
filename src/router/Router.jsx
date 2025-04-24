@@ -25,7 +25,7 @@ import Transactions from "../pages/portfolioPage/Transactions";
 import IPOList from "../pages/sharePage/IPOList";
 import StockManagemant from "../admin/user/StockManagemant";
 import IpoManagement from "../admin/user/IpoManagement";
-import Overview from "../pages/marketOverview/Overview";
+import Overview from "../pages/MarketOverview/Overview";
 
 const Router = createBrowserRouter([
   {

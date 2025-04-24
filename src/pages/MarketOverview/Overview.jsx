@@ -3,7 +3,7 @@ import PortfolioTracker from "./PortfolioTracker";
 import GainerList from "./GainerList";
 import { ThemeContext } from "../../context/ThemeContext";
 import useHistoryID from "../../hooks/stockshooks/useHistoryID";
-import WatchListPage from "../../pages/marketOverview/WatchListPage";
+import WatchListPage from "./WatchListPage";
 
 const Overview = () => {
   const { theme } = useContext(ThemeContext);
@@ -14,7 +14,7 @@ const Overview = () => {
 
       <div className="flex gap-4 h-95">
         <div className="w-2/3">
-          <WatchListPage Stockhistory={data?.data?.historic} />
+          <WatchListPage Stockhistory={data?.data?.prices} />
         </div>
         <div className="w-1/2">
           <GainerList theme={theme} />
