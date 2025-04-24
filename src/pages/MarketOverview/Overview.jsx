@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import PortfolioTracker from "./PortfolioTracker";
-import WatchListPage from "./WatchListPage";
 import GainerList from "./GainerList";
 import { ThemeContext } from "../../context/ThemeContext";
 import useHistoryID from "../../hooks/stockshooks/useHistoryID";
+import WatchListPage from "../../pages/marketOverview/WatchListPage";
 
 const Overview = () => {
   const { theme } = useContext(ThemeContext);

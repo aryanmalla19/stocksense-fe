@@ -21,7 +21,7 @@ export const buySell = async (payload) => {
 };
 
 export const Holdings = async () => {
-  const response = await axiosInstance.get("/users/holdings");
+  const response = await axiosInstance.get("/holdings");
   return response.data;
 };
 
