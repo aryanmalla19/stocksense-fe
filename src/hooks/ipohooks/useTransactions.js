@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { Transactions } from "../../api/ipoApi";
 
-const useTransactions = () => {
+const useTransactions = (pageNumber = 1) => {
   const { data, refetch } = useQuery({
-    queryKey: ["transactions"],
-    queryFn: Transactions,
+    queryKey: ["transactions", pageNumber],
+    queryFn: () => Transactions(pageNumber),
+    keepPreviousData: true,
   });
   return { data, refetch };
 };

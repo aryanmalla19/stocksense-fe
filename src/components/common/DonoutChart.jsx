@@ -6,13 +6,12 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const DonutChart = () => {
   const data = {
-    labels: ["Sector1", "Sector2", "Sector3"],
+    labels: ["Buy", "Sell"],
     datasets: [
       {
         label: "Votes",
-        data: [300, 50, 100],
-        backgroundColor: ["#9E15BF", "#E60576", "#FDD935"],
-        borderWidth: 1,
+        data: [300, 50],
+        backgroundColor: ["#008000", "#ff0000"],
       },
     ],
   };

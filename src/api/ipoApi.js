@@ -25,8 +25,8 @@ export const Holdings = async () => {
   return response.data;
 };
 
-export const Transactions = async () => {
-  const response = await axiosInstance.get("/transactions");
+export const Transactions = async (page = 1) => {
+  const response = await axiosInstance.get(`/transactions?page=${page}`);
   return response.data;
 };
 
