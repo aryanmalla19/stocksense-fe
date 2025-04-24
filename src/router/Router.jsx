@@ -18,6 +18,9 @@ import WatchList from "../pages/stockPage/WatchList";
 import StockListID from "../pages/stockPage/StockListID";
 import OtpPage from "../pages/Auth/OtpPage";
 import Page404 from "../components/common/Page404";
+
+import Notification from "../pages/Notifications/Notification";
+
 import VerifyEmail from "../pages/Auth/VerifyEmail";
 
 import UserManagement from "../admin/user/UserManagement";
@@ -26,6 +29,7 @@ import Transactions from "../pages/portfolioPage/Transactions";
 import IPOList from "../pages/sharePage/IPOList";
 import StockManagemant from "../admin/user/StockManagemant";
 import IpoManagement from "../admin/user/IpoManagement";
+
 
 const Router = createBrowserRouter([
   {
@@ -125,6 +129,10 @@ const Router = createBrowserRouter([
   {
     path: "/otp",
     element: <OtpPage />,
+  },
+  {
+    path: "/notifications",
+    element: <Notification />,
   },
   {
     path: "*",
