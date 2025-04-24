@@ -97,10 +97,6 @@ const SecurityPage = ({ theme }) => {
         <div className="flex justify-between items-center mt-2">
           <span>Suspicious Activity Alerts</span>
         </div>
-
-        {/* <button className="mt-4 w-full px-4 py-2 bg-blue-400 text-white rounded-lg">
-          Sign Out From All Devices
-        </button> */}
       </div>
     </>
   );

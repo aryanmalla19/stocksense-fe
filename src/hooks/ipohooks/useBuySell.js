@@ -1,15 +1,17 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { buySell } from "../../api/ipoApi";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const useBuySell = () => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const buySellMutation = useMutation({
     mutationFn: buySell,
     onSuccess: () => {
       toast.success("Stocks transaction successful");
-
+      navigate("/portfolio/holdings");
       queryClient.invalidateQueries(["holdings"]);
     },
     onError: (error) => {
