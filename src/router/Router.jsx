@@ -1,7 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Mainlayout from "../layouts/Mainlayout";
-import Overview from "../pages/MarketOverview/Overview";
 import StockList from "../pages/stockPage/StockList";
 import PortfolioPage from "../pages/portfolioPage/PortfolioPage";
 import MyASBAPage from "../pages/sharePage/MyASBAPage";
@@ -29,6 +28,7 @@ import Transactions from "../pages/portfolioPage/Transactions";
 import IPOList from "../pages/sharePage/IPOList";
 import StockManagemant from "../admin/user/StockManagemant";
 import IpoManagement from "../admin/user/IpoManagement";
+import Overview from "../pages/MarketOverview/Overview";
 
 
 const Router = createBrowserRouter([
@@ -98,8 +98,8 @@ const Router = createBrowserRouter([
       },
       {
         path: "/ipomanagement",
-        element:<IpoManagement />,
-      }
+        element: <IpoManagement />,
+      },
     ],
   },
   {

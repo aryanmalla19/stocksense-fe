@@ -23,7 +23,7 @@ const StockDetailItem = ({ icon, label, value, theme }) => (
     </div>
     <div
       className={`mt-1 px-3 py-1 rounded-md ${
-        theme === "dark" ? "bg-gray-800" : "bg-gray-100"
+        theme === "dark" ? "bg-black" : "bg-gray-100"
       }`}
     >
       {value ?? "--"}
@@ -35,7 +35,7 @@ const Details = ({ selectedStock, theme }) => {
   return (
     <div
       className={`font-semibold rounded ${
-        theme === "dark" ? "text-white" : "text-gray-600"
+        theme === "dark" ? "text-white" : "text-black"
       }`}
     >
       <div className="flex flex-wrap gap-8 justify-between">

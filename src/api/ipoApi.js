@@ -21,12 +21,12 @@ export const buySell = async (payload) => {
 };
 
 export const Holdings = async () => {
-  const response = await axiosInstance.get("/users/holdings");
+  const response = await axiosInstance.get("/holdings");
   return response.data;
 };
 
-export const Transactions = async () => {
-  const response = await axiosInstance.get("/transactions");
+export const Transactions = async (page = 1) => {
+  const response = await axiosInstance.get(`/transactions?page=${page}`);
   return response.data;
 };
 

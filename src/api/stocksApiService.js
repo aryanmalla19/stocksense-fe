@@ -47,7 +47,7 @@ export const fetchStockBYId = async (StocksID) => {
 //function to post watchlist
 export const postStockWatchList = async (stockID) => {
   try {
-    const response = await axiosInstance.post("/users/watchlists", {
+    const response = await axiosInstance.post("/watchlists", {
       stock_id: Number(stockID),
     });
     return response.data;
@@ -63,7 +63,7 @@ export const postStockWatchList = async (stockID) => {
 //function to get watchlist
 export const fetchStockWatchList = async () => {
   try {
-    const response = await axiosInstance.get("/users/watchlists");
+    const response = await axiosInstance.get("/watchlists");
     return response.data?.data;
   } catch (error) {
     console.log(
@@ -77,7 +77,7 @@ export const fetchStockWatchList = async () => {
 //function to delete watchlist
 export const deleteStockWatchList = async (stockID) => {
   try {
-    const response = await axiosInstance.delete(`/users/watchlists/${stockID}`);
+    const response = await axiosInstance.delete(`/watchlists/${stockID}`);
     return response.data;
   } catch (error) {
     console.log(

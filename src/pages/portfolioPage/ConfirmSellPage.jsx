@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import useBuySell from "../../hooks/ipohooks/useBuySell";
+import { useStocks } from "../../hooks/stockshooks/useStocks";
 
 const ConfirmSellPage = ({ onClose, theme, stockID, quantity }) => {
-  const [currentPrice, setCurrentPrice] = useState("");
   const [userInputQuantity, setUserInputQuantity] = useState();
 
   const { buySellData } = useBuySell();
+  const { data } = useStocks("", "", "");
+  const stock = data?.data?.find((stock) => stock.id === stockID);
+  const stockCurrentPrice = stock?.current_price ?? "NA";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,8 +56,7 @@ const ConfirmSellPage = ({ onClose, theme, stockID, quantity }) => {
           </label>
           <input
             type="text"
-            value={currentPrice}
-            onChange={(e) => setCurrentPrice(e.target.value)}
+            value={stockCurrentPrice}
             className={`w-full p-2 border rounded ${
               theme === "dark"
                 ? "bg-gray-700 border-gray-600"
