@@ -8,7 +8,6 @@ import { useStocks } from "../../hooks/stockshooks/useStocks";
 const PortfolioTracker = () => {
   const { theme } = useContext(ThemeContext);
   const { data: stocksData, isLoading, error } = useFetchWatchList();
-  console.log(stocksData, "overview");
   const { data: allStocksData, isLoading: isStocksLoading } = useStocks(
     "",
     "",
