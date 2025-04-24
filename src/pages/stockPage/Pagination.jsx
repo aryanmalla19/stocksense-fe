@@ -18,7 +18,7 @@ const Pagination = ({ pageNumber, setPageNumber, links }) => {
       <button
         onClick={() => setPageNumber((prev) => (links?.next ? prev + 1 : prev))}
         className={`px-4 py-2 rounded-md ${
-          links?.next ? "bg-[#923EB9]" : "bg-teal-900"
+          links?.next ? "bg-[#923EB9]" : "bg-[#702194]"
         }  text-white transition duration-300 cursor-pointer`}
       >
         Next

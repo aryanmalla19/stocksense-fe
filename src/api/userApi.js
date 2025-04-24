@@ -27,3 +27,8 @@ export const disableTwoFactor = async () => {
   const response = await axiosInstance.post("/auth/2fa/disable");
   return response.data;
 };
+
+export const profileUpdate = async (data) => {
+  const response = await axiosInstance.put("/profile", data);
+  return response.data;
+};

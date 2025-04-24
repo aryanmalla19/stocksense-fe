@@ -31,7 +31,7 @@ const BuySellPage = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center mb-6 mx-6 text-[#9E15BF] mt-5">
+      <div className="flex justify-between items-center mb-6 mx-6  mt-5">
         <h1 className="text-3xl font-bold flex items-center gap-2">
           Buy Stocks
         </h1>
@@ -48,27 +48,17 @@ const BuySellPage = () => {
           <div className="flex flex-col sm:flex-row gap-12">
             <div>
               <h2 className="font-semibold text-lg flex items-center gap-2">
-                <FaUser
-                  className={
-                    theme === "dark" ? "text-gray-300" : "text-[#FB8122]"
-                  }
-                />
+                <FaUser className="text-[#FB8122]" />
                 Client Name
               </h2>
-              <p className="text-gray-500 text-sm">{userDetails?.data?.name}</p>
+              <p className=" text-sm">{userDetails?.data?.name}</p>
             </div>
             <div>
               <h2 className="font-semibold text-lg flex items-center gap-2">
-                <FaEnvelope
-                  className={
-                    theme === "dark" ? "text-gray-300" : "text-[#FB8122]"
-                  }
-                />
+                <FaEnvelope className="text-[#FB8122]" />
                 Client Email
               </h2>
-              <p className="text-gray-500 text-sm">
-                {userDetails?.data?.email}
-              </p>
+              <p className=" text-sm">{userDetails?.data?.email}</p>
             </div>
           </div>
 
