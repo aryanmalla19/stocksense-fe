@@ -89,9 +89,9 @@ const Holdings = () => {
               >
                 <p>{item.stock.company_name}</p>
                 <p>{item.stock.symbol}</p>
-                <p>{item.quantity}</p>
-                <p>{item.average_price}</p>
-                <p>{investment}</p>
+                <p>{Number(item.quantity).toFixed(2)}</p>
+                <p>{Number(item.average_price).toFixed(2)}</p>
+                <p>{Number(investment).toFixed(2)}</p>
 
                 <p
                   onClick={() => openSellModal(item)}
