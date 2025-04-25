@@ -39,11 +39,10 @@ const UpdateProfilePage = ({ theme }) => {
   });
 
   const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedImageFile, setSelectedImageFile] = useState(null); // For backend upload
+  const [selectedImageFile, setSelectedImageFile] = useState(null);
 
   const { updateProfile } = useUpdateProfile();
 
-  // Load user profile data when available
   useEffect(() => {
     if (userProfile) {
       setProfile({
@@ -66,8 +65,8 @@ const UpdateProfilePage = ({ theme }) => {
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setSelectedImageFile(file); // For uploading
-      setSelectedImage(URL.createObjectURL(file)); // For preview
+      setSelectedImageFile(file);
+      setSelectedImage(URL.createObjectURL(file));
     }
   };
 
@@ -90,9 +89,6 @@ const UpdateProfilePage = ({ theme }) => {
 
   return (
     <>
-      <p className="text-lg font-semibold text-center my-4">
-        Manage your personal information
-      </p>
       <form
         onSubmit={handleSubmit}
         className={`flex flex-col justify-center items-center gap-4 mt-2 border rounded-md p-4 max-w-xl ${
@@ -159,7 +155,7 @@ const UpdateProfilePage = ({ theme }) => {
 
         <button
           type="submit"
-          className="p-2 rounded-md bg-teal-700 text-white hover:bg-teal-600 w-24"
+          className="p-2 rounded-md  text-white bg-gradient-button w-24"
         >
           Change
         </button>

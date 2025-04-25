@@ -93,12 +93,12 @@ const Holdings = () => {
                 <p>{Number(item.average_price).toFixed(2)}</p>
                 <p>{Number(investment).toFixed(2)}</p>
 
-                <p
+                <button
                   onClick={() => openSellModal(item)}
                   className="flex items-center gap-2 justify-center cursor-pointer rounded-md p-2 bg-[#5626C4] text-white w-24 transition-all"
                 >
                   <FaSellcast /> Sell
-                </p>
+                </button>
               </div>
             );
           })
