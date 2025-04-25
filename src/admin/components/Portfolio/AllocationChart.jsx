@@ -1,3 +1,4 @@
+// src/admin/components/Portfolio/AllocationChart.jsx
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
@@ -5,18 +6,26 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const AllocationChart = ({ portfolio, allocation }) => {
-  if (!allocation) {
-    return <div className="text-center text-gray-600">No allocation data available.</div>;
-  }
-
-  const data = {
-    labels: ['Stocks', 'Cash', ...Object.keys(allocation.sectors)],
+  // Cash vs Stocks Pie Chart
+  const cashVsStocksData = {
+    labels: ['Cash', 'Stocks'],
     datasets: [
       {
-        data: [allocation.stocks, allocation.cash, ...Object.values(allocation.sectors)],
-        backgroundColor: ['#6B7280', '#D1D5DB', '#F87171', '#FBBF24', '#34D399', '#60A5FA'],
-        borderColor: '#ffffff',
-        borderWidth: 2,
+        data: [allocation.cash, allocation.stocks],
+        backgroundColor: ['#FF6384', '#36A2EB'],
+        hoverBackgroundColor: ['#FF6384', '#36A2EB'],
+      },
+    ],
+  };
+
+  // Sector Breakdown Pie Chart
+  const sectorData = {
+    labels: Object.keys(allocation.sectors),
+    datasets: [
+      {
+        data: Object.values(allocation.sectors),
+        backgroundColor: ['#FFCE56', '#4BC0C0', '#9966FF'],
+        hoverBackgroundColor: ['#FFCE56', '#4BC0C0', '#9966FF'],
       },
     ],
   };
@@ -26,21 +35,28 @@ const AllocationChart = ({ portfolio, allocation }) => {
     plugins: {
       legend: {
         position: 'top',
-        labels: { font: { size: 14 } },
       },
       tooltip: {
         callbacks: {
-          label: (context) => `${context.label}: $${context.parsed.toFixed(2)}`,
+          label: (context) => `${context.label}: $${context.raw.toFixed(2)}`,
         },
       },
     },
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow mb-6">
-      <h3 className="text-lg font-semibold text-purple-700 mb-4">{portfolio.user_name}'s Portfolio Allocation</h3>
-      <div className="max-w-md mx-auto">
-        <Pie data={data} options={options} />
+    <div>
+      <div className="mb-6">
+        <h5 className="text-md font-semibold text-purple-700 mb-2">Cash vs Stocks</h5>
+        <div style={{ maxWidth: '300px', margin: '0 auto' }}>
+          <Pie data={cashVsStocksData} options={options} />
+        </div>
+      </div>
+      <div>
+        <h5 className="text-md font-semibold text-purple-700 mb-2">Sector Breakdown</h5>
+        <div style={{ maxWidth: '300px', margin: '0 auto' }}>
+          <Pie data={sectorData} options={options} />
+        </div>
       </div>
     </div>
   );
