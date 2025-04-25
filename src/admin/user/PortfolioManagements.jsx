@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import PortfolioFilters from '../components/Portfolio/PortfolioFilters';
-import PortfolioTable from '../components/Portfolio/PortfolioTable';
-import AllocationChart from '../components/Portfolio/AllocationChart';
+import PortfolioFilters from '../components/Portfolio/PortfolioFilters.jsx';
+import PortfolioTable from '../components/Portfolio/PortfolioTable.jsx';
+import AllocationChart from '../components/Portfolio/AllocationChart.jsx';
 import { ThemeContext } from '../../context/ThemeContext.jsx';
 
 
