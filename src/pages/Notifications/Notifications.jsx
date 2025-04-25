@@ -3,12 +3,15 @@ import useGetNotifications from "../../hooks/notificationhooks/useGetNotificatio
 import { ThemeContext } from "../../context/ThemeContext";
 import getTimeDifference from "./getTimeDifference";
 import useMarkAllAsRead from "../../hooks/notificationhooks/useMarkAllAsRead.js";
+import useMarkAsRead from "../../hooks/notificationhooks/useMarkAsRead.js";
 
 const Notifications = () => {
   const { data, refetch } = useGetNotifications();
   const { theme } = useContext(ThemeContext);
   const { markAllAsRead } = useMarkAllAsRead();
   const [loading, setLoading] = useState(false);
+
+  const { markAsRead } = useMarkAsRead();
 
   const allNotificationsRead =
     data?.length > 0 && data.every((notification) => notification.read_at);
@@ -24,6 +27,14 @@ const Notifications = () => {
       setLoading(false);
     }
   };
+
+      const handleMarkAsRead = async (id) => {
+        try {
+          await markAsRead.mutateAsync(id);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      };
 
   return (
     <div
@@ -46,7 +57,8 @@ const Notifications = () => {
           {data.map((notification, index) => (
             <li
               key={index}
-              className={`border p-3 rounded ${
+              onClick={() => handleMarkAsRead(notification.id)}
+              className={`border p-3 rounded cursor-pointer ${
                 theme === "dark" ? "border-gray-600" : "border-gray-300"
               } ${!notification.read_at ? "bg-purple-500" : ""}`}
             >
