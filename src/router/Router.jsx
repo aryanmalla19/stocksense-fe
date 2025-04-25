@@ -18,7 +18,7 @@ import StockListID from "../pages/stockPage/StockListID";
 import OtpPage from "../pages/Auth/OtpPage";
 import Page404 from "../components/common/Page404";
 
-import Notification from "../pages/Notifications/Notification";
+import Notification from "../pages/Notifications/Notifications";
 
 import VerifyEmail from "../pages/Auth/VerifyEmail";
 
@@ -102,7 +102,11 @@ const Router = createBrowserRouter([
         path: "stockmanagement",
         element: <StockManagemant />,
       },
+     
       {
+        path: "notifications",
+        element: <Notification />
+      },
         path: "ipomanagement",
         element: <IpoManagement />,
       },
@@ -139,10 +143,6 @@ const Router = createBrowserRouter([
   {
     path: "/otp",
     element: <OtpPage />,
-  },
-  {
-    path: "/notifications",
-    element: <Notification />,
   },
   {
     path: "*",

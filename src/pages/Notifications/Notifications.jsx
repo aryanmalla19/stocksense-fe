@@ -1,0 +1,49 @@
+import React, { useContext, useState } from "react";
+import useGetNotifications from "../../hooks/notificationhooks/useGetNotifications";
+import { ThemeContext } from "../../context/ThemeContext";
+import getTimeDifference from "./getTimeDifference";
+
+const Notifications = () => {
+  const { data, refetch } = useGetNotifications();
+  const { theme } = useContext(ThemeContext);
+
+  return (
+    <div
+      className={`p-4 rounded-md ${
+        theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-black"
+      }`}
+    >
+      <h2 className="text-xl font-bold mb-4">Notifications</h2>
+      {data?.length > 0 ? (
+        <ul className="space-y-3">
+          {data.map((notification, index) => (
+            <li
+              key={index}
+              className={`border p-3 rounded ${
+                (theme === "dark" ? "border-gray-600" : "border-gray-300",
+                !notification.read_at ? "bg-purple-500" : "")
+              }`}
+            >
+              <p className={`font-medium`}>{notification.notification}</p>
+              <p
+                className={`text-xs ${
+                  !notification.read_at
+                    ? "font-semibold"
+                    : "text-gray-500"
+                }`}
+              >
+                {!notification.read_at
+                  ? `New • ${getTimeDifference(notification.time)}`
+                  : getTimeDifference(notification.time)}
+              </p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No notifications found.</p>
+      )}
+    </div>
+  );
+};
+
+export default Notifications;
