@@ -106,10 +106,11 @@ const Router = createBrowserRouter([
       {
         path: "/portfoliomanagement/:id",
         element: <PortfolioDetails />,
-      }
-        path: "ipomanagement",
-        element: <IpoManagement />,
       },
+      {
+        path: "/ipomanagement",
+        element: <IpoManagement />,
+      }
     ],
   },
   {
