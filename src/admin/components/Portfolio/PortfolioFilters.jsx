@@ -16,13 +16,13 @@ const PortfolioFilters = ({ filters, setFilters }) => {
         </div>
         <div>
           <select
-            value={filters.performanceSort}
-            onChange={(e) => setFilters({ ...filters, performanceSort: e.target.value })}
+            value={filters.lastLoginSort}
+            onChange={(e) => setFilters({ ...filters, lastLoginSort: e.target.value })}
             className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
           >
-            <option value="">Sort by Performance</option>
-            <option value="high">High to Low</option>
-            <option value="low">Low to High</option>
+            <option value="">Sort by Last Login</option>
+            <option value="recent">Most Recent</option>
+            <option value="oldest">Oldest</option>
           </select>
         </div>
         <div className="flex items-center">

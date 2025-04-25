@@ -1,7 +1,7 @@
 // src/admin/user/PortfolioDetails.jsx
 import React, { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import AllocationChart from '../components/Portfolio/AllocationChart.jsx';
+import AllocationChart from './AllocationChart.jsx'; // Fixed path: same directory
 import { ThemeContext } from '../../../context/ThemeContext.jsx';
 
 const PortfolioDetails = () => {

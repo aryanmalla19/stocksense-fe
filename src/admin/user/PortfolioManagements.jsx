@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PortfolioFilters from '../components/Portfolio/PortfolioFilters.jsx';
 import PortfolioTable from '../components/Portfolio/PortfolioTable.jsx';
-import { ThemeContext } from '../../../context/ThemeContext.jsx';
+import { ThemeContext } from '../../context/ThemeContext.jsx';
 
 const demoPortfolios = [
   {
