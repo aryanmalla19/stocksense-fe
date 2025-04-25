@@ -15,7 +15,7 @@ export const fetchNotifications = async () => {
 
 export const markAllAsRead = async () => {
   try {
-    const response = await axiosInstance.get("/users/markasread-notifications");
+    const response = await axiosInstance.put("/users/markasread-notifications");
     return response.data?.data;
   } catch (error) {
     console.log(
