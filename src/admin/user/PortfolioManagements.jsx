@@ -3,18 +3,22 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PortfolioFilters from '../components/Portfolio/PortfolioFilters.jsx';
 import PortfolioTable from '../components/Portfolio/PortfolioTable.jsx';
-import { ThemeContext } from "../../context/ThemeContext";
-
+import { ThemeContext } from '../../../context/ThemeContext.jsx';
 
 const demoPortfolios = [
   {
     id: 1,
     userName: 'John Doe',
     email: 'john@example.com',
+    role: 'Admin',
+    status: 'Active',
+    createdAt: '2024-01-15',
+    lastLogin: '2025-04-20',
     virtualBalance: 125000,
     totalInvestment: 80000,
     unrealizedGains: 25000,
     performance: 25,
+    netWorth: 125000 + 80000 + 25000, // 230000
     holdings: [
       { id: 1, symbol: 'AAPL', name: 'Apple Inc.', quantity: 50, avgPrice: 120, currentPrice: 150 },
       { id: 2, symbol: 'GOOGL', name: 'Alphabet Inc.', quantity: 30, avgPrice: 2000, currentPrice: 2200 },
@@ -33,10 +37,15 @@ const demoPortfolios = [
     id: 2,
     userName: 'Jane Smith',
     email: 'jane@example.com',
+    role: 'User',
+    status: 'Active',
+    createdAt: '2024-02-10',
+    lastLogin: '2025-04-18',
     virtualBalance: 110000,
     totalInvestment: 60000,
     unrealizedGains: 10000,
     performance: 10,
+    netWorth: 110000 + 60000 + 10000, // 180000
     holdings: [
       { id: 3, symbol: 'MSFT', name: 'Microsoft Corp.', quantity: 40, avgPrice: 300, currentPrice: 320 },
     ],
@@ -53,10 +62,15 @@ const demoPortfolios = [
     id: 3,
     userName: 'Alice Johnson',
     email: 'alice@example.com',
+    role: 'User',
+    status: 'Inactive',
+    createdAt: '2024-03-05',
+    lastLogin: '2025-04-10',
     virtualBalance: 95000,
     totalInvestment: 50000,
     unrealizedGains: -5000,
     performance: -5,
+    netWorth: 95000 + 50000 - 5000, // 140000
     holdings: [
       { id: 4, symbol: 'TSLA', name: 'Tesla Inc.', quantity: 20, avgPrice: 1000, currentPrice: 900 },
     ],
