@@ -1,3 +1,4 @@
+// src/Router.jsx
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Mainlayout from "../layouts/Mainlayout";
@@ -9,7 +10,6 @@ import ProfilePage from "../pages/profilePage/MainProfile/ProfilePage";
 import SettingPage from "../pages/profilePage/MainSetting/SettingPage";
 import ConfirmationPage from "../pages/Auth/ConfirmationPage";
 import BuySellPage from "../pages/OrderManagement/BuySellPage";
-
 import LoginReg from "../pages/Auth/LoginReg";
 import ForgotPassword from "../pages/Auth/ForgotPassword";
 import ResetPassword from "../pages/Auth/ResetPassword";
@@ -17,23 +17,17 @@ import WatchList from "../pages/stockPage/WatchList";
 import StockListID from "../pages/stockPage/StockListID";
 import OtpPage from "../pages/Auth/OtpPage";
 import Page404 from "../components/common/Page404";
-
 import Notification from "../pages/Notifications/Notification";
-
 import VerifyEmail from "../pages/Auth/VerifyEmail";
-
 import UserManagement from "../admin/user/UserManagement";
 import Holdings from "../pages/portfolioPage/Holdings";
 import Transactions from "../pages/portfolioPage/Transactions";
 import IPOList from "../pages/sharePage/IPOList";
-import StockManagemant from "../admin/user/StockManagemant";
+import StockManagement from "../admin/user/StockManagement"; // Fixed typo
 import IpoManagement from "../admin/user/IpoManagement";
-
-import PortfolioManagements from "../admin/user/PortfolioManagements";
-
+import PortfolioManagement from "../admin/user/PortfolioManagement"; // Renamed to singular
+import PortfolioDetails from "../admin/user/PortfolioDetails"; // Added for details page
 import Overview from "../pages/MarketOverview/Overview";
-
-
 
 const Router = createBrowserRouter([
   {
@@ -98,24 +92,20 @@ const Router = createBrowserRouter([
       },
       {
         path: "/stockmanagement",
-        element: <StockManagemant />,
+        element: <StockManagement />,
       },
       {
         path: "/ipomanagement",
-
-        element:<IpoManagement />,
+        element: <IpoManagement />,
       },
       {
-        path: "/portfoliomanagements",
-        element: <PortfolioManagements/>,
+        path: "/portfoliomanagement", // Renamed to singular, removed duplicate
+        element: <PortfolioManagement />,
       },
       {
-        path: "/portfoliomanagements",
-        element: <PortfolioManagements/>,
-      }
-
-
-
+        path: "/portfoliomanagement/:id", // Added route for PortfolioDetails
+        element: <PortfolioDetails />,
+      },
     ],
   },
   {
