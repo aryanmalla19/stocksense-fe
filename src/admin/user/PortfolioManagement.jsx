@@ -72,7 +72,7 @@ const demoPortfolios = [
 ];
 
 const PortfolioDashboard = () => {
-    const {theme} = useContext(ThemeContext)
+  const {theme} = useContext(ThemeContext)
   const [portfolios] = useState(demoPortfolios);
   const [selectedPortfolio, setSelectedPortfolio] = useState(null);
   const [filters, setFilters] = useState({
@@ -102,6 +102,8 @@ const PortfolioDashboard = () => {
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <h2 className="text-3xl font-bold text-purple-700 mb-6">Portfolio Dashboard</h2>
+
+
       <PortfolioFilters filters={filters} setFilters={setFilters} />
       {filteredPortfolios.length === 0 ? (
         <div className="text-center text-gray-600">No portfolios found.</div>
@@ -224,6 +226,9 @@ const PortfolioDashboard = () => {
         </div>
       )}
     </div>
+
+    
+    
   );
 };
 
