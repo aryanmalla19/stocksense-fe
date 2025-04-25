@@ -6,10 +6,10 @@ const useUpdateProfile = () => {
   const mutation = useMutation({
     mutationFn: profileUpdate,
     onSuccess: () => {
-      toast.onSuccess("Profile Updated successfully");
+      toast.success("Profile Updated successfully");
     },
     onError: () => {
-      toast.onError("Profile Updation failed");
+      toast.error("Profile Updation failed");
     },
   });
   return { updateProfile: mutation.mutate };

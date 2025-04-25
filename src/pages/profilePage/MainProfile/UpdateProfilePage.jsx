@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "../../../components/common/Input";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import useUpdateProfile from "../../../hooks/userhooks/useUpdateProfile";
+import useUserDetails from "../../../hooks/authhooks/useUserDetails";
 
 // Reusable Input Section Component
-const InputSection = ({ label, placeholder, value, onChange, name }) => (
+const InputSection = ({
+  label,
+  placeholder,
+  value,
+  onChange,
+  name,
+  disabled = false,
+}) => (
   <div className="flex flex-col gap-2">
     <label className="font-semibold">{label}</label>
     <Input
@@ -13,12 +21,16 @@ const InputSection = ({ label, placeholder, value, onChange, name }) => (
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      disabled={disabled}
       className="w-full sm:w-[500px] text-black p-2 rounded-md focus:outline-none"
     />
   </div>
 );
 
 const UpdateProfilePage = ({ theme }) => {
+  const { userDetails } = useUserDetails();
+  const userProfile = userDetails?.data;
+
   const [profile, setProfile] = useState({
     name: "",
     email: "",
@@ -26,7 +38,22 @@ const UpdateProfilePage = ({ theme }) => {
     bio: "",
   });
 
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImageFile, setSelectedImageFile] = useState(null); // For backend upload
+
   const { updateProfile } = useUpdateProfile();
+
+  // Load user profile data when available
+  useEffect(() => {
+    if (userProfile) {
+      setProfile({
+        name: userProfile.name || "",
+        email: userProfile.email || "",
+        number: userProfile.phone_number || "",
+        bio: userProfile.bio || "",
+      });
+    }
+  }, [userProfile]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,17 +63,29 @@ const UpdateProfilePage = ({ theme }) => {
     }));
   };
 
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedImageFile(file); // For uploading
+      setSelectedImage(URL.createObjectURL(file)); // For preview
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = {
-      name: profile.name,
-      email: profile.email,
-      phone_number: profile.number,
-      bio: profile.bio,
-    };
+    const formData = new FormData();
+    formData.append("name", profile.name);
+    formData.append("email", profile.email);
+    formData.append("phone_number", profile.number);
+    formData.append("bio", profile.bio);
 
-    updateProfile(data);
+    if (selectedImageFile) {
+      formData.append("profile_image", selectedImageFile);
+      console.log("Uploading image:", selectedImageFile);
+    }
+
+    updateProfile(formData);
   };
 
   return (
@@ -63,7 +102,11 @@ const UpdateProfilePage = ({ theme }) => {
         {/* Photo Upload Section */}
         <div className="relative">
           <img
-            src="https://www.shutterstock.com/image-vector/upload-document-data-file-cloud-600nw-2297720825.jpg"
+            src={
+              selectedImage ||
+              userProfile?.profile_image ||
+              "https://www.shutterstock.com/image-vector/upload-document-data-file-cloud-600nw-2297720825.jpg"
+            }
             alt="Profile Preview"
             className="rounded-full w-32 h-32 object-cover"
           />
@@ -72,6 +115,7 @@ const UpdateProfilePage = ({ theme }) => {
             id="photo-upload"
             accept="image/*"
             className="hidden"
+            onChange={handleImageUpload}
           />
           <label
             htmlFor="photo-upload"
@@ -96,6 +140,7 @@ const UpdateProfilePage = ({ theme }) => {
           placeholder="user@example.com"
           value={profile.email}
           onChange={handleChange}
+          disabled={true}
         />
         <InputSection
           name="number"

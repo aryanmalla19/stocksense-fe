@@ -1,104 +1,108 @@
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
-import useHistoryID from "../../hooks/stockshooks/useHistoryID";
 
-const Candlestick = ({ id, theme }) => {
-  const { data } = useHistoryID(id);
-  const candleData = data?.data?.historic || [];
+const Candlestick = ({ theme, id }) => {
+  const [series, setSeries] = useState([{ data: [] }]);
 
-  const formattedData = candleData.map((item) => ({
-    x: item.date,
-    y: [
-      parseFloat(item.open_price),
-      parseFloat(item.high_price),
-      parseFloat(item.low_price),
-      parseFloat(item.close_price),
-    ],
-  }));
+  useEffect(() => {
+    const source = new EventSource(
+      `http://localhost:8000/api/stocks/${id}/history`
+    );
 
-  const [state, setState] = useState({
-    series: [{ data: [] }],
-    options: {
-      chart: {
-        type: "candlestick",
-        height: 350,
-      },
-      title: {
-        text: "Candlestick Chart",
-        align: "left",
-        style: {
-          color: theme === "dark" ? "#FFFFFF" : "#000000",
-        },
-      },
-      xaxis: {
-        type: "datetime",
-        labels: {
-          style: {
-            colors: theme === "dark" ? "#FFFFFF" : "#000000",
-          },
-        },
-      },
-      yaxis: {
-        tooltip: { enabled: true },
-        labels: {
-          offsetX: 0,
-          offsetY: 4,
-          style: {
-            colors: theme === "dark" ? "#FFFFFF" : "#000000",
-          },
-        },
-        tickAmount: 8,
-      },
-      tooltip: {
-        theme: theme,
+    source.onmessage = (event) => {
+      try {
+        const { type, data } = JSON.parse(event.data);
+
+        if (type === "initial") {
+          const priceData = data.prices.map((item) => ({
+            x: new Date(item.date),
+            y: [
+              parseFloat(item.open_price),
+              parseFloat(item.high_price),
+              parseFloat(item.low_price),
+              parseFloat(item.close_price),
+            ],
+          }));
+
+          priceData.sort((a, b) => new Date(a.x) - new Date(b.x));
+
+          setSeries([{ data: priceData }]);
+        }
+
+        if (type === "update") {
+          const updatedPoint = {
+            x: new Date(data.date),
+            y: [
+              parseFloat(data.open_price),
+              parseFloat(data.high_price),
+              parseFloat(data.low_price),
+              parseFloat(data.close_price),
+            ],
+          };
+
+          setSeries((prevSeries) => {
+            const dataExistsIndex = prevSeries[0].data.findIndex(
+              (point) =>
+                new Date(point.x).getTime() === new Date(data.date).getTime()
+            );
+
+            const newData = [...prevSeries[0].data];
+
+            if (dataExistsIndex !== -1) {
+              newData[dataExistsIndex] = updatedPoint;
+            } else {
+              newData.push(updatedPoint);
+            }
+
+            newData.sort((a, b) => new Date(a.x) - new Date(b.x));
+
+            return [{ data: [...newData] }];
+          });
+        }
+      } catch (error) {
+        console.error("Error processing SSE message:", error);
+      }
+    };
+
+    return () => {
+      source.close();
+    };
+  }, [id]);
+
+  const options = {
+    chart: {
+      type: "candlestick",
+      height: 350,
+    },
+    title: {
+      text: "Candlestick Chart",
+      align: "left",
+      style: {
+        color: theme === "dark" ? "#FFFFFF" : "#000000",
       },
     },
-  });
-
-  useEffect(() => {
-    if (formattedData.length > 0) {
-      setState((prev) => ({
-        ...prev,
-        series: [{ data: formattedData }],
-      }));
-    }
-  }, [data]);
-
-  useEffect(() => {
-    setState((prev) => ({
-      ...prev,
-      options: {
-        ...prev.options,
-        title: {
-          ...prev.options.title,
-          style: {
-            color: theme === "dark" ? "#FFFFFF" : "#000000",
-          },
-        },
-        xaxis: {
-          ...prev.options.xaxis,
-          labels: {
-            ...prev.options.xaxis.labels,
-            style: {
-              colors: theme === "dark" ? "#FFFFFF" : "#000000",
-            },
-          },
-        },
-        yaxis: {
-          ...prev.options.yaxis,
-          labels: {
-            ...prev.options.yaxis.labels,
-            style: {
-              colors: theme === "dark" ? "#FFFFFF" : "#000000",
-            },
-          },
-        },
-        tooltip: {
-          theme: theme,
+    xaxis: {
+      type: "datetime",
+      labels: {
+        style: {
+          colors: theme === "dark" ? "#FFFFFF" : "#000000",
         },
       },
-    }));
-  }, [theme]);
+    },
+    yaxis: {
+      tooltip: {
+        enabled: true,
+      },
+      labels: {
+        style: {
+          colors: theme === "dark" ? "#FFFFFF" : "#000000",
+        },
+      },
+    },
+    tooltip: {
+      theme: theme,
+    },
+  };
 
   return (
     <div
@@ -107,8 +111,8 @@ const Candlestick = ({ id, theme }) => {
       } p-4 rounded`}
     >
       <Chart
-        options={state.options}
-        series={state.series}
+        options={options}
+        series={series}
         type="candlestick"
         height={350}
       />
