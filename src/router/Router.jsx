@@ -39,7 +39,11 @@ const Router = createBrowserRouter([
     element: <Mainlayout />,
     children: [
       {
-        path: "/dashboard",
+        index: true,
+        element: <Overview />,
+      },
+      {
+        path: "dashboard",
         element: <Overview />,
       },
       {
@@ -87,29 +91,24 @@ const Router = createBrowserRouter([
         element: <ApplyPage />,
       },
       {
-        path: "/watch-list",
+        path: "watch-list",
         element: <WatchList />,
       },
       {
-        path: "/usermanagement",
+        path: "usermanagement",
         element: <UserManagement />,
       },
       {
-        path: "/stockmanagement",
+        path: "stockmanagement",
         element: <StockManagemant />,
       },
       {
-        path: "/ipomanagement",
-
+        path: "ipomanagement",
         element: <IpoManagement />,
       },
       {
-        path: "/portfoliomanagement",
+        path: "portfoliomanagement",
         element: <PortfolioManagement />,
-      },
-      {
-        path: "/ipomanagement",
-        element: <IpoManagement />,
       },
     ],
   },
