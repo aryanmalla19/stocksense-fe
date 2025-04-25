@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const NotificationComponent = () => {
   const [connectionState, setConnectionState] = useState("Connecting...");
@@ -21,6 +22,7 @@ const NotificationComponent = () => {
         const data = JSON.parse(event.data);
         if (data?.message) {
           setMessages((prev) => [...prev, data.message]);
+          toast(data.message);
         }
       } catch (err) {
         console.error("Error parsing SSE message:", err);
@@ -37,17 +39,6 @@ const NotificationComponent = () => {
       console.log("Disconnected SSE");
     };
   }, []);
-
-  return (
-    <div style={{ padding: "20px" }}>
-      <h2> Notification ({connectionState})</h2>
-      <ul>
-        {messages.map((msg, idx) => (
-          <li key={idx}>{msg}</li>
-        ))}
-      </ul>
-    </div>
-  );
 };
 
 export default NotificationComponent;
