@@ -46,6 +46,13 @@ body {
   .hover\:bg-button-bg:hover {
     background-color: var(--button-bg);
   }
+.bg-gradient-button {
+    background: linear-gradient(to left, #923EB9, #732E92);
+  }
+  
+  .bg-gradient-button:hover {
+    background: linear-gradient(to left, #A24DCC, #8336A8);
+  }
   
 
 .outlet-container{

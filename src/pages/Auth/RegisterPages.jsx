@@ -114,7 +114,7 @@ const RegisterPages = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="auth-button cursor-pointer bg-gradient-to-l  from-[#923EB9] to-[#732E92] hover:from-[#A24DCC] hover:to-[#8336A8] transition duration-200 w-full"
+          className="auth-button cursor-pointer bg-gradient-button transition duration-200 w-full"
           disabled={isLoading}
         >
           {isLoading ? (
