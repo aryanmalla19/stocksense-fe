@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Notification = () => {
+const NotificationComponent = () => {
   const [connectionState, setConnectionState] = useState("Connecting...");
   const [messages, setMessages] = useState([]);
 
@@ -50,4 +50,4 @@ const Notification = () => {
   );
 };
 
-export default Notification;
+export default NotificationComponent;

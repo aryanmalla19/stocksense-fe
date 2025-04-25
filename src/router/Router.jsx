@@ -9,7 +9,6 @@ import ProfilePage from "../pages/profilePage/MainProfile/ProfilePage";
 import SettingPage from "../pages/profilePage/MainSetting/SettingPage";
 import ConfirmationPage from "../pages/Auth/ConfirmationPage";
 import BuySellPage from "../pages/OrderManagement/BuySellPage";
-
 import LoginReg from "../pages/Auth/LoginReg";
 import ForgotPassword from "../pages/Auth/ForgotPassword";
 import ResetPassword from "../pages/Auth/ResetPassword";
@@ -17,11 +16,8 @@ import WatchList from "../pages/stockPage/WatchList";
 import StockListID from "../pages/stockPage/StockListID";
 import OtpPage from "../pages/Auth/OtpPage";
 import Page404 from "../components/common/Page404";
-
-import Notification from "../pages/Notifications/Notification";
-
+import Notification from "../pages/Notifications/Notifications";
 import VerifyEmail from "../pages/Auth/VerifyEmail";
-
 
 import Holdings from "../pages/portfolioPage/Holdings";
 import Transactions from "../pages/portfolioPage/Transactions";
@@ -29,13 +25,10 @@ import IPOList from "../pages/sharePage/IPOList";
 import StockManagemant from "../admin/user/StockManagemant";
 import IpoManagement from "../admin/user/IpoManagement";
 
-
 import Overview from "../pages/MarketOverview/Overview";
 import PortfolioManagement from "../admin/user/PortfolioManagements";
 import Details from "../pages/OrderManagement/Details";
 import PortfolioDetails from "../admin/components/Portfolio/PortfolioDetails";
-
-
 
 const Router = createBrowserRouter([
   {
@@ -43,7 +36,11 @@ const Router = createBrowserRouter([
     element: <Mainlayout />,
     children: [
       {
-        path: "/dashboard",
+        index: true,
+        element: <Overview />,
+      },
+      {
+        path: "dashboard",
         element: <Overview />,
       },
       {
@@ -91,18 +88,16 @@ const Router = createBrowserRouter([
         element: <ApplyPage />,
       },
       {
-        path: "/watch-list",
+        path: "watch-list",
         element: <WatchList />,
       },
-
       {
-        path: "/stockmanagement",
+        path: "stockmanagement",
         element: <StockManagemant />,
       },
       {
-        path: "/ipomanagement",
-
-        element:<IpoManagement />,
+        path: "notifications",
+        element: <Notification />,
       },
       {
         path: "/portfoliomanagement",
@@ -112,6 +107,9 @@ const Router = createBrowserRouter([
         path: "/portfoliomanagement/:id",
         element: <PortfolioDetails />,
       }
+        path: "ipomanagement",
+        element: <IpoManagement />,
+      },
     ],
   },
   {
@@ -141,10 +139,6 @@ const Router = createBrowserRouter([
   {
     path: "/otp",
     element: <OtpPage />,
-  },
-  {
-    path: "/notifications",
-    element: <Notification />,
   },
   {
     path: "*",
