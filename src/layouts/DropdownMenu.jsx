@@ -8,7 +8,6 @@ const DropdownMenu = ({
   isOpen,
   toggle,
   currentPath,
-  theme,
   collapsed,
 }) => {
   return (
