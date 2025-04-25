@@ -10,11 +10,13 @@ const Notifications = () => {
   const { markAllAsRead } = useMarkAllAsRead();
   const [loading, setLoading] = useState(false);
 
+  const allNotificationsRead =
+    data?.length > 0 && data.every((notification) => notification.read_at);
+
   const handleClick = async () => {
     try {
       setLoading(true);
       await markAllAsRead.mutateAsync();
-
       refetch();
     } catch (error) {
       console.error("Error:", error);
@@ -34,7 +36,7 @@ const Notifications = () => {
         <button
           onClick={handleClick}
           className="cursor-pointer py-2 px-4 rounded bg-blue-500 text-white disabled:bg-gray-400"
-          disabled={loading || data?.length === 0}
+          disabled={loading || data?.length === 0 || allNotificationsRead}
         >
           {loading ? "Marking as read..." : "Mark All As Read"}
         </button>
