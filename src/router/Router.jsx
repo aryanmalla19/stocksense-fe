@@ -23,10 +23,10 @@ import UserManagement from "../admin/user/UserManagement";
 import Holdings from "../pages/portfolioPage/Holdings";
 import Transactions from "../pages/portfolioPage/Transactions";
 import IPOList from "../pages/sharePage/IPOList";
-import StockManagement from "../admin/user/StockManagement"; // Fixed typo
+import StockManagement from "../admin/user/StockManagement"; 
 import IpoManagement from "../admin/user/IpoManagement";
-import PortfolioManagement from "../admin/user/PortfolioManagement"; // Renamed to singular
-import PortfolioDetails from "../admin/user/PortfolioDetails"; // Added for details page
+import PortfolioManagement from "../admin/user/PortfolioManagement"; 
+import PortfolioDetails from "../admin/user/PortfolioDetails"; 
 import Overview from "../pages/MarketOverview/Overview";
 
 const Router = createBrowserRouter([
