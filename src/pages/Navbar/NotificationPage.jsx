@@ -5,14 +5,17 @@ import getTimeDifference from "../Notifications/getTimeDifference";
 import { ThemeContext } from "../../context/ThemeContext";
 import { useNavigate } from "react-router-dom";
 import useMarkAllAsRead from "../../hooks/notificationhooks/useMarkAllAsRead.js";
+import useMarkAsRead from "../../hooks/notificationhooks/useMarkAsRead.js";
 
 const NotificationPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data } = useGetNotifications();
   const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
-    const { markAllAsRead } = useMarkAllAsRead();
-    const [loading, setLoading] = useState(false);
+  const { markAllAsRead } = useMarkAllAsRead();
+  const [loading, setLoading] = useState(false);
+
+  const { markAsRead } = useMarkAsRead();
 
     const allNotificationsRead =
       data?.length > 0 && data.every((notification) => notification.read_at);
@@ -27,6 +30,14 @@ const NotificationPage = () => {
       } finally {
         setLoading(false);
       }
+    };
+
+    const handleMarkAsRead = async (id) => {
+      try {
+        await markAsRead.mutateAsync(id);
+      } catch (error) {
+        console.error("Error:", error);
+      } 
     };
 
   const handleToggle = () => {
@@ -72,14 +83,12 @@ const handleClose = () => {
                 <h2 className="text-xl font-bold">Notifications</h2>
                 <button
                   onClick={handleClick}
-                  className="cursor-pointer py-1 px-4 rounded text-white underline disabled:text-gray-400 text-sm font-bold"
+                  className="cursor-pointer py-1 px-4 rounded text-blue-300 disabled:text-gray-400 text-sm font-bold"
                   disabled={
                     loading || data?.length === 0 || allNotificationsRead
                   }
                 >
-                  {loading
-                    ? "Marking as read..."
-                    : "Mark All As Read"}
+                  {loading ? "Marking as read..." : "Mark All As Read"}
                 </button>
               </div>
               {data?.length > 0 ? (
@@ -88,7 +97,8 @@ const handleClose = () => {
                     {displayedNotifications.map((notification, index) => (
                       <li
                         key={index}
-                        className={`border p-3 rounded ${
+                        onClick={() => handleMarkAsRead(notification.id)}
+                        className={`border p-3 rounded cursor-pointer ${
                           theme === "dark"
                             ? "border-gray-600"
                             : "border-gray-300"
