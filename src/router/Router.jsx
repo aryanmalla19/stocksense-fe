@@ -107,11 +107,9 @@ const Router = createBrowserRouter([
       },
       {
         path: "/portfoliomanagement",
-        element: <PortfolioManagement/>,
+        element: <PortfolioManagements/>,
       }
 
-        element: <IpoManagement />,
-      },
 
     ],
   },
