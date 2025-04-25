@@ -6,12 +6,12 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const AllocationChart = ({ portfolio, allocation }) => {
-  // Cash vs Stocks Pie Chart
-  const cashVsStocksData = {
-    labels: ['Cash', 'Stocks'],
+  // Investment vs Net Worth Pie Chart
+  const investmentVsNetWorthData = {
+    labels: ['Total Investment', 'Net Worth'],
     datasets: [
       {
-        data: [allocation.cash, allocation.stocks],
+        data: [portfolio.totalInvestment, portfolio.netWorth],
         backgroundColor: ['#FF6384', '#36A2EB'],
         hoverBackgroundColor: ['#FF6384', '#36A2EB'],
       },
@@ -47,9 +47,9 @@ const AllocationChart = ({ portfolio, allocation }) => {
   return (
     <div>
       <div className="mb-6">
-        <h5 className="text-md font-semibold text-purple-700 mb-2">Cash vs Stocks</h5>
+        <h5 className="text-md font-semibold text-purple-700 mb-2">Investment vs Net Worth</h5>
         <div style={{ maxWidth: '300px', margin: '0 auto' }}>
-          <Pie data={cashVsStocksData} options={options} />
+          <Pie data={investmentVsNetWorthData} options={options} />
         </div>
       </div>
       <div>
