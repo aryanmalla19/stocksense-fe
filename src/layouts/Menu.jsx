@@ -19,11 +19,10 @@ import DropdownMenu from "./DropdownMenu";
 const menuItems = [
   { icon: <MdOutlineDashboard />, label: "Dashboard", href: "/dashboard" },
   { icon: <FiList />, label: "Stocks List", href: "/stocks" },
-  { icon: <FiShoppingCart />, label: "Trade Stocks", href: "/buysell" },
+  { icon: <FiShoppingCart />, label: "Trade Stocks", href: "/buy" },
   { icon: <FiStar />, label: "Watchlist", href: "/watch-list" },
   { icon: <FiPieChart />, label: "Portfolio", href: "/portfolio" },
   { icon: <FiLayers />, label: "IPO Applications", href: "/shares" },
-
 
   {
     icon: <BsDatabaseFillGear />,
@@ -42,7 +41,6 @@ const menuItems = [
     href: "/portfoliomanagement",
   },
   { icon: <FaHeadphonesAlt />, label: "Support", href: "/admin/support" },
-  
 ];
 
 const ipoItems = [
