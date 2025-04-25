@@ -29,12 +29,15 @@ const PortfolioTable = ({ portfolios }) => {
                   {portfolio.performance.toFixed(2)}%
                 </td>
                 <td className="p-3">
+
                   <Link
-                    to={`/portfoliomanagement/${portfolio.id}`} // Fixed path
-                    className="text-blue-500 hover:underline"
-                  >
-                    View Details
-                  </Link>
+                      to={`/portfoliomanagement/${portfolio.id}`}
+                      className="text-blue-500 hover:underline"
+                    >
+                      View Details
+                    </Link>
+
+
                 </td>
               </tr>
             ))}

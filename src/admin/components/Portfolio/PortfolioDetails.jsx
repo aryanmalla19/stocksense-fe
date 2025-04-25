@@ -1,8 +1,8 @@
 // src/admin/user/PortfolioDetails.jsx
 import React, { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import AllocationChart from '../components/Portfolio/AllocationChart.jsx';
-import { ThemeContext } from '../components/ThemeContext.jsx';
+import AllocationChart from './AllocationChart.jsx';
+import { ThemeContext } from '../../../context/ThemeContext.jsx';
 
 const demoPortfolios = [
   {

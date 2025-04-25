@@ -71,7 +71,7 @@ const demoPortfolios = [
   },
 ];
 
-const PortfolioManagements = () => {
+const PortfolioManagement = () => {
   const { theme } = useContext(ThemeContext);
   const [portfolios] = useState(demoPortfolios);
   const [filters, setFilters] = useState({
@@ -109,4 +109,4 @@ const PortfolioManagements = () => {
   );
 };
 
-export default PortfolioManagements;
+export default PortfolioManagement;
