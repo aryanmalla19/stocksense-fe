@@ -1,7 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Mainlayout from "../layouts/Mainlayout";
-import Overview from "../pages/MarketOverview/Overview";
 import StockList from "../pages/stockPage/StockList";
 import PortfolioPage from "../pages/portfolioPage/PortfolioPage";
 import MyASBAPage from "../pages/sharePage/MyASBAPage";
@@ -30,6 +29,9 @@ import IPOList from "../pages/sharePage/IPOList";
 import StockManagemant from "../admin/user/StockManagemant";
 import IpoManagement from "../admin/user/IpoManagement";
 
+import PortfolioManagement from "../admin/user/PortfolioManagement";
+
+import Overview from "../pages/MarketOverview/Overview";
 
 const Router = createBrowserRouter([
   {
@@ -37,7 +39,11 @@ const Router = createBrowserRouter([
     element: <Mainlayout />,
     children: [
       {
-        path: "/dashboard",
+        index: true,
+        element: <Overview />,
+      },
+      {
+        path: "dashboard",
         element: <Overview />,
       },
       {
@@ -85,24 +91,28 @@ const Router = createBrowserRouter([
         element: <ApplyPage />,
       },
       {
-        path: "/watch-list",
+        path: "watch-list",
         element: <WatchList />,
       },
       {
-        path: "/usermanagement",
+        path: "usermanagement",
         element: <UserManagement />,
       },
       {
-        path: "/stockmanagement",
+        path: "stockmanagement",
         element: <StockManagemant />,
       },
+     
       {
-        path: "/ipomanagement",
+        path: "notifications",
+        element: <Notification />
+      },
+        path: "ipomanagement",
         element: <IpoManagement />,
       },
       {
-        path: "/notifications",
-        element: <Notification />,
+        path: "portfoliomanagement",
+        element: <PortfolioManagement />,
       },
     ],
   },

@@ -1,76 +1,85 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import useTransactions from "../../hooks/ipohooks/useTransactions";
-import { FaArrowDown, FaArrowUp, FaMoneyBillAlt } from "react-icons/fa";
+import { FiFilter } from "react-icons/fi";
+import Transactiondisplay from "./Transactiondisplay";
+import DonutChart from "../../components/common/DonoutChart";
 
 const Transactions = () => {
   const { theme } = useContext(ThemeContext);
-  const { data } = useTransactions();
+  const [pageNumber, setPageNumber] = useState(1);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [selectedType, setSelectedType] = useState(null);
+
+  const { data } = useTransactions(pageNumber, 5);
   const transactionData = data?.data || [];
+
+  // Filter data if a type is selected
+  const filteredData = selectedType
+    ? transactionData.filter((item) => item.type === selectedType)
+    : transactionData;
 
   return (
     <div>
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8 text-[#9E15BF]">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8 relative">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold py-2">Your Holdings</h1>
+          <h1 className="text-2xl md:text-3xl font-bold py-2">
+            Your Transactions
+          </h1>
+        </div>
+
+        {/* Filter Button */}
+        <div className="relative">
+          <button
+            onClick={() => setIsFilterOpen((prev) => !prev)}
+            className="flex items-center gap-2 px-4 py-2 bg-purple-button text-white rounded-md hover:bg-purple-700"
+          >
+            <FiFilter className="text-lg" />
+            Filter
+          </button>
+
+          {/* Filter Dropdown */}
+          {isFilterOpen && (
+            <div
+              className={`absolute right-0 mt-2 w-full  border rounded shadow-md z-20 ${
+                theme === "dark"
+                  ? "bg-dark-bg text-dark-text"
+                  : "bg-dark-bg text-dark-text"
+              }`}
+            >
+              <button
+                onClick={() => {
+                  setSelectedType("buy");
+                  setIsFilterOpen(false);
+                }}
+                className="block w-full px-4 py-2 text-left cursor-pointer"
+              >
+                Buy
+              </button>
+              <button
+                onClick={() => {
+                  setSelectedType("sell");
+                  setIsFilterOpen(false);
+                }}
+                className="block w-full px-4 py-2 text-left cursor-pointer "
+              >
+                Sell
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
-      <div
-        className={`outlet-container rounded-md p-8 transition-colors duration-300 overflow-y-scroll scrollbar-hidden h-[550px]
-    ${
-      theme === "dark"
-        ? "bg-dark-bg border border-dark-bg shadow-md shadow-black/30"
-        : "bg-white border border-gray-200 shadow-md shadow-gray-300"
-    }`}
-      >
-        <div className="grid grid-cols-7 bg-purple-button  text-white font-semibold p-2 rounded-md">
-          <p className="col-span-2">Company</p>
-          <p>Price (Rs)</p>
-          <p>Quantity</p>
-          <p>Total Price (Rs)</p>
-          <p>Transaction Fee (Rs)</p>
-          <p>Type</p>
-        </div>
+      <Transactiondisplay
+        theme={theme}
+        transactionData={filteredData}
+        setPageNumber={setPageNumber}
+        pageNumber={pageNumber}
+        data={data}
+      />
 
-        {transactionData.length === 0 ? (
-          <p className="text-center mt-4 text-gray-500">
-            No Transactions found.
-          </p>
-        ) : (
-          transactionData.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className={`grid grid-cols-7 gap-2  py-2 px-2 my-2 rounded-md overflow-auto  ${
-                  theme === "dark"
-                    ? " text-dark-text hover:bg-gray-700"
-                    : " hover:bg-gray-100 text-light-text"
-                }`}
-              >
-                <p className="col-span-2">{item.company_name}</p>
-                <p>{item.price}</p>
-                <p>{item.quantity}</p>
-                <p>{item.total_price}</p>
-                <p>{item.transaction_fee}</p>
-                <p
-                  className={`flex items-center justify-center p-1  rounded-md text-sm w-24 ${
-                    item.type === "buy"
-                      ? "bg-green-500 text-white"
-                      : "bg-red-500 text-white"
-                  }`}
-                >
-                  {item.type === "buy" ? (
-                    <FaArrowUp className="mr-2" />
-                  ) : (
-                    <FaArrowDown className="mr-2" />
-                  )}
-                  {item.type}
-                </p>
-              </div>
-            );
-          })
-        )}
+      <div className=" items-center flex justify-center">
+        <DonutChart />
       </div>
     </div>
   );

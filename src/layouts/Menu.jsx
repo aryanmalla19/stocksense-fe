@@ -43,7 +43,7 @@ const menuItems = [
   {
     icon: <RiBriefcase4Fill />,
     label: "Portfolios",
-    href: "/admin/portfolios",
+    href: "/portfoliomanagement",
   },
   { icon: <FaHeadphonesAlt />, label: "Support", href: "/admin/support" },
   { icon: <FaClipboardList />, label: "IpoListing", href: "/admin/ipolistig" },
