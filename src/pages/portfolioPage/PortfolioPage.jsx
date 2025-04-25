@@ -8,6 +8,7 @@ import {
   FaChartLine,
 } from "react-icons/fa";
 import PieChartData from "../../components/common/PieChartData";
+import LineCharts from "../../components/common/LineCharts";
 
 const PortfolioPage = () => {
   const { data, isLoading, error } = useFetchPortfolio();
@@ -71,7 +72,7 @@ const PortfolioPage = () => {
         }`}
       >
         <div
-          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6 `}
+          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 p-6 `}
         >
           {cardData.map((card, idx) => (
             <div key={idx} className={baseCardStyle}>
@@ -93,8 +94,13 @@ const PortfolioPage = () => {
             </div>
           ))}
         </div>
-        <div className="my-5">
-          <PieChartData />
+        <div className=" flex flex-col lg:flex-row gap-6">
+          <div className="w-1/2 lg:w-1/3 ">
+            <PieChartData isDark={isDark} />
+          </div>
+          <div className="w-1/2 lg:w-1/2 h-[400px]">
+            <LineCharts isDark={isDark} />
+          </div>
         </div>
       </div>
     </>

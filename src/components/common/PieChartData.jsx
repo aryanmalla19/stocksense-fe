@@ -1,6 +1,13 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  Title,
+  Colors,
+} from "chart.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
@@ -16,22 +23,27 @@ const data = {
     },
   ],
 };
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
+const PieChartData = ({ isDark }) => {
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "bottom",
+        labels: {
+          color: isDark ? "#ffffff" : "#000000",
+        },
+      },
+      title: {
+        display: true,
+        text: " Pie Chart",
+        color: isDark ? "#ffffff" : "#000000",
+        font: { size: 18 },
+      },
     },
-    title: {
-      display: true,
-      text: " Pie Chart",
-    },
-  },
-};
+  };
 
-const PieChartData = () => {
   return (
-    <div className="w-[300px] h-[300px]">
+    <div>
       <Pie data={data} options={options} />
     </div>
   );
