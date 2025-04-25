@@ -22,7 +22,7 @@ import Notification from "../pages/Notifications/Notification";
 
 import VerifyEmail from "../pages/Auth/VerifyEmail";
 
-import UserManagement from "../admin/user/UserManagement";
+
 import Holdings from "../pages/portfolioPage/Holdings";
 import Transactions from "../pages/portfolioPage/Transactions";
 import IPOList from "../pages/sharePage/IPOList";
@@ -94,10 +94,7 @@ const Router = createBrowserRouter([
         path: "/watch-list",
         element: <WatchList />,
       },
-      {
-        path: "/usermanagement",
-        element: <UserManagement />,
-      },
+
       {
         path: "/stockmanagement",
         element: <StockManagemant />,

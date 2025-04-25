@@ -24,29 +24,25 @@ const menuItems = [
   { icon: <FiPieChart />, label: "Portfolio", href: "/portfolio" },
   { icon: <FiLayers />, label: "IPO Applications", href: "/shares" },
 
-  {
-    icon: <RiUserShared2Fill />,
-    label: "User Management",
-    href: "/usermanagement",
-  },
+
   {
     icon: <BsDatabaseFillGear />,
     label: "Stock Management",
     href: "/stockmanagement",
   },
   {
-    icon: <BsDatabaseFillGear />,
+    icon: <FaClipboardList />,
     label: "Ipo Management",
     href: "/ipomanagement",
   },
 
   {
-    icon: <RiBriefcase4Fill />,
+    icon: <RiUserShared2Fill />,
     label: "Portfolios",
     href: "/portfoliomanagement",
   },
   { icon: <FaHeadphonesAlt />, label: "Support", href: "/admin/support" },
-  { icon: <FaClipboardList />, label: "IpoListing", href: "/admin/ipolistig" },
+  
 ];
 
 const ipoItems = [
