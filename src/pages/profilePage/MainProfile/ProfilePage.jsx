@@ -14,7 +14,7 @@ const ProfilePage = () => {
       </div>
 
       <div
-        className={`outlet-container rounded-md transition-colors duration-300  h-screen  ${
+        className={`outlet-container rounded-md transition-colors duration-300  h-120  ${
           theme === "dark"
             ? "bg-dark-bg border border-dark-bg shadow-md shadow-black/30"
             : "bg-white border border-gray-200 shadow-md shadow-gray-300"
