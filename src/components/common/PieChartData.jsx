@@ -8,22 +8,39 @@ import {
   Title,
   Colors,
 } from "chart.js";
+import usePieChart from "../../hooks/charthooks/usePieChart";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
-const data = {
-  labels: ["Sector1", "Sector2", "Sector"],
-  datasets: [
-    {
-      label: "Sectors",
-      data: [41, 50, 8],
-      backgroundColor: ["#FB8122", "#E60576", "#4E3883"],
-      borderColor: "#fff",
-      borderWidth: 2,
-    },
-  ],
+// Helper function to generate random colors
+const generateRandomColor = () => {
+  const randomColor = () => {
+    return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
+      Math.random() * 256
+    )}, ${Math.floor(Math.random() * 256)})`;
+  };
+  return Array.from({ length: 10 }, randomColor);
 };
+
 const PieChartData = ({ isDark }) => {
+  const { chartdata } = usePieChart();
+
+  const labels = chartdata?.data ? chartdata.data.map((item) => item.name) : [];
+  const value = chartdata?.data ? chartdata.data.map((item) => item.value) : [];
+
+  const randomColors = generateRandomColor();
+
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Sectors",
+        data: value,
+        backgroundColor: randomColors,
+      },
+    ],
+  };
+
   const options = {
     responsive: true,
     plugins: {
@@ -35,7 +52,7 @@ const PieChartData = ({ isDark }) => {
       },
       title: {
         display: true,
-        text: " Pie Chart",
+        text: "Pie Chart",
         color: isDark ? "#ffffff" : "#000000",
         font: { size: 18 },
       },
