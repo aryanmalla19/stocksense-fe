@@ -22,7 +22,7 @@ const InputSection = ({
       value={value}
       onChange={onChange}
       disabled={disabled}
-      className="w-full sm:w-[500px] text-black p-2 rounded-md focus:outline-none"
+      className="w-full sm:w-[550px] text-black p-2 rounded-md focus:outline-none"
     />
   </div>
 );
@@ -30,6 +30,7 @@ const InputSection = ({
 const UpdateProfilePage = ({ theme }) => {
   const { userDetails } = useUserDetails();
   const userProfile = userDetails?.data;
+  const isActive = userProfile?.is_active;
 
   const [profile, setProfile] = useState({
     name: "",
@@ -91,20 +92,14 @@ const UpdateProfilePage = ({ theme }) => {
     <>
       <form
         onSubmit={handleSubmit}
-        className={`flex flex-col justify-center items-center gap-4 mt-2 border rounded-md p-4 max-w-xl ${
-          theme === "dark" ? "border-gray-600" : "border-gray-200"
-        }`}
+        className="flex flex-col gap-4 p-4 w-full max-w-full mx-auto"
       >
         {/* Photo Upload Section */}
         <div className="relative">
           <img
-            src={
-              selectedImage ||
-              userProfile?.profile_image ||
-              "https://www.shutterstock.com/image-vector/upload-document-data-file-cloud-600nw-2297720825.jpg"
-            }
+            src={selectedImage || userProfile?.profile_image}
             alt="Profile Preview"
-            className="rounded-full w-32 h-32 object-cover"
+            className="rounded-full w-32 h-32 object-cover  bg-white text-black text-center font-extrabold"
           />
           <input
             type="file"
@@ -115,50 +110,25 @@ const UpdateProfilePage = ({ theme }) => {
           />
           <label
             htmlFor="photo-upload"
-            className="absolute bottom-0 right-0 bg-white rounded-full p-2 cursor-pointer shadow-md"
+            className="absolute bottom-0 left-1/12 bg-gray-400 rounded-full p-2 cursor-pointer shadow-md"
             title="Upload new photo"
           >
             <FaCloudUploadAlt className="text-2xl text-teal-700" />
           </label>
         </div>
 
-        {/* Input Fields */}
-        <InputSection
-          name="name"
-          label="Name"
-          placeholder="Enter Your Name"
-          value={profile.name}
-          onChange={handleChange}
-        />
-        <InputSection
-          name="email"
-          label="Email"
-          placeholder="user@example.com"
-          value={profile.email}
-          onChange={handleChange}
-          disabled={true}
-        />
-        <InputSection
-          name="number"
-          label="Phone Number"
-          placeholder="+985214578451"
-          value={profile.number}
-          onChange={handleChange}
-        />
-        <InputSection
-          name="bio"
-          label="Bio"
-          placeholder="Description"
-          value={profile.bio}
-          onChange={handleChange}
-        />
-
-        <button
-          type="submit"
-          className="p-2 rounded-md  text-white bg-gradient-button w-24"
-        >
-          Change
-        </button>
+        <div className="flex justify-between max-w-2xl  ">
+          <div>
+            <p className="p-2 rounded-md text-3xl font-bold flex items-center">
+              {userProfile?.name}
+              {isActive && (
+                <span className="w-3 h-3 mt-6 bg-green-500 rounded-full"></span>
+              )}
+            </p>
+            <p className="text-sm ">{userProfile?.email} </p>
+          </div>
+        </div>
+        <hr className={`border-gray-400`}></hr>
       </form>
     </>
   );
