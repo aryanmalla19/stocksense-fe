@@ -95,7 +95,7 @@ const ResetPassword = () => {
 
         <button
           type="submit"
-          className="w-full flex items-center justify-center px-6 py-3 rounded-lg bg-teal-700 hover:bg-teal-600 text-white font-medium transition duration-200"
+          className="w-full flex items-center justify-center px-6 py-3 rounded-lg bg-gradient-button cursor-pointer text-white font-medium transition duration-200"
         >
           Change Password
           <FiArrowRight className="ml-2" />

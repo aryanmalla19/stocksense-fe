@@ -12,25 +12,16 @@ const ProfilePage = () => {
           <p>Manage your profile settings and accounts.</p>
         </div>
       </div>
+
       <div
-        className={`outlet-container rounded-md p-8 transition-colors duration-300 ${
+        className={`outlet-container rounded-md transition-colors duration-300  h-screen  ${
           theme === "dark"
             ? "bg-dark-bg border border-dark-bg shadow-md shadow-black/30"
             : "bg-white border border-gray-200 shadow-md shadow-gray-300"
         }`}
       >
-        <div className=" flex justify-center items-center gap-4">
-          <div>
-            <UpdateProfilePage theme={theme} />
-          </div>
-          <div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Repudiandae exercitationem blanditiis id ad suscipit corporis! Id
-              est vel maxime rerum sunt eius eaque eveniet ipsam odio, nobis et
-              saepe sapiente!
-            </p>
-          </div>
+        <div className="h-27 p-8  bg-purple-button rounded-md">
+          <UpdateProfilePage theme={theme} />
         </div>
       </div>
     </>

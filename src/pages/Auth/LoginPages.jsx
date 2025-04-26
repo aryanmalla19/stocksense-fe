@@ -75,13 +75,13 @@ const LoginPages = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="auth-button cursor-pointer bg-gradient-to-l from-teal-500 to-teal-800 hover:from-teal-600 hover:to-teal-700 transition duration-200 w-full"
+          className="auth-button cursor-pointer bg-gradient-button transition duration-200 w-full"
           disabled={isLoading}
         >
           {isLoading ? <LoadingSpinner /> : "Login"}
         </button>
 
-        <GoogleLoginButton  key="login-google" />
+        <GoogleLoginButton key="login-google" />
       </form>
     </div>
   );

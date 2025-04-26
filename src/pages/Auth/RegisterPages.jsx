@@ -37,9 +37,9 @@ const RegisterPages = () => {
           icon={FaUser}
           onChange={() => setServerErrors({})}
         />
-      {(errors.name || serverErrors?.name) && (
+        {(errors.name || serverErrors?.name) && (
           <p className="text-red-500 text-sm my-2 animate-fade-in">
-          *{errors.name?.message || serverErrors?.name}
+            *{errors.name?.message || serverErrors?.name}
           </p>
         )}
 
@@ -60,7 +60,7 @@ const RegisterPages = () => {
         />
         {(errors.email || serverErrors?.email) && (
           <p className="text-red-500 text-sm my-2 animate-fade-in">
-          *{errors.email?.message || serverErrors?.email}
+            *{errors.email?.message || serverErrors?.email}
           </p>
         )}
         {/* Password Field */}
@@ -83,7 +83,7 @@ const RegisterPages = () => {
 
         {(errors.password || serverErrors?.password) && (
           <p className="text-red-500 text-sm my-2 animate-fade-in">
-          *{errors.password?.message || serverErrors?.password}
+            *{errors.password?.message || serverErrors?.password}
           </p>
         )}
 
@@ -102,16 +102,19 @@ const RegisterPages = () => {
           onToggle={() => setShowPassword(!showPassword)}
           onChange={() => setServerErrors({})}
         />
-        {(errors.password_confiration || serverErrors?.password_confiration) && (
+        {(errors.password_confiration ||
+          serverErrors?.password_confiration) && (
           <p className="text-red-500 text-sm my-2 animate-fade-in">
-          *{errors.password_confiration?.message || serverErrors?.password_confiration}
+            *
+            {errors.password_confiration?.message ||
+              serverErrors?.password_confiration}
           </p>
         )}
 
         {/* Submit Button */}
         <button
           type="submit"
-          className="auth-button cursor-pointer bg-gradient-to-l from-teal-500 to-teal-800 hover:from-teal-600 hover:to-teal-700 transition duration-200 w-full"
+          className="auth-button cursor-pointer bg-gradient-button transition duration-200 w-full"
           disabled={isLoading}
         >
           {isLoading ? (

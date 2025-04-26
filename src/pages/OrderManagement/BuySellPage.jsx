@@ -65,8 +65,19 @@ const BuySellPage = () => {
           <div className="flex gap-3">
             <button
               onClick={handleSubmit}
-              className="flex items-center gap-2 bg-purple-button transition text-white font-medium rounded-md py-2 px-4 shadow-md "
-              disabled={!selectedStock || !quantity}
+              className={`flex items-center gap-2 transition font-medium rounded-md py-2 px-4 shadow-md bg-purple-button text-white
+    ${
+      !selectedStock || !quantity || isNaN(quantity) || Number(quantity) <= 0
+        ? " cursor-not-allowed"
+        : "cursor-pointer"
+    }
+  `}
+              disabled={
+                !selectedStock ||
+                !quantity ||
+                isNaN(quantity) ||
+                Number(quantity) <= 0
+              }
             >
               Buy
             </button>

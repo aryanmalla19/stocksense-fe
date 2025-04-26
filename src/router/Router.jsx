@@ -52,7 +52,7 @@ const Router = createBrowserRouter([
         element: <StockListID />,
       },
       {
-        path: "buysell",
+        path: "buy",
         element: <BuySellPage />,
       },
       {
@@ -101,7 +101,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "/portfoliomanagement",
-        element: <PortfolioManagement/>,
+        element: <PortfolioManagement />,
       },
       {
         path: "/portfoliomanagement/:id",
@@ -110,7 +110,7 @@ const Router = createBrowserRouter([
       {
         path: "/ipomanagement",
         element: <IpoManagement />,
-      }
+      },
     ],
   },
   {

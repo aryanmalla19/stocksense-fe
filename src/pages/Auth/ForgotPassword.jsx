@@ -63,18 +63,18 @@ const ForgotPassword = () => {
         <button
           type="submit"
           className="w-full flex items-center justify-center px-6
-          py-3 rounded-lg text-white bg-teal-700 hover:bg-teal-600 font-medium transition duration-200"
+          py-3 rounded-lg text-white bg-gradient-button cursor-pointer font-medium transition duration-200"
         >
           Send Reset Link
           <FiArrowRight className="ml-2" />
         </button>
       </form>
 
-      <p className="text-center text-xl text-gray-500 mt-5">
+      <p className="text-center text-xl text-gray-500 mt-5 ">
         Remember your password?
         <a
           href="/login"
-          className="text-indigo-600 hover:text-indigo-800  font-semibold"
+          className="text-green-600 hover:text-green-800  font-semibold"
         >
           Login
         </a>
