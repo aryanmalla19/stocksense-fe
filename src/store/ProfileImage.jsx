@@ -4,10 +4,13 @@ import { IoIosSettings } from "react-icons/io";
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/authhooks/useAuth";
 import { toast } from "react-hot-toast";
+import useUserDetails from "../hooks/authhooks/useUserDetails";
 
 const ProfileImage = ({ name, email, theme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { logout } = useAuth();
+
+  const { userDetails } = useUserDetails();
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -24,14 +27,23 @@ const ProfileImage = ({ name, email, theme }) => {
 
   return (
     <div className="relative">
-      <div className="w-8 h-8 cursor-pointer shadow-md rounded-full">
-        <img
-          src="https://w0.peakpx.com/wallpaper/109/769/HD-wallpaper-anime-profile-monkey-d-luffy-luffy-portrait.jpg"
-          className="w-full h-full object-cover outline-2 rounded-full"
-          onClick={handleToggle}
-          alt="Profile"
-        />
+      <div
+        className="w-8 h-8 cursor-pointer shadow-md rounded-full flex items-center justify-center bg-gray-400 text-black font-bold"
+        onClick={handleToggle}
+      >
+        {userDetails?.data?.profile_image ? (
+          <img
+            src={userDetails.data.profile_image}
+            className="w-full h-full object-cover rounded-full"
+            alt="Profile"
+          />
+        ) : (
+          <span className="text-sm">
+            {userDetails?.data?.name?.charAt(0).toUpperCase()}
+          </span>
+        )}
       </div>
+
       {isOpen && (
         <>
           <div className="fixed inset-0 z-10" onClick={handleClose} />
