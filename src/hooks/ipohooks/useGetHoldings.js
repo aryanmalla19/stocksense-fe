@@ -5,6 +5,8 @@ const useGetHoldings = () => {
   const { data, refetch } = useQuery({
     queryKey: ["holdings"],
     queryFn: Holdings,
+    staleTime: 0,
+    keepPreviousData: false,
   });
   return { data, refetch };
 };
