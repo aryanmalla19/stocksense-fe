@@ -129,6 +129,52 @@ const UpdateProfilePage = ({ theme }) => {
           </div>
         </div>
         <hr className={`border-gray-400`}></hr>
+        <div>
+          <h2 className="text-center text-2xl font-semibold">Edit Profile</h2>
+          {/* Input Fields */}
+          <div className="my-4 flex flex-col gap-4 w-full">
+            <div className="flex gap-4">
+              <InputSection
+                name="name"
+                label="Name"
+                placeholder="Enter Your Name"
+                value={profile.name}
+                onChange={handleChange}
+              />
+              <InputSection
+                name="email"
+                label="Email"
+                placeholder="user@example.com"
+                value={profile.email}
+                onChange={handleChange}
+                disabled={true}
+              />
+            </div>
+            <div className="flex gap-4">
+              <InputSection
+                name="number"
+                label="Phone Number"
+                placeholder="+985214578451"
+                value={profile.number}
+                onChange={handleChange}
+              />
+              <InputSection
+                name="bio"
+                label="Bio"
+                placeholder="Description"
+                value={profile.bio}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="p-2 rounded-md  text-white bg-gradient-button w-full"
+          >
+            Change
+          </button>
+        </div>
       </form>
     </>
   );
