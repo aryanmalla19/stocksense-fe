@@ -10,14 +10,14 @@ const SettingPage = () => {
     const isActive = activeTab === tabName;
     if (theme === "dark") {
       return isActive
-        ? "bg-gray-300 text-light-text"
+        ? "bg-purple-button text-dark-text"
         : "bg-dark-bg text-dark-text";
     }
-    return isActive ? "bg-gray-100" : "bg-white";
+    return isActive ? "bg-purple-button text-dark-text" : " ";
   };
 
   return (
-    <div>
+    <div className="outlet-container shadow p-4">
       <h2 className="text-2xl font-bold mb-2">Settings</h2>
       <p className="text-xl">Manage your account settings and preferences.</p>
 
@@ -25,7 +25,7 @@ const SettingPage = () => {
         className={`flex text-center text-gray-600 gap-2 mt-4 font-semibold p-2 rounded-md ${
           theme === "dark"
             ? "bg-dark-bg text-dark-text"
-            : "bg-light-bg text-light-text"
+            : "bg-light-bg text-light-text shadow"
         }`}
       >
         {["Security", "Notification"].map((tab) => (
