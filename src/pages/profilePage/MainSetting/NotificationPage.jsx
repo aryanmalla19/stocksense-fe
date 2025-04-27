@@ -15,7 +15,7 @@ const notificationOptions = [
 const NotificationPage = ({ theme }) => {
   return (
     <div
-      className={` rounded-md p-4 my-4 ${
+      className={` rounded-md p-4 my-4 shadow ${
         theme === "dark"
           ? "bg-dark-bg text-dark-text"
           : "bg-light-bg text-light-text"

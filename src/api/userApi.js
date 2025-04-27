@@ -29,7 +29,7 @@ export const disableTwoFactor = async () => {
 };
 
 export const profileUpdate = async (data) => {
-  const response = await axiosInstance.put("/profile", data, {
+  const response = await axiosInstance.post("/profile", data, {
     headers: {
       "Content-Type": "multipart/form-data",
     },

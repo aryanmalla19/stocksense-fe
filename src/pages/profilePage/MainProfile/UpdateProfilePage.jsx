@@ -1,36 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Input from "../../../components/common/Input";
-import { FaCloudUploadAlt } from "react-icons/fa";
 import useUpdateProfile from "../../../hooks/userhooks/useUpdateProfile";
 import useUserDetails from "../../../hooks/authhooks/useUserDetails";
-
-// Reusable Input Section Component
-const InputSection = ({
-  label,
-  placeholder,
-  value,
-  onChange,
-  name,
-  disabled = false,
-}) => (
-  <div className="flex flex-col gap-2">
-    <label className="font-semibold">{label}</label>
-    <Input
-      type="text"
-      name={name}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      disabled={disabled}
-      className="w-full sm:w-[550px] text-black p-2 rounded-md focus:outline-none"
-    />
-  </div>
-);
+import ProfileForm from "./ProfileForm";
+import UserDetailsProfile from "./UserDetailsProfile";
 
 const UpdateProfilePage = ({ theme }) => {
   const { userDetails } = useUserDetails();
   const userProfile = userDetails?.data;
-  const isActive = userProfile?.is_active;
 
   const [profile, setProfile] = useState({
     name: "",
@@ -41,6 +17,7 @@ const UpdateProfilePage = ({ theme }) => {
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedImageFile, setSelectedImageFile] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { updateProfile } = useUpdateProfile();
 
@@ -86,50 +63,37 @@ const UpdateProfilePage = ({ theme }) => {
     }
 
     updateProfile(formData);
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
   };
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-4 p-4 w-full max-w-full mx-auto"
-      >
-        {/* Photo Upload Section */}
-        <div className="relative">
-          <img
-            src={selectedImage || userProfile?.profile_image}
-            alt="Profile Preview"
-            className="rounded-full w-32 h-32 object-cover  bg-white text-black text-center font-extrabold"
-          />
-          <input
-            type="file"
-            id="photo-upload"
-            accept="image/*"
-            className="hidden"
-            onChange={handleImageUpload}
-          />
-          <label
-            htmlFor="photo-upload"
-            className="absolute bottom-0 left-1/12 bg-gray-400 rounded-full p-2 cursor-pointer shadow-md"
-            title="Upload new photo"
-          >
-            <FaCloudUploadAlt className="text-2xl text-teal-700" />
-          </label>
-        </div>
+      {/* User Profile Section */}
+      <div>
+        <UserDetailsProfile
+          userProfile={userProfile}
+          setIsModalOpen={setIsModalOpen}
+          selectedImage={selectedImage}
+          handleImageUpload={handleImageUpload}
+        />
+      </div>
 
-        <div className="flex justify-between max-w-2xl  ">
-          <div>
-            <p className="p-2 rounded-md text-3xl font-bold flex items-center">
-              {userProfile?.name}
-              {isActive && (
-                <span className="w-3 h-3 mt-6 bg-green-500 rounded-full"></span>
-              )}
-            </p>
-            <p className="text-sm ">{userProfile?.email} </p>
-          </div>
+      {/* Modal Section */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-[rgba(0,0,0,0.5)] backdrop-blur-[4px] z-30">
+          <ProfileForm
+            profile={profile}
+            onSubmit={handleSubmit}
+            onChange={handleChange}
+            onCancel={handleCancel}
+            theme={theme}
+          />
         </div>
-        <hr className={`border-gray-400`}></hr>
-      </form>
+      )}
     </>
   );
 };
