@@ -9,6 +9,7 @@ const InputSection = ({
   onChange,
   name,
   disabled = false,
+  theme,
 }) => (
   <div className="flex flex-col gap-2">
     <label className="font-semibold">{label}</label>
@@ -19,7 +20,9 @@ const InputSection = ({
       value={value}
       onChange={onChange}
       disabled={disabled}
-      className="w-full sm:w-[400px] text-black p-2 rounded-md focus:outline-none"
+      className={`w-full sm:w-[400px] text-black p-2 rounded-md focus:outline-none ${
+        theme === "dark" ? "bg-gray-300" : "bg-gray-200"
+      }`}
     />
   </div>
 );
@@ -42,6 +45,7 @@ const ProfileForm = ({ profile, onSubmit, onChange, onCancel, theme }) => {
             placeholder="Enter Your Name"
             value={profile.name}
             onChange={onChange}
+            theme={theme}
           />
           <InputSection
             name="email"
@@ -50,6 +54,7 @@ const ProfileForm = ({ profile, onSubmit, onChange, onCancel, theme }) => {
             value={profile.email}
             onChange={onChange}
             disabled={true}
+            theme={theme}
           />
           <InputSection
             name="number"
@@ -57,6 +62,7 @@ const ProfileForm = ({ profile, onSubmit, onChange, onCancel, theme }) => {
             placeholder="+985214578451"
             value={profile.number}
             onChange={onChange}
+            theme={theme}
           />
           <InputSection
             name="bio"
@@ -64,6 +70,7 @@ const ProfileForm = ({ profile, onSubmit, onChange, onCancel, theme }) => {
             placeholder="Description"
             value={profile.bio}
             onChange={onChange}
+            theme={theme}
           />
         </div>
 

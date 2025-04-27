@@ -10,14 +10,19 @@ const Input = ({
   error,
   icon: Icon,
   className,
+  disabled,
 }) => {
   const { theme } = useContext(ThemeContext);
-
 
   return (
     <div className="relative">
       {Icon && (
-        <Icon className="absolute left-4 top-1/2 transform -translate-y-1/2 text-red-500" />
+        <div
+          className={`absolute left-4 top-1/2 transform -translate-y-1/2 p-1 rounded-full 
+            ${theme === "light" ? "bg-red-500 text-white" : "text-red-500"}`}
+        >
+          <Icon />
+        </div>
       )}
       <input
         type={type}
@@ -25,7 +30,8 @@ const Input = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className={`${className} ${theme == 'light'? 'input-light':'input-dark'}`}
+        disabled={disabled}
+        className={`${className}`}
         min={0}
         required
       />
