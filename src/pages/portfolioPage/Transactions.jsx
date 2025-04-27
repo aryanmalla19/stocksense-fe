@@ -14,7 +14,6 @@ const Transactions = () => {
   const { data } = useTransactions(pageNumber, 5);
   const transactionData = data?.data || [];
 
-  // Filter data if a type is selected
   const filteredData = selectedType
     ? transactionData.filter((item) => item.type === selectedType)
     : transactionData;
