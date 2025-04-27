@@ -11,7 +11,9 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
       <table className="min-w-[900px] w-full">
         <thead>
           <tr
-            className={`grid grid-cols-20 rounded-md px-4 py-3 bg-[#923EB9] text-dark-text font-semibold text-left text-[15px] transition-all drop-shadow-sm `}
+            className={`grid ${
+              isWatchlist ? "grid-cols-22" : "grid-cols-20"
+            } rounded-md px-4 py-3 bg-[#923EB9] text-dark-text font-semibold text-left text-[15px] transition-all drop-shadow-sm `}
           >
             <th className="col-span-2 text-left">
               <SortTableHeader
@@ -96,6 +98,12 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
             <th className="col-span-1 text-left ml-4">
               <h3>{isWatchlist ? "Action" : "Favourites"}</h3>
             </th>
+
+            {isWatchlist && (
+              <th className="col-span-2 text-left ml-4">
+                <h3>Select All</h3>
+              </th>
+            )}
           </tr>
         </thead>
       </table>

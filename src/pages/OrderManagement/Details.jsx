@@ -15,19 +15,13 @@ const stockDetails = [
   { label: "Low Price", icon: <FaDollarSign />, key: "low_price" },
 ];
 
-const StockDetailItem = ({ icon, label, value, theme }) => (
+const StockDetailItem = ({ icon, label, value }) => (
   <div className="flex flex-col items-center">
     <div className="flex items-center gap-1 text-md">
       {icon}
       <span>{label}</span>
     </div>
-    <div
-      className={`mt-1 px-3 py-1 rounded-md ${
-        theme === "dark" ? "bg-black" : "bg-gray-100"
-      }`}
-    >
-      {value ?? "--"}
-    </div>
+    <div className={`mt-1  rounded-md `}>{value ?? ""}</div>
   </div>
 );
 

@@ -56,7 +56,7 @@ const MyASBAPage = () => {
             ) : (
               items.map((data) => {
                 const isClosed = todayDate > data.close_date;
-
+                const hasApplied = data.has_applied === true;
                 return (
                   <tr
                     key={data.id}
@@ -75,14 +75,18 @@ const MyASBAPage = () => {
                     <td className="px-4 py-3">
                       <Link to={`/apply/${data.id}`}>
                         <button
-                          disabled={isClosed}
+                          disabled={isClosed || hasApplied}
                           className={`px-4 py-2 rounded-md shadow-sm text-white ${
-                            isClosed
+                            isClosed || hasApplied
                               ? "bg-gray-500 cursor-not-allowed"
                               : "bg-[#923eb9] hover:bg-[#af72cc]"
                           }`}
                         >
-                          {isClosed ? "Closed" : "Apply"}
+                          {hasApplied
+                            ? "Applied"
+                            : isClosed
+                            ? "Closed"
+                            : "Apply"}
                         </button>
                       </Link>
                     </td>
