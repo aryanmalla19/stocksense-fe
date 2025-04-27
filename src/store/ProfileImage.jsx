@@ -60,14 +60,14 @@ const ProfileImage = ({ name, email, theme }) => {
               <p className="text-sm">{email}</p>
             </div>
             <div className="flex p-2 flex-col">
-              <Link to="/profile">
+              <Link to="/profile" onClick={handleClose}>
                 <div className="flex items-center p-2 rounded-md cursor-pointer hover:bg-hover-dark hover:text-white">
                   <FaRegUser />
                   <p className="ml-3">Profile</p>
                 </div>
               </Link>
               <div className="flex items-center p-2 rounded-md cursor-pointer hover:bg-hover-dark hover:text-white">
-                <Link to="/settings">
+                <Link to="/settings" onClick={handleClose}>
                   <div className="flex items-center py-1 cursor-pointer">
                     <IoIosSettings />
                     <p className="ml-3">Settings</p>

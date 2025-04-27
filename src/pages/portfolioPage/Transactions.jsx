@@ -55,6 +55,7 @@ const Transactions = () => {
               >
                 Buy
               </button>
+              <hr className="border-gray-200"></hr>
               <button
                 onClick={() => {
                   setSelectedType("sell");
