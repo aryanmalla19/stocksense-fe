@@ -19,12 +19,13 @@ function StockRow({ stock, onEdit, theme, onDelete }) {
   return (
     <div
       className="grid py-2 px-2 my-2 rounded-md"
-      style={{ gridTemplateColumns: '1fr 1.5fr 1fr 3fr 1fr' }}
+      style={{ gridTemplateColumns: '1fr 1.5fr 1fr 3fr 1fr 1fr' }}
     >
       <p>{stock.symbol}</p>
       <p>{stock.company_name}</p>
       <p>{stock.sector}</p>
       <p className="truncate">{stock.description}</p>
+      <p className='text-center'>{String(stock.is_listed).toUpperCase()}</p>
       <p>
         <button
           onClick={() => onEdit(stock)}

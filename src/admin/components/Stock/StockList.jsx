@@ -16,12 +16,13 @@ function StockList({ stocks, onAdd, onEdit, theme }) {
       <div className="overflow-x-auto">
         <div
           className="grid bg-[#9E15BF] text-white font-semibold p-2 rounded-md"
-          style={{ gridTemplateColumns: '1fr 1.5fr 1fr 3fr 1fr' }}
+          style={{ gridTemplateColumns: '1fr 1.5fr 1fr 3fr 1fr 1fr' }}
         >
           <p>Symbol</p>
           <p>Company Name</p>
           <p>Sector</p>
           <p>Description</p>
+          <p>Listed</p>
           <p>Actions</p>
         </div>
         {stocks?.map((stock, index) => (

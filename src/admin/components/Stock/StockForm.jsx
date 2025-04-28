@@ -127,7 +127,7 @@ function StockForm({ stock, onCancel, onSave, theme }) {
                 }`}
               ></textarea>
             </div>
-
+              
             <div className="flex space-x-4">
               <button
                 type="submit"
