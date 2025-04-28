@@ -1,7 +1,31 @@
-// src/admin/components/IPOForm.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useStocks } from '../../../hooks/stockshooks/useStocks';
 
 function IPOForm({ form, errors, onChange, onSubmit, onCancel, editPrice, theme }) {
+  const { data } = useStocks({searchSymbol : "", pageNumber : 1, per_page : 50}); 
+  const [stockOptions, setStockOptions] = useState([]);
+  const [listingDate, setListingDate] = useState(form.listingDate || '');
+
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+      const formattedStockOptions = data?.data?.map((stock) => ({
+        id: stock.id,
+        symbol: stock.symbol,
+        company_name: stock.company_name,
+      }));
+      setStockOptions(formattedStockOptions);
+    }
+  }, [data]);
+
+  const handleStockChange = (e) => {
+    const { name, value } = e.target;
+    onChange(e); 
+    if (name === 'stockSymbol') {
+      setListingDate('');
+    }
+  };
+
   return (
     <>
       <div
@@ -26,19 +50,24 @@ function IPOForm({ form, errors, onChange, onSubmit, onCancel, editPrice, theme 
               >
                 Stock Symbol
               </label>
-              <input
-                type="text"
+              <select
                 name="stockSymbol"
-                placeholder="e.g. AAPL"
                 className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 ${
                   theme === 'dark'
                     ? 'bg-gray-700 border-gray-600 text-gray-200'
                     : 'border-gray-300 text-gray-800'
                 }`}
-                onChange={onChange}
+                onChange={handleStockChange}
                 value={form.stockSymbol}
                 required
-              />
+              >
+                <option value="">Select a Stock</option>
+                {stockOptions.map((stock) => (
+                  <option key={stock.id} value={stock.symbol}>
+                    {stock.symbol} - {stock.company_name}
+                  </option>
+                ))}
+              </select>
               {errors.stockSymbol && (
                 <p className="text-red-500 text-sm mt-1">{errors.stockSymbol}</p>
               )}
@@ -145,6 +174,28 @@ function IPOForm({ form, errors, onChange, onSubmit, onCancel, editPrice, theme 
               {errors.issuePrice && (
                 <p className="text-red-500 text-sm mt-1">{errors.issuePrice}</p>
               )}
+            </div>
+
+            <div>
+              <label
+                className={`block text-sm font-medium ${
+                  theme === 'dark' ? 'text-gray-200' : 'text-gray-600'
+                }`}
+              >
+                Listing Time
+              </label>
+              <input
+                type="time"
+                name="listingDate"
+                className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+                  theme === 'dark'
+                    ? 'bg-gray-700 border-gray-600 text-gray-200'
+                    : 'border-gray-300 text-gray-800'
+                }`}
+                onChange={(e) => setListingDate(e.target.value)}
+                value={listingDate}
+                required
+              />
             </div>
 
             <div className="flex justify-end space-x-3 mt-6">

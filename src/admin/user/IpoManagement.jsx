@@ -1,13 +1,14 @@
-// src/admin/user/usermanagement/IpoManagement.jsx
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContext.jsx';
 import IPOList from '../components/IPO/IPOList';
 import IPOForm from '../components/IPO/IPOForm';
+import useFetchIpoDetail from '../../hooks/stockshooks/useFetchIpoDetail.js';
 
 function IpoManagement() {
   const { theme } = useContext(ThemeContext);
   const [showForm, setShowForm] = useState(false);
   const [editPrice, setEditPrice] = useState(null);
+  const { data, refetch, isLoading, error } = useFetchIpoDetail();
   const [form, setForm] = useState({
     stockSymbol: '',
     openTime: '',
@@ -16,14 +17,6 @@ function IpoManagement() {
     issuePrice: '',
   });
   const [errors, setErrors] = useState({});
-
-  const samplePrices = [
-    { stockSymbol: 'AAPL', openTime: '10:00', closeTime: '15:00', totalShares: 1000000, issuePrice: 150.0 },
-    { stockSymbol: 'GOOGL', openTime: '10:30', closeTime: '16:00', totalShares: 500000, issuePrice: 135.5 },
-    { stockSymbol: 'MSFT', openTime: '11:00', closeTime: '14:30', totalShares: 750000, issuePrice: 200.75 },
-  ];
-
-
 
   const handleEdit = (price) => {
     setEditPrice(price);
@@ -97,9 +90,14 @@ function IpoManagement() {
     e.preventDefault();
     if (validateForm()) {
       console.log('Form is valid:', form);
-      handleCancel();
+      // Send form data to backend for creation or update
+      handleCancel(); // Close form after submission
     }
   };
+
+  // Display loading or error message
+  if (isLoading) return <div>Loading IPO data...</div>;
+  if (error) return <div>Error loading IPO data: {error.message}</div>;
 
   return (
     <div className="mx-auto p-4">
@@ -113,7 +111,7 @@ function IpoManagement() {
         }`}
       >
         <IPOList
-          prices={samplePrices}
+          prices={data?.data}
           onAdd={() => setShowForm(true)}
           onEdit={handleEdit}
           theme={theme}
@@ -135,4 +133,3 @@ function IpoManagement() {
 }
 
 export default IpoManagement;
-
