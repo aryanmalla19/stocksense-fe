@@ -4,7 +4,7 @@ import { UserPortfolio } from "../../api/stocksApiService";
 const useFetchPortfolio = () => {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["user-portfolio"],
-    queryFn: UserPortfolio, 
+    queryFn: UserPortfolio,
     onSuccess: (data) => {
       console.log("Successfully fetched all portfolio data", data);
     },

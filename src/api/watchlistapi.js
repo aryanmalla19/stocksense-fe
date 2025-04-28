@@ -16,3 +16,16 @@ export const deleteStockWatchList = async (stockID) => {
   const response = await axiosInstance.delete(`/watchlists/${stockID}`);
   return response.data;
 };
+
+export const deleteAllStock = async () => {
+  try {
+    const response = await axiosInstance.delete(`/watchlists/multiple-delete`);
+    return response.data;
+  } catch (error) {
+    console.log(
+      "Error deleting stocks watchlist:",
+      error.response?.data || error
+    );
+    throw error;
+  }
+};

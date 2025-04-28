@@ -5,16 +5,13 @@ import Pagination from "./Pagination";
 import useFetchWatchList from "../../hooks/stockshooks/useFetchWatchList";
 import StockListRow from "./StockListRow";
 import useSort from "../../hooks/stockshooks/useSort";
-
 const StockListTable = ({ theme, searchSymbol }) => {
   const location = useLocation();
   const isWatchlist = location.pathname.includes("watch-list");
-
   const [watchListStocks, setWatchListStocks] = useState([]);
   const [sortBy, setSortBy] = useState("");
   const [sortOrder, setSortOrder] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
-
   const { refetch } = useFetchWatchList();
   const {
     data: fetchedData,
@@ -30,7 +27,6 @@ const StockListTable = ({ theme, searchSymbol }) => {
       setSortOrder("asc");
     }
   };
-
   const handleRemoveStock = (stockID) => {
     if (isWatchlist) {
       setWatchListStocks((prev) =>
@@ -39,7 +35,6 @@ const StockListTable = ({ theme, searchSymbol }) => {
       refetchSortedData();
     }
   };
-
   useEffect(() => {
     if (isWatchlist) {
       refetch().then((res) => {
@@ -53,16 +48,13 @@ const StockListTable = ({ theme, searchSymbol }) => {
       });
     }
   }, [isWatchlist, refetch]);
-
   const displayStocks = useMemo(() => {
     const base = isWatchlist ? watchListStocks : fetchedData?.data ?? [];
     return base.filter((s) =>
       s.symbol.toLowerCase().includes(searchSymbol.toLowerCase())
     );
   }, [isWatchlist, watchListStocks, fetchedData, searchSymbol]);
-
   const currentStocks = isLoading ? watchListStocks : displayStocks;
-
   return (
     <section className="details-container">
       <StockListTableHeader
@@ -71,7 +63,6 @@ const StockListTable = ({ theme, searchSymbol }) => {
         sortOrder={sortOrder}
         onSort={handleSort}
       />
-
       <div className="overflow-y-auto h-90 flex-1 scrollbar-hidden transition-opacity duration-300">
         <div className="space-y-2 mt-2">
           {currentStocks.length === 0 ? (
@@ -88,14 +79,12 @@ const StockListTable = ({ theme, searchSymbol }) => {
             ))
           )}
         </div>
-
         {isError && (
           <div className="text-center mt-4 text-sm text-red-500">
             Failed to load data.
           </div>
         )}
       </div>
-
       <Pagination
         links={fetchedData?.links}
         pageNumber={pageNumber}
@@ -104,5 +93,4 @@ const StockListTable = ({ theme, searchSymbol }) => {
     </section>
   );
 };
-
 export default StockListTable;

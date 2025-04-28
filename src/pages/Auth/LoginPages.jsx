@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import SocialLogin from "../../authcomponent/SocialLogin";
 import Rememberme from "../../authcomponent/Rememberme";
 import Input from "../../components/stocks/Input";
 import { FaEnvelope, FaLock } from "react-icons/fa";
@@ -61,7 +60,10 @@ const LoginPages = () => {
           autoComplete="current-password"
           showToggle
           onToggle={() => setShowPassword(!showPassword)}
-          onChange={() => setServerErrors({})}
+          onChange={(e) => {
+            setServerErrors({});
+            register("password").onChange(e);
+          }}
           error={errors.password}
         />
         {(errors.password || serverErrors?.password) && (
@@ -75,13 +77,13 @@ const LoginPages = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="auth-button cursor-pointer bg-gradient-to-l from-teal-500 to-teal-800 hover:from-teal-600 hover:to-teal-700 transition duration-200 w-full"
+          className="auth-button cursor-pointer bg-gradient-button transition duration-200 w-full"
           disabled={isLoading}
         >
           {isLoading ? <LoadingSpinner /> : "Login"}
         </button>
 
-        <GoogleLoginButton  key="login-google" />
+        <GoogleLoginButton key="login-google" />
       </form>
     </div>
   );

@@ -88,17 +88,6 @@ export const deleteStockWatchList = async (stockID) => {
   }
 };
 
-//function for pagination
-export const pagination = async () => {
-  try {
-    const response = await axiosInstance.get("");
-    return response.data;
-  } catch (error) {
-    console.log("Error in Pagination", error.response?.data || error);
-    throw error;
-  }
-};
-
 // Function to enable two factor OTP
 export const enableTwoFactor = async () => {
   try {

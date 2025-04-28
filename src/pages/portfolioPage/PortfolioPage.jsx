@@ -7,7 +7,8 @@ import {
   FaBalanceScale,
   FaChartLine,
 } from "react-icons/fa";
-import PieChartData from "../../components/common/PieChartData";
+import LineCharts from "../../components/common/LineCharts";
+import IndividualPieChart from "../../components/common/IndividualPieChart";
 
 const PortfolioPage = () => {
   const { data, isLoading, error } = useFetchPortfolio();
@@ -60,7 +61,7 @@ const PortfolioPage = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center mb-6 mx-6 text-[#9E15BF] mt-5 ">
+      <div className="flex justify-between items-center mb-6 mx-6 mt-5 ">
         <h1 className="text-3xl font-bold flex items-center gap-2">
           My Portfolio
         </h1>
@@ -71,7 +72,7 @@ const PortfolioPage = () => {
         }`}
       >
         <div
-          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6 `}
+          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 p-6 `}
         >
           {cardData.map((card, idx) => (
             <div key={idx} className={baseCardStyle}>
@@ -93,8 +94,13 @@ const PortfolioPage = () => {
             </div>
           ))}
         </div>
-        <div className="my-5">
-          <PieChartData />
+        <div className=" flex flex-col lg:flex-row gap-6">
+          <div className="w-1/2 lg:w-1/3 ">
+            <IndividualPieChart isDark={isDark} />
+          </div>
+          <div className="w-1/2 lg:w-1/2 h-[400px]">
+            <LineCharts isDark={isDark} />
+          </div>
         </div>
       </div>
     </>

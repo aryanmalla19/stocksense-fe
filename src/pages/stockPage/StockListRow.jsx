@@ -31,7 +31,6 @@ const StockListRow = React.memo(({ stock, theme, removeStock }) => {
           ${parseFloat(stock.current_price).toFixed(2)}
         </div>
       </Link>
-
       <WatchlistToggleButton
         stockID={stock.id}
         initialIsWatchlist={stock.is_watchlist}

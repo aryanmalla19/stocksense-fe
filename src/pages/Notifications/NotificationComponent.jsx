@@ -6,14 +6,16 @@ const NotificationComponent = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    const authState = JSON.parse(localStorage.getItem('auth-storage'))
+    const authState = JSON.parse(localStorage.getItem("auth-storage"))
     const token = authState?.state?.accessToken;
     const eventSource = new EventSource(
-      `http://localhost:8000/api/v1/auth/sse-notifications?token=${encodeURIComponent(token)}`
+      `http://localhost:8000/api/v1/auth/sse-notifications?token=${encodeURIComponent(
+        token
+      )}`
     );
 
     eventSource.onopen = () => {
-      console.log("Connected to SSE!"); 
+      console.log("Connected to SSE!");
       setConnectionState("Connected");
     };
 

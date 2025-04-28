@@ -5,24 +5,25 @@ import {
 } from "react-icons/tb";
 import { RxCaretSort } from "react-icons/rx";
 
-const SortTableHeader = ({ label, sortBy, sortOrder, onSort, columnKey }) => {
+const SortTableHeader = ({
+  label,
+  sortBy,
+  sortOrder,
+  onSort,
+  columnKey,
+  hideIcon,
+}) => {
   const handleSort = () => onSort(columnKey);
 
   const getIcon = () => {
+    if (hideIcon) return null;
+
     if (sortBy === columnKey) {
-      if (columnKey === "name" || columnKey === "sector") {
-        return sortOrder === "asc" ? (
-          <TbSortAscending2Filled className="text-green-500" />
-        ) : (
-          <TbSortDescending2Filled className="text-red-500" />
-        );
-      } else {
-        return sortOrder === "asc" ? (
-          <TbSortDescending2Filled className="text-red-500" />
-        ) : (
-          <TbSortAscending2Filled className="text-green-500" />
-        );
-      }
+      return sortOrder === "asc" ? (
+        <TbSortAscending2Filled className="text-green-500" />
+      ) : (
+        <TbSortDescending2Filled className="text-red-500" />
+      );
     }
     return <RxCaretSort />;
   };

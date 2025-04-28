@@ -51,10 +51,8 @@ const Transactiondisplay = ({
                   <p>{item.total_price}</p>
                   <p>{item.transaction_fee}</p>
                   <p
-                    className={`flex items-center justify-center p-1  rounded-md text-sm w-24 ${
-                      item.type === "buy"
-                        ? "bg-green-500 text-white"
-                        : "bg-red-500 text-white"
+                    className={`flex font-semibold   ${
+                      item.type === "buy" ? "text-green-500 " : "text-red-500 "
                     }`}
                   >
                     {item.type === "buy" ? (

@@ -13,7 +13,6 @@ const Mainlayout = () => {
   return (
     <div className="h-screen flex overflow-hidden">
       <PrivateRoute>
-        {/* Global Notification Toasts */}
         <NotificationComponent />
 
         {/* Sticky Sidebar */}

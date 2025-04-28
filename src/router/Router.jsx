@@ -18,14 +18,17 @@ import OtpPage from "../pages/Auth/OtpPage";
 import Page404 from "../components/common/Page404";
 import Notification from "../pages/Notifications/Notifications";
 import VerifyEmail from "../pages/Auth/VerifyEmail";
-import UserManagement from "../admin/user/UserManagement";
+
 import Holdings from "../pages/portfolioPage/Holdings";
 import Transactions from "../pages/portfolioPage/Transactions";
 import IPOList from "../pages/sharePage/IPOList";
 import StockManagemant from "../admin/user/StockManagemant";
 import IpoManagement from "../admin/user/IpoManagement";
-import PortfolioManagement from "../admin/user/PortfolioManagement";
+
 import Overview from "../pages/MarketOverview/Overview";
+import PortfolioManagement from "../admin/user/PortfolioManagements";
+import Details from "../pages/OrderManagement/Details";
+import PortfolioDetails from "../admin/components/Portfolio/PortfolioDetails";
 
 const Router = createBrowserRouter([
   {
@@ -49,7 +52,7 @@ const Router = createBrowserRouter([
         element: <StockListID />,
       },
       {
-        path: "buysell",
+        path: "buy",
         element: <BuySellPage />,
       },
       {
@@ -89,10 +92,6 @@ const Router = createBrowserRouter([
         element: <WatchList />,
       },
       {
-        path: "usermanagement",
-        element: <UserManagement />,
-      },
-      {
         path: "stockmanagement",
         element: <StockManagemant />,
       },
@@ -101,12 +100,16 @@ const Router = createBrowserRouter([
         element: <Notification />,
       },
       {
-        path: "ipomanagement",
-        element: <IpoManagement />,
+        path: "/portfoliomanagement",
+        element: <PortfolioManagement />,
       },
       {
-        path: "portfoliomanagement",
-        element: <PortfolioManagement />,
+        path: "/portfoliomanagement/:id",
+        element: <PortfolioDetails />,
+      },
+      {
+        path: "/ipomanagement",
+        element: <IpoManagement />,
       },
     ],
   },

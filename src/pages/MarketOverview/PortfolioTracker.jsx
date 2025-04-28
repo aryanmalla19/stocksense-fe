@@ -18,16 +18,19 @@ const PortfolioTracker = () => {
     dots: false,
     infinite: true,
     speed: 1000,
-    slidesToShow: 4,
+    slidesToShow: 4, // 👈 Default 4
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
     cssEase: "linear",
     arrows: false,
     responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 3 } },
-      { breakpoint: 768, settings: { slidesToShow: 2 } },
-      { breakpoint: 480, settings: { slidesToShow: 1 } },
+      { breakpoint: 1536, settings: { slidesToShow: 6 } }, // 2xl screen
+      { breakpoint: 1280, settings: { slidesToShow: 5 } }, // xl screen
+      { breakpoint: 1024, settings: { slidesToShow: 4 } }, // lg screen
+      { breakpoint: 768, settings: { slidesToShow: 3 } }, // md screen
+      { breakpoint: 640, settings: { slidesToShow: 2 } }, // sm screen
+      { breakpoint: 480, settings: { slidesToShow: 1 } }, // very small devices
     ],
   };
 

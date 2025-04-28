@@ -11,7 +11,6 @@ import { ThemeContext } from "../../context/ThemeContext";
 import Filter from "./Filter";
 
 const WatchListPage = ({ Stockhistory }) => {
-  console.log(Stockhistory);
   const { theme } = useContext(ThemeContext);
   const [data, setData] = useState([]);
 
@@ -34,7 +33,7 @@ const WatchListPage = ({ Stockhistory }) => {
       <Filter theme={theme} onSelect={(type) => setSelectedPriceType(type)} />
       <div className="h-full">
         {loading ? (
-          <div className="flex items-center justify-center h-full">
+          <div className="flex items-center justify-center ">
             <p>Loading chart data...</p>
           </div>
         ) : data.length > 0 ? (

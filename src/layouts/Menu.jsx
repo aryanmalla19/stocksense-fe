@@ -11,54 +11,10 @@ import {
 // import { IoMdHelpCircleOutline } from "react-icons/io";
 import { RiUserShared2Fill } from "react-icons/ri";
 import { BsDatabaseFillGear } from "react-icons/bs";
-import { RiBriefcase4Fill } from "react-icons/ri";
 import { FaHeadphonesAlt, FaClipboardList } from "react-icons/fa";
 import MenuItem from "./MenuItems";
 import DropdownMenu from "./DropdownMenu";
-
-const menuItems = [
-  { icon: <MdOutlineDashboard />, label: "Dashboard", href: "/dashboard" },
-  { icon: <FiList />, label: "Stocks List", href: "/stocks" },
-  { icon: <FiShoppingCart />, label: "Trade Stocks", href: "/buysell" },
-  { icon: <FiStar />, label: "Watchlist", href: "/watch-list" },
-  { icon: <FiPieChart />, label: "Portfolio", href: "/portfolio" },
-  { icon: <FiLayers />, label: "IPO Applications", href: "/shares" },
-
-  {
-    icon: <RiUserShared2Fill />,
-    label: "User Management",
-    href: "/usermanagement",
-  },
-  {
-    icon: <BsDatabaseFillGear />,
-    label: "Stock Management",
-    href: "/stockmanagement",
-  },
-  {
-    icon: <BsDatabaseFillGear />,
-    label: "Ipo Management",
-    href: "/ipomanagement",
-  },
-
-  {
-    icon: <RiBriefcase4Fill />,
-    label: "Portfolios",
-    href: "/portfoliomanagement",
-  },
-  { icon: <FaHeadphonesAlt />, label: "Support", href: "/admin/support" },
-  { icon: <FaClipboardList />, label: "IpoListing", href: "/admin/ipolistig" },
-];
-
-const ipoItems = [
-  { label: "IPO Apply", href: "/shares" },
-  { label: "IPO List", href: "/ipo-list" },
-];
-
-const portfolioItems = [
-  { label: "My Portfolio", href: "/portfolio" },
-  { label: "Holdings", href: "/portfolio/holdings" },
-  { label: "Transactions", href: "/portfolio/transactions" },
-];
+import useUserDetails from "../hooks/authhooks/useUserDetails";
 
 const Menu = ({ collapsed, theme }) => {
   const location = useLocation();
@@ -66,12 +22,59 @@ const Menu = ({ collapsed, theme }) => {
   const [isPortfolioOpen, setIsPortfolioOpen] = useState(false);
   const [isIpoOpen, setIsIpoOpen] = useState(false);
 
+  const { userDetails } = useUserDetails();
+  const role = userDetails?.data?.role;
+
+  const commonMenuItems = [
+    { icon: <MdOutlineDashboard />, label: "Dashboard", href: "/dashboard" },
+    { icon: <FiList />, label: "Stocks List", href: "/stocks" },
+    { icon: <FiShoppingCart />, label: "Trade Stocks", href: "/buy" },
+    { icon: <FiStar />, label: "Watchlist", href: "/watch-list" },
+    { icon: <FiPieChart />, label: "Portfolio", href: "/portfolio" },
+    { icon: <FiLayers />, label: "IPO Applications", href: "/shares" },
+  ];
+
+  const adminMenuItems = [
+    {
+      icon: <BsDatabaseFillGear />,
+      label: "Stock Management",
+      href: "/stockmanagement",
+    },
+    {
+      icon: <FaClipboardList />,
+      label: "Ipo Management",
+      href: "/ipomanagement",
+    },
+    {
+      icon: <RiUserShared2Fill />,
+      label: "Portfolios",
+      href: "/portfoliomanagement",
+    },
+    { icon: <FaHeadphonesAlt />, label: "Support", href: "/admin/support" },
+  ];
+
+  const menuItems =
+    role === "admin"
+      ? [...commonMenuItems, ...adminMenuItems]
+      : commonMenuItems;
+
+  const ipoItems = [
+    { label: "IPO Apply", href: "/shares" },
+    { label: "IPO List", href: "/ipo-list" },
+  ];
+
+  const portfolioItems = [
+    { label: "My Portfolio", href: "/portfolio" },
+    { label: "Holdings", href: "/portfolio/holdings" },
+    { label: "Transactions", href: "/portfolio/transactions" },
+  ];
+
   const togglePortfolio = () => setIsPortfolioOpen(!isPortfolioOpen);
   const toggleIpo = () => setIsIpoOpen(!isIpoOpen);
 
   return (
     <div
-      className={`flex flex-col justify-between h-screen text-lg  ${
+      className={`flex flex-col justify-between h-screen text-lg ${
         theme === "dark" ? "text-white" : "text-gray-900"
       }`}
     >
@@ -90,7 +93,7 @@ const Menu = ({ collapsed, theme }) => {
                   theme={theme}
                   collapsed={collapsed}
                 />
-              );
+              );  
             }
             if (item.label === "IPO Applications") {
               return (
@@ -117,18 +120,6 @@ const Menu = ({ collapsed, theme }) => {
             );
           })}
         </div>
-
-        {/* <div className="mt-40">
-          <hr
-            className={`border ${
-              theme === "dark" ? "border-[#616161]" : "border-[#EEEEEE]"
-            }`}
-          />
-          <span className="flex justify-center items-center gap-2 my-2">
-            <IoMdHelpCircleOutline />
-            <p className="text-[15px] font-semibold">Help</p>
-          </span>
-        </div> */}
       </div>
     </div>
   );

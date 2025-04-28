@@ -1,11 +1,9 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import SortTableHeader from "./SortTableHeader";
-
 const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
   const location = useLocation();
   const isWatchlist = location.pathname.includes("watch-list");
-
   return (
     <div className="overflow-x-auto w-full">
       <table className="min-w-[900px] w-full">
@@ -22,7 +20,6 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
                 columnKey="symbol"
               />
             </th>
-
             <th className="col-span-4 text-left">
               <SortTableHeader
                 label="Company Name"
@@ -32,17 +29,15 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
                 columnKey="company_name"
               />
             </th>
-
             <th className="col-span-2 text-left">
               <SortTableHeader
                 label="Sector"
                 sortBy={sortBy}
                 sortOrder={sortOrder}
                 onSort={onSort}
-                columnKey="sector"
+                hideIcon={true}
               />
             </th>
-
             <th className="col-span-2 text-left">
               <SortTableHeader
                 label="Open Price"
@@ -52,7 +47,6 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
                 columnKey="open_price"
               />
             </th>
-
             <th className="col-span-2 text-left">
               <SortTableHeader
                 label="Close Price"
@@ -62,7 +56,6 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
                 columnKey="close_price"
               />
             </th>
-
             <th className="col-span-2 text-left">
               <SortTableHeader
                 label="High Price"
@@ -72,7 +65,6 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
                 columnKey="high_price"
               />
             </th>
-
             <th className="col-span-2 text-left">
               <SortTableHeader
                 label="Low Price"
@@ -82,7 +74,6 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
                 columnKey="low_price"
               />
             </th>
-
             <th className="col-span-2 text-left">
               <SortTableHeader
                 label="Current"
@@ -92,7 +83,6 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
                 columnKey="current_price"
               />
             </th>
-
             <th className="col-span-1 text-left ml-4">
               <h3>{isWatchlist ? "Action" : "Favourites"}</h3>
             </th>
@@ -102,5 +92,4 @@ const StockListTableHeader = ({ sortBy, sortOrder, onSort }) => {
     </div>
   );
 };
-
 export default StockListTableHeader;

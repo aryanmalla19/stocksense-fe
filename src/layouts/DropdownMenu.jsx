@@ -8,22 +8,13 @@ const DropdownMenu = ({
   isOpen,
   toggle,
   currentPath,
-  theme,
   collapsed,
 }) => {
   return (
     <div>
       <div
         onClick={toggle}
-        className={`flex items-center justify-between px-6 py-3 text-[16px] font-medium transition-colors duration-200 mx-3 rounded-md cursor-pointer 
-        ${
-          currentPath === label.href
-            ? theme === "dark"
-              ? "bg-button-bg"
-              : "bg-gray-200"
-            : ""
-        } 
-        ${theme === "dark" ? "hover:font-semibold" : "hover:bg-gray-100"}`}
+        className={`flex items-center justify-between px-6 py-2 rounded-md cursor-pointer transition-colors duration-200`}
       >
         <div className="flex items-center">
           <span className="mr-3 text-lg">{label.icon}</span>
@@ -47,16 +38,7 @@ const DropdownMenu = ({
                 to={subItem.href}
                 key={subItem.label}
                 className={`flex items-center px-4 py-2 text-[15px] font-medium transition-colors duration-200 mx-3 rounded-md 
-                ${
-                  isActive
-                    ? theme === "dark"
-                      ? "bg-button-bg"
-                      : "bg-gray-200"
-                    : ""
-                } 
-                ${
-                  theme === "dark" ? "hover:font-semibold" : "hover:bg-gray-100"
-                }`}
+                ${isActive ? "bg-purple-button text-white" : ""}`}
               >
                 <span className="hidden md:inline">{subItem.label}</span>
               </Link>

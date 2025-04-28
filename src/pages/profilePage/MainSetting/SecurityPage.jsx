@@ -38,7 +38,7 @@ const SecurityPage = ({ theme }) => {
       <div className="flex gap-4 my-4">
         {/* Password Section */}
         <div
-          className={`p-6 rounded-lg w-1/2 ${
+          className={`p-6 rounded-lg w-1/2 shadow ${
             theme === "dark"
               ? "bg-dark-bg text-dark-text"
               : "bg-light-bg text-light-text"
@@ -50,7 +50,7 @@ const SecurityPage = ({ theme }) => {
             Last changed 3 months ago
           </p>
           <button
-            className="mt-2 px-4 py-2 bg-teal-700 text-white rounded-lg cursor-pointer"
+            className="mt-2 px-4 py-2 bg-purple-button text-white rounded-lg cursor-pointer"
             onClick={() => setIsModalOpen(true)}
           >
             Change
@@ -58,7 +58,7 @@ const SecurityPage = ({ theme }) => {
         </div>
 
         <div
-          className={`p-6 rounded-lg w-1/2 ${
+          className={`p-6 rounded-lg w-1/2 shadow ${
             theme === "dark"
               ? "bg-dark-bg text-dark-text"
               : "bg-light-bg text-light-text"
