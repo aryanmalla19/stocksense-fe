@@ -24,7 +24,7 @@ function StockList({ stocks, onAdd, onEdit, theme }) {
           <p>Description</p>
           <p>Actions</p>
         </div>
-        {stocks.map((stock, index) => (
+        {stocks?.map((stock, index) => (
           <StockRow key={index} stock={stock} onEdit={onEdit} theme={theme} />
         ))}
       </div>

@@ -11,7 +11,7 @@ function StockRow({ stock, onEdit, theme }) {
       }`}
     >
       <p>{stock.symbol}</p>
-      <p>{stock.companyName}</p>
+      <p>{stock.company_name}</p>
       <p>{stock.sector}</p>
       <p>{stock.description}</p>
       <p>

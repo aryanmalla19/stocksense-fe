@@ -4,24 +4,15 @@ import React, { useState, useContext, useEffect } from 'react';
 import { ThemeContext } from '../../context/ThemeContext.jsx';
 import StockList from '../components/Stock/StockList.jsx';
 import StockForm from '../components/Stock/StockForm.jsx';
-
+import { useStocks } from "../../hooks/stockshooks/useStocks.js"
+import Pagination from '../../pages/stockPage/Pagination.jsx';
 function StockManagement() {
   const { theme } = useContext(ThemeContext);
   const [showForm, setShowForm] = useState(false);
   const [editStock, setEditStock] = useState(null);
-
-
-
-  const sampleStock = {
-    symbol: 'AAPL',
-    companyName: 'Apple Inc.',
-    sector: 'Technology',
-    description: 'A multinational technology company.',
-  };
-  const stocks = [sampleStock];
-
-  
-
+  const [page, setPage] = useState(1);
+  const { data, isLoading, isError } = useStocks({ searchSymbol: "", pageNumber: page, per_page: 10 });
+  console.log(page);
   const handleEdit = (stock) => {
     setEditStock(stock);
     setShowForm(true);
@@ -45,7 +36,7 @@ function StockManagement() {
         }`}
       >
         <StockList
-          stocks={stocks}
+          stocks={data?.data}
           onAdd={() => setShowForm(true)}
           onEdit={handleEdit}
           theme={theme}
@@ -54,8 +45,14 @@ function StockManagement() {
           <StockForm stock={editStock} onCancel={handleCancel} theme={theme} />
         )}
       </div>
+      <Pagination
+        links={data?.links}
+        pageNumber={page}
+        setPageNumber={setPage}
+      />
     </div>
   );
 }
+
 
 export default StockManagement;
