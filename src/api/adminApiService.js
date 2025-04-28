@@ -5,7 +5,17 @@ export const getAllUsers = async (page = 1) => {
   return response?.data;
 };
 
+export const ipoDetailsFetch = async () => {
+  const response = await axiosInstance.get(`/ipo-details`);
+  return response?.data;
+};
+
 export const ipoDetailsPost = async (payload) => {
   const response = await axiosInstance.post("/ipo-details", payload);
+  return response?.data;
+};
+
+export const ipoDetailsDelete = async (id) => {
+  const response = await axiosInstance.delete(`/ipo-details/${id}`);
   return response?.data;
 };

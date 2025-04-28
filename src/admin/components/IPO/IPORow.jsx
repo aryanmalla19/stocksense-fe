@@ -1,8 +1,16 @@
 import React from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
+import useIPODelete from "../../../hooks/admin/useIPODelete";
 
 function IPORow({ price, onEdit, theme }) {
+  const { deleteMutation } = useIPODelete();
+
+  const handledelete = (e, id) => {
+    e.preventDefault();
+    deleteMutation.mutate(id);
+  };
+
   const formatDateTime = (dateString) => {
     const dateObj = new Date(dateString);
     const date = dateObj.toISOString().split("T")[0];
@@ -30,12 +38,12 @@ function IPORow({ price, onEdit, theme }) {
     >
       <p className="col-span-2">{price.company_name}</p>
 
-      <p className=" flex flex-col">
+      <p className="flex flex-col">
         <span>{open.date}</span>
         <span className="text-green-700">{open.time}</span>
       </p>
 
-      <p className=" flex flex-col">
+      <p className="flex flex-col">
         <span>{close.date}</span>
         <span className="text-red-700">{close.time}</span>
       </p>
@@ -50,8 +58,14 @@ function IPORow({ price, onEdit, theme }) {
       <p>{price.ipo_status}</p>
 
       <p className="flex gap-4">
-        <FaEdit className="text-green-500 cursor-pointer text-[17px]" />
-        <MdDeleteOutline className="text-red-500 text-xl cursor-pointer" />
+        <FaEdit
+          className="text-green-500 cursor-pointer text-[17px]"
+          onClick={onEdit}
+        />
+        <MdDeleteOutline
+          className="text-red-500 text-xl cursor-pointer"
+          onClick={(e) => handledelete(e, price.id)}
+        />
       </p>
     </div>
   );
