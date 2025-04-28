@@ -59,8 +59,8 @@ const Menu = ({ collapsed, theme }) => {
       : commonMenuItems;
 
   const ipoItems = [
-    { label: "IPO Apply", href: "/shares" },
-    { label: "IPO List", href: "/ipo-list" },
+    { label: "IPO Application Form", href: "/shares" },
+    { label: "IPO Listings", href: "/ipo-list" },
   ];
 
   const portfolioItems = [
@@ -93,7 +93,7 @@ const Menu = ({ collapsed, theme }) => {
                   theme={theme}
                   collapsed={collapsed}
                 />
-              );  
+              );
             }
             if (item.label === "IPO Applications") {
               return (

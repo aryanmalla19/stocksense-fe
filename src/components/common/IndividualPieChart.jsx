@@ -1,24 +1,34 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  Title,
+  Colors,
+} from "chart.js";
 import useIndividualPieChart from "../../hooks/charthooks/useIndividualPieChart";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
-
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
+const IndividualPieChart = ({ isDark }) => {
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "bottom",
+      },
+      title: {
+        display: true,
+        text: "Individual Sector Chart",
+        font: {
+          size: 18,
+        },
+        color: isDark ? "#ffffff" : "000000",
+      },
     },
-    title: {
-      display: true,
-      text: "Pie Chart",
-    },
-  },
-};
+  };
 
-const IndividualPieChart = () => {
   const { chartdata } = useIndividualPieChart();
 
   const labels = chartdata?.data ? chartdata.data.map((item) => item.name) : [];
@@ -26,22 +36,13 @@ const IndividualPieChart = () => {
     ? chartdata.data.map((item) => item.value)
     : [];
 
-  // Generate random colors for each sector dynamically
-  const generateRandomColor = () => {
-    return Array.from({ length: labels.length }, () => {
-      return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
-        Math.random() * 256
-      )}, ${Math.floor(Math.random() * 256)})`;
-    });
-  };
-
   const data = {
     labels: labels,
     datasets: [
       {
         label: "Sectors",
         data: values,
-        backgroundColor: generateRandomColor(),
+        backgroundColor: ["#490B3D", "#9E15BF", "#FB8122", "#7D3780"],
         borderColor: "#fff",
         borderWidth: 2,
       },
