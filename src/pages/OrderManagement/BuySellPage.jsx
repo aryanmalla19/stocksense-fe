@@ -61,27 +61,6 @@ const BuySellPage = () => {
               <p className=" text-sm">{userDetails?.data?.email}</p>
             </div>
           </div>
-
-          <div className="flex gap-3">
-            <button
-              onClick={handleSubmit}
-              className={`flex items-center gap-2 transition font-medium rounded-md py-2 px-4 shadow-md bg-purple-button text-white
-    ${
-      !selectedStock || !quantity || isNaN(quantity) || Number(quantity) <= 0
-        ? " cursor-not-allowed"
-        : "cursor-pointer"
-    }
-  `}
-              disabled={
-                !selectedStock ||
-                !quantity ||
-                isNaN(quantity) ||
-                Number(quantity) <= 0
-              }
-            >
-              Buy
-            </button>
-          </div>
         </div>
 
         <hr
@@ -98,6 +77,7 @@ const BuySellPage = () => {
             setSelectedSymbol={setSelectedSymbol}
             quantity={quantity}
             setQuantity={setQuantity}
+            handleSubmit={handleSubmit}
           />
         </div>
       </div>

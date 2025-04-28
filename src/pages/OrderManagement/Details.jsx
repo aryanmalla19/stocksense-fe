@@ -1,18 +1,37 @@
 import React from "react";
 import {
-  FaChartLine,
-  FaArrowUp,
-  FaArrowDown,
-  FaChartBar,
-  FaDollarSign,
-} from "react-icons/fa";
+  MdOutlinePriceCheck,
+  MdOutlineTrendingUp,
+  MdOutlineTrendingDown,
+} from "react-icons/md";
+import { BsGraphUpArrow, BsGraphDownArrow } from "react-icons/bs";
 
 const stockDetails = [
-  { label: "Current Price", icon: <FaChartLine />, key: "current_price" },
-  { label: "Open Price", icon: <FaArrowUp />, key: "open_price" },
-  { label: "Close Price", icon: <FaArrowDown />, key: "close_price" },
-  { label: "High Price", icon: <FaChartBar />, key: "high_price" },
-  { label: "Low Price", icon: <FaDollarSign />, key: "low_price" },
+  {
+    label: "Current Price",
+    icon: <MdOutlinePriceCheck className="text-green-500" />,
+    key: "current_price",
+  },
+  {
+    label: "Open Price",
+    icon: <BsGraphUpArrow className="text-blue-500" />,
+    key: "open_price",
+  },
+  {
+    label: "Close Price",
+    icon: <BsGraphDownArrow className="text-red-500" />,
+    key: "close_price",
+  },
+  {
+    label: "High Price",
+    icon: <MdOutlineTrendingUp className="text-yellow-500" />,
+    key: "high_price",
+  },
+  {
+    label: "Low Price",
+    icon: <MdOutlineTrendingDown className="text-purple-500" />,
+    key: "low_price",
+  },
 ];
 
 const StockDetailItem = ({ icon, label, value }) => (
@@ -32,7 +51,7 @@ const Details = ({ selectedStock, theme }) => {
         theme === "dark" ? "text-white" : "text-black"
       }`}
     >
-      <div className="flex flex-wrap gap-8 justify-between">
+      <div className="flex flex-wrap gap-10 md:gap-24 ">
         {stockDetails.map((item, idx) => (
           <StockDetailItem
             key={idx}
