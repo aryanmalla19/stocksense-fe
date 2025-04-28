@@ -11,7 +11,6 @@ import { ThemeContext } from "../../context/ThemeContext";
 import Filter from "./Filter";
 
 const WatchListPage = ({ Stockhistory }) => {
-  console.log(Stockhistory);
   const { theme } = useContext(ThemeContext);
   const [data, setData] = useState([]);
 
