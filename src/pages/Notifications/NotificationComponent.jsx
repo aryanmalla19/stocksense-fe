@@ -7,7 +7,7 @@ const NotificationComponent = () => {
 
   useEffect(() => {
     const authState = JSON.parse(localStorage.getItem('auth-storage'))
-    const token = authState?.state?.token;
+    const token = authState?.state?.accessToken;
     const eventSource = new EventSource(
       `http://localhost:8000/api/v1/auth/sse-notifications?token=${encodeURIComponent(token)}`
     );
