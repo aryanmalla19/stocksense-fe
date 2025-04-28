@@ -7,8 +7,8 @@ import {
   FaBalanceScale,
   FaChartLine,
 } from "react-icons/fa";
-import PieChartData from "../../components/common/PieChartData";
 import LineCharts from "../../components/common/LineCharts";
+import IndividualPieChart from "../../components/common/IndividualPieChart";
 
 const PortfolioPage = () => {
   const { data, isLoading, error } = useFetchPortfolio();
@@ -96,7 +96,7 @@ const PortfolioPage = () => {
         </div>
         <div className=" flex flex-col lg:flex-row gap-6">
           <div className="w-1/2 lg:w-1/3 ">
-            <PieChartData isDark={isDark} />
+            <IndividualPieChart isDark={isDark} />
           </div>
           <div className="w-1/2 lg:w-1/2 h-[400px]">
             <LineCharts isDark={isDark} />

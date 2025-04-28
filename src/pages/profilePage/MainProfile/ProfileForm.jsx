@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../../../components/common/Input";
 
 // Reusable Input Section
@@ -10,6 +10,7 @@ const InputSection = ({
   name,
   disabled = false,
   theme,
+  errorMessage,
 }) => (
   <div className="flex flex-col gap-2">
     <label className="font-semibold">{label}</label>
@@ -24,10 +25,26 @@ const InputSection = ({
         theme === "dark" ? "bg-gray-300" : "bg-gray-200"
       }`}
     />
+    {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
   </div>
 );
 
 const ProfileForm = ({ profile, onSubmit, onChange, onCancel, theme }) => {
+  const [error, setError] = useState("");
+
+  const handlePhoneNumberChange = (e) => {
+    const value = e.target.value;
+    if (value.length > 10) {
+      return;
+    }
+    onChange(e);
+    if (value.length < 10 && value.length > 0) {
+      setError("Number should be 10 digits");
+    } else {
+      setError("");
+    }
+  };
+
   return (
     <div
       className={`fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md p-6 rounded-lg shadow-lg ${
@@ -59,10 +76,12 @@ const ProfileForm = ({ profile, onSubmit, onChange, onCancel, theme }) => {
           <InputSection
             name="number"
             label="Phone Number"
-            placeholder="+985214578451"
+            placeholder="+9771245785"
             value={profile.number}
-            onChange={onChange}
+            max="10"
+            onChange={handlePhoneNumberChange}
             theme={theme}
+            errorMessage={error}
           />
           <InputSection
             name="bio"
@@ -74,12 +93,12 @@ const ProfileForm = ({ profile, onSubmit, onChange, onCancel, theme }) => {
           />
         </div>
 
-        {/* Buttons */}
         <div className="flex justify-between gap-4 mt-6">
           <button
             type="button"
             onClick={onSubmit}
             className="flex-1 p-2 rounded-md text-white bg-gradient-button cursor-pointer"
+            disabled={error !== ""}
           >
             Change
           </button>

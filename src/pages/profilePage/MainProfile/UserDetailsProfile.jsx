@@ -34,13 +34,13 @@ const UserDetailsProfile = ({
 
       <div className="flex justify-between max-w-2xl">
         <div>
-          <p className="py-2 rounded-md text-3xl font-bold flex items-center">
+          <p className="py-2 rounded-md text-3xl font-bold flex md:items-center">
             {userProfile?.name}
             {userProfile?.is_active && (
               <span className="w-3 h-3 mt-6 bg-green-500 rounded-full"></span>
             )}
           </p>
-          <div className="text-xl flex gap-12">
+          <div className="text-xl flex flex-col md:flex-row gap-3 md:gap-12 text-start">
             <p className="flex gap-2 justify-center items-center">
               <MdOutlineMailLock /> {userProfile?.email}
             </p>

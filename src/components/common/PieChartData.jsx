@@ -1,42 +1,44 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-  Title,
-  Colors,
-} from "chart.js";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
 import usePieChart from "../../hooks/charthooks/usePieChart";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
-// Helper function to generate random colors
-const generateRandomColor = () => {
-  const randomColor = () => {
-    return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
-      Math.random() * 256
-    )}, ${Math.floor(Math.random() * 256)})`;
-  };
-  return Array.from({ length: 10 }, randomColor);
-};
+// Fixed 12 colors
+const fixedColors = [
+  "#490B3D",
+  "#A7BC5B",
+  "#FB8122",
+  "#5626C4",
+  "#E60576",
+  "#FDD935",
+  "#7D3780",
+  "#8B0000",
+  "#008000",
+  "#800080",
+  "#4E3883",
+  "#9E15BF",
+];
 
-const PieChartData = ({ isDark }) => {
+const PieChartData = ({ theme }) => {
+  const isDark = theme === "dark";
   const { chartdata } = usePieChart();
 
   const labels = chartdata?.data ? chartdata.data.map((item) => item.name) : [];
-  const value = chartdata?.data ? chartdata.data.map((item) => item.value) : [];
-
-  const randomColors = generateRandomColor();
+  const values = chartdata?.data
+    ? chartdata.data.map((item) => item.value)
+    : [];
 
   const data = {
     labels: labels,
     datasets: [
       {
         label: "Sectors",
-        data: value,
-        backgroundColor: randomColors,
+        data: values,
+        backgroundColor: fixedColors.slice(0, labels.length),
+        borderColor: "#fff",
+        borderWidth: 2,
       },
     ],
   };
@@ -52,7 +54,7 @@ const PieChartData = ({ isDark }) => {
       },
       title: {
         display: true,
-        text: "Pie Chart",
+        text: "Sectors list",
         color: isDark ? "#ffffff" : "#000000",
         font: { size: 18 },
       },

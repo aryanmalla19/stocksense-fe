@@ -97,6 +97,7 @@ export const pagination = async () => {
   }
 };
 
+// Function to enable two factor OTP
 export const enableTwoFactor = async () => {
   try {
     const response = await axiosInstance.post("/auth/2fa/enable");
