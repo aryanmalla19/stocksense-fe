@@ -22,7 +22,8 @@ const generateRandomColor = () => {
   return Array.from({ length: 10 }, randomColor);
 };
 
-const PieChartData = ({ isDark }) => {
+const PieChartData = ({ theme }) => {
+  const isDark = theme === "dark";
   const { chartdata } = usePieChart();
 
   const labels = chartdata?.data ? chartdata.data.map((item) => item.name) : [];
@@ -52,7 +53,7 @@ const PieChartData = ({ isDark }) => {
       },
       title: {
         display: true,
-        text: "Pie Chart",
+        text: "Sectors list",
         color: isDark ? "#ffffff" : "#000000",
         font: { size: 18 },
       },

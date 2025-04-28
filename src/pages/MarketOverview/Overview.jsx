@@ -4,6 +4,7 @@ import GainerList from "./GainerList";
 import { ThemeContext } from "../../context/ThemeContext";
 import useHistoryID from "../../hooks/stockshooks/useHistoryID";
 import WatchListPage from "./WatchListPage";
+import PieChartData from "../../components/common/PieChartData";
 
 const Overview = () => {
   const { theme } = useContext(ThemeContext);
@@ -16,8 +17,8 @@ const Overview = () => {
         <div className="w-2/3">
           <WatchListPage Stockhistory={data?.data?.prices} />
         </div>
-        <div className="w-1/2">
-          <GainerList theme={theme} />
+        <div className="w-1/2 lg:w-1/3">
+          <PieChartData theme={theme} />
         </div>
       </div>
     </div>
