@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import PortfolioTracker from "./PortfolioTracker";
-import GainerList from "./GainerList";
 import { ThemeContext } from "../../context/ThemeContext";
 import useHistoryID from "../../hooks/stockshooks/useHistoryID";
 import WatchListPage from "./WatchListPage";

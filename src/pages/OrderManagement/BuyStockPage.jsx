@@ -9,7 +9,7 @@ const InputField = ({ label, type, theme, value, onChange }) => {
         type={type}
         value={value}
         onChange={onChange}
-        className={`p-1.5 w-24  rounded-md mt-2 
+        className={`p-1.5 w-24 rounded-md mt-2 
           ${theme === "dark" ? "bg-black " : "bg-gray-100"}`}
       />
     </div>
@@ -40,9 +40,8 @@ const BuyStockPage = ({
             value={selectedSymbol}
             onChange={(e) => setSelectedSymbol(e.target.value)}
             className={`p-1.5 border rounded-md mt-2 
-              ${theme === "dark" ? "bg-black " : "bg-gray-100"}`}
+              ${theme === "dark" ? "bg-black" : "bg-gray-100"}`}
           >
-            Select a stock
             {stocksData?.data?.map((item, index) => (
               <option
                 key={index}
