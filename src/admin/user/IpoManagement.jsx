@@ -87,15 +87,21 @@ function IpoManagement() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    console.log(e);
+    // e.preventDefault();
     if (validateForm()) {
       console.log('Form is valid:', form);
-      // Send form data to backend for creation or update
-      handleCancel(); // Close form after submission
+      
+      if (editPrice) {
+        console.log('Updating IPO', form);
+      } else {
+        console.log('Adding new IPO', form);
+      }
+
+      handleCancel(); 
     }
   };
 
-  // Display loading or error message
   if (isLoading) return <div>Loading IPO data...</div>;
   if (error) return <div>Error loading IPO data: {error.message}</div>;
 
@@ -120,6 +126,7 @@ function IpoManagement() {
           <IPOForm
             form={form}
             errors={errors}
+            title='IPO' 
             onChange={handleChange}
             onSubmit={handleSubmit}
             onCancel={handleCancel}
