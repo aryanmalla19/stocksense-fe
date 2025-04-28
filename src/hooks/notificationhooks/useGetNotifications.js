@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchNotifications } from "../../api/notificationApi.js";
 
-const useGetNotifications = () => {
+const useGetNotifications = (page) => {
   const { data, refetch } = useQuery({
-    queryKey: ["notifications"],
-    queryFn: fetchNotifications,
+    queryKey: ["notifications", page],
+    queryFn: () => fetchNotifications(page),
   });
-  return { data, refetch };
+  return { notificationData:data, refetch };
 };
 
 export default useGetNotifications;

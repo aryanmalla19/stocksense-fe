@@ -1,8 +1,10 @@
 import axiosInstance from "./axiosInstance";
 
-export const fetchNotifications = async () => {
+export const fetchNotifications = async (page) => {
   try {
-    const response = await axiosInstance.get("/users/notifications");
+    const response = await axiosInstance.get(
+        `/users/notifications?page=${page}`
+    );
     return response.data?.data;
   } catch (error) {
     console.log(
