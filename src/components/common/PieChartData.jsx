@@ -7,18 +7,18 @@ ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 // Fixed 12 colors
 const fixedColors = [
-  "#490B3D", // pink
-  "#A7BC5B", // blue
-  "#FB8122", // yellow
-  "#5626C4", // teal
-  "#E60576", // purple
-  "#FDD935", // orange
-  "#7D3780", // light gray
-  "#8B0000", // dark red
-  "#008000", // green
-  "#800080", // dark purple
-  "#4E3883", // gold
-  "#9E15BF", // dark turquoise
+  "#490B3D",
+  "#A7BC5B",
+  "#FB8122",
+  "#5626C4",
+  "#E60576",
+  "#FDD935",
+  "#7D3780",
+  "#8B0000",
+  "#008000",
+  "#800080",
+  "#4E3883",
+  "#9E15BF",
 ];
 
 const PieChartData = ({ theme }) => {
@@ -36,7 +36,7 @@ const PieChartData = ({ theme }) => {
       {
         label: "Sectors",
         data: values,
-        backgroundColor: fixedColors.slice(0, labels.length), // only pick required colors
+        backgroundColor: fixedColors.slice(0, labels.length),
         borderColor: "#fff",
         borderWidth: 2,
       },
