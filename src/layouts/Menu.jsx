@@ -40,7 +40,7 @@ const menuItems = [
     label: "Portfolios",
     href: "/portfoliomanagement",
   },
-  { icon: <FaHeadphonesAlt />, label: "Support", href: "/admin/support" },
+  // { icon: <FaHeadphonesAlt />, label: "Support", href: "/admin/support" },
 ];
 
 const ipoItems = [
