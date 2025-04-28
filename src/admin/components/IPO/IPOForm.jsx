@@ -1,7 +1,48 @@
-// src/admin/components/IPOForm.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useStocks } from '../../../hooks/stockshooks/useStocks';
 
-function IPOForm({ form, errors, onChange, onSubmit, onCancel, editPrice, theme }) {
+function IPOForm({ form, errors, onChange, onSubmit, onCancel, editPrice, theme, title }) {
+  const { data } = useStocks({ searchSymbol: "", pageNumber: 1, per_page: 5000 });
+  const [stockOptions, setStockOptions] = useState([]);
+  const [listingDate, setListingDate] = useState(form.listingDate || '');
+  const [openDateTime, setOpenDateTime] = useState(form.openDateTime || '');
+  const [closeDateTime, setCloseDateTime] = useState(form.closeDateTime || '');
+
+  useEffect(() => {
+    if (data) {
+      const formattedStockOptions = data?.data?.map((stock) => ({
+        id: stock.id,
+        symbol: stock.symbol,
+        company_name: stock.company_name,
+      }));
+      setStockOptions(formattedStockOptions);
+    }
+  }, [data]);
+
+  const handleStockChange = (e) => {
+    const { name, value } = e.target;
+    onChange(e); 
+    if (name === 'stockSymbol') {
+      setListingDate('');
+    }
+  };
+
+  // Handling form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = {
+      stockSymbol: form.stockSymbol,
+      openDateTime: openDateTime,
+      closeDateTime: closeDateTime,
+      listingDate: listingDate,
+      totalShares: form.totalShares,
+      issuePrice: form.issuePrice,
+    };
+
+    onSubmit(formData); // Send formData to the parent component or API
+  };
+
   return (
     <>
       <div
@@ -15,9 +56,9 @@ function IPOForm({ form, errors, onChange, onSubmit, onCancel, editPrice, theme 
           }`}
         >
           <h2 className="text-xl font-semibold text-[#9E15BF] mb-4">
-            {editPrice ? 'Edit Stock' : 'Add Stock'}
+            {editPrice ? `Update ${title}` : `Add ${title}`}
           </h2>
-          <form className="space-y-4" onSubmit={onSubmit}>
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
               <label
                 className={`block text-sm font-medium ${
@@ -26,19 +67,24 @@ function IPOForm({ form, errors, onChange, onSubmit, onCancel, editPrice, theme 
               >
                 Stock Symbol
               </label>
-              <input
-                type="text"
+              <select
                 name="stockSymbol"
-                placeholder="e.g. AAPL"
                 className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 ${
                   theme === 'dark'
                     ? 'bg-gray-700 border-gray-600 text-gray-200'
                     : 'border-gray-300 text-gray-800'
                 }`}
-                onChange={onChange}
+                onChange={handleStockChange}
                 value={form.stockSymbol}
                 required
-              />
+              >
+                <option value="">Select a Stock</option>
+                {stockOptions.map((stock) => (
+                  <option key={stock.id} value={stock.symbol}>
+                    {stock.symbol} - {stock.company_name}
+                  </option>
+                ))}
+              </select>
               {errors.stockSymbol && (
                 <p className="text-red-500 text-sm mt-1">{errors.stockSymbol}</p>
               )}
@@ -50,22 +96,22 @@ function IPOForm({ form, errors, onChange, onSubmit, onCancel, editPrice, theme 
                   theme === 'dark' ? 'text-gray-200' : 'text-gray-600'
                 }`}
               >
-                Open Time
+                Open Date and Time
               </label>
               <input
-                type="time"
-                name="openTime"
+                type="datetime-local"
+                name="openDateTime"
                 className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 ${
                   theme === 'dark'
                     ? 'bg-gray-700 border-gray-600 text-gray-200'
                     : 'border-gray-300 text-gray-800'
                 }`}
-                onChange={onChange}
-                value={form.openTime}
+                onChange={(e) => setOpenDateTime(e.target.value)}
+                value={openDateTime}
                 required
               />
-              {errors.openTime && (
-                <p className="text-red-500 text-sm mt-1">{errors.openTime}</p>
+              {errors.openDateTime && (
+                <p className="text-red-500 text-sm mt-1">{errors.openDateTime}</p>
               )}
             </div>
 
@@ -75,22 +121,22 @@ function IPOForm({ form, errors, onChange, onSubmit, onCancel, editPrice, theme 
                   theme === 'dark' ? 'text-gray-200' : 'text-gray-600'
                 }`}
               >
-                Close Time
+                Close Date and Time
               </label>
               <input
-                type="time"
-                name="closeTime"
+                type="datetime-local"
+                name="closeDateTime"
                 className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 ${
                   theme === 'dark'
                     ? 'bg-gray-700 border-gray-600 text-gray-200'
                     : 'border-gray-300 text-gray-800'
                 }`}
-                onChange={onChange}
-                value={form.closeTime}
+                onChange={(e) => setCloseDateTime(e.target.value)}
+                value={closeDateTime}
                 required
               />
-              {errors.closeTime && (
-                <p className="text-red-500 text-sm mt-1">{errors.closeTime}</p>
+              {errors.closeDateTime && (
+                <p className="text-red-500 text-sm mt-1">{errors.closeDateTime}</p>
               )}
             </div>
 
@@ -147,6 +193,28 @@ function IPOForm({ form, errors, onChange, onSubmit, onCancel, editPrice, theme 
               )}
             </div>
 
+            <div>
+              <label
+                className={`block text-sm font-medium ${
+                  theme === 'dark' ? 'text-gray-200' : 'text-gray-600'
+                }`}
+              >
+                Listing Date and Time
+              </label>
+              <input
+                type="datetime-local"
+                name="listingDate"
+                className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+                  theme === 'dark'
+                    ? 'bg-gray-700 border-gray-600 text-gray-200'
+                    : 'border-gray-300 text-gray-800'
+                }`}
+                onChange={(e) => setListingDate(e.target.value)}
+                value={listingDate}
+                required
+              />
+            </div>
+
             <div className="flex justify-end space-x-3 mt-6">
               <button
                 type="button"
@@ -159,7 +227,7 @@ function IPOForm({ form, errors, onChange, onSubmit, onCancel, editPrice, theme 
                 type="submit"
                 className="px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none"
               >
-                {editPrice ? 'Update Stock' : 'Add Stock'}
+                {editPrice ? `Update ${title}` : `Add ${title}`}
               </button>
             </div>
           </form>

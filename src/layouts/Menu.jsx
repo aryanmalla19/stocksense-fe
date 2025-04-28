@@ -14,6 +14,44 @@ import { BsDatabaseFillGear } from "react-icons/bs";
 import { FaHeadphonesAlt, FaClipboardList } from "react-icons/fa";
 import MenuItem from "./MenuItems";
 import DropdownMenu from "./DropdownMenu";
+
+const menuItems = [
+  { icon: <MdOutlineDashboard />, label: "Dashboard", href: "/dashboard" },
+  { icon: <FiList />, label: "Stocks List", href: "/stocks" },
+  { icon: <FiShoppingCart />, label: "Trade Stocks", href: "/buy" },
+  { icon: <FiStar />, label: "Watchlist", href: "/watch-list" },
+  { icon: <FiPieChart />, label: "Portfolio", href: "/portfolio" },
+  { icon: <FiLayers />, label: "IPO Applications", href: "/shares" },
+
+  {
+    icon: <BsDatabaseFillGear />,
+    label: "Stock Management",
+    href: "/stockmanagement",
+  },
+  {
+    icon: <FaClipboardList />,
+    label: "Ipo Management",
+    href: "/ipomanagement",
+  },
+
+  {
+    icon: <RiUserShared2Fill />,
+    label: "Portfolios",
+    href: "/portfoliomanagement",
+  },
+  // { icon: <FaHeadphonesAlt />, label: "Support", href: "/admin/support" },
+];
+
+const ipoItems = [
+  { label: "IPO Apply", href: "/shares" },
+  { label: "IPO List", href: "/ipo-list" },
+];
+
+const portfolioItems = [
+  { label: "My Portfolio", href: "/portfolio" },
+  { label: "Holdings", href: "/portfolio/holdings" },
+  { label: "Transactions", href: "/portfolio/transactions" },
+];
 import useUserDetails from "../hooks/authhooks/useUserDetails";
 
 const Menu = ({ collapsed, theme }) => {

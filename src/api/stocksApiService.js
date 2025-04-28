@@ -1,8 +1,8 @@
 import axiosInstance from "./axiosInstance";
 
-export const stockList = async ({ page, per_page = 10 }) => {
+export const stockList = async ({ page, per_page = 10, symbol="" }) => {
   const response = await axiosInstance.get("/stocks", {
-    params: { page, per_page },
+    params: { page, per_page, symbol },
   });
   return response.data;
 };
@@ -74,7 +74,6 @@ export const fetchStockWatchList = async () => {
   }
 };
 
-//function to delete watchlist
 export const deleteStockWatchList = async (stockID) => {
   try {
     const response = await axiosInstance.delete(`/watchlists/${stockID}`);
@@ -84,6 +83,16 @@ export const deleteStockWatchList = async (stockID) => {
       "Error deleting stocks watchlist:",
       error.response?.data || error
     );
+    throw error;
+  }
+};
+
+export const pagination = async () => {
+  try {
+    const response = await axiosInstance.get("");
+    return response.data;
+  } catch (error) {
+    console.log("Error in Pagination", error.response?.data || error);
     throw error;
   }
 };
@@ -99,7 +108,6 @@ export const enableTwoFactor = async () => {
   }
 };
 
-// Function to disable two factor OTP
 export const disableTwoFactor = async () => {
   try {
     const response = await axiosInstance.post("/auth/2fa/disable");
@@ -156,3 +164,55 @@ export const UserPortfolio = async () => {
     throw error ?? new Error("Failed to fetch User Protfolio details");
   }
 };
+
+export const updateStock = async (id, stock) => {
+  try {
+    const response = await axiosInstance.put(`/stocks/${id}`, stock);
+    return response?.data?.data;
+  } catch (error) {
+    console.error(
+      "Error Updating stock details:",
+      error.response?.data || error
+    );
+    throw error ?? new Error("Failed to updating stock details");
+  }
+}
+
+export const createStock = async (stock) => {
+  try {
+    const response = await axiosInstance.post(`/stocks`, stock);
+    return response?.data?.data;
+  } catch (error) {
+    console.error(
+      "Error Updating stock details:",
+      error.response?.data || error
+    );
+    throw error ?? new Error("Failed to updating stock details");
+  }
+}
+
+export const getSectors = async () => {
+  try {
+    const response = await axiosInstance.get(`/sectors`);
+    return response?.data?.data;
+  } catch (error) {
+    console.error(
+      "Error fetching sectors details:",
+      error.response?.data || error
+    );
+    throw error ?? new Error("Failed to fetching sectors details");
+  }
+}
+
+export const deleteStock = async (stockID) => {
+  try {
+    const response = await axiosInstance.delete(`/stocks/${stockID}`);
+    return response.data;
+  } catch (error) {
+    console.log(
+      "Error deleting stocks:",
+      error.response?.data || error
+    );
+    throw error;
+  }
+}

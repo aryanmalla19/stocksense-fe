@@ -11,19 +11,21 @@ function IPOList({ prices, onAdd, onEdit, theme }) {
           onClick={onAdd}
           className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700"
         >
-          Add New Stock
+          Add New IPO
         </button>
       </div>
       <div className="overflow-x-auto">
-        <div className="grid grid-cols-6 bg-[#9E15BF] text-white font-semibold p-2 rounded-md">
+        <div className="grid grid-cols-8 bg-[#9E15BF] text-white font-semibold p-2 rounded-md">
           <p>Stock Symbol</p>
           <p>Open Time</p>
           <p>Close Time</p>
+          <p>Listing Time</p>
           <p>Total Shares</p>
           <p>Issue Price</p>
+          <p>Status</p>
           <p>Actions</p>
         </div>
-        {prices.map((price, index) => (
+        {prices?.map((price, index) => (
           <IPORow
             key={price.stockSymbol + index}
             price={price}
