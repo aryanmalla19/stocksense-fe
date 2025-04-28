@@ -93,7 +93,7 @@ const Menu = ({ collapsed, theme }) => {
                   theme={theme}
                   collapsed={collapsed}
                 />
-              );
+              );  
             }
             if (item.label === "IPO Applications") {
               return (
