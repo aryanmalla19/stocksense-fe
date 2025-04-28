@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import WatchlistToggleButton from "./WatchListToggleButton";
+
 const StockListRow = React.memo(({ stock, theme, removeStock }) => {
   return (
     <div
@@ -38,4 +39,5 @@ const StockListRow = React.memo(({ stock, theme, removeStock }) => {
     </div>
   );
 });
+
 export default StockListRow;
