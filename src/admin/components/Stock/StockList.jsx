@@ -1,4 +1,3 @@
-// src/components/StockList.jsx
 import React from 'react';
 import StockRow from './StockRow';
 
@@ -16,7 +15,8 @@ function StockList({ stocks, onAdd, onEdit, theme }) {
       </div>
       <div className="overflow-x-auto">
         <div
-          className="grid grid-cols-5 bg-[#9E15BF]  text-white font-semibold p-2 rounded-md"
+          className="grid bg-[#9E15BF] text-white font-semibold p-2 rounded-md"
+          style={{ gridTemplateColumns: '1fr 1.5fr 1fr 3fr 1fr' }}
         >
           <p>Symbol</p>
           <p>Company Name</p>

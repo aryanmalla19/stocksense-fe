@@ -1,20 +1,43 @@
-// src/admin/components/StockForm.jsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getSectors } from '../../../api/stocksApiService';
 
-function StockForm({ 
-  stock,
-   onCancel,
-    theme 
-  }) {
+function StockForm({ stock, onCancel, onSave, theme }) {
+  const [sectors, setSectors] = useState([]);
+  const [loadingSectors, setLoadingSectors] = useState(true);
+
+  useEffect(() => {
+    async function fetchSectors() {
+      try {
+        const data = await getSectors();
+        setSectors(data || []);
+      } catch (error) {
+        console.error('Error fetching sectors:', error);
+      } finally {
+        setLoadingSectors(false);
+      }
+    }
+    fetchSectors();
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const newStock = {
+      symbol: formData.get('symbol'),
+      company_name: formData.get('company_name'),
+      sector_id: formData.get('sector_id'), 
+      description: formData.get('description'),
+    };
+    onSave(newStock);
+  };
+
   return (
     <>
-      
       <div
         className="fixed inset-0 bg-[rgba(0,0,0,0.5)] backdrop-blur-[4px] z-30"
         onClick={onCancel}
       ></div>
 
-      
       <div className="fixed inset-0 flex items-center justify-center z-40">
         <div
           className={`w-full max-w-lg p-6 rounded-lg shadow-lg transition-all duration-300 ${
@@ -26,82 +49,85 @@ function StockForm({
           <h2 className="text-xl font-semibold mb-4 text-[#9E15BF]">
             {stock ? 'Edit Stock' : 'Add Stock'}
           </h2>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
-              <label
-                className={`block text-sm font-medium ${
-                  theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
-                }`}
-              >
+              <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
                 Symbol:
               </label>
               <input
                 type="text"
                 name="symbol"
                 defaultValue={stock?.symbol || ''}
-                className={`mt-1 block w-full border rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm ${
+                required
+                className={`mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm ${
                   theme === 'dark'
                     ? 'bg-gray-800 border-gray-700 text-gray-200'
                     : 'border-gray-300 text-gray-900'
                 }`}
               />
             </div>
+
             <div>
-              <label
-                className={`block text-sm font-medium ${
-                  theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
-                }`}
-              >
+              <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
                 Company Name:
               </label>
               <input
                 type="text"
                 name="company_name"
-                defaultValue={stock?.companyName || ''}
-                className={`mt-1 block w-full border rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm ${
+                defaultValue={stock?.company_name || ''}
+                required
+                className={`mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm ${
                   theme === 'dark'
                     ? 'bg-gray-800 border-gray-700 text-gray-200'
                     : 'border-gray-300 text-gray-900'
                 }`}
               />
             </div>
+
             <div>
-              <label
-                className={`block text-sm font-medium ${
-                  theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
-                }`}
-              >
+              <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
                 Sector:
               </label>
-              <input
-                type="text"
-                name="sector"
-                defaultValue={stock?.sector || ''}
-                className={`mt-1 block w-full border rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm ${
-                  theme === 'dark'
-                    ? 'bg-gray-800 border-gray-700 text-gray-200'
-                    : 'border-gray-300 text-gray-900'
-                }`}
-              />
+              {loadingSectors ? (
+                <div className="text-sm text-gray-500">Loading sectors...</div>
+              ) : (
+                <select
+                  name="sector_id"
+                  defaultValue={stock?.sector_id || ''}
+                  required
+                  className={`mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm ${
+                    theme === 'dark'
+                      ? 'bg-gray-800 border-gray-700 text-gray-200'
+                      : 'border-gray-300 text-gray-900'
+                  }`}
+                >
+                  <option value="">Select Sector</option>
+                  {sectors.map((sector) => (
+                    <option key={sector.id} value={sector.id}>
+                      {sector.name}
+                    </option>
+                  ))}
+                </select>
+              )}
             </div>
+
             <div>
-              <label
-                className={`block text-sm font-medium ${
-                  theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
-                }`}
-              >
+              <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
                 Description:
               </label>
               <textarea
                 name="description"
                 defaultValue={stock?.description || ''}
-                className={`mt-1 block w-full border rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm ${
+                cols={10}
+                rows={5}
+                className={`mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm ${
                   theme === 'dark'
                     ? 'bg-gray-800 border-gray-700 text-gray-200'
                     : 'border-gray-300 text-gray-900'
                 }`}
               ></textarea>
             </div>
+
             <div className="flex space-x-4">
               <button
                 type="submit"
@@ -117,6 +143,7 @@ function StockForm({
                 Cancel
               </button>
             </div>
+
           </form>
         </div>
       </div>
