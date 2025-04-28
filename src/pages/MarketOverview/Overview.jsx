@@ -12,11 +12,11 @@ const Overview = () => {
     <div className="outlet-container">
       <PortfolioTracker />
 
-      <div className="flex gap-4 h-95">
-        <div className="w-2/3">
+      <div className="flex flex-col gap-4 md:flex-row h-93">
+        <div className="w-110 md:w-1/2 lg:w-2/3  h-93">
           <WatchListPage Stockhistory={data?.data?.prices} />
         </div>
-        <div className="w-1/2 lg:w-1/3">
+        <div className="w-[480px] md:1/2 lg:w-1/3">
           <PieChartData theme={theme} />
         </div>
       </div>
