@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import SocialLogin from "../../authcomponent/SocialLogin";
 import Rememberme from "../../authcomponent/Rememberme";
 import Input from "../../components/stocks/Input";
 import { FaEnvelope, FaLock } from "react-icons/fa";
@@ -61,7 +60,10 @@ const LoginPages = () => {
           autoComplete="current-password"
           showToggle
           onToggle={() => setShowPassword(!showPassword)}
-          onChange={() => setServerErrors({})}
+          onChange={(e) => {
+            setServerErrors({});
+            register("password").onChange(e);
+          }}
           error={errors.password}
         />
         {(errors.password || serverErrors?.password) && (
