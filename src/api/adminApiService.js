@@ -4,3 +4,8 @@ export const getAllUsers = async (page = 1) => {
   const response = await axiosInstance.get(`/admin/users?page=${page}`);
   return response?.data;
 };
+
+export const ipoDetailsPost = async (payload) => {
+  const response = await axiosInstance.post("/ipo-details", payload);
+  return response?.data;
+};

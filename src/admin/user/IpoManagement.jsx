@@ -1,20 +1,20 @@
-import React, { useState, useContext } from 'react';
-import { ThemeContext } from '../../context/ThemeContext.jsx';
-import IPOList from '../components/IPO/IPOList';
-import IPOForm from '../components/IPO/IPOForm';
-import useFetchIpoDetail from '../../hooks/stockshooks/useFetchIpoDetail.js';
+import React, { useState, useContext } from "react";
+import { ThemeContext } from "../../context/ThemeContext.jsx";
+import IPOList from "../components/IPO/IPOList";
+import IPOForm from "../components/IPO/IPOForm";
+import useFetchIpoDetail from "../../hooks/stockshooks/useFetchIpoDetail.js";
 
 function IpoManagement() {
   const { theme } = useContext(ThemeContext);
   const [showForm, setShowForm] = useState(false);
   const [editPrice, setEditPrice] = useState(null);
-  const { data, refetch, isLoading, error } = useFetchIpoDetail();
+  const { data, isLoading, error } = useFetchIpoDetail();
   const [form, setForm] = useState({
-    stockSymbol: '',
-    openTime: '',
-    closeTime: '',
-    totalShares: '',
-    issuePrice: '',
+    stockSymbol: "",
+    openTime: "",
+    closeTime: "",
+    totalShares: "",
+    issuePrice: "",
   });
   const [errors, setErrors] = useState({});
 
@@ -34,11 +34,11 @@ function IpoManagement() {
     setShowForm(false);
     setEditPrice(null);
     setForm({
-      stockSymbol: '',
-      openTime: '',
-      closeTime: '',
-      totalShares: '',
-      issuePrice: '',
+      stockSymbol: "",
+      openTime: "",
+      closeTime: "",
+      totalShares: "",
+      issuePrice: "",
     });
     setErrors({});
   };
@@ -47,39 +47,40 @@ function IpoManagement() {
     const { name, value } = e.target;
     setForm((prev) => ({
       ...prev,
-      [name]: name === 'stockSymbol' ? value.toUpperCase() : value,
+      [name]: name === "stockSymbol" ? value.toUpperCase() : value,
     }));
   };
 
   const validateTimeRange = (time) => {
     if (!time) return false;
-    return time >= '10:00' && time <= '17:00';
+    return time >= "10:00" && time <= "17:00";
   };
 
   const validateForm = () => {
     const newErrors = {};
 
     if (!form.stockSymbol || !/^[A-Z]+$/.test(form.stockSymbol)) {
-      newErrors.stockSymbol = 'Stock symbol must contain only letters.';
+      newErrors.stockSymbol = "Stock symbol must contain only letters.";
     }
 
     if (!form.openTime || !validateTimeRange(form.openTime)) {
-      newErrors.openTime = 'Open time must be between 10:00 AM and 5:00 PM.';
+      newErrors.openTime = "Open time must be between 10:00 AM and 5:00 PM.";
     }
     if (!form.closeTime || !validateTimeRange(form.closeTime)) {
-      newErrors.closeTime = 'Close time must be between 10:00 AM and 5:00 PM.';
+      newErrors.closeTime = "Close time must be between 10:00 AM and 5:00 PM.";
     }
 
     if (!newErrors.closeTime && form.closeTime <= form.openTime) {
-      newErrors.closeTime = 'Close time must be after open time.';
+      newErrors.closeTime = "Close time must be after open time.";
     }
 
     if (!form.totalShares || !/^\d+$/.test(form.totalShares)) {
-      newErrors.totalShares = 'Total shares must be a positive number.';
+      newErrors.totalShares = "Total shares must be a positive number.";
     }
 
     if (!form.issuePrice || !/^\d+(\.\d{1,2})?$/.test(form.issuePrice)) {
-      newErrors.issuePrice = 'Issue price must be a valid number with up to 2 decimal places.';
+      newErrors.issuePrice =
+        "Issue price must be a valid number with up to 2 decimal places.";
     }
 
     setErrors(newErrors);
@@ -90,15 +91,15 @@ function IpoManagement() {
     console.log(e);
     // e.preventDefault();
     if (validateForm()) {
-      console.log('Form is valid:', form);
-      
+      console.log("Form is valid:", form);
+
       if (editPrice) {
-        console.log('Updating IPO', form);
+        console.log("Updating IPO", form);
       } else {
-        console.log('Adding new IPO', form);
+        console.log("Adding new IPO", form);
       }
 
-      handleCancel(); 
+      handleCancel();
     }
   };
 
@@ -107,13 +108,15 @@ function IpoManagement() {
 
   return (
     <div className="mx-auto p-4">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8 text-[#9E15BF]">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8 ">
         <h1 className="text-2xl md:text-3xl font-bold py-2">IPO Management</h1>
       </div>
 
       <div
-        className={`rounded-md p-8 ${
-          theme === 'dark' ? 'bg-dark-bg shadow-md shadow-black/30' : 'bg-white border border-gray-200 shadow-md'
+        className={`outlet-container rounded-md p-8 ${
+          theme === "dark"
+            ? "bg-dark-bg shadow-md shadow-black/30"
+            : "bg-white border border-gray-200 shadow-md"
         }`}
       >
         <IPOList
@@ -126,7 +129,7 @@ function IpoManagement() {
           <IPOForm
             form={form}
             errors={errors}
-            title='IPO' 
+            title="IPO"
             onChange={handleChange}
             onSubmit={handleSubmit}
             onCancel={handleCancel}

@@ -1,30 +1,57 @@
-// src/admin/components/IPORow.jsx
-import React from 'react';
+import React from "react";
+import { FaEdit } from "react-icons/fa";
+import { MdDeleteOutline } from "react-icons/md";
 
 function IPORow({ price, onEdit, theme }) {
+  const formatDateTime = (dateString) => {
+    const dateObj = new Date(dateString);
+    const date = dateObj.toISOString().split("T")[0];
+    const time = dateObj.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    });
+    return { date, time };
+  };
+
+  // Format all dates
+  const open = formatDateTime(price.open_date);
+  const close = formatDateTime(price.close_date);
+  const listing = formatDateTime(price.listing_date);
+
   return (
     <div
-      className={`grid grid-cols-8 py-2 px-2 rounded-md ${
-        theme === 'dark'
-          ? 'text-gray-200 hover:bg-gray-700'
-          : 'hover:bg-gray-100 text-gray-800'
+      className={`grid grid-cols-9 rounded-md text-sm p-3 items-center ${
+        theme === "dark"
+          ? "text-dark-text hover:bg-gray-700"
+          : "hover:bg-gray-100 text-light-text"
       }`}
     >
-      <p>{price.company_name}</p>
-      <p>{price.open_date}</p>
-      <p>{price.close_date}</p>
-      <p>{price.listing_date}</p>
+      <p className="col-span-2">{price.company_name}</p>
+
+      <p className=" flex flex-col">
+        <span>{open.date}</span>
+        <span className="text-green-700">{open.time}</span>
+      </p>
+
+      <p className=" flex flex-col">
+        <span>{close.date}</span>
+        <span className="text-red-700">{close.time}</span>
+      </p>
+
+      <p className="flex flex-col">
+        <span>{listing.date}</span>
+        <span className="text-green-700">{listing.time}</span>
+      </p>
+
       <p>{price.total_shares}</p>
       <p>${price.issue_price}</p>
       <p>{price.ipo_status}</p>
-      <p>
-        <button
-          onClick={() => onEdit(price)}
-          className="text-blue-500 hover:underline mr-2"
-        >
-          Edit
-        </button>
-        <button className="text-red-500 hover:underline">Delete</button>
+
+      <p className="flex gap-4">
+        <FaEdit className="text-green-500 cursor-pointer text-[17px]" />
+        <MdDeleteOutline className="text-red-500 text-xl cursor-pointer" />
       </p>
     </div>
   );
