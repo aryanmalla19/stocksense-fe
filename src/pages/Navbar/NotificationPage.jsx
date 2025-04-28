@@ -72,10 +72,10 @@ const handleClose = () => {
         <>
           <div className="fixed inset-0 z-10" onClick={handleClose} />
           <div
-            className={`absolute right-0 mt-2 w-80 max-h-96 overflow-auto scrollbar-hidden rounded-md shadow-lg z-50 ${
+            className={`absolute border right-0 mt-2 w-80 max-h-96 overflow-auto scrollbar-hidden rounded-md shadow-lg z-50 ${
               theme === "dark"
-                ? "bg-gray-800 text-white"
-                : "bg-white text-black"
+                ? "bg-dark-bg text-dark-text border-gray-800"
+                : "bg-light-bg text-light-text border-gray-200"
             }`}
           >
             <div className="p-4">
@@ -102,7 +102,7 @@ const handleClose = () => {
                           theme === "dark"
                             ? "border-gray-600"
                             : "border-gray-300"
-                        } ${!notification.read_at ? "bg-purple-500" : ""}`}
+                        } ${!notification.read_at ? "bg-purple-500 text-white" : ""}`}
                       >
                         <p className="font-medium">
                           {notification.notification}
@@ -124,7 +124,7 @@ const handleClose = () => {
                   {data.length > maxDisplay && (
                     <button
                       onClick={handleShowMore}
-                      className="mt-3 text-sm [color:#9D14BF] hover:underline"
+                      className={`mt-3 text-sm font-bold hover:underline ${theme === "dark" ? "text-dark-text" : "text-light-text"}`}
                     >
                       Show More
                     </button>
