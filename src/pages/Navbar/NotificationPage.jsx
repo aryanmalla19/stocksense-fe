@@ -9,7 +9,7 @@ import useMarkAsRead from "../../hooks/notificationhooks/useMarkAsRead.js";
 
 const NotificationPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { data } = useGetNotifications();
+  const { data, refetch } = useGetNotifications();
   const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
   const { markAllAsRead } = useMarkAllAsRead();
