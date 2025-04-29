@@ -12,7 +12,7 @@ const StockListTable = ({ theme, searchSymbol }) => {
   const [sortBy, setSortBy] = useState("");
   const [sortOrder, setSortOrder] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
-  const { refetch } = useFetchWatchList();
+  const { data: fetchwatchlist, refetch } = useFetchWatchList();
   const {
     data: fetchedData,
     isLoading,
@@ -86,7 +86,7 @@ const StockListTable = ({ theme, searchSymbol }) => {
         )}
       </div>
       <Pagination
-        links={fetchedData?.links}
+        links={fetchwatchlist?.links}
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
       />

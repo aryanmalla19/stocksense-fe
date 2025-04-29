@@ -29,6 +29,7 @@ import Overview from "../pages/MarketOverview/Overview";
 import PortfolioManagement from "../admin/user/PortfolioManagements";
 import Details from "../pages/OrderManagement/Details";
 import PortfolioDetails from "../admin/components/Portfolio/PortfolioDetails";
+import IPOEdit from "../admin/components/IPO/IPOEdit";
 
 const Router = createBrowserRouter([
   {
@@ -110,6 +111,10 @@ const Router = createBrowserRouter([
       {
         path: "/ipomanagement",
         element: <IpoManagement />,
+      },
+      {
+        path: "/ipo/edit/:id",
+        element: <IPOEdit />,
       },
     ],
   },
