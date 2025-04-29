@@ -3,7 +3,7 @@ import { ThemeContext } from "../../context/ThemeContext";
 import useTransactions from "../../hooks/ipohooks/useTransactions";
 import { FiFilter } from "react-icons/fi";
 import Transactiondisplay from "./Transactiondisplay";
-import DonutChart from "../../components/common/DonoutChart";
+// import DonutChart from "../../components/common/DonoutChart";
 
 const Transactions = () => {
   const { theme } = useContext(ThemeContext);
@@ -20,7 +20,7 @@ const Transactions = () => {
 
   return (
     <div>
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8 relative">
+      <div className="flex flex-col sm:flex-row justify-between  items-start sm:items-center mb-4 mx-8 relative">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold py-2">
             Your Transactions
@@ -78,9 +78,9 @@ const Transactions = () => {
         data={data}
       />
 
-      <div className=" items-center flex justify-center">
+      {/* <div className=" items-center flex justify-center">
         <DonutChart />
-      </div>
+      </div> */}
     </div>
   );
 };

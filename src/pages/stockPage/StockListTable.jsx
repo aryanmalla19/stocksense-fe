@@ -75,6 +75,7 @@ const StockListTable = ({ theme, searchSymbol }) => {
                 theme={theme}
                 removeStock={handleRemoveStock}
                 refetchSortedData={refetchSortedData}
+                links={fetchedData?.links}
               />
             ))
           )}
@@ -86,7 +87,7 @@ const StockListTable = ({ theme, searchSymbol }) => {
         )}
       </div>
       <Pagination
-        links={fetchwatchlist?.links}
+        links={fetchedData?.links}
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
       />

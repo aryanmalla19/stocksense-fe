@@ -10,7 +10,7 @@ const Holdings = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedStock, setSelectedStock] = useState(null);
 
-  const { data, refetch } = useGetHoldings();
+  const { data } = useGetHoldings();
   const holdings = data?.data || [];
 
   const { buySellData } = useBuySell();
@@ -24,7 +24,6 @@ const Holdings = () => {
 
     try {
       await buySellData(payload);
-      await refetch();
       setIsModalOpen(false);
     } catch (error) {
       console.error("Sell failed:", error);
@@ -57,7 +56,7 @@ const Holdings = () => {
       </div>
 
       <div
-        className={`outlet-container rounded-md p-8 transition-colors duration-300 ${
+        className={`outlet-container rounded-md p-8 h-120 transition-colors duration-300 ${
           theme === "dark"
             ? "bg-dark-bg border border-dark-bg shadow-md shadow-black/30"
             : "bg-white border border-gray-200 shadow-md shadow-gray-300"

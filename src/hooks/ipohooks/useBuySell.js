@@ -18,6 +18,9 @@ const useBuySell = () => {
     onError: (error) => {
       toast.error(error?.message || "Failed to buy/sell stock");
     },
+    onSettled: async () => {
+      await queryClient.invalidateQueries(["holdings"]);
+    },
   });
 
   return {

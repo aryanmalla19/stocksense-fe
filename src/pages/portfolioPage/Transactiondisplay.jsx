@@ -11,7 +11,7 @@ const Transactiondisplay = ({
   return (
     <>
       <div
-        className={`outlet-container rounded-md p-8 transition-colors duration-300 overflow-y-scroll scrollbar-hidden h-[310px] 
+        className={`outlet-container rounded-md p-8 transition-colors duration-300 overflow-y-scroll scrollbar-hidden h-105 
     ${
       theme === "dark"
         ? "bg-dark-bg border border-dark-bg shadow-md shadow-black/30"
