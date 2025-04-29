@@ -6,7 +6,7 @@ const useGetNotifications = (page) => {
     queryKey: ["notifications", page],
     queryFn: () => fetchNotifications(page),
   });
-  return { notificationData:data, refetch };
+  return { data:data, refetch };
 };
 
 export default useGetNotifications;
