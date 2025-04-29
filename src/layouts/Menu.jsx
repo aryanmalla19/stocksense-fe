@@ -11,7 +11,7 @@ import {
 // import { IoMdHelpCircleOutline } from "react-icons/io";
 import { RiUserShared2Fill } from "react-icons/ri";
 import { BsDatabaseFillGear } from "react-icons/bs";
-import { FaHeadphonesAlt, FaClipboardList } from "react-icons/fa";
+import { FaClipboardList } from "react-icons/fa";
 import MenuItem from "./MenuItems";
 import DropdownMenu from "./DropdownMenu";
 
@@ -88,7 +88,6 @@ const Menu = ({ collapsed, theme }) => {
       label: "Portfolios",
       href: "/portfoliomanagement",
     },
-    { icon: <FaHeadphonesAlt />, label: "Support", href: "/admin/support" },
   ];
 
   const menuItems =
@@ -116,7 +115,7 @@ const Menu = ({ collapsed, theme }) => {
         theme === "dark" ? "text-white" : "text-gray-900"
       }`}
     >
-      <div className="flex-1 overflow-y-auto scrollbar-hidden py-4">
+      <div className="flex-1 text-[16px] overflow-y-auto scrollbar-hidden py-4">
         <div className="mt-2 h-60">
           {menuItems.map((item) => {
             if (item.label === "Portfolio") {

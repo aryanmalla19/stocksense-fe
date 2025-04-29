@@ -55,7 +55,7 @@ const IPOList = () => {
                     {new Date(item.applied_date).toISOString().split("T")[0]}
                   </p>
                   <p className="flex items-center">
-                    {new Date(item.applied_date).toLocaleTimeString([ ], {
+                    {new Date(item.applied_date).toLocaleTimeString([], {
                       hour: "2-digit",
                       minute: "2-digit",
                       second: "2-digit",
@@ -80,7 +80,7 @@ const IPOList = () => {
                     ) : (
                       <FaArrowDown className="mr-2" />
                     )}
-                    {item.status}
+                    {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
                   </p>
                 </div>
               );
