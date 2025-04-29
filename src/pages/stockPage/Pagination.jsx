@@ -1,6 +1,7 @@
 import React from "react";
 
 const Pagination = ({ pageNumber, setPageNumber, links }) => {
+  console.log(links);
   const isPrevDisabled = pageNumber <= 1;
   const isNextDisabled = !links?.next;
 

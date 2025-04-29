@@ -19,3 +19,9 @@ export const ipoDetailsDelete = async (id) => {
   const response = await axiosInstance.delete(`/ipo-details/${id}`);
   return response?.data;
 };
+
+export const ipoDetailsEdit = async ({ id, updatedData }) => {
+  const response = await axiosInstance.put(`/ipo-details/${id}`, updatedData);
+  console.log("EDIT IPO Response:", response);
+  return response?.data;
+};

@@ -1,6 +1,6 @@
 import axiosInstance from "./axiosInstance";
 
-export const stockList = async ({ page, per_page = 10, symbol="" }) => {
+export const stockList = async ({ page, per_page = 10, symbol = "" }) => {
   const response = await axiosInstance.get("/stocks", {
     params: { page, per_page, symbol },
   });
@@ -87,16 +87,6 @@ export const deleteStockWatchList = async (stockID) => {
   }
 };
 
-export const pagination = async () => {
-  try {
-    const response = await axiosInstance.get("");
-    return response.data;
-  } catch (error) {
-    console.log("Error in Pagination", error.response?.data || error);
-    throw error;
-  }
-};
-
 // Function to enable two factor OTP
 export const enableTwoFactor = async () => {
   try {
@@ -176,7 +166,7 @@ export const updateStock = async (id, stock) => {
     );
     throw error ?? new Error("Failed to updating stock details");
   }
-}
+};
 
 export const createStock = async (stock) => {
   try {
@@ -189,7 +179,7 @@ export const createStock = async (stock) => {
     );
     throw error ?? new Error("Failed to updating stock details");
   }
-}
+};
 
 export const getSectors = async () => {
   try {
@@ -202,17 +192,14 @@ export const getSectors = async () => {
     );
     throw error ?? new Error("Failed to fetching sectors details");
   }
-}
+};
 
 export const deleteStock = async (stockID) => {
   try {
     const response = await axiosInstance.delete(`/stocks/${stockID}`);
     return response.data;
   } catch (error) {
-    console.log(
-      "Error deleting stocks:",
-      error.response?.data || error
-    );
+    console.log("Error deleting stocks:", error.response?.data || error);
     throw error;
   }
-}
+};
