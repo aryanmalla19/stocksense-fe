@@ -63,8 +63,8 @@ const BuyStockPage = ({
             <select
               value={selectedSymbol}
               onChange={(e) => setSelectedSymbol(e.target.value)}
-              className={`p-1.5 border rounded-md mt-2 
-              ${theme === "dark" ? "bg-black" : "bg-gray-100"}`}
+              className={`px-5 py-1 border rounded-md mt-2 h-8 text-sm 
+    ${theme === "dark" ? "bg-black text-white" : "bg-gray-100 text-black"}`}
             >
               {stocksData?.data?.map((item, index) => (
                 <option

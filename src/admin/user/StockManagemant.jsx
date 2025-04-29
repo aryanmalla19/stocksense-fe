@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from "react";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { ThemeContext } from '../../context/ThemeContext.jsx';
-import StockList from '../components/Stock/StockList.jsx';
-import StockForm from '../components/Stock/StockForm.jsx';
+import { ThemeContext } from "../../context/ThemeContext.jsx";
+import StockList from "../components/Stock/StockList.jsx";
+import StockForm from "../components/Stock/StockForm.jsx";
 import { useStocks } from "../../hooks/stockshooks/useStocks.js";
-import Pagination from '../../pages/stockPage/Pagination.jsx';
+import Pagination from "../../pages/stockPage/Pagination.jsx";
 import { createStock, updateStock } from "../../api/stocksApiService.js";
 
 function StockManagement() {
@@ -12,8 +12,8 @@ function StockManagement() {
   const [showForm, setShowForm] = useState(false);
   const [editStock, setEditStock] = useState(null);
   const [page, setPage] = useState(1);
-  const [searchSymbol, setSearchSymbol] = useState("");  
-  const [searchInput, setSearchInput] = useState("");   
+  const [searchSymbol, setSearchSymbol] = useState("");
+  const [searchInput, setSearchInput] = useState("");
 
   const queryClient = useQueryClient();
 
@@ -21,7 +21,7 @@ function StockManagement() {
     { searchSymbol, pageNumber: page, per_page: 10 },
     { keepPreviousData: true }
   );
-  
+
   const { mutate: createStockMutation, isLoading: isCreating } = useMutation({
     mutationFn: createStock,
     onSuccess: () => {
@@ -64,30 +64,38 @@ function StockManagement() {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    setPage(1); // Reset page to 1 on new search
+    setPage(1);
     setSearchSymbol(searchInput.trim());
   };
 
-  // if (isLoading) return <div className="text-center py-10">Loading stocks...</div>;
-  if (isError) return <div className="text-center py-10 text-red-500">Error loading stocks.</div>;
+  if (isError)
+    return (
+      <div className="text-center py-10 text-red-500">
+        Error loading stocks.
+      </div>
+    );
 
   return (
     <div className="mx-auto p-4">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8 text-[#9E15BF]">
-        <h1 className="text-2xl md:text-3xl font-bold py-2">Stock Management</h1>
+        <h1 className="text-2xl md:text-3xl font-bold py-2">
+          Stock Management
+        </h1>
       </div>
 
-      {/* 🔥 Search Form */}
-      <form onSubmit={handleSearchSubmit} className="flex flex-col sm:flex-row items-center mb-6 gap-4 mx-8">
+      <form
+        onSubmit={handleSearchSubmit}
+        className="flex flex-col sm:flex-row items-center mb-6 gap-4 mx-8"
+      >
         <input
           type="text"
           placeholder="Search by symbol..."
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           className={`px-4 py-2 rounded-md border shadow-sm w-full sm:w-64 ${
-            theme === 'dark'
-              ? 'bg-gray-800 border-gray-700 text-gray-200'
-              : 'bg-white border-gray-300 text-gray-900'
+            theme === "dark"
+              ? "bg-gray-800 border-gray-700 text-gray-200"
+              : "bg-white border-gray-300 text-gray-900"
           }`}
         />
         <button
@@ -100,9 +108,9 @@ function StockManagement() {
 
       <div
         className={`outlet-container rounded-md p-8 transition-colors duration-300 ${
-          theme === 'dark'
-            ? 'bg-gray-800 border border-gray-700 shadow-md shadow-black/30'
-            : 'bg-white border border-gray-200 shadow-md shadow-gray-300'
+          theme === "dark"
+            ? "bg-dark-bg text-dark-text"
+            : "bg-light-bg text-light-text"
         }`}
       >
         <StockList

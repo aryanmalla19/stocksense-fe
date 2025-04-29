@@ -9,7 +9,11 @@ import useBuySell from "../../hooks/ipohooks/useBuySell";
 const BuySellPage = () => {
   const { userDetails } = useUserDetails();
   const { theme } = useContext(ThemeContext);
-  const { data: stocksData } = useStocks("", "", "");
+  const { data: stocksData } = useStocks({
+    searchSymbol: "",
+    pageNumber: 1,
+    per_page: 100000,
+  });
 
   const [selectedSymbol, setSelectedSymbol] = useState("");
   const [quantity, setQuantity] = useState("");

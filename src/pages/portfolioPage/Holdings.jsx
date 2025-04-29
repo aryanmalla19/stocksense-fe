@@ -10,14 +10,14 @@ const Holdings = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedStock, setSelectedStock] = useState(null);
 
-  const { data } = useGetHoldings();
+  const { data, refetch } = useGetHoldings();
   const holdings = data?.data || [];
 
   const { buySellData } = useBuySell();
 
-  const handleClick = async (stock_id, quantity) => {
+  const handleSell = async (stockId, quantity) => {
     const payload = {
-      stock_id: stock_id,
+      stock_id: stockId,
       type: "sell",
       quantity: quantity,
     };
@@ -25,6 +25,7 @@ const Holdings = () => {
     try {
       await buySellData(payload);
       setIsModalOpen(false);
+      await refetch(); // Refresh holdings after successful sell
     } catch (error) {
       console.error("Sell failed:", error);
     }
@@ -37,24 +38,26 @@ const Holdings = () => {
 
   return (
     <div>
+      {/* Modal for Confirm Sell */}
       {isModalOpen && selectedStock && (
         <>
-          <div className="fixed inset-0 bg-[rgba(0,0,0,0.5)] backdrop-blur-[4px] z-30"></div>
+          <div className="fixed inset-0 bg-[rgba(0,0,0,0.5)] backdrop-blur-sm z-30"></div>
           <ConfirmSellPage
             onClose={() => setIsModalOpen(false)}
             theme={theme}
             stockID={selectedStock.stock_id}
             quantity={selectedStock.quantity}
+            onSell={handleSell}
           />
         </>
       )}
 
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8 ">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-bold py-2">Your Holdings</h1>
-        </div>
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8">
+        <h1 className="text-2xl md:text-3xl font-bold py-2">Your Holdings</h1>
       </div>
 
+      {/* Holdings Table */}
       <div
         className={`outlet-container rounded-md p-8 h-120 transition-colors duration-300 ${
           theme === "dark"
@@ -62,6 +65,7 @@ const Holdings = () => {
             : "bg-white border border-gray-200 shadow-md shadow-gray-300"
         }`}
       >
+        {/* Table Header */}
         <div className="grid grid-cols-6 bg-purple-button text-white font-semibold p-2 rounded-md">
           <p>Company</p>
           <p>Symbol</p>
@@ -71,6 +75,7 @@ const Holdings = () => {
           <p>Action</p>
         </div>
 
+        {/* Table Rows */}
         {holdings.length === 0 ? (
           <p className="text-center mt-4 text-gray-500">No holdings found.</p>
         ) : (
@@ -94,7 +99,7 @@ const Holdings = () => {
 
                 <button
                   onClick={() => openSellModal(item)}
-                  className="flex items-center gap-2 justify-center cursor-pointer rounded-md p-2 bg-[#5626C4] text-white w-24 transition-all"
+                  className="flex items-center gap-2 justify-center rounded-md p-2 bg-[#5626C4] text-white w-24 transition-all"
                 >
                   <FaSellcast /> Sell
                 </button>

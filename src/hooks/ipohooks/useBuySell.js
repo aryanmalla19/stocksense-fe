@@ -11,15 +11,11 @@ const useBuySell = () => {
     mutationFn: buySell,
     onSuccess: async () => {
       toast.success("Stocks transaction successful");
+      queryClient.invalidateQueries({ queryKey: ["holdings"] });
       navigate("/portfolio/holdings");
-
-      await queryClient.refetchQueries(["holdings"]);
     },
     onError: (error) => {
       toast.error(error?.message || "Failed to buy/sell stock");
-    },
-    onSettled: async () => {
-      await queryClient.invalidateQueries(["holdings"]);
     },
   });
 
