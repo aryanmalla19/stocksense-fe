@@ -18,7 +18,7 @@ const PortfolioTracker = () => {
     dots: false,
     infinite: true,
     speed: 1000,
-    slidesToShow: 4, // 👈 Default 4
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,

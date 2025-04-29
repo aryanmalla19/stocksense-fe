@@ -7,7 +7,7 @@ import PieChartData from "../../components/common/PieChartData";
 
 const Overview = () => {
   const { theme } = useContext(ThemeContext);
-  const { data } = useHistoryID(2);
+  const { data } = useHistoryID(10);
   return (
     <div className="outlet-container">
       <PortfolioTracker />

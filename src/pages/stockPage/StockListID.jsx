@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import useFetchStocksID from "../../hooks/stockshooks/useFetchStocksID";
 import { ThemeContext } from "../../context/ThemeContext";
 import useHistoryID from "../../hooks/stockshooks/useHistoryID";
-import WatchListPage from "../MarketOverview/WatchListPage";
 import StockDetails from "./StockDetails";
 import MarketSummary from "./MarketSummary";
 import Candlestick from "../../components/common/CandleStick";
@@ -14,7 +13,7 @@ const StockListID = () => {
   const { theme } = useContext(ThemeContext);
 
   const { historyData } = useHistoryID(id);
-  const Stockhistory = historyData?.data?.historic || [];
+  const Stockhistory = historyData?.data?.prices || [];
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error fetching stock data: {error.message}</div>;

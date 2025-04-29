@@ -2,13 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 import { history } from "../../api/stocksApiService";
 
 const useHistoryID = (id) => {
-  const { data, isLoading, error } = useQuery({
+  const {
+    data: historyData,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["history", id],
     queryFn: () => history(id),
     enabled: !!id,
   });
 
-  return { data, isLoading, error };
+  return { historyData, isLoading, error };
 };
 
 export default useHistoryID;

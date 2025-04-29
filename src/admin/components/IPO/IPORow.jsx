@@ -1,21 +1,21 @@
 import React from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
-import { useNavigate } from "react-router-dom"; 
+// import { useNavigate } from "react-router-dom";
 import useIPODelete from "../../../hooks/admin/useIPODelete";
 
 function IPORow({ price, theme }) {
   const { deleteMutation } = useIPODelete();
-  const navigate = useNavigate(); 
+  // const navigate = useNavigate();
 
   const handleDelete = (e, id) => {
     e.preventDefault();
     deleteMutation.mutate(id);
   };
 
-  const handleEdit = () => {
-    navigate(`/ipo/edit/${price.id}`); 
-  };
+  // const handleEdit = () => {
+  //   navigate(`/ipo/edit/${price.id}`);
+  // };
 
   const formatDateTime = (dateString) => {
     const dateObj = new Date(dateString);
@@ -63,10 +63,10 @@ function IPORow({ price, theme }) {
       <p>{price.ipo_status}</p>
 
       <p className="flex gap-4">
-        <FaEdit
+        {/* <FaEdit
           className="text-green-500 cursor-pointer text-[17px]"
           onClick={handleEdit}
-        />
+        /> */}
         <MdDeleteOutline
           className="text-red-500 text-xl cursor-pointer"
           onClick={(e) => handleDelete(e, price.id)}
