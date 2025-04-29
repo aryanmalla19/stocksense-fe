@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
 import { ThemeContext } from "../context/ThemeContext";
 import PrivateRoute from "../components/common/PrivateRoute";
-import NotificationComponent from "../pages/Notifications/NotificationComponent";
+// import NotificationComponent from "../pages/Notifications/NotificationComponent";
 
 const Mainlayout = () => {
   const { theme } = useContext(ThemeContext);
@@ -13,7 +13,7 @@ const Mainlayout = () => {
   return (
     <div className="h-screen flex overflow-hidden">
       <PrivateRoute>
-        <NotificationComponent />
+        {/* <NotificationComponent /> */}
 
         {/* Sticky Sidebar */}
         <div
