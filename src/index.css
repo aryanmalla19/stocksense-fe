@@ -25,7 +25,13 @@ body {
 .bg-light-bg {
     background-color: var(--light-bg);
 }
-  
+
+.line{
+    height: 1px;
+    width: 100%;
+    background: #000;
+}
+
 .text-light-text {
     color: var(--light-text);
 }

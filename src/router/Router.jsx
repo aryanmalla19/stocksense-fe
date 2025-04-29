@@ -30,6 +30,8 @@ import PortfolioManagement from "../admin/user/PortfolioManagements";
 import Details from "../pages/OrderManagement/Details";
 import PortfolioDetails from "../admin/components/Portfolio/PortfolioDetails";
 import IPOEdit from "../admin/components/IPO/IPOEdit";
+import Login from "../pages/Auth/Login";
+import Register from "../pages/Auth/Register";
 
 const Router = createBrowserRouter([
   {
@@ -121,6 +123,14 @@ const Router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginReg />,
+  },
+  {
+    path: "/loginn",
+    element: <Login />,
+  },
+  {
+    path: "/registerr",
+    element: <Register />,
   },
   {
     path: "/register",

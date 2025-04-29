@@ -18,7 +18,7 @@ const Input = React.forwardRef(
     return (
       <div className="mb-3 relative">
         <div className="flex items-center bg-gray-100 rounded-md p-2 relative">
-          {Icon && <Icon className="text-gray-500 mr-2" />}
+          {Icon && <Icon className="text-gray-500 mx-2" />}
           <input
             className="bg-gray-100 text-[#4D4D4D] my-1 px-3 w-full focus:outline-none rounded-md pr-10"
             name={name}
