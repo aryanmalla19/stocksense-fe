@@ -5,68 +5,62 @@ import SliderCarousel from "../../components/stocks/SliderCarousel";
 import useFetchWatchList from "../../hooks/stockshooks/useFetchWatchList";
 import { useStocks } from "../../hooks/stockshooks/useStocks";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 const PortfolioTracker = () => {
   const { theme } = useContext(ThemeContext);
   const { data: stocksData, isLoading, error } = useFetchWatchList();
-  const { data: allStocksData, isLoading: isStocksLoading } = useStocks(
-    "",
-    "",
-    ""
-  );
+  const { data: allStocksData, isLoading: isStocksLoading } = useStocks("", "", "");
 
   const settings = {
     dots: false,
     infinite: true,
     speed: 1000,
-    slidesToShow: 4,
+    slidesToShow: 3, 
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
     cssEase: "linear",
     arrows: false,
     responsive: [
-      { breakpoint: 1536, settings: { slidesToShow: 6 } }, // 2xl screen
-      { breakpoint: 1280, settings: { slidesToShow: 5 } }, // xl screen
-      { breakpoint: 1024, settings: { slidesToShow: 4 } }, // lg screen
-      { breakpoint: 768, settings: { slidesToShow: 3 } }, // md screen
-      { breakpoint: 640, settings: { slidesToShow: 2 } }, // sm screen
-      { breakpoint: 480, settings: { slidesToShow: 1 } }, // very small devices
+      { breakpoint: 1024, settings: { slidesToShow: 2 } }, // lg screen: 2 cards
+      { breakpoint: 640, settings: { slidesToShow: 1 } }, // sm screen: 1 card
     ],
   };
 
   if (isLoading || isStocksLoading) return <p>Loading watchlist...</p>;
   if (error) return <p>Error loading watchlist: {error.message}</p>;
-  if (!stocksData?.data || !Array.isArray(stocksData.data))
-    return <p>No data</p>;
+  if (!stocksData?.data?.length) return <p>No stocks in your watchlist.</p>;
 
   const watchList = stocksData.data;
   let finalStocks = [...watchList];
 
-  if (watchList.length < 4 && allStocksData?.data?.length) {
-    const remainingCount = 4 - watchList.length;
-
+  // Fill up to 3 stocks if watchlist has fewer than 3
+  if (watchList.length < 3 && allStocksData?.data?.length) {
+    const remainingCount = 3 - watchList.length;
     const extraStocks = allStocksData.data
       .filter(
-        (stock) =>
-          !watchList.some(
-            (watchItem) => watchItem.stock.symbol === stock.symbol
-          )
+        (stock) => !watchList.some((watchItem) => watchItem.stock.symbol === stock.symbol)
       )
       .slice(0, remainingCount)
       .map((stock) => ({ stock }));
-
     finalStocks = [...finalStocks, ...extraStocks];
   }
 
   return (
-    <div className="relative mt-5">
+    <div className="relative mt-5 max-w-[960px] mx-auto">
       <SliderCarousel direction="left" theme={theme} />
-      <Slider {...settings} className="max-w-[1210px] p-4">
-        {finalStocks.map((stock, index) => (
-          <div key={index}>
-            <div className="px-2 flex gap-8">
+      <Slider {...settings} className="px-4">
+        {finalStocks.map((item, index) => {
+          const stock = item.stock;
+          const pnl = stock.close_price - stock.open_price;
+          const change = (pnl / stock.open_price) * 100;
+
+          return (
+            <div key={index} className="px-2">
               <div
-                className={`w-[300px] h-[174px] rounded-[12px] p-4 space-y-5 my-2 ${
+                className={`w-[300px] h-[174px] rounded-[12px] p-4 space-y-5 ${
                   theme === "dark"
                     ? "bg-dark-bg text-dark-text"
                     : "bg-light-bg text-light-text shadow-md"
@@ -74,29 +68,34 @@ const PortfolioTracker = () => {
               >
                 <div className="flex items-center gap-4 h-12">
                   <div className="w-12 h-12 flex items-center justify-center rounded-full text-lg font-bold bg-gradient-to-br from-[#7F00FF] to-[#E100FF] text-white">
-                    {stock?.stock.company_name?.charAt(0) || "?"}
+                    {stock.company_name?.charAt(0) || "?"}
                   </div>
                   <div>
                     <p className="text-[16px] font-semibold">
-                      {stock?.stock.company_name || "Unknown"}
+                      {stock.company_name || "Unknown"}
                     </p>
-                    <p className="text-[12px]">{stock?.stock.symbol || "-"}</p>
+                    <p className="text-[12px] uppercase">{stock.symbol || "-"}</p>
                   </div>
                 </div>
 
-                <p>${stock?.stock.current_price?.toLocaleString() || "0.00"}</p>
+                <p className="text-[24px] font-bold">
+                  ${stock.current_price?.toLocaleString() || "0.00"}
+                </p>
 
-                <div className="text-accent-green font-semibold flex justify-between">
+                <div
+                  className={`font-semibold flex justify-between ${
+                    change >= 0 ? "text-accent-green" : "text-accent-red"
+                  }`}
+                >
                   <p>PNL Daily</p>
-                  <p>+${stock?.stock.open_price || 0}</p>
-                  <p>+{stock?.stock.close_price || 0}%</p>
+                  <p>
+                    {change >= 0 ? "+" : ""}${pnl.toFixed(2)} ({change.toFixed(2)}%)
+                  </p>
                 </div>
               </div>
             </div>
-
-            {(index + 1) % 2 === 0 && <div className="w-4" />}
-          </div>
-        ))}
+          );
+        })}
       </Slider>
     </div>
   );

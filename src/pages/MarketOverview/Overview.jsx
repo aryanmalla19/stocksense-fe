@@ -7,16 +7,17 @@ import PieChartData from "../../components/common/PieChartData";
 
 const Overview = () => {
   const { theme } = useContext(ThemeContext);
-  const { historyData } = useHistoryID(10);
+  const { historyData } = useHistoryID(1);
   return (
-    <div className="outlet-container">
-      <PortfolioTracker />
-
-      <div className="flex flex-col gap-4 md:flex-row h-93">
-        <div className="w-110 md:w-1/2 lg:w-2/3  h-93">
+    <div className="outlet-container flex flex-col">
+      <div className=" ml-10 w-11/12 overflow-hidden">
+        <PortfolioTracker />
+      </div>
+      <div className="flex justify-between flex-col md:flex-row">
+        <div className="w-7/12 h-93">
           <WatchListPage Stockhistory={historyData?.data?.prices} />
         </div>
-        <div className="w-[480px] md:1/2 lg:w-1/3">
+        <div className="w-4/12">
           <PieChartData theme={theme} />
         </div>
       </div>

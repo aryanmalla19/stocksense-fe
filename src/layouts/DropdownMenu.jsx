@@ -14,7 +14,7 @@ const DropdownMenu = ({
     <div>
       <div
         onClick={toggle}
-        className={`flex items-center justify-between px-6 py-2 rounded-md cursor-pointer transition-colors duration-200`}
+        className={`flex items-center justify-between pl-2 py-2 rounded-md cursor-pointer transition-colors duration-200`}
       >
         <div className="flex items-center">
           <span className="mr-3 text-lg">{label.icon}</span>
@@ -30,7 +30,7 @@ const DropdownMenu = ({
       </div>
 
       {isOpen && !collapsed && (
-        <div className="ml-10 mt-1">
+        <div className="mt-1">
           {items.map((subItem) => {
             const isActive = currentPath === subItem.href;
             return (
