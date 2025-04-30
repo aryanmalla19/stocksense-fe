@@ -36,8 +36,8 @@ const useLogin = () => {
     onError: (error) => {
       if (error?.errors) {
         setServerErrors(error.errors);
-        toast.error("Login failed");
       } else {
+        setServerErrors(error.error);
         toast.error(error?.error || "An unexpected error occurred");
       }
     },

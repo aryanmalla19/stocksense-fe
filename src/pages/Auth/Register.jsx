@@ -30,32 +30,29 @@ function Register() {
     }
 
     return (
-        <div className='flex rounded-4xl'>
-            {/* Left Section */}
-            <div className='w-7/12 bg-[#f9ecff]'>
-                <div className="m-10">
-                    <h1 className='text-4xl font-bold'>
+        <div className='flex md:flex-row flex-col rounded-4xl'>
+            <div className='md:w-7/12 bg-[#f2dafd] md:bg-[#f9ecff]'>
+                <div className="mx-8 my-3 md:m-10">
+                    <h1 className='text-2xl md:text-4xl font-bold'>
                         <span className='text-[#923EB9]'>Stock</span>Sense
                     </h1>
-                    <p className='mt-1 text-lg font-medium text-gray-700'>
+                    <p className='mt-1 md:text-lg font-medium text-gray-700'>
                         Let the Stock in you begin!
                     </p>
                 </div>
                 <div>
-                    <img className='mx-auto' src={logo} alt='illustration' />
+                    <img className='mx-auto md:block hidden' src={logo} alt='illustration' />
                 </div>
             </div>
 
-            {/* Right Section */}
-            <div className='w-5/12 bg-[#f2dafd] pt-4 min-h-[100vh]'>
-                <div className='w-8/12 mx-auto flex flex-col'>
-                    <h1 className='text-2xl mt-6 font-semibold'>Register to Your Account</h1>
-                    <p className='mt-1 text-lg font-medium text-gray-700'>
+            <div className='md:w-5/12 bg-[#f2dafd] md:pt-4 min-h-[100vh]'>
+                <div className='w-10/12 md:w-8/12 mx-auto flex flex-col'>
+                    <h1 className='md:text-2xl md:mt-6 font-semibold'>Register to Your Account</h1>
+                    <p className='mt-1 md:text-lg font-medium text-gray-700'>
                         Welcome! Please enter your details.
                     </p>
 
                     <form className='mt-5' onSubmit={handleSubmit(onSubmit)}>
-                        {/* Name */}
                         <div className='flex my-2 flex-col'>
                             <label className='ml-1 font-medium' htmlFor='name'>
                                 Full Name
@@ -72,7 +69,6 @@ function Register() {
                             />
                         </div>
 
-                        {/* Email */}
                         <div className='flex my-2 flex-col'>
                             <label className='ml-1 font-medium' htmlFor='email'>
                                 Email
@@ -89,7 +85,6 @@ function Register() {
                             />
                         </div>
 
-                        {/* Password */}
                         <div className='flex my-2 flex-col'>
                             <label className='ml-1 font-medium' htmlFor='password'>
                                 Password
@@ -110,7 +105,6 @@ function Register() {
                             />
                         </div>
 
-                        {/* Confirm Password */}
                         <div className='flex my-2 flex-col'>
                             <label className='ml-1 font-medium' htmlFor='password_confirmation'>
                                 Confirm Password
@@ -130,7 +124,6 @@ function Register() {
                             />
                         </div>
 
-                        {/* Submit */}
                         <button
                             type='submit'
                             disabled={isLoading}
@@ -139,22 +132,19 @@ function Register() {
                             {isLoading ? <LoadingSpinner /> : "Register"}
                         </button>
 
-                        {/* Divider */}
                         <div className='flex mt-5 justify-center items-center'>
                             <div className='line mx-3 h-[1px] w-20 bg-gray-400'></div>
                             Or
                             <div className='line mx-3 h-[1px] w-20 bg-gray-400'></div>
                         </div>
 
-                        {/* Google Button */}
                         <GoogleLoginButton />
 
-                        {/* Redirect */}
                         <p className='text-center mt-5 font-medium'>
                             Already have an account?{" "}
                             <Link
                                 className='font-semibold text-[#923EB9] hover:underline'
-                                to='/loginn'
+                                to='/login'
                             >
                                 Login
                             </Link>

@@ -122,19 +122,11 @@ const Router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <LoginReg />,
-  },
-  {
-    path: "/loginn",
     element: <Login />,
   },
   {
-    path: "/registerr",
-    element: <Register />,
-  },
-  {
     path: "/register",
-    element: <LoginReg />,
+    element: <Register />,
   },
   {
     path: "/confirmation",
