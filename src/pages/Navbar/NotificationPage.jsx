@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import { IoIosNotifications } from "react-icons/io";
-import useGetNotifications from "../../hooks/notificationhooks/useGetNotifications";
+import useGetNotifications from "../../hooks/notifications/useGetNotifications.js";
 import getTimeDifference from "../Notifications/getTimeDifference";
 import { ThemeContext } from "../../context/ThemeContext";
 import { useNavigate } from "react-router-dom";
-import useMarkAllAsRead from "../../hooks/notificationhooks/useMarkAllAsRead.js";
-import useMarkAsRead from "../../hooks/notificationhooks/useMarkAsRead.js";
+import useMarkAllAsRead from "../../hooks/notifications/useMarkAllAsRead.js";
+import useMarkAsRead from "../../hooks/notifications/useMarkAsRead.js";
 
 const NotificationPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +59,7 @@ const handleClose = () => {
   return (
     <div className="relative">
       <div
-        className="cursor-pointer hover:scale-110 transition-transform"
+        className="cursor-pointer"
         onClick={handleToggle}
       >
         <IoIosNotifications className="w-6 h-6" />

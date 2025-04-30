@@ -8,7 +8,7 @@ const MenuItem = ({ item, currentPath, theme, collapsed }) => {
     <Link
       to={item.href}
       key={item.label}
-      className={`flex w-full min-w-[200px] items-center px-6 py-3 text-[16px] font-medium transition-colors duration-200  rounded-md 
+      className={`flex justify-start pl-2 w-full min-w-[200px] items-center text-center py-3 text-[16px] font-medium transition-colors duration-200  rounded-md 
       ${
         isActive
           ? theme === "dark"

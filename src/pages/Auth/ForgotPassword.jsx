@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
-import useForgotPassword from "../../hooks/authhooks/useForgotPassword";
+import useForgotPassword from "../../hooks/auth/useForgotPassword";
 import forgot from "../../assets/forgot.png";
 import { FiMail, FiArrowRight } from "react-icons/fi";
 

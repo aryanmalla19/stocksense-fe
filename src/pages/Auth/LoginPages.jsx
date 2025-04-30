@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import Rememberme from "../../authcomponent/Rememberme";
-import Input from "../../components/stocks/Input";
+import Rememberme from "../../components/Auth/Rememberme";
+import Input from "../../components/Stocks/Input";
 import { FaEnvelope, FaLock } from "react-icons/fa";
-import LoadingSpinner from "../../components/common/LoadingSpinner";
-import useLogin from "../../hooks/authhooks/useLogin";
+import LoadingSpinner from "../../components/Common/LoadingSpinner";
+import useLogin from "../../hooks/auth/useLogin";
 import { useForm } from "react-hook-form";
 import useAuthStore from "../../store/authStore";
-import GoogleLoginButton from "../../authcomponent/GoogleLoginButton";
+import GoogleLoginButton from "../../components/Auth/GoogleLoginButton";
 
 const LoginPages = () => {
   const [showPassword, setShowPassword] = useState(false);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 import otpImage from "../../assets/otp.png";
-import useVerifyOtp from "../../hooks/authhooks/useVerifyOtp";
+import useVerifyOtp from "../../hooks/auth/useVerifyOtp";
 
 const OtpPage = () => {
   const [OTP, setOTP] = useState(["", "", "", "", "", ""]);

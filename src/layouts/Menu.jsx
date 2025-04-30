@@ -39,7 +39,6 @@ const menuItems = [
     label: "Portfolios",
     href: "/portfoliomanagement",
   },
-  // { icon: <FaHeadphonesAlt />, label: "Support", href: "/admin/support" },
 ];
 
 const ipoItems = [
@@ -52,7 +51,7 @@ const portfolioItems = [
   { label: "Holdings", href: "/portfolio/holdings" },
   { label: "Transactions", href: "/portfolio/transactions" },
 ];
-import useUserDetails from "../hooks/authhooks/useUserDetails";
+import useUserDetails from "../hooks/auth/useUserDetails";
 
 const Menu = ({ collapsed, theme }) => {
   const location = useLocation();
@@ -67,7 +66,7 @@ const Menu = ({ collapsed, theme }) => {
     { icon: <MdOutlineDashboard />, label: "Dashboard", href: "/dashboard" },
     { icon: <FiList />, label: "Stocks List", href: "/stocks" },
     { icon: <FiShoppingCart />, label: "Trade Stocks", href: "/buy" },
-    { icon: <FiStar />, label: "Watchlist", href: "/watch-list" },
+    { icon: <FiStar />, label: "Stocks Watchlist", href: "/watch-list" },
     { icon: <FiPieChart />, label: "Portfolio", href: "/portfolio" },
     { icon: <FiLayers />, label: "IPO Applications", href: "/shares" },
   ];
@@ -80,12 +79,12 @@ const Menu = ({ collapsed, theme }) => {
     },
     {
       icon: <FaClipboardList />,
-      label: "Ipo Management",
+      label: "IPO Management",
       href: "/ipomanagement",
     },
     {
       icon: <RiUserShared2Fill />,
-      label: "Portfolios",
+      label: "User Management",
       href: "/portfoliomanagement",
     },
   ];
@@ -97,13 +96,13 @@ const Menu = ({ collapsed, theme }) => {
 
   const ipoItems = [
     { label: "IPO Application Form", href: "/shares" },
-    { label: "IPO Listings", href: "/ipo-list" },
+    { label: "My IPO Application", href: "/ipo-list" },
   ];
 
   const portfolioItems = [
     { label: "My Portfolio", href: "/portfolio" },
-    { label: "Holdings", href: "/portfolio/holdings" },
-    { label: "Transactions", href: "/portfolio/transactions" },
+    { label: "My Holdings", href: "/portfolio/holdings" },
+    { label: "My Transactions", href: "/portfolio/transactions" },
   ];
 
   const togglePortfolio = () => setIsPortfolioOpen(!isPortfolioOpen);

@@ -4,7 +4,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import ProfileImage from "../store/ProfileImage";
 import { GiHamburgerMenu } from "react-icons/gi";
 import NotificationPage from "../pages/Navbar/NotificationPage";
-import useUserDetails from "../hooks/authhooks/useUserDetails";
+import useUserDetails from "../hooks/auth/useUserDetails";
 
 const Navbar = ({ theme, collapsed, setCollapsed }) => {
   const { toggleTheme } = useContext(ThemeContext);
@@ -33,7 +33,7 @@ const Navbar = ({ theme, collapsed, setCollapsed }) => {
         <NotificationPage />
 
         <div
-          className="w-6 h-6 flex items-center justify-center rounded-full cursor-pointer transition-all hover:scale-110"
+          className="w-6 h-6 flex items-center justify-center rounded-full cursor-pointer"
           onClick={toggleTheme}
         >
           {theme === "dark" ? (

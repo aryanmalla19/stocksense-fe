@@ -1,8 +1,8 @@
 import axiosInstance from "./axiosInstance";
 
-export const stockList = async ({ page, per_page = 10, symbol = "" }) => {
+export const stockList = async ({ page, per_page = 10, symbol = "", listed = true }) => {
   const response = await axiosInstance.get("/stocks", {
-    params: { page, per_page, symbol },
+    params: { page, per_page, symbol, listed },
   });
   return response.data;
 };

@@ -2,9 +2,9 @@ import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import BuyStockPage from "./BuyStockPage";
 import { FaUser, FaEnvelope } from "react-icons/fa";
-import useUserDetails from "../../hooks/authhooks/useUserDetails";
-import { useStocks } from "../../hooks/stockshooks/useStocks";
-import useBuySell from "../../hooks/ipohooks/useBuySell";
+import useUserDetails from "../../hooks/auth/useUserDetails";
+import { useStocks } from "../../hooks/stocks/useStocks";
+import useBuySell from "../../hooks/ipo/useBuySell";
 
 const BuySellPage = () => {
   const { userDetails } = useUserDetails();
@@ -34,58 +34,53 @@ const BuySellPage = () => {
   };
 
   return (
-    <>
-      <div className="flex justify-between items-center mb-6 mx-6  mt-5">
-        <h1 className="text-3xl font-bold flex items-center gap-2">
-          Buy Stocks
+    <div className={`min-h-screen p-6 ${theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"} transition-colors duration-300`}>
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold mb-8 flex items-center gap-3">
+          <span className="text-[#FB8122]">📈</span> Buy Stocks
         </h1>
-      </div>
 
-      <div
-        className={`outlet-container rounded-md shadow-lg mx-6 mb-8 ${
-          theme === "dark"
-            ? "bg-dark-bg text-dark-text"
-            : "bg-white text-gray-600"
-        }`}
-      >
-        <div className="flex justify-between px-10 py-6 items-start flex-wrap gap-y-4">
-          <div className="flex flex-col sm:flex-row gap-12">
-            <div>
-              <h2 className="font-semibold text-lg flex items-center gap-2">
-                <FaUser className="text-[#FB8122]" />
-                Client Name
-              </h2>
-              <p className=" text-sm">{userDetails?.data?.name}</p>
+        <div className={`rounded-2xl shadow-xl overflow-hidden ${theme === "dark" ? "bg-gray-800" : "bg-white"} transition-all duration-300 hover:shadow-2xl`}>
+          {/* User Info Section */}
+          <div className="p-8 flex flex-col sm:flex-row justify-between items-start gap-6">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-[#FB8122]/10 rounded-full">
+                <FaUser className="text-[#FB8122] text-xl" />
+              </div>
+              <div>
+                <h2 className="text-sm font-semibold text-gray-500">Client Name</h2>
+                <p className="text-lg font-medium">{userDetails?.data?.name || "N/A"}</p>
+              </div>
             </div>
-            <div>
-              <h2 className="font-semibold text-lg flex items-center gap-2">
-                <FaEnvelope className="text-[#FB8122]" />
-                Client Email
-              </h2>
-              <p className=" text-sm">{userDetails?.data?.email}</p>
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-[#FB8122]/10 rounded-full">
+                <FaEnvelope className="text-[#FB8122] text-xl" />
+              </div>
+              <div>
+                <h2 className="text-sm font-semibold text-gray-500">Client Email</h2>
+                <p className="text-lg font-medium">{userDetails?.data?.email || "N/A"}</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <hr
-          className={`border ${
-            theme === "dark" ? "border-gray-700" : "border-gray-300"
-          }`}
-        />
+          {/* Divider */}
+          <hr className={`border ${theme === "dark" ? "border-gray-700" : "border-gray-200"}`} />
 
-        <div className="px-10 py-6">
-          <BuyStockPage
-            theme={theme}
-            stocksData={stocksData}
-            selectedSymbol={selectedSymbol}
-            setSelectedSymbol={setSelectedSymbol}
-            quantity={quantity}
-            setQuantity={setQuantity}
-            handleSubmit={handleSubmit}
-          />
+          {/* Buy Stock Section */}
+          <div className="p-8">
+            <BuyStockPage
+              theme={theme}
+              stocksData={stocksData}
+              selectedSymbol={selectedSymbol}
+              setSelectedSymbol={setSelectedSymbol}
+              quantity={quantity}
+              setQuantity={setQuantity}
+              handleSubmit={handleSubmit}
+            />
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

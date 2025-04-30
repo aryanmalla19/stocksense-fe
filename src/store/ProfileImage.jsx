@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { FaRegUser, FaSignOutAlt } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
 import { Link } from "react-router-dom";
-import useAuth from "../hooks/authhooks/useAuth";
+import useAuth from "../hooks/auth/useAuth";
 import { toast } from "react-hot-toast";
-import useUserDetails from "../hooks/authhooks/useUserDetails";
+import useUserDetails from "../hooks/auth/useUserDetails";
 
 const ProfileImage = ({ name, email, theme }) => {
   const [isOpen, setIsOpen] = useState(false);
