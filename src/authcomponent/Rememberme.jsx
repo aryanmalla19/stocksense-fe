@@ -4,7 +4,7 @@ const Rememberme = () => {
   return (
     <div>
       {/* Remember Me and Forgot Password */}
-      <div className="flex gap-16 mb-4 text-sm text-gray-600 font-semibold">
+      <div className="flex justify-between mb-4 text-base text-gray-800">
         <label className="flex items-center">
           <input type="checkbox" className="mr-2" />
           Remember me

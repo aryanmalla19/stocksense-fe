@@ -17,14 +17,27 @@ const Input = React.forwardRef(
   ) => {
     return (
       <div className="mb-3 relative">
-        <div className="flex items-center bg-gray-100 rounded-md p-2 relative">
-          {Icon && <Icon className="text-gray-500 mr-2" />}
+        <div
+          className={`flex items-center rounded-md p-1 md:p-2 relative ${
+            error ? "bg-red-50 border border-red-400" : "bg-gray-100"
+          }`}
+        >
+          {Icon && (
+            <Icon
+              className={`mx-2 ${
+                error ? "text-red-500" : "text-gray-500"
+              }`}
+            />
+          )}
           <input
-            className="bg-gray-100 text-[#4D4D4D] my-1 px-3 w-full focus:outline-none rounded-md pr-10"
+            className={`text-[#4D4D4D] my-1 px-3 w-full focus:outline-none rounded-md pr-10 bg-transparent ${
+              error ? "text-red-600" : ""
+            }`}
             name={name}
             type={type}
             placeholder={placeholder}
             ref={ref}
+            aria-invalid={!!error}
             {...rest}
           />
           {showToggle && (
@@ -36,8 +49,11 @@ const Input = React.forwardRef(
               {type === "password" ? <FaEyeSlash /> : <FaEye />}
             </button>
           )}
-
         </div>
+
+        {error && (
+          <p className="text-sm text-red-500 mt-1 ml-1">{error}</p>
+        )}
       </div>
     );
   }
