@@ -59,7 +59,7 @@ const handleClose = () => {
   return (
     <div className="relative">
       <div
-        className="cursor-pointer hover:scale-110 transition-transform"
+        className="cursor-pointer"
         onClick={handleToggle}
       >
         <IoIosNotifications className="w-6 h-6" />

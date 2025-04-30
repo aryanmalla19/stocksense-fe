@@ -33,7 +33,7 @@ const Navbar = ({ theme, collapsed, setCollapsed }) => {
         <NotificationPage />
 
         <div
-          className="w-6 h-6 flex items-center justify-center rounded-full cursor-pointer transition-all hover:scale-110"
+          className="w-6 h-6 flex items-center justify-center rounded-full cursor-pointer"
           onClick={toggleTheme}
         >
           {theme === "dark" ? (
