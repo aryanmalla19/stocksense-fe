@@ -74,7 +74,7 @@ const LineCharts = ({ isDark }) => {
   };
 
   return (
-    <div className="w-full md:w-[800px] h-[400px] p-4">
+    <div className="w-full h-[400px] p-4">
       <Line data={chartData} options={options} />
     </div>
   );

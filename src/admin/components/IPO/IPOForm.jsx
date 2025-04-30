@@ -16,6 +16,7 @@ function IPOForm({
     searchSymbol: "",
     pageNumber: 1,
     per_page: 5000,
+    listed: false,
   });
   const [stockOptions, setStockOptions] = useState([]);
   const [listingDate, setListingDate] = useState(form.listingDate || "");

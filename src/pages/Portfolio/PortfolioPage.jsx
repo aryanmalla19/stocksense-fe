@@ -98,7 +98,7 @@ const PortfolioPage = () => {
           <div className="w-1/2 lg:w-1/3 ">
             <IndividualPieChart isDark={isDark} />
           </div>
-          <div className="w-1/2 lg:w-1/2 h-[400px]">
+          <div className="w-1/2 lg:w-2/3 h-[400px]">
             <LineCharts isDark={isDark} />
           </div>
         </div>
