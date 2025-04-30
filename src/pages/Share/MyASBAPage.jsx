@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import { Link } from "react-router-dom";
-import useFetchIpoDetail from "../../hooks/stockshooks/useFetchIpoDetail";
+import useFetchIpoDetail from "../../hooks/stocks/useFetchIpoDetail";
 
 const MyASBAPage = () => {
   const { theme } = useContext(ThemeContext);

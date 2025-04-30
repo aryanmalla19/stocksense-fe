@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import StockListTable from "./StockListTable";
 import SearchStock from "./SearchStock";
-import Calendar from "../../components/stocks/Calender";
+import Calendar from "../../components/Stocks/Calender";
 import { useLocation } from "react-router-dom";
 
 const StockList = () => {
@@ -14,10 +14,9 @@ const StockList = () => {
 
   return (
     <div>
-      {/* Header Section */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 mx-8 ">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold py-2">
+          <h1 className="text-xl md:text-2xl font-bold py-2">
             {isWatchlist ? "Stock Watch List" : "Stock List"}
           </h1>
           <p
@@ -29,7 +28,6 @@ const StockList = () => {
           </p>
         </div>
 
-        {/* Search & Calendar */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-4 sm:mt-0">
           <SearchStock
             theme={theme}

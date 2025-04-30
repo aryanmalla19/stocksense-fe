@@ -2,9 +2,9 @@ import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import BuyStockPage from "./BuyStockPage";
 import { FaUser, FaEnvelope } from "react-icons/fa";
-import useUserDetails from "../../hooks/authhooks/useUserDetails";
-import { useStocks } from "../../hooks/stockshooks/useStocks";
-import useBuySell from "../../hooks/ipohooks/useBuySell";
+import useUserDetails from "../../hooks/auth/useUserDetails";
+import { useStocks } from "../../hooks/stocks/useStocks";
+import useBuySell from "../../hooks/ipo/useBuySell";
 
 const BuySellPage = () => {
   const { userDetails } = useUserDetails();

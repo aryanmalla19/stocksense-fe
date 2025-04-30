@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
-import useResetPassword from "../../hooks/authhooks/useResetPassword";
+import useResetPassword from "../../hooks/auth/useResetPassword";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { FiLock, FiArrowRight } from "react-icons/fi";
 import resetPassImg from "../../assets/change.png";

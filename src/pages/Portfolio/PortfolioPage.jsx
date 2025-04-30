@@ -1,5 +1,5 @@
 import React from "react";
-import useFetchPortfolio from "../../hooks/userhooks/useFetchPortfolio";
+import useFetchPortfolio from "../../hooks/user/useFetchPortfolio";
 import { ThemeContext } from "../../context/ThemeContext";
 import {
   FaWallet,
@@ -7,8 +7,8 @@ import {
   FaBalanceScale,
   FaChartLine,
 } from "react-icons/fa";
-import LineCharts from "../../components/common/LineCharts";
-import IndividualPieChart from "../../components/common/IndividualPieChart";
+import LineCharts from "../../components/Common/LineCharts";
+import IndividualPieChart from "../../components/Common/IndividualPieChart";
 
 const PortfolioPage = () => {
   const { data, isLoading, error } = useFetchPortfolio();

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import Slider from "react-slick";
-import SliderCarousel from "../../components/stocks/SliderCarousel";
-import useFetchWatchList from "../../hooks/stockshooks/useFetchWatchList";
-import { useStocks } from "../../hooks/stockshooks/useStocks";
+import SliderCarousel from "../../components/Stocks/SliderCarousel";
+import useFetchWatchList from "../../hooks/stocks/useFetchWatchList";
+import { useStocks } from "../../hooks/stocks/useStocks";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

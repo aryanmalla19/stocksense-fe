@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import useOAuth from '../hooks/authhooks/useOAuth';
-import useAuth from '../hooks/authhooks/useAuth';
+import useOAuth from '../../hooks/auth/useOAuth';
+import useAuth from '../../hooks/auth/useAuth';
 import { useNavigate } from 'react-router-dom';
 
 const GoogleLoginButton = () => {

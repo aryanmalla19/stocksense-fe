@@ -4,7 +4,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import ProfileImage from "../store/ProfileImage";
 import { GiHamburgerMenu } from "react-icons/gi";
 import NotificationPage from "../pages/Navbar/NotificationPage";
-import useUserDetails from "../hooks/authhooks/useUserDetails";
+import useUserDetails from "../hooks/auth/useUserDetails";
 
 const Navbar = ({ theme, collapsed, setCollapsed }) => {
   const { toggleTheme } = useContext(ThemeContext);

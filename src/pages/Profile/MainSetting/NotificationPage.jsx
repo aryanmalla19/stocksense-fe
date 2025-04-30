@@ -1,5 +1,5 @@
 import React from "react";
-import ToggleButton from "../../../components/common/ToggleButton";
+import ToggleButton from "../../../components/Common/ToggleButton";
 
 const notificationOptions = [
   {

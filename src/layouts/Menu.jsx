@@ -51,7 +51,7 @@ const portfolioItems = [
   { label: "Holdings", href: "/portfolio/holdings" },
   { label: "Transactions", href: "/portfolio/transactions" },
 ];
-import useUserDetails from "../hooks/authhooks/useUserDetails";
+import useUserDetails from "../hooks/auth/useUserDetails";
 
 const Menu = ({ collapsed, theme }) => {
   const location = useLocation();

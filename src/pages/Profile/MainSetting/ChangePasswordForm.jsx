@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import useChangePassword from "../../../hooks/authhooks/useChangePassword";
+import useChangePassword from "../../../hooks/auth/useChangePassword";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import LoadingSpinner from "../../../components/common/LoadingSpinner";
-import useAuth from "../../../hooks/authhooks/useAuth";
+import LoadingSpinner from "../../../components/Common/LoadingSpinner";
+import useAuth from "../../../hooks/auth/useAuth";
 
 const ChangePasswordForm = ({ onClose, theme }) => {
   const { logout } = useAuth();

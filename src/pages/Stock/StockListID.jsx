@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import useFetchStocksID from "../../hooks/stockshooks/useFetchStocksID";
+import useFetchStocksID from "../../hooks/stocks/useFetchStocksID";
 import { ThemeContext } from "../../context/ThemeContext";
-import useHistoryID from "../../hooks/stockshooks/useHistoryID";
+import useHistoryID from "../../hooks/stocks/useHistoryID";
 import StockDetails from "./StockDetails";
 import MarketSummary from "./MarketSummary";
-import Candlestick from "../../components/common/CandleStick";
+import Candlestick from "../../components/Common/CandleStick";
 
 const StockListID = () => {
   const { id } = useParams();

@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "../../components/common/Input";
+import Input from "../../components/Common/Input";
 
 const InputField = ({
   label,

@@ -1,12 +1,12 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import useLogin from "../../hooks/authhooks/useLogin";
+import useLogin from "../../hooks/auth/useLogin";
 import useAuthStore from "../../store/authStore";
-import GoogleLoginButton from "../../authcomponent/GoogleLoginButton";
-import Input from "../../components/stocks/Input";
-import Rememberme from "../../authcomponent/Rememberme";
-import LoadingSpinner from "../../components/common/LoadingSpinner";
+import GoogleLoginButton from "../../components/Auth/GoogleLoginButton";
+import Input from "../../components/Stocks/Input";
+import Rememberme from "../../components/Auth/Rememberme";
+import LoadingSpinner from "../../components/Common/LoadingSpinner";
 import logo from "../../assets/image.png";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { motion } from "framer-motion";

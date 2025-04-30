@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import useGetHoldings from "../../hooks/ipohooks/useGetHoldings";
+import useGetHoldings from "../../hooks/ipo/useGetHoldings";
 import { ThemeContext } from "../../context/ThemeContext";
-import useBuySell from "../../hooks/ipohooks/useBuySell";
+import useBuySell from "../../hooks/ipo/useBuySell";
 import { FaSellcast } from "react-icons/fa";
 import ConfirmSellPage from "./ConfirmSellPage";
 

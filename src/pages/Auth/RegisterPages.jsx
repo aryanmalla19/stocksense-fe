@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
-import useRegister from "../../hooks/authhooks/useRegister";
-import Input from "../../components/stocks/Input";
-import LoadingSpinner from "../../components/common/LoadingSpinner";
-import GoogleLoginButton from "../../authcomponent/GoogleLoginButton";
+import useRegister from "../../hooks/auth/useRegister";
+import Input from "../../components/Stocks/Input";
+import LoadingSpinner from "../../components/Common/LoadingSpinner";
+import GoogleLoginButton from "../../components/Auth/GoogleLoginButton";
 
 const RegisterPages = () => {
   const [showPassword, setShowPassword] = useState(false);

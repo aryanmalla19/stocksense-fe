@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import useBuySell from "../../hooks/ipohooks/useBuySell";
-import { useStocks } from "../../hooks/stockshooks/useStocks";
+import useBuySell from "../../hooks/ipo/useBuySell";
+import { useStocks } from "../../hooks/stocks/useStocks";
 
 const ConfirmSellPage = ({ onClose, theme, stockID, quantity }) => {
   const [userInputQuantity, setUserInputQuantity] = useState();

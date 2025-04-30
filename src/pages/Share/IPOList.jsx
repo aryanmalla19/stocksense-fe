@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
-import useIPOList from "../../hooks/ipohooks/useIPOList";
+import useIPOList from "../../hooks/ipo/useIPOList";
 import { MdPending } from "react-icons/md";
 
 const IPOList = () => {

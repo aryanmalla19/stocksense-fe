@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import ChangePasswordForm from "./ChangePasswordForm";
 
-import ToggleButton from "../../../components/common/ToggleButton";
+import ToggleButton from "../../../components/Common/ToggleButton";
 import { disableTwoFactor, enableTwoFactor } from "../../../api/userApi";
-import useUserDetails from "../../../hooks/authhooks/useUserDetails";
+import useUserDetails from "../../../hooks/auth/useUserDetails";
 
 const SecurityPage = ({ theme }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

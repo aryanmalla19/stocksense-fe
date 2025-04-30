@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
-import useGetNotifications from "../../hooks/notificationhooks/useGetNotifications";
+import useGetNotifications from "../../hooks/notifications/useGetNotifications.js";
 import { ThemeContext } from "../../context/ThemeContext";
 import getTimeDifference from "./getTimeDifference";
-import useMarkAllAsRead from "../../hooks/notificationhooks/useMarkAllAsRead.js";
-import useMarkAsRead from "../../hooks/notificationhooks/useMarkAsRead.js";
-import Pagination from "../stockPage/Pagination.jsx";
+import useMarkAllAsRead from "../../hooks/notifications/useMarkAllAsRead.js";
+import useMarkAsRead from "../../hooks/notifications/useMarkAsRead.js";
+import Pagination from "../Stock/Pagination.jsx";
 
 const Notifications = () => {
   const [pageNumber, setPageNumber] = useState(1);

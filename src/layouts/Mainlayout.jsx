@@ -3,7 +3,7 @@ import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
 import { ThemeContext } from "../context/ThemeContext";
-import PrivateRoute from "../components/common/PrivateRoute";
+import PrivateRoute from "../components/Common/PrivateRoute";
 
 const Mainlayout = () => {
   const { theme } = useContext(ThemeContext);

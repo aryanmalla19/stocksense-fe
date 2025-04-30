@@ -2,9 +2,10 @@ import React, { useEffect, useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import StockListTableHeader from "./StockListTableHeader";
 import Pagination from "./Pagination";
-import useFetchWatchList from "../../hooks/stockshooks/useFetchWatchList";
+import useFetchWatchList from "../../hooks/stocks/useFetchWatchList";
 import StockListRow from "./StockListRow";
-import useSort from "../../hooks/stockshooks/useSort";
+import useSort from "../../hooks/stocks/useSort";
+
 const StockListTable = ({ theme, searchSymbol }) => {
   const location = useLocation();
   const isWatchlist = location.pathname.includes("watch-list");
@@ -19,6 +20,7 @@ const StockListTable = ({ theme, searchSymbol }) => {
     isError,
     refetch: refetchSortedData,
   } = useSort(sortBy, sortOrder, pageNumber);
+
   const handleSort = (columnKey) => {
     if (sortBy === columnKey) {
       setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
@@ -27,6 +29,7 @@ const StockListTable = ({ theme, searchSymbol }) => {
       setSortOrder("asc");
     }
   };
+  
   const handleRemoveStock = (stockID) => {
     if (isWatchlist) {
       setWatchListStocks((prev) =>
@@ -48,13 +51,16 @@ const StockListTable = ({ theme, searchSymbol }) => {
       });
     }
   }, [isWatchlist, refetch]);
+  
   const displayStocks = useMemo(() => {
     const base = isWatchlist ? watchListStocks : fetchedData?.data ?? [];
     return base.filter((s) =>
       s.symbol.toLowerCase().includes(searchSymbol.toLowerCase())
     );
   }, [isWatchlist, watchListStocks, fetchedData, searchSymbol]);
+  
   const currentStocks = isLoading ? watchListStocks : displayStocks;
+  
   return (
     <section className="details-container">
       <StockListTableHeader

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { IoMdAddCircle, IoMdRemoveCircle } from "react-icons/io";
-import useAddWatchList from "../../hooks/stockshooks/useAddWatchList";
+import useAddWatchList from "../../hooks/stocks/useAddWatchList";
 
 const WatchlistToggleButton = ({
   stockID,

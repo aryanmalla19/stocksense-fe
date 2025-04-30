@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext.jsx";
 import IPOList from "../components/IPO/IPOList";
 import IPOForm from "../components/IPO/IPOForm";
-import useFetchIpoDetail from "../../hooks/stockshooks/useFetchIpoDetail.js";
+import useFetchIpoDetail from "../../hooks/stocks/useFetchIpoDetail.js";
 
 function IpoManagement() {
   const { theme } = useContext(ThemeContext);

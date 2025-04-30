@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import useUpdateProfile from "../../../hooks/userhooks/useUpdateProfile";
-import useUserDetails from "../../../hooks/authhooks/useUserDetails";
+import useUpdateProfile from "../../../hooks/user/useUpdateProfile";
+import useUserDetails from "../../../hooks/auth/useUserDetails";
 import ProfileForm from "./ProfileForm";
 import UserDetailsProfile from "./UserDetailsProfile";
 

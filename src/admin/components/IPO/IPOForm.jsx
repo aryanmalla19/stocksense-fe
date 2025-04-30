@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useStocks } from "../../../hooks/stockshooks/useStocks";
+import { useStocks } from "../../../hooks/stocks/useStocks";
 import useIPODetails from "../../../hooks/admin/useIPODetails";
 
 function IPOForm({

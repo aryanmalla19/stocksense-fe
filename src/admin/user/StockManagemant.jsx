@@ -3,8 +3,8 @@ import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { ThemeContext } from "../../context/ThemeContext.jsx";
 import StockList from "../components/Stock/StockList.jsx";
 import StockForm from "../components/Stock/StockForm.jsx";
-import { useStocks } from "../../hooks/stockshooks/useStocks.js";
-import Pagination from "../../pages/stockPage/Pagination.jsx";
+import { useStocks } from "../../hooks/stocks/useStocks.js";
+import Pagination from "../../pages/Stock/Pagination.jsx";
 import { createStock, updateStock } from "../../api/stocksApiService.js";
 
 function StockManagement() {

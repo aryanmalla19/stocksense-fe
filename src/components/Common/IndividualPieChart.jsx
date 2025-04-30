@@ -8,7 +8,7 @@ import {
   Title,
   Colors,
 } from "chart.js";
-import useIndividualPieChart from "../../hooks/charthooks/useIndividualPieChart";
+import useIndividualPieChart from "../../hooks/charts/useIndividualPieChart";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 const IndividualPieChart = ({ isDark }) => {
