@@ -4,8 +4,9 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [tailwindcss(), react()],
+  base: "/",
   server: {
-    allowedHosts: ['stocksense.me', 'backend.stocksense.me'],
+    allowedHosts: ['stocksense.me', 'backend.stocksense.me', 'api.stocksense.me'],
     port: 3000,
   },
 });
