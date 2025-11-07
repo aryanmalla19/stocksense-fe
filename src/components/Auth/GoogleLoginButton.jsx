@@ -13,7 +13,7 @@ const GoogleLoginButton = () => {
   useEffect(() => {
     if (window.google) {
       window.google.accounts.id.initialize({
-        client_id: '110759663092-p83752k4p2nm8oqh68vedrhrbo5n3n0q.apps.googleusercontent.com',
+        client_id: '23245947377-vunvgf8gbi4picsnpj8ujcqsganriitd.apps.googleusercontent.com',
         callback: handleCredentialResponse,
       });
 
