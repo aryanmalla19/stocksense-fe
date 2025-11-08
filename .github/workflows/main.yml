@@ -21,6 +21,7 @@ jobs:
             cd /var/www/html/stocksense-fe &&
             git reset --hard &&
             git pull origin main &&
+            nvm use 22 &&
             npm install &&
             npm run build
           "
