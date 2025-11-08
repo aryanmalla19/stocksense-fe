@@ -20,10 +20,11 @@ jobs:
           sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
             export NVM_DIR=\"$HOME/.nvm\" &&
             [ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\" &&
-            nvm use 20 &&
+            nvm use 22 &&
             cd /var/www/html/stocksense-fe &&
             git reset --hard &&
             git pull origin main &&
             npm install &&
             npm run build
           "
+
